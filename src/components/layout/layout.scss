@@ -1,2 +1,22 @@
+@import '../../styles/responsive';
+
 .layout {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: azure;
+  // border: 1px solid green;
+
+  @include mobile {
+    width: 375px;
+  }
+
+  @include tablet {
+    width: 768px;
+  }
+
+  @include desktop {
+    width: 1440px;
+  }
 }

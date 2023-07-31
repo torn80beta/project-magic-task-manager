@@ -1,2 +1,11 @@
+@import '../../styles/responsive';
+
 .sidebar {
+  display: none;
+
+  @include desktop {
+    display: block;
+    width: 260px;
+    background-color: aquamarine;
+  }
 }

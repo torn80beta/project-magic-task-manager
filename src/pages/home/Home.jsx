@@ -7,12 +7,13 @@ import ScreensPage from 'components/ScreensPage/ScreensPage';
 const Home = () => {
   return (
     <div className="home">
-      <Header>
-        <NavLink to={'welcome'}>To welcome page</NavLink>
-      </Header>
-      This is Homepage of Magic Task Manager!
       <Sidebar />
-      <ScreensPage />
+      <div className="home-wrapper">
+        <Header>
+          <NavLink to={'welcome'}>To welcome page</NavLink>
+        </Header>
+        <ScreensPage />
+      </div>
     </div>
   );
 };

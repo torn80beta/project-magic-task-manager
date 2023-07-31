@@ -1,8 +1,24 @@
+@import '../../styles/responsive';
+
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 100vw;
-  border: 1px solid grey;
+  width: 100%;
+  height: 60px;
+  background-color: bisque;
+
+  @include mobile {
+    width: 375px;
+  }
+
+  @include tablet {
+    width: 768px;
+    height: 68px;
+  }
+
+  @include desktop {
+    width: 1180px;
+  }
 }

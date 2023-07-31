@@ -1,2 +1,23 @@
+@import '../../styles/responsive.scss';
+
 .screensPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 60px);
+  width: 100%;
+  background-color: cadetblue;
+
+  @include mobile {
+    width: 375px;
+  }
+
+  @include tablet {
+    width: 768px;
+    height: calc(100% - 68px);
+  }
+
+  @include desktop {
+    width: 1180px;
+  }
 }

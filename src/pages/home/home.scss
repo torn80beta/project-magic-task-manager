@@ -1,6 +1,13 @@
+@import '../../styles/responsive';
+
 .home {
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  justify-content: left;
+  width: 100%;
+
+  .home-wrapper {
+    text-align: center;
+    flex-grow: 1;
+  }
 }
