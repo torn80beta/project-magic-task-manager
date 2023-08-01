@@ -1,11 +1,14 @@
 @import '../../styles/responsive';
+@import '../../styles/variables';
 
 .sidebar {
   display: none;
+  color: white;
+  background-color: $dark-sidebar-bg;
 
   @include desktop {
-    display: block;
+    display: flex;
+    justify-content: center;
     width: 260px;
-    background-color: aquamarine;
   }
 }

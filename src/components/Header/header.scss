@@ -1,4 +1,5 @@
 @import '../../styles/responsive';
+@import '../../styles/variables';
 
 .header {
   display: flex;
@@ -7,7 +8,8 @@
   gap: 20px;
   width: 100%;
   height: 60px;
-  background-color: bisque;
+  background-color: $dark-header-bg;
+  color: #fff;
 
   @include mobile {
     width: 375px;

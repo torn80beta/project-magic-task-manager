@@ -6,6 +6,9 @@ import Auth from 'pages/auth/Auth';
 import LoginForm from './LoginForm/LoginForm';
 import RegisterForm from './RegisterForm/RegisterForm';
 import NotFound from 'pages/notFound/NotFound';
+import ScreensPage from './ScreensPage/ScreensPage';
+import { PrivateRoute } from 'helpers/PrivateRoute';
+// import { RestrictedRoute } from 'helpers/RestrictedRoute';
 
 export const App = () => {
   const router = createBrowserRouter(
@@ -17,8 +20,27 @@ export const App = () => {
         children: [
           {
             path: '/',
-            element: <Home />,
+            element: (
+              <PrivateRoute redirectTo="/welcome" component={<Home />} />
+            ),
+            children: [
+              {
+                path: '/:boardName',
+                element: <ScreensPage />,
+              },
+            ],
           },
+
+          // {
+          //   path: '/',
+          //   element: <Home />,
+          //   children: [
+          //     {
+          //       path: '/:boardName',
+          //       element: <ScreensPage />,
+          //     },
+          //   ],
+          // },
           {
             path: '/welcome',
             element: <Welcome />,
@@ -27,6 +49,26 @@ export const App = () => {
             path: '/auth',
             element: <Auth />,
             children: [
+              // {
+              //   path: '/auth/login',
+              //   element: (
+              //     <RestrictedRoute redirectTo="/" component={<LoginForm />} />
+              //   ),
+              //   // element: <LoginForm />,
+              //   // loader: Loader,
+              // },
+              // {
+              //   path: '/auth/register',
+              //   element: (
+              //     <RestrictedRoute
+              //       redirectTo="/"
+              //       component={<RegisterForm />}
+              //     />
+              //   ),
+              //   // element: <Register />,
+              //   // loader: Loader,
+              // },
+
               {
                 path: '/auth/login',
                 element: <LoginForm />,
@@ -38,35 +80,23 @@ export const App = () => {
             ],
           },
           // {
-          //   path: '/login',
+          //   path: '/auth/login',
           //   element: (
-          //     <RestrictedRoute redirectTo="/contacts" component={<Login />} />
+          //     <RestrictedRoute redirectTo="/" component={<LoginForm />} />
           //   ),
-          //   // element: <Login />,
-          //   // loader: teamLoader,
+          //   // element: <LoginForm />,
+          //   // loader: Loader,
           // },
           // {
-          //   path: '/register',
+          //   path: '/auth/register',
           //   element: (
           //     <RestrictedRoute
-          //       redirectTo="/registrationSuccess"
-          //       component={<Register />}
+          //       redirectTo="/"
+          //       component={<RegisterForm />}
           //     />
           //   ),
           //   // element: <Register />,
-          //   // loader: teamLoader,
-          // },
-          // {
-          //   path: '/contacts',
-          //   element: (
-          //     <PrivateRoute redirectTo="/login" component={<Contacts />} />
-          //   ),
-          //   // loader: teamLoader,
-          // },
-          // {
-          //   path: '/registrationSuccess',
-          //   element: <RegistrationSuccess />,
-          //   // loader: teamLoader,
+          //   // loader: Loader,
           // },
         ],
       },
