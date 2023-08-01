@@ -8,7 +8,7 @@ import RegisterForm from './RegisterForm/RegisterForm';
 import NotFound from 'pages/notFound/NotFound';
 import ScreensPage from './ScreensPage/ScreensPage';
 import { PrivateRoute } from 'helpers/PrivateRoute';
-// import { RestrictedRoute } from 'helpers/RestrictedRoute';
+import { RestrictedRoute } from 'helpers/RestrictedRoute';
 
 export const App = () => {
   const router = createBrowserRouter(
@@ -30,74 +30,35 @@ export const App = () => {
               },
             ],
           },
-
-          // {
-          //   path: '/',
-          //   element: <Home />,
-          //   children: [
-          //     {
-          //       path: '/:boardName',
-          //       element: <ScreensPage />,
-          //     },
-          //   ],
-          // },
           {
             path: '/welcome',
-            element: <Welcome />,
+            element: <RestrictedRoute redirectTo="/" component={<Welcome />} />,
           },
           {
             path: '/auth',
             element: <Auth />,
             children: [
-              // {
-              //   path: '/auth/login',
-              //   element: (
-              //     <RestrictedRoute redirectTo="/" component={<LoginForm />} />
-              //   ),
-              //   // element: <LoginForm />,
-              //   // loader: Loader,
-              // },
-              // {
-              //   path: '/auth/register',
-              //   element: (
-              //     <RestrictedRoute
-              //       redirectTo="/"
-              //       component={<RegisterForm />}
-              //     />
-              //   ),
-              //   // element: <Register />,
-              //   // loader: Loader,
-              // },
-
               {
                 path: '/auth/login',
-                element: <LoginForm />,
+                element: (
+                  <RestrictedRoute redirectTo="/" component={<LoginForm />} />
+                ),
+                // element: <LoginForm />,
+                // loader: Loader,
               },
               {
                 path: '/auth/register',
-                element: <RegisterForm />,
+                element: (
+                  <RestrictedRoute
+                    redirectTo="/"
+                    component={<RegisterForm />}
+                  />
+                ),
+                // element: <Register />,
+                // loader: Loader,
               },
             ],
           },
-          // {
-          //   path: '/auth/login',
-          //   element: (
-          //     <RestrictedRoute redirectTo="/" component={<LoginForm />} />
-          //   ),
-          //   // element: <LoginForm />,
-          //   // loader: Loader,
-          // },
-          // {
-          //   path: '/auth/register',
-          //   element: (
-          //     <RestrictedRoute
-          //       redirectTo="/"
-          //       component={<RegisterForm />}
-          //     />
-          //   ),
-          //   // element: <Register />,
-          //   // loader: Loader,
-          // },
         ],
       },
       {

@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   // const { isLoggedIn, isRefreshing } = useAuth();
-  const [isLoggedIn, stIsLoggedIn] = useState(false); //TEMP!!!
-  const [isRefreshing, stIsRefreshing] = useState(false); //TEMP!!!
+  const [isLoggedIn, setIsLoggedIn] = useState(true); //TEMP!!!
+  const [isRefreshing, setIsRefreshing] = useState(false); //TEMP!!!
   const shouldRedirect = !isLoggedIn && !isRefreshing;
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
