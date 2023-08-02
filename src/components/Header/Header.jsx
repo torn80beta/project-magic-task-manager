@@ -89,7 +89,7 @@ const Header = ({ children }) => {
         </div>
       </form>
       {children}
-      <PopUp>
+      <PopUp modalName={'Edit profile'}>
         <EditProfileForm />
       </PopUp>
     </div>
