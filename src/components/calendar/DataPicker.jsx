@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Calendar from "react-calendar";
+import './dataPicker.css';
 
 
 const DataPicker = () => {
@@ -12,7 +13,14 @@ const DataPicker = () => {
 
     return (
         <div>
-            <Calendar onChange={onChange} value={date}/>
+            <Calendar 
+            onChange={onChange} 
+            value={date}
+            minDate={new Date()}
+            locale="en-EN"
+            next2Label=""
+            prev2Label=""
+            />
         </div>
     )
 }
