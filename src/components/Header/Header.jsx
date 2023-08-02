@@ -9,6 +9,30 @@ const Header = ({ children }) => {
   const handleToggleMenu = () => {
     setMenuActive(prevState => !prevState);
   };
+  const saveSelectedTheme = theme => {
+    localStorage.setItem('selectedTheme', theme);
+  };
+  const handleOptionClick = label => {
+    setTheme(label);
+    setMenuActive(false);
+    saveSelectedTheme(label);
+  };
+  useEffect(() => {
+    const selectedTheme = localStorage.getItem('selectedTheme');
+    if (selectedTheme) {
+      setTheme(selectedTheme);
+    }
+  }, []);
+  useEffect(() => {
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(input => {
+      if (input.value === theme) {
+        input.checked = true;
+      } else {
+        input.checked = false;
+      }
+    });
+  }, [theme]);
   useEffect(() => {
     if (selectSingleRef.current) {
       selectSingleRef.current.setAttribute(
@@ -31,10 +55,6 @@ const Header = ({ children }) => {
       document.removeEventListener('click', handleDocumentClick);
     };
   }, [isMenuActive]);
-  const handleOptionClick = label => {
-    setTheme(label);
-    setMenuActive(false);
-  };
   return (
     <div className={`header theme-${theme}`}>
       <form>
