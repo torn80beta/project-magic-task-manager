@@ -8,6 +8,9 @@ $light-main-text: #161616;
 $light-secondary-text: rgba(22, 22, 22, 0.7);
 $light-button-bg: #bedbb0;
 $light-button-text: #161616;
+$light-theme-title: #161616cc;
+$light-border: 1px solid #bedbb0;
+$light-box-shadow: 0px 4px 16px 0px #1111111a;
 
 //Dark theme
 $dark-header-bg: #161616;
@@ -19,6 +22,9 @@ $dark-main-text: #fff;
 $dark-secondary-text: rgba(255, 255, 255, 0.5);
 $dark-button-bg: #bedbb0;
 $dark-button-text: #161616;
+$dark-border: 1px solid #bedbb0;
+$dark-box-shadow: 0px 4px 16px 0px #1111111a;
+$dark-icon-color: #ffffffcc;
 
 //Violet theme
 $violet-header-bg: #fff;
@@ -30,3 +36,6 @@ $violet-main-text: #161616;
 $violet-secondary-text: rgba(22, 22, 22, 0.7);
 $violet-button-bg: #5255bc;
 $violet-button-text: #fff;
+$violet-theme-title: #161616cc;
+$violet-box-shadow: 0px 4px 16px 0px #1111111a;
+$violet-border: 1px solid #ecedfd;

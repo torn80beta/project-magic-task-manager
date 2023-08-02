@@ -1,15 +1,15 @@
 @import '../../styles/responsive';
 @import '../../styles/variables';
-
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   width: 100%;
   height: 60px;
-  background-color: $dark-header-bg;
-  color: #fff;
+  background-color: $violet-header-bg;
+  color: $violet-main-text;
 
   @include mobile {
     width: 375px;
@@ -22,5 +22,174 @@
 
   @include desktop {
     width: 1180px;
+  }
+}
+.select {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  margin: 0 auto;
+
+  &[data-state='active'] {
+    .selectTitle {
+      &::before {
+        transform: translate(-3px, -50%) rotate(-45deg);
+      }
+
+      &::after {
+        transform: translate(3px, -50%) rotate(45deg);
+      }
+    }
+
+    .selectContent {
+      opacity: 1;
+      max-height: 300px;
+    }
+
+    .selectLabel + .selectInput + .selectLabel {
+      max-height: 40px;
+      border-top-width: 1px;
+    }
+  }
+}
+.selectTitle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 8px 16px;
+  color: $violet-theme-title;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    right: 16px;
+
+    display: block;
+    width: 10px;
+    height: 2px;
+
+    transition: all 0.3s ease-out;
+
+    background-color: $violet-theme-title;
+
+    transform: translate(-3px, -50%) rotate(45deg);
+  }
+  &::after {
+    transform: translate(3px, -50%) rotate(-45deg);
+  }
+}
+.selectContent {
+  position: absolute;
+  top: 40px;
+  left: 3px;
+
+  display: flex;
+  flex-direction: column;
+  border: $violet-border;
+  border-radius: 8px;
+  box-shadow: $violet-box-shadow;
+  background: $violet-modal-bg;
+  padding: 18px 44px 18px 18px;
+
+  transition: all 0.3s ease-out;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 3s ease-out;
+  opacity: 0;
+  z-index: 8;
+}
+.selectContainer:not(:last-child) {
+  padding-bottom: 4px;
+}
+.selectInput {
+  display: none;
+
+  &:checked + label {
+    color: $violet-button-bg;
+  }
+  &:disabled + label {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+.selectLabel {
+  max-height: 40px;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  text-align: left;
+
+  color: $violet-main-text;
+
+  transition: all 0.2s ease-out;
+
+  cursor: pointer;
+
+  overflow: hidden;
+  border-radius: 20%;
+}
+.theme-dark {
+  & .selectTitle {
+    color: $dark-icon-color;
+  }
+  & .selectTitle::after,
+  .selectTitle::before {
+    background-color: $dark-icon-color;
+  }
+  & .header {
+    background-color: $dark-header-bg;
+    color: $dark-main-text;
+  }
+  & .selectContent {
+    border: $dark-border;
+    box-shadow: $dark-box-shadow;
+    background: $dark-modal-bg;
+  }
+  & .selectInput {
+    &:checked + label {
+      color: $dark-button-bg;
+    }
+  }
+  & .selectLabel {
+    color: $dark-main-text;
+  }
+}
+.theme-light {
+  & .selectTitle {
+    color: $light-theme-title;
+  }
+  & .selectTitle::after,
+  .selectTitle::before {
+    background-color: $light-secondary-text;
+  }
+  & .header {
+    background-color: $light-header-bg;
+    color: $light-main-text;
+  }
+  & .selectContent {
+    border: $light-border;
+    box-shadow: $light-box-shadow;
+    background: $light-modal-bg;
+  }
+  & .selectInput {
+    &:checked + label {
+      color: $light-button-bg;
+    }
+  }
+  & .selectLabel {
+    color: $light-main-text;
   }
 }
