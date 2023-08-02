@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PopUp from 'components/modal/PopUp';
 import { EditProfileForm } from 'components/EditProfileForm/EditProfileForm';
-import Icon from 'components/icon/Icon';
 import './header.scss';
+import Icon from 'components/icon/Icon';
 
 const Header = ({ children }) => {
   const [theme, setTheme] = useState('violet');
