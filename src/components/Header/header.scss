@@ -7,8 +7,18 @@
   padding: 20px;
   width: 100%;
   height: 60px;
-  background-color: $violet-header-bg;
-  color: $violet-main-text;
+  &.theme-violet {
+    background-color: $violet-header-bg;
+    color: $violet-main-text;
+  }
+  &.theme-dark {
+    background-color: $dark-header-bg;
+    color: $dark-main-text;
+  }
+  &.theme-light {
+    background-color: $light-header-bg;
+    color: $light-main-text;
+  }
 
   @include mobile {
     width: 375px;
@@ -57,13 +67,11 @@
   width: 100%;
   height: 100%;
   padding: 8px 16px;
-  color: $violet-theme-title;
 
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: -0.02em;
-
   cursor: pointer;
 
   &::before,
@@ -80,12 +88,34 @@
 
     transition: all 0.3s ease-out;
 
-    background-color: $violet-theme-title;
-
     transform: translate(-3px, -50%) rotate(45deg);
   }
   &::after {
     transform: translate(3px, -50%) rotate(-45deg);
+  }
+  &.theme-violet {
+    color: $violet-theme-title;
+    background: none;
+    &::before,
+    &::after {
+      background-color: $violet-theme-title;
+    }
+  }
+  &.theme-dark {
+    color: $dark-icon-color;
+    background: none;
+    &::before,
+    &::after {
+      background-color: $dark-icon-color;
+    }
+  }
+  &.theme-light {
+    background: none;
+    color: $light-theme-title;
+    &::before,
+    &::after {
+      background-color: $light-secondary-text;
+    }
   }
 }
 .selectContent {
@@ -95,10 +125,6 @@
 
   display: flex;
   flex-direction: column;
-  border: $violet-border;
-  border-radius: 8px;
-  box-shadow: $violet-box-shadow;
-  background: $violet-modal-bg;
   padding: 18px 44px 18px 18px;
   text-align: left;
 
@@ -108,19 +134,45 @@
   transition: max-height 1.5s ease-out;
   opacity: 0;
   z-index: 8;
+  &.theme-violet {
+    border: $violet-border;
+    box-shadow: $violet-box-shadow;
+    background: $violet-modal-bg;
+  }
+  &.theme-dark {
+    border: $dark-border;
+    box-shadow: $dark-box-shadow;
+    background: $dark-modal-bg;
+  }
+  &.theme-light {
+    border: $light-border;
+    box-shadow: $light-box-shadow;
+    background: $light-modal-bg;
+  }
 }
 .selectContainer:not(:last-child) {
   padding-bottom: 4px;
 }
 .selectInput {
   display: none;
-
-  &:checked + label {
-    color: $violet-button-bg;
-  }
   &:disabled + label {
     opacity: 0.6;
     pointer-events: none;
+  }
+  &.theme-violet {
+    &:checked + label {
+      color: $violet-button-bg;
+    }
+  }
+  &.theme-dark {
+    &:checked + label {
+      color: $dark-button-bg;
+    }
+  }
+  &.theme-light {
+    &:checked + label {
+      color: $light-button-bg;
+    }
   }
 }
 .selectLabel {
@@ -132,64 +184,19 @@
   letter-spacing: -0.02em;
   text-align: left;
 
-  color: $violet-main-text;
-
   transition: all 0.2s ease-out;
 
   cursor: pointer;
 
   overflow: hidden;
   border-radius: 20%;
-}
-.theme-dark {
-  & .selectTitle {
-    color: $dark-icon-color;
+  &.theme-violet {
+    color: $violet-main-text;
   }
-  & .selectTitle::after,
-  .selectTitle::before {
-    background-color: $dark-icon-color;
-  }
-  & .header {
-    background-color: $dark-header-bg;
+  &.theme-dark {
     color: $dark-main-text;
   }
-  & .selectContent {
-    border: $dark-border;
-    box-shadow: $dark-box-shadow;
-    background: $dark-modal-bg;
-  }
-  & .selectInput {
-    &:checked + label {
-      color: $dark-button-bg;
-    }
-  }
-  & .selectLabel {
-    color: $dark-main-text;
-  }
-}
-.theme-light {
-  & .selectTitle {
-    color: $light-theme-title;
-  }
-  & .selectTitle::after,
-  .selectTitle::before {
-    background-color: $light-secondary-text;
-  }
-  & .header {
-    background-color: $light-header-bg;
-    color: $light-main-text;
-  }
-  & .selectContent {
-    border: $light-border;
-    box-shadow: $light-box-shadow;
-    background: $light-modal-bg;
-  }
-  & .selectInput {
-    &:checked + label {
-      color: $light-button-bg;
-    }
-  }
-  & .selectLabel {
+  &.theme-light {
     color: $light-main-text;
   }
 }

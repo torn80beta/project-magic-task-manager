@@ -60,22 +60,25 @@ const Header = ({ children }) => {
           onClick={handleToggleMenu}
           ref={selectSingleRef}
         >
-          <div className="selectTitle" data-default="Theme">
+          <div className={`selectTitle theme-${theme}`} data-default="Theme">
             Theme
           </div>
-          <div className="selectContent">
+          <div className={`selectContent theme-${theme}`}>
             {themes.map((themeOption, index) => (
               <div key={index} className="selectContainer">
                 <input
                   id={`singleSelect${index}`}
-                  className="selectInput"
+                  className={`selectInput theme-${theme}`}
                   type="radio"
                   name="singleSelect"
                   value={themeOption}
                   checked={theme === themeOption}
                   onChange={() => handleOptionClick(themeOption)}
                 />
-                <label htmlFor={`singleSelect${index}`} className="selectLabel">
+                <label
+                  htmlFor={`singleSelect${index}`}
+                  className={`selectLabel theme-${theme}`}
+                >
                   {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
                 </label>
               </div>
