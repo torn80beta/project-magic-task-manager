@@ -23,42 +23,36 @@ const Header = ({ children }) => {
   };
   return (
     <div className={`header theme-${theme}`}>
-      <header className="header">
-        <form>
-          <div
-            className={`select ${isMenuActive}`}
-            onClick={handleToggleMenu}
-            ref={selectSingleRef}
-          >
-            <div className="selectTitle" data-default="Theme">
-              Theme
-            </div>
-            <div className="selectContent">
-              {themes.map((themeOption, index) => (
-                <div key={index} className="selectContainer">
-                  <input
-                    id={`singleSelect${index}`}
-                    className="selectInput"
-                    type="radio"
-                    name="singleSelect"
-                    value={themeOption}
-                    checked={theme === themeOption}
-                    onChange={() => handleOptionClick(themeOption)}
-                  />{' '}
-                  <label
-                    htmlFor={`singleSelect${index}`}
-                    className="selectLabel"
-                  >
-                    {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
-                  </label>
-                </div>
-              ))}
-            </div>
+      <form>
+        <div
+          className={`select ${isMenuActive}`}
+          onClick={handleToggleMenu}
+          ref={selectSingleRef}
+        >
+          <div className="selectTitle" data-default="Theme">
+            Theme
           </div>
-        </form>
-      </header>
+          <div className="selectContent">
+            {themes.map((themeOption, index) => (
+              <div key={index} className="selectContainer">
+                <input
+                  id={`singleSelect${index}`}
+                  className="selectInput"
+                  type="radio"
+                  name="singleSelect"
+                  value={themeOption}
+                  checked={theme === themeOption}
+                  onChange={() => handleOptionClick(themeOption)}
+                />{' '}
+                <label htmlFor={`singleSelect${index}`} className="selectLabel">
+                  {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+      </form>
       {children}
-      Header
       <PopUp>
         <p>Header popup</p>
       </PopUp>
