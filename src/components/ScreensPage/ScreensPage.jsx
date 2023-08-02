@@ -27,12 +27,14 @@ const ScreensPage = () => {
   //   setIsOpen(false);
   // }
   return (
-
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
         <h1 className={`screenPage_title theme-${currentTheme}`}>
           Project office
         </h1>
+        <PopUp modalName={'Add another column'}>
+          <p>Screens page popup</p>
+        </PopUp>
         <button className={`screenPage_filter theme-${currentTheme}`}>
           <Icon id={'filter'} width={16} height={16} />
           <span className={`screenPage_filterText theme-${currentTheme}`}>
@@ -59,11 +61,6 @@ const ScreensPage = () => {
           </span>
         </button>
       </div>
-    
-      <PopUp modalName={'Add another column'}>
-
-        <p>Screens page popup</p>
-      </PopUp>
     </div>
   );
 };
