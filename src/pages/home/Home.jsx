@@ -1,6 +1,6 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import './home.scss';
-import Header from 'components/Header/Header';
+import Header from 'components/header/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
 
 const Home = () => {
@@ -8,9 +8,7 @@ const Home = () => {
     <div className="home">
       <Sidebar />
       <div className="home-wrapper">
-        <Header>
-          <NavLink to={'welcome'}>To welcome page</NavLink>
-        </Header>
+        <Header />
         <Outlet />
       </div>
     </div>
