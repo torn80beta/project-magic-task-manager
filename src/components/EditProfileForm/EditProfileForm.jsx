@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
+import Icon from 'components/icon/Icon';
 import css from './editProfileForm.module.scss';
-import avatar from '../../images/user.png';
 
 export const EditProfileForm = () => {
+  // const theme = 'light';
   const hiddenFileInput = useRef(null);
   const handleUploadClick = () => {
     hiddenFileInput.current.click();
@@ -15,11 +16,10 @@ export const EditProfileForm = () => {
 
   return (
     <form className={css.editProfileForm} autoComplete="of">
-      <button className={css.closeButton} type="button">
-        x
-      </button>
       <span className={css.formTitle}>Edit profile</span>
-      <img className={css.avatar} src={avatar} alt="avatar" />
+      <div className={css.avatar}>
+        <Icon id="avatar" width={68} height={73} />
+      </div>
       <input type="file" ref={hiddenFileInput} style={{ display: 'none' }} />
 
       <button
@@ -27,7 +27,7 @@ export const EditProfileForm = () => {
         type="button"
         onClick={handleUploadClick}
       >
-        +
+        <Icon id="plus" width={10} height={10} />
       </button>
 
       <div className={css.inputsWrapper}>
@@ -53,7 +53,11 @@ export const EditProfileForm = () => {
         />
       </div>
       <button className={css.showPwd} type="button" onClick={togglePassword}>
-        {passwordShown ? '-' : '+'}
+        {passwordShown ? (
+          <Icon id="eye" width={18} height={18} />
+        ) : (
+          <Icon id="eye-off" width={18} height={18} />
+        )}
       </button>
 
       <button className={css.submitBtn} type="submit">

@@ -1,4 +1,5 @@
 import './header.scss';
+import { EditProfileForm } from 'components/EditProfileForm/EditProfileForm';
 import PopUp from 'components/modal/PopUp';
 
 const Header = ({ children }) => {
@@ -7,7 +8,7 @@ const Header = ({ children }) => {
       {children}
       Header
       <PopUp>
-        <p>Header popup</p>
+        <EditProfileForm />
       </PopUp>
     </div>
   );
