@@ -3,8 +3,11 @@ import Modal from 'react-modal';
 import './popup.scss';
 Modal.setAppElement('#root');
 
-const PopUp = ({ children, modalName }) => {
+const PopUp = props => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const { children, modalName } = props;
+  // const { theme } = props;
+  //  const currentTheme = theme;
   const currentTheme = 'dark';
 
   function openModal() {
@@ -21,7 +24,12 @@ const PopUp = ({ children, modalName }) => {
 
   return (
     <div>
-      <button onClick={openModal}>{modalName}</button>
+      <button
+        className={`open-modal-button theme-${currentTheme}`}
+        onClick={openModal}
+      >
+        {modalName}
+      </button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
