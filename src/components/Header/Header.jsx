@@ -1,6 +1,6 @@
-import './header.scss';
 import React, { useState, useEffect, useRef } from 'react';
 import PopUp from 'components/modal/PopUp';
+import './header.scss';
 const Header = ({ children }) => {
   const [theme, setTheme] = useState('violet');
   const themes = ['light', 'dark', 'violet'];
@@ -9,13 +9,10 @@ const Header = ({ children }) => {
   const handleToggleMenu = () => {
     setMenuActive(prevState => !prevState);
   };
-  const saveSelectedTheme = theme => {
-    localStorage.setItem('selectedTheme', theme);
-  };
   const handleOptionClick = label => {
     setTheme(label);
     setMenuActive(false);
-    saveSelectedTheme(label);
+    localStorage.setItem('selectedTheme', label);
   };
   useEffect(() => {
     const selectedTheme = localStorage.getItem('selectedTheme');
