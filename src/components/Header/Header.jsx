@@ -74,7 +74,7 @@ const Header = ({ children }) => {
                   value={themeOption}
                   checked={theme === themeOption}
                   onChange={() => handleOptionClick(themeOption)}
-                />{' '}
+                />
                 <label htmlFor={`singleSelect${index}`} className="selectLabel">
                   {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
                 </label>
