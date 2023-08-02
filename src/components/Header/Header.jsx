@@ -21,6 +21,22 @@ const Header = ({ children }) => {
     setTheme(label);
     setMenuActive(false);
   };
+  useEffect(() => {
+    const handleDocumentClick = event => {
+      if (
+        selectSingleRef.current &&
+        !selectSingleRef.current.contains(event.target)
+      ) {
+        setMenuActive(false);
+      }
+    };
+    if (isMenuActive) {
+      document.addEventListener('click', handleDocumentClick);
+    }
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, [isMenuActive]);
   return (
     <div className={`header theme-${theme}`}>
       <form>
