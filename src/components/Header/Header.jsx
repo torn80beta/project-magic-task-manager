@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PopUp from 'components/modal/PopUp';
+import Icon from 'components/icon/Icon';
 import './header.scss';
 const Header = ({ children }) => {
   const [theme, setTheme] = useState('violet');
@@ -12,14 +13,7 @@ const Header = ({ children }) => {
   const handleOptionClick = label => {
     setTheme(label);
     setMenuActive(false);
-    localStorage.setItem('selectedTheme', label);
   };
-  useEffect(() => {
-    const selectedTheme = localStorage.getItem('selectedTheme');
-    if (selectedTheme) {
-      setTheme(selectedTheme);
-    }
-  }, []);
   useEffect(() => {
     const radioInputs = document.querySelectorAll('input[type="radio"]');
     radioInputs.forEach(input => {
@@ -62,6 +56,12 @@ const Header = ({ children }) => {
         >
           <div className={`selectTitle theme-${theme}`} data-default="Theme">
             Theme
+            <Icon
+              className={`selectIcon theme-${theme}`}
+              id={'chevron-down'}
+              width={16}
+              height={16}
+            />
           </div>
           <div className={`selectContent theme-${theme}`}>
             {themes.map((themeOption, index) => (
