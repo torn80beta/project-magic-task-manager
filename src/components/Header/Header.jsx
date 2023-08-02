@@ -20,9 +20,6 @@ const Header = ({ children }) => {
     setTheme(label);
     setMenuActive(false);
   };
-  const firstLetterToUppercase = str => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
   return (
     <div className={`header theme-${theme}`}>
       <header className="header">
@@ -51,7 +48,7 @@ const Header = ({ children }) => {
                     htmlFor={`singleSelect${index}`}
                     className="selectLabel"
                   >
-                    {firstLetterToUppercase(themeOption)}
+                    {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
                   </label>
                 </div>
               ))}
