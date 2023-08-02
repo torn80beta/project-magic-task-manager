@@ -9,13 +9,14 @@ import NotFound from 'pages/notFound/NotFound';
 import ScreensPage from './ScreensPage/ScreensPage';
 import { PrivateRoute } from 'helpers/PrivateRoute';
 import { RestrictedRoute } from 'helpers/RestrictedRoute';
+import { EditProfileForm } from './EditProfileForm/EditProfileForm';
 
 export const App = () => {
   const router = createBrowserRouter(
     [
       {
         path: '/',
-        element: <Layout />,
+        element: <EditProfileForm />,
         // loader: Loader,
         children: [
           {
