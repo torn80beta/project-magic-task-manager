@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PopUp from 'components/modal/PopUp';
-import Icon from 'components/icon/Icon';
+import { EditProfileForm } from 'components/EditProfileForm/EditProfileForm';
 import './header.scss';
+import Icon from 'components/icon/Icon';
+
 const Header = ({ children }) => {
   const [theme, setTheme] = useState('violet');
   const themes = ['light', 'dark', 'violet'];
@@ -87,8 +89,8 @@ const Header = ({ children }) => {
         </div>
       </form>
       {children}
-      <PopUp>
-        <p>Header popup</p>
+      <PopUp modalName={'Edit profile'}>
+        <EditProfileForm />
       </PopUp>
     </div>
   );

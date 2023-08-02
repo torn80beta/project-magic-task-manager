@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       Sidebar
-      <PopUp>
+      <PopUp modalName={'Create a new board'}>
         <p>Sidebar popup</p>
       </PopUp>
     </div>

@@ -42,7 +42,7 @@ const ScreensPage = () => {
           </span>
         </button>
       </div>
-      <PopUp>
+      <PopUp modalName={'Add another column'}>
         <p>Screens page popup</p>
       </PopUp>
     </div>
