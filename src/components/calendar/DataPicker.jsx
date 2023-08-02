@@ -3,7 +3,7 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 
 
-const Calendar = () => {
+const DataPicker = () => {
     const [date, setDate] = useState(new Date());
 
     const onChange = date => {
@@ -17,4 +17,4 @@ const Calendar = () => {
     )
 }
 
-export default Calendar;
+export default DataPicker;
