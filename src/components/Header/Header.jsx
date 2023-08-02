@@ -1,5 +1,6 @@
 import './header.scss';
 import React, { useState, useEffect, useRef } from 'react';
+import PopUp from 'components/modal/PopUp';
 const Header = ({ children }) => {
   const [theme, setTheme] = useState('violet');
   const themes = ['light', 'dark', 'violet'];
@@ -57,6 +58,10 @@ const Header = ({ children }) => {
         </form>
       </header>
       {children}
+      Header
+      <PopUp>
+        <p>Header popup</p>
+      </PopUp>
     </div>
   );
 };
