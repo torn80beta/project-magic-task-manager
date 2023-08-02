@@ -16,12 +16,6 @@ const Header = ({ children }) => {
         isMenuActive ? 'active' : ''
       );
     }
-  }, [isMenuActive]);
-  const handleOptionClick = label => {
-    setTheme(label);
-    setMenuActive(false);
-  };
-  useEffect(() => {
     const handleDocumentClick = event => {
       if (
         selectSingleRef.current &&
@@ -37,6 +31,10 @@ const Header = ({ children }) => {
       document.removeEventListener('click', handleDocumentClick);
     };
   }, [isMenuActive]);
+  const handleOptionClick = label => {
+    setTheme(label);
+    setMenuActive(false);
+  };
   return (
     <div className={`header theme-${theme}`}>
       <form>
