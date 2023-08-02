@@ -90,7 +90,6 @@ const Header = ({ children }) => {
       </form>
       {children}
       <PopUp>
-        {/* <p>Header popup</p> */}
         <EditProfileForm />
       </PopUp>
     </div>
