@@ -27,6 +27,7 @@ const ScreensPage = () => {
   //   setIsOpen(false);
   // }
   return (
+
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
         <h1 className={`screenPage_title theme-${currentTheme}`}>
@@ -58,7 +59,9 @@ const ScreensPage = () => {
           </span>
         </button>
       </div>
-      <PopUp>
+    
+      <PopUp modalName={'Add another column'}>
+
         <p>Screens page popup</p>
       </PopUp>
     </div>
