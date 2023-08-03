@@ -1,4 +1,3 @@
-@import '../../styles/responsive';
 @import '../../styles/variables';
 .addColumnForm {
   display: flex;
@@ -61,14 +60,41 @@
     font-family: Poppins;
     border: none;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
     &.theme-violet {
       background: $violet-button-bg;
+      color: $violet-button-text;
     }
     &.theme-light {
       background: $light-button-bg;
+      color: $light-button-text;
     }
     &.theme-dark {
       background: $dark-button-bg;
+      color: $dark-button-text;
+    }
+    & .addIcon {
+      border-radius: 8px;
+      height: 28px;
+      &.theme-violet {
+        color: $violet-main-text;
+        padding: 7px;
+        background: $violet-button-text;
+      }
+      &.theme-light {
+        background: $light-main-text;
+        padding: 7px;
+        color: $light-sidebar-bg;
+      }
+      &.theme-dark {
+        background: $dark-button-text;
+        padding: 7px;
+        color: $dark-main-text;
+      }
     }
   }
   .errorMessage {

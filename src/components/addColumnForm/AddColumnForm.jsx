@@ -2,6 +2,7 @@ import { themeState } from '../../redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import './addColumnForm.scss';
+import Icon from 'components/icon/Icon';
 
 const AddColumnForm = () => {
   const theme = useSelector(themeState);
@@ -30,6 +31,9 @@ const AddColumnForm = () => {
         {error && <p className={`errorMessage theme-${theme}`}>{error}</p>}
       </div>
       <button className={`addButton theme-${theme}`} type="submit">
+        <span className={`addIcon theme-${theme}`}>
+          <Icon id={'plus'} width={14} height={14} />
+        </span>
         Add
       </button>
     </form>
