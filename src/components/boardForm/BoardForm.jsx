@@ -4,7 +4,8 @@ import * as yup from 'yup';
 import './boardForm.scss';
 import Icons from '../../images/svg/icons_sprite_Board.svg';
 import BoardFormButton from './boardFormButton/BoardFormButton';
-// const currentTheme = 'dark';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
 
 const iconsSvgInitial = [
   { id: 1, value: 'circles' },
@@ -85,7 +86,7 @@ const handleSubmit = (values, actions) => {
   actions.resetForm();
 };
 const BoardForm = ({ props }) => {
-  const currentTheme = 'dark';
+  const currentTheme = useSelector(themeState);
 
   return (
     <div className={`boardCardForm_Container theme-${currentTheme}`}>
