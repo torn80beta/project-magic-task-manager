@@ -10,13 +10,16 @@ const Header = ({ children }) => {
   const [isMenuActive, setMenuActive] = useState(false);
   const selectSingleRef = useRef(null);
   const user = { name: 'Ivetta', avatar: avatar };
+
   const handleToggleMenu = () => {
     setMenuActive(prevState => !prevState);
   };
+
   const handleOptionClick = label => {
     setTheme(label);
     setMenuActive(false);
   };
+
   useEffect(() => {
     const radioInputs = document.querySelectorAll('input[type="radio"]');
     radioInputs.forEach(input => {
@@ -27,6 +30,7 @@ const Header = ({ children }) => {
       }
     });
   }, [theme]);
+
   useEffect(() => {
     if (selectSingleRef.current) {
       selectSingleRef.current.setAttribute(
@@ -49,6 +53,7 @@ const Header = ({ children }) => {
       document.removeEventListener('click', handleDocumentClick);
     };
   }, [isMenuActive]);
+
   return (
     <div className={`header theme-${theme}`}>
       <form>
