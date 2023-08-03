@@ -4,7 +4,7 @@ import Layout from './layout/Layout';
 import Welcome from 'pages/welcome/Welcome';
 import Auth from 'pages/auth/Auth';
 import LoginForm from './LoginForm/LoginForm';
-import RegisterForm from './RegisterForm/RegisterForm';
+// import RegisterForm from './RegisterForm/RegisterForm';
 import NotFound from 'pages/notFound/NotFound';
 import ScreensPage from './ScreensPage/ScreensPage';
 import { PrivateRoute } from 'helpers/PrivateRoute';
@@ -36,7 +36,7 @@ export const App = () => {
           },
           {
             path: '/auth',
-            element: <Auth />,
+            element: <RestrictedRoute redirectTo="/" component={<Auth />} />,
             children: [
               {
                 path: '/auth/:id',
@@ -46,17 +46,17 @@ export const App = () => {
                 // element: <LoginForm />,
                 // loader: Loader,
               },
-              {
-                path: '/auth/:id',
-                element: (
-                  <RestrictedRoute
-                    redirectTo="/"
-                    component={<RegisterForm />}
-                  />
-                ),
-                // element: <Register />,
-                // loader: Loader,
-              },
+              // {
+              //   path: '/auth/:id',
+              //   element: (
+              //     <RestrictedRoute
+              //       redirectTo="/"
+              //       component={<RegisterForm />}
+              //     />
+              //   ),
+              //   // element: <Register />,
+              //   // loader: Loader,
+              // },
             ],
           },
         ],
