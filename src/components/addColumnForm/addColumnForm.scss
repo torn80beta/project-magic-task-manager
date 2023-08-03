@@ -1,3 +1,5 @@
+@import '../../styles/responsive';
+@import '../../styles/variables';
 .addColumnForm {
   display: flex;
   flex-direction: column;
@@ -25,26 +27,26 @@
     }
     &.theme-violet {
       background: transparent;
-      border: 1px solid #5255bc;
-      box-shadow: 0px 4px 16px 0px #16161614;
+      border: $violet-button-border;
+      box-shadow: $violet-button-box-shadow;
       &::placeholder {
-        color: #161616;
+        color: $violet-main-text;
       }
     }
     &.theme-light {
       background: transparent;
-      border: 1px solid #bedbb0;
-      box-shadow: 0px 4px 16px 0px #16161614;
+      border: $light-button-border;
+      box-shadow: $light-button-box-shadow;
       &::placeholder {
-        color: #161616;
+        color: $light-main-text;
       }
     }
     &.theme-dark {
       background: transparent;
-      border: 1px solid #bedbb0;
-      box-shadow: 0px 4px 16px 0px #16161614;
+      border: $dark-button-border;
+      box-shadow: $dark-button-box-shadow;
       &::placeholder {
-        color: #ffffff;
+        color: $dark-main-text;
       }
     }
   }
@@ -60,13 +62,13 @@
     border: none;
 
     &.theme-violet {
-      background: #5255bc;
+      background: $violet-button-bg;
     }
     &.theme-light {
-      background: #bedbb0;
+      background: $light-button-bg;
     }
     &.theme-dark {
-      background: #bedbb0;
+      background: $dark-button-bg;
     }
   }
   .errorMessage {
