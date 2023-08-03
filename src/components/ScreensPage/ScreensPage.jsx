@@ -7,7 +7,6 @@ import FilterPopup from 'components/filterPopup/FilterPopup';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import AddColumnForm from 'components/addColumnForm/AddColumnForm';
-// import EditColumnForm from 'components/editColumnForm/EditColumnForm';
 
 //temporary
 const columnsArray = [
