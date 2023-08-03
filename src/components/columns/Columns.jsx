@@ -1,6 +1,10 @@
 import './Columns.scss';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
+
 const Columns = ({ title }) => {
-  const currentTheme = 'violet';
+  const currentTheme = useSelector(themeState);
+  // const currentTheme = 'violet';
   return (
     <div className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>

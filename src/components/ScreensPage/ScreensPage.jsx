@@ -3,6 +3,8 @@ import PopUp from 'components/modal/PopUp';
 // import { useState } from 'react';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
 
 //temporary
 const columnsArray = [
@@ -17,8 +19,7 @@ const columnsArray = [
 ];
 
 const ScreensPage = () => {
-  // const [modalIsOpen, setIsOpen] = useState(false);
-  const currentTheme = 'violet';
+  const currentTheme = useSelector(themeState);
 
   // function openModal() {
   //   setIsOpen(true);
@@ -32,7 +33,7 @@ const ScreensPage = () => {
         <h1 className={`screenPage_title theme-${currentTheme}`}>
           Project office
         </h1>
-        <PopUp modalName={'Add another column'}>
+        <PopUp data={'Add another column'}>
           <p>Screens page popup</p>
         </PopUp>
         <button className={`screenPage_filter theme-${currentTheme}`}>

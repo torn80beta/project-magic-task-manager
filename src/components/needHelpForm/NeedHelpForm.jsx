@@ -1,8 +1,11 @@
 import { Formik } from 'formik';
 import './needHelpForm.scss';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
 
 const NeedHelpForm = () => {
-  const theme = 'dark';
+  const theme = useSelector(themeState);
+  // const theme = 'dark';
 
   return (
     <Formik

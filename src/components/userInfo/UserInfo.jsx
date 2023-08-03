@@ -8,7 +8,7 @@ const UserInfo = ({ theme, user }) => {
       <p className="userName">{user.name}</p>
       <PopUp
         theme={theme}
-        modalName={<img alt="IMG" src={user.avatar} width={32} height={32} />}
+        data={<img alt="IMG" src={user.avatar} width={32} height={32} />}
       >
         <EditProfileForm />
       </PopUp>
