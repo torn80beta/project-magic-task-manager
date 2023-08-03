@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import Calendar from "react-calendar";
-import './dataPicker.css';
+import DatePicker from "react-date-picker";
+import 'react-date-picker/dist/DatePicker.css';
+import './datePicker.css';
 
 
-const DataPicker = () => {
+const DateCalendar = () => {
     const [date, setDate] = useState(new Date());
 
     const onChange = date => {
@@ -13,16 +14,15 @@ const DataPicker = () => {
 
     return (
         <div>
-            <Calendar 
+            <DatePicker 
             onChange={onChange} 
             value={date}
             minDate={new Date()}
-            locale="en-EN"
-            next2Label=""
-            prev2Label=""
+            locale="en-US"
+          
             />
         </div>
     )
 }
 
-export default DataPicker;
+export default DateCalendar;
