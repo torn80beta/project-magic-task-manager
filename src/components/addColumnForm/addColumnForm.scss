@@ -1,0 +1,118 @@
+@import '../../styles/variables';
+.addColumnForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  .addColumnTitle {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: -0.02em;
+  }
+  .titleInput {
+    width: 302px;
+    padding: 14px 18px;
+    outline: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: -0.02em;
+    text-align: left;
+
+    &::placeholder {
+      font-size: 14px;
+      line-height: normal;
+    }
+    &.theme-violet {
+      background: transparent;
+      border: $violet-button-border;
+      box-shadow: $violet-button-box-shadow;
+      &::placeholder {
+        color: $violet-main-text;
+      }
+    }
+    &.theme-light {
+      background: transparent;
+      border: $light-button-border;
+      box-shadow: $light-button-box-shadow;
+      &::placeholder {
+        color: $light-main-text;
+      }
+    }
+    &.theme-dark {
+      background: transparent;
+      border: $dark-button-border;
+      box-shadow: $dark-button-box-shadow;
+      &::placeholder {
+        color: $dark-main-text;
+      }
+    }
+  }
+  .addButton {
+    padding: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: -0.02em;
+    font-family: Poppins;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &.theme-violet {
+      background: $violet-button-bg;
+      color: $violet-button-text;
+      &:hover {
+        background-color: $violet-button-bg-hover;
+      }
+    }
+    &.theme-light {
+      background: $light-button-bg;
+      color: $light-button-text;
+      &:hover {
+        background-color: $light-button-bg-hover;
+      }
+    }
+    &.theme-dark {
+      background: $dark-button-bg;
+      color: $dark-button-text;
+      &:hover {
+        background-color: $dark-button-bg-hover;
+      }
+    }
+    & .addIcon {
+      border-radius: 8px;
+      height: 28px;
+      &.theme-violet {
+        color: $violet-main-text;
+        padding: 7px;
+        background: $violet-button-text;
+      }
+      &.theme-light {
+        background: $light-main-text;
+        padding: 7px;
+        color: $light-sidebar-bg;
+      }
+      &.theme-dark {
+        background: $dark-button-text;
+        padding: 7px;
+        color: $dark-main-text;
+      }
+    }
+  }
+  .errorMessage {
+    font-size: 12px;
+    color: #f75e66;
+  }
+  .addColumnInputWrapper {
+    .titleInput {
+      margin-bottom: 5px;
+    }
+  }
+}

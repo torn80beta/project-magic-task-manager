@@ -11,6 +11,15 @@
   .home-wrapper {
     text-align: center;
     flex-grow: 1;
-    background-color: $dark-screens-bg;
+
+    &.theme-violet {
+      background-color: $violet-screens-bg;
+    }
+    &.theme-dark {
+      background-color: $dark-screens-bg;
+    }
+    &.theme-light {
+      background-color: $light-screens-bg;
+    }
   }
 }

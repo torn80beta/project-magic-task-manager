@@ -1,0 +1,157 @@
+@import '../../styles/responsive.scss';
+@import '../../styles/variables.scss';
+
+.filterPopup {
+  &.theme-light {
+    background: $light-modal-bg;
+  }
+  &.theme-dark {
+    background: $dark-modal-bg;
+  }
+  &.theme-violet {
+    background: $violet-modal-bg;
+  }
+}
+.filterPopup_header {
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  &.theme-light {
+    color: $light-main-text;
+  }
+  &.theme-dark {
+    color: $dark-main-text;
+  }
+  &.theme-violet {
+    color: $violet-main-text;
+  }
+}
+.filterPopup_lineDiv {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  display: flex;
+  gap: 130px;
+  align-items: center;
+  &.theme-light {
+    border-top: #1616161a 1px solid;
+  }
+  &.theme-dark {
+    border-top: #ffffff1a 1px solid;
+  }
+  &.theme-violet {
+    border-top: #1616161a 1px solid;
+  }
+}
+.filterPopup_title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+
+  &.theme-light {
+    color: $light-main-text;
+  }
+  &.theme-dark {
+    color: $dark-main-text;
+  }
+  &.theme-violet {
+    color: $violet-main-text;
+  }
+}
+.filterPopup_showAllBtn {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &.theme-light {
+    color: #16161680;
+  }
+  &.theme-dark {
+    color: #ffffff80;
+  }
+  &.theme-violet {
+    color: #16161680;
+  }
+}
+.filterPopup_showAllBtnInput {
+  display: none;
+}
+.filterPopup_radioButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.filterPopup_label {
+  cursor: pointer;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  gap: 8px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  &.theme-light {
+    color: #16161680;
+  }
+  &.theme-dark {
+    color: #ffffff80;
+  }
+  &.theme-violet {
+    color: #16161680;
+  }
+
+  &:hover.theme-light {
+    color: $light-main-text;
+  }
+  &.theme-dark:hover {
+    color: #ffffff80;
+  }
+  &:hover.theme-violet {
+    color: #16161680;
+  }
+
+  & input {
+    display: none;
+  }
+  & input:checked + span::before {
+    opacity: 1;
+  }
+}
+.filterPopup_without {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+  position: relative;
+
+  &.blue {
+    background: #8fa1d0;
+  }
+  &.pink {
+    background: #e09cb5;
+  }
+  &.green {
+    background: #bedbb0;
+  }
+  &.grey {
+    background: #b7b7b7;
+  }
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    opacity: 0;
+  }
+}
