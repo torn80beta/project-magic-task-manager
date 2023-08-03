@@ -32,6 +32,9 @@ const ScreensPage = () => {
         <h1 className={`screenPage_title theme-${currentTheme}`}>
           Project office
         </h1>
+        <PopUp modalName={'Add another column'}>
+          <p>Screens page popup</p>
+        </PopUp>
         <button className={`screenPage_filter theme-${currentTheme}`}>
           <Icon id={'filter'} width={16} height={16} />
           <span className={`screenPage_filterText theme-${currentTheme}`}>
