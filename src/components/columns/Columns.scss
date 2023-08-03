@@ -2,32 +2,35 @@
 @import '../../styles/variables.scss';
 
 .column {
-  margin-right: 34px;
-  width: 335px;
   display: inline-block;
+  width: 350px;
+  margin-right: 18px;
 }
 .column_header {
-  width: 100%;
-  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 334px;
+  padding: 18px 20px;
   margin-bottom: 14px;
-
-  text-align: start;
   border-radius: 8px;
+
   &.theme-light {
-    background: $light-sidebar-bg;
+    background-color: $light-sidebar-bg;
   }
   &.theme-dark {
-    background: $dark-sidebar-bg;
+    background-color: $dark-sidebar-bg;
   }
   &.theme-violet {
-    background: $violet-button-text;
+    background-color: $violet-header-bg;
   }
 }
-.column_headerText {
-  color: $dark-main-text;
+.column_headerTitle {
+  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
+
   &.theme-light {
     color: $light-main-text;
   }
@@ -36,5 +39,116 @@
   }
   &.theme-violet {
     color: $violet-main-text;
+  }
+}
+
+.column_headerIcons {
+  display: flex;
+  gap: 8px;
+  &.theme-light {
+    color: $light-secondary-text;
+  }
+  &.theme-dark {
+    color: $dark-secondary-text;
+  }
+  &.theme-violet {
+    color: $violet-secondary-text;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-bottom: 14px;
+  overflow-y: auto;
+
+  // height: calc(100vh - 322px);
+
+  @include pre-mobile {
+    max-height: calc(100vh - 330px);
+  }
+  @include mobile {
+    height: calc(100vh - 330px);
+  }
+
+  @include tablet {
+    height: calc(100vh - 374px);
+  }
+
+  @include desktop {
+    height: calc(100vh - 282px);
+  }
+}
+
+.card {
+  width: 334px;
+  padding: 14px 14px;
+  padding-left: 24px;
+  border-radius: 8px;
+  color: rgb(25, 175, 75);
+  &.theme-light {
+    background-color: $light-sidebar-bg;
+  }
+  &.theme-dark {
+    background-color: $dark-sidebar-bg;
+  }
+  &.theme-violet {
+    background-color: $violet-button-text;
+  }
+}
+
+.column_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  width: 334px;
+  padding: 14px 88px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+
+  border-radius: 8px;
+  border: none;
+  &.theme-light {
+    color: $light-button-text;
+    background-color: $light-button-bg;
+  }
+  &.theme-dark {
+    color: $dark-button-text;
+    background-color: $dark-button-bg;
+  }
+  &.theme-violet {
+    color: $violet-button-text;
+    background-color: $violet-button-bg;
+  }
+}
+
+.column_buttonIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 8px;
+
+  &.theme-light {
+    color: $light-sidebar-bg;
+    background-color: $light-button-text;
+  }
+  &.theme-dark {
+    color: $dark-main-text;
+    background-color: $dark-button-text;
+  }
+  &.theme-violet {
+    color: $violet-secondary-text;
+    background-color: $violet-button-text;
   }
 }
