@@ -29,7 +29,7 @@ const Columns = ({ title }) => {
         </div>
       </div>
 
-      <ul className="cards">
+      <ul className={`cards theme-${currentTheme}`}>
         {/* {cards.map(card => (
           <div className="card" title={card.title} key={card.id}>
           </div>
