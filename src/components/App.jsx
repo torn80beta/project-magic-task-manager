@@ -39,7 +39,7 @@ export const App = () => {
             element: <Auth />,
             children: [
               {
-                path: '/auth/login',
+                path: '/auth/:id',
                 element: (
                   <RestrictedRoute redirectTo="/" component={<LoginForm />} />
                 ),
@@ -47,7 +47,7 @@ export const App = () => {
                 // loader: Loader,
               },
               {
-                path: '/auth/register',
+                path: '/auth/:id',
                 element: (
                   <RestrictedRoute
                     redirectTo="/"

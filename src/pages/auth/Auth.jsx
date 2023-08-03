@@ -1,14 +1,18 @@
-import './auth.scss';
-import { NavLink, Outlet } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import css from './auth.module.scss';
 
 const Auth = () => {
+  const { id } = useParams();
+
   return (
-    <div className="auth">
-      Auth page
-      <NavLink to={'../welcome'}>To welcome page</NavLink>
-      <Outlet />
-    </div>
+    <>
+      <div className={css.welcomeBackground}>
+        {id === 'register' && <RegisterForm />}
+        {id === 'login' && <LoginForm />}
+      </div>
+    </>
   );
 };
-
 export default Auth;
