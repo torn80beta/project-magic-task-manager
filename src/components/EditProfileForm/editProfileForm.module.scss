@@ -2,25 +2,18 @@
 @import '../../styles/variables';
 
 .editProfileForm {
-  width: 400px;
-  height: 440px;
+  width: 285px;
+  // width: 350px;
+  height: 390px;
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(190, 219, 176, 0.5);
   border-radius: 8px;
-  padding: 24px;
   background-color: #151515;
-}
 
-.closeButton {
-  position: absolute;
-  right: 14px;
-  top: 14px;
-  border: none;
-  background-color: transparent;
-  color: #ffffff;
-  cursor: pointer;
+  @include tablet {
+    width: 350px;
+  }
 }
 
 .formTitle {
@@ -36,15 +29,24 @@
 .avatar {
   width: 68px;
   height: 68px;
-  object-fit: cover;
   border-radius: 8px;
   margin: 0 auto 24px auto;
+  color: #151515;
+  background-color: #1f1f1f;
+  overflow: hidden;
+}
+
+.newAvatar {
+  object-fit: cover;
+  width: 68px;
+  height: 68px;
 }
 
 .uploadBtn {
   position: absolute;
-  left: 188px;
-  top: 130px;
+  left: 130px;
+  top: 106px;
+  color: #161616;
   cursor: pointer;
   width: 24px;
   height: 24px;
@@ -53,6 +55,9 @@
   border-radius: 6px;
   &:hover {
     background-color: #9dc888;
+  }
+  @include tablet {
+    left: 163px;
   }
 }
 
@@ -90,11 +95,12 @@
 }
 
 .showPwd {
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  background-color: transparent;
   position: absolute;
-  right: 42px;
-  top: 310px;
-  width: 18px;
-  height: 18px;
+  right: 18px;
+  top: 286px;
   cursor: pointer;
 }
 
