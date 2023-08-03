@@ -1,9 +1,9 @@
 @import '../../styles/variables';
-.addColumnForm {
+.editColumnForm {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  .addColumnTitle {
+  .editColumnTitle {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
@@ -54,7 +54,7 @@
       }
     }
   }
-  .addButton {
+  .editButton {
     padding: 10px 0;
     border-radius: 8px;
     cursor: pointer;
@@ -91,7 +91,7 @@
         background-color: $dark-button-bg-hover;
       }
     }
-    & .addIcon {
+    & .editIcon {
       border-radius: 8px;
       height: 28px;
       &.theme-violet {
@@ -115,7 +115,7 @@
     font-size: 12px;
     color: #f75e66;
   }
-  .addColumnInputWrapper {
+  .editColumnInputWrapper {
     .titleInput {
       margin-bottom: 5px;
     }
