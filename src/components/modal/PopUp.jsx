@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import Icon from 'components/icon/Icon';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 
@@ -43,7 +44,7 @@ const PopUp = props => {
           className={`close-modal-button theme-${currentTheme}`}
           onClick={closeModal}
         >
-          X
+          <Icon id="x-close" width={18} height={18} />
         </button>
         {children}
       </Modal>
