@@ -1,28 +1,28 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://goit-final-project.onrender.com/api';
+axios.defaults.baseURL = 'https://goit-final-project.onrender.com/api/users';
 
 const register = async newUser => {
   return await axios
-    .post('/users/register', newUser)
+    .post('/register', newUser)
     .catch(e => console.log(e.request.response));
 };
 
 const login = async user => {
   return await axios
-    .post('/users/login', user)
+    .post('/login', user)
     .catch(e => console.log(e.request.response));
 };
 
 const logout = async user => {
   return await axios
-    .post('/users/logout')
+    .post('/logout')
     .catch(e => console.log(e.request.response));
 };
 
 const getCurrent = async () => {
   return await axios
-    .get('/users/current')
+    .get('/current')
     .catch(e => console.log(e.request.response));
 };
 
@@ -31,13 +31,13 @@ const editAvatar = async avatar => {
   formData.append('avatar', avatar);
 
   return await axios
-    .patch('/users/edit', formData)
+    .patch('/edit', formData)
     .catch(e => console.log(e.request.response));
 };
 
 const editProfile = async user => {
   return await axios
-    .patch('/users/avatars', user)
+    .patch('/avatars', user)
     .catch(e => console.log(e.request.response));
 };
 
