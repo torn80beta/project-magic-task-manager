@@ -1,6 +1,6 @@
 import './screensPage.scss';
 import PopUp from 'components/modal/PopUp';
-import { useState } from 'react';
+// import { useState } from 'react';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
@@ -19,11 +19,8 @@ const columnsArray = [
 const themes = ['light', 'dark', 'violet'];
 
 const ScreensPage = () => {
-  const currentTheme = themes[2];
-  // const [isFilterMenuOpen, setOpenMenu] = useState(false);
-  // const [filter, setFilter] = useState(null);
+  const currentTheme = themes[1];
 
-  // const toggleFilterMenu = () => setOpenMenu(prevStat => !prevStat);
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
