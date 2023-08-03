@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { themeReducer } from './theme/themeSlice';
+import { filterReducer } from './filter/filterSlice';
 
 import {
   persistStore,
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     theme: themeReducer,
+    filter: filterReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
