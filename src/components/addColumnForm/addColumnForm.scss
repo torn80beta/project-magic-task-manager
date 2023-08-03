@@ -1,0 +1,81 @@
+.addColumnForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  .addColumnTitle {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: -0.02em;
+  }
+  .titleInput {
+    width: 302px;
+    padding: 14px 18px;
+    outline: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: -0.02em;
+    text-align: left;
+
+    &::placeholder {
+      font-size: 14px;
+      line-height: normal;
+    }
+    &.theme-violet {
+      background: transparent;
+      border: 1px solid #5255bc;
+      box-shadow: 0px 4px 16px 0px #16161614;
+      &::placeholder {
+        color: #161616;
+      }
+    }
+    &.theme-light {
+      background: transparent;
+      border: 1px solid #bedbb0;
+      box-shadow: 0px 4px 16px 0px #16161614;
+      &::placeholder {
+        color: #161616;
+      }
+    }
+    &.theme-dark {
+      background: transparent;
+      border: 1px solid #bedbb0;
+      box-shadow: 0px 4px 16px 0px #16161614;
+      &::placeholder {
+        color: #ffffff;
+      }
+    }
+  }
+  .addButton {
+    padding: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: -0.02em;
+    font-family: Poppins;
+    border: none;
+
+    &.theme-violet {
+      background: #5255bc;
+    }
+    &.theme-light {
+      background: #bedbb0;
+    }
+    &.theme-dark {
+      background: #bedbb0;
+    }
+  }
+  .errorMessage {
+    font-size: 12px;
+    color: #f75e66;
+  }
+  .addColumnInputWrapper {
+    .titleInput {
+      margin-bottom: 5px;
+    }
+  }
+}
