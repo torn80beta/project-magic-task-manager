@@ -21,16 +21,17 @@
   }
 
   @include mobile {
-    width: 375px;
+    // width: 375px; test
   }
 
   @include tablet {
-    width: 768px;
+    // width: 768px; test
     height: 68px;
   }
 
   @include desktop {
-    width: 1180px;
+    // width: 1180px; test
+    width: calc(100vw - 260px); //add
   }
 }
 .select {
