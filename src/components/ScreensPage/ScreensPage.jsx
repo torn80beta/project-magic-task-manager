@@ -40,7 +40,6 @@ const ScreensPage = () => {
             </span>
           }
         >
-          <AddColumnForm />
           <FilterPopup />
         </PopUp>
       </div>
@@ -68,7 +67,7 @@ const ScreensPage = () => {
             </span>
           }
         >
-          <p>Screens page popup</p>
+          <AddColumnForm />
         </PopUp>
       </div>
     </div>
