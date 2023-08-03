@@ -1,0 +1,156 @@
+@import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
+
+.help-form {
+  min-width: 307px;
+
+  &.theme-violet {
+    background-color: $violet-modal-bg;
+  }
+  &.theme-dark {
+    background-color: $dark-modal-bg;
+  }
+  &.theme-light {
+    background-color: $light-modal-bg;
+  }
+
+  @include tablet {
+    min-width: 352px;
+  }
+}
+.help-form-title {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+  padding-bottom: 24px;
+
+  &.theme-violet {
+    color: $violet-main-text;
+  }
+  &.theme-dark {
+    color: $dark-main-text;
+  }
+  &.theme-light {
+    color: $light-main-text;
+  }
+}
+.help-form-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.help-form-email-wrap {
+  position: relative;
+  padding-bottom: 14px;
+}
+.help-form-input {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.28px;
+
+  padding: 14px 18px;
+  border: 1px solid;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color ease 300ms;
+
+  &::placeholder {
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  &.theme-violet {
+    background-color: $violet-modal-input-bg;
+    border-color: $violet-modal-input-border;
+    color: $violet-main-text;
+    &::placeholder {
+      color: $violet-main-text;
+    }
+    &:focus,
+    &:hover {
+      border-color: $violet-modal-input-border-active;
+    }
+  }
+  &.theme-dark {
+    background-color: $dark-modal-input-bg;
+    border-color: $dark-modal-input-border;
+    color: $dark-main-text;
+    &::placeholder {
+      color: $dark-main-text;
+    }
+    &:focus,
+    &:hover {
+      border-color: $dark-modal-input-border-active;
+    }
+  }
+  &.theme-light {
+    background-color: $light-modal-input-bg;
+    border-color: $light-modal-input-border;
+    color: $light-main-text;
+    &::placeholder {
+      color: $violet-main-text;
+    }
+    &:focus,
+    &:hover {
+      border-color: $light-modal-input-border-active;
+    }
+  }
+
+  &.email {
+    width: 100%;
+  }
+
+  &.comment {
+    resize: none;
+    margin-bottom: 24px;
+  }
+}
+.help-form-input-error {
+  position: absolute;
+  color: rgba(247, 73, 73, 0.76);
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.4;
+  padding-left: 10px;
+
+  &.theme-dark {
+    color: rgba(212, 114, 114, 0.76);
+  }
+}
+.help-form-submit {
+  padding: 14px 0;
+  border-radius: 8px;
+  border: none;
+  transition: background-color ease 250ms;
+
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+
+  &.theme-violet {
+    background-color: $violet-button-bg;
+    color: $violet-button-text;
+    &:hover {
+      background-color: $violet-button-bg-hover;
+    }
+  }
+  &.theme-dark {
+    background-color: $dark-button-bg;
+    color: $dark-button-text;
+    &:hover {
+      background-color: $dark-button-bg-hover;
+    }
+  }
+  &.theme-light {
+    background-color: $light-button-bg;
+    color: $light-button-text;
+    &:hover {
+      background-color: $light-button-bg-hover;
+    }
+  }
+}
