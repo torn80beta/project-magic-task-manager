@@ -6,9 +6,25 @@
   color: white;
   background-color: $dark-sidebar-bg;
 
+  &.theme-violet {
+    background-color: $violet-sidebar-bg;
+    color: $violet-sidebar-text;
+  }
+  &.theme-dark {
+    background-color: $dark-sidebar-bg;
+    color: $dark-main-text;
+  }
+  &.theme-light {
+    background-color: $light-sidebar-bg;
+    color: $light-main-text;
+  }
+
   @include desktop {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 260px;
+    padding: 20px;
   }
 }

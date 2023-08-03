@@ -1,11 +1,15 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
+
 import './popup.scss';
 Modal.setAppElement('#root');
 
-const PopUp = ({ children }) => {
+const PopUp = props => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const currentTheme = 'dark';
+  const { children, data } = props;
+  const currentTheme = useSelector(themeState);
 
   function openModal() {
     setIsOpen(true);
@@ -21,7 +25,12 @@ const PopUp = ({ children }) => {
 
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
+      <button
+        className={`open-modal-button theme-${currentTheme}`}
+        onClick={openModal}
+      >
+        {data}
+      </button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

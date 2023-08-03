@@ -1,16 +1,17 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import './home.scss';
-import Header from 'components/Header/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
+import Header from 'components/header/Header';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+  const theme = useSelector(themeState);
   return (
     <div className="home">
       <Sidebar />
-      <div className="home-wrapper">
-        <Header>
-          <NavLink to={'welcome'}>To welcome page</NavLink>
-        </Header>
+      <div className={`home-wrapper theme-${theme}`}>
+        <Header />
         <Outlet />
       </div>
     </div>

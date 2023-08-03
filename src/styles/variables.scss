@@ -4,10 +4,16 @@ $light-sidebar-bg: #fff;
 $light-screens-bg: #f6f6f7;
 $light-modal-bg: #fcfcfc;
 $light-modal-input-bg: #fcfcfc;
+$light-modal-input-border: rgba(190, 219, 176, 0.4);
+$light-modal-input-border-active: rgba(190, 219, 176, 1);
 $light-main-text: #161616;
 $light-secondary-text: rgba(22, 22, 22, 0.7);
 $light-button-bg: #bedbb0;
+$light-button-bg-hover: #9dc888;
 $light-button-text: #161616;
+$light-theme-title: #161616cc;
+$light-border: 1px solid #bedbb0;
+$light-box-shadow: 0px 4px 16px 0px #1111111a;
 
 //Dark theme
 $dark-header-bg: #161616;
@@ -15,21 +21,34 @@ $dark-sidebar-bg: #121212;
 $dark-screens-bg: #1f1f1f;
 $dark-modal-bg: #151515;
 $dark-modal-input-bg: #1f1f1f;
+$dark-modal-input-border: rgba(190, 219, 176, 0.4);
+$dark-modal-input-border-active: rgba(190, 219, 176, 1);
 $dark-main-text: #fff;
 $dark-secondary-text: rgba(255, 255, 255, 0.5);
 $dark-button-bg: #bedbb0;
+$dark-button-bg-hover: #9dc888;
 $dark-button-text: #161616;
+$dark-border: 1px solid #bedbb0;
+$dark-box-shadow: 0px 4px 16px 0px #1111111a;
+$dark-icon-color: #ffffffcc;
 
 //Violet theme
 $violet-header-bg: #fff;
 $violet-sidebar-bg: #5255bc;
+$violet-sidebar-text: #fff;
 $violet-screens-bg: #ecedfd;
 $violet-modal-bg: #fcfcfc;
 $violet-modal-input-bg: #fcfcfc;
+$violet-modal-input-border: rgba(82, 85, 188, 0.4);
+$violet-modal-input-border-active: rgba(82, 85, 188, 1);
 $violet-main-text: #161616;
 $violet-secondary-text: rgba(22, 22, 22, 0.7);
 $violet-button-bg: #5255bc;
+$violet-button-bg-hover: #7b7ede;
 $violet-button-text: #fff;
+$violet-theme-title: #161616cc;
+$violet-box-shadow: 0px 4px 16px 0px #1111111a;
+$violet-border: 1px solid #ecedfd;
 
 //Welcome
 $welcome-background: linear-gradient(

@@ -1,0 +1,15 @@
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  & .userName {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+  }
+  & .open-modal-button {
+    border: none;
+    background: none;
+  }
+}

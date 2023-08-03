@@ -11,6 +11,7 @@ body {
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(233, 233, 233);
 }
 
 code {
@@ -44,12 +45,17 @@ a {
   text-decoration: none;
 }
 
-.theme-light {
-  background-color: $light-screens-bg;
-  color: $light-main-text;
-}
+// .theme-light {
+//   background-color: $light-screens-bg;
+//   color: $light-main-text;
+// }
 
-.theme-dark {
-  background-color: $dark-screens-bg;
-  color: $dark-main-text;
-}
+// .theme-dark {
+//   background-color: $dark-screens-bg;
+//   color: $dark-main-text;
+// }
+
+// .theme-violet {
+//   background-color: $violet-screens-bg;
+//   color: $violet-main-text;
+// }
