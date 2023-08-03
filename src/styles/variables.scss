@@ -14,6 +14,10 @@ $light-button-text: #161616;
 $light-theme-title: #161616cc;
 $light-border: 1px solid #bedbb0;
 $light-box-shadow: 0px 4px 16px 0px #1111111a;
+$light-button-border: 1px solid #bedbb0;
+$light-button-box-shadow: 0px 4px 16px 0px #16161614;
+$light-scroll-track: rgba(232, 232, 232, 1);
+$light-scroll-thumb: rgba(22, 22, 22, 0.1);
 
 //Dark theme
 $dark-header-bg: #161616;
@@ -31,6 +35,10 @@ $dark-button-text: #161616;
 $dark-border: 1px solid #bedbb0;
 $dark-box-shadow: 0px 4px 16px 0px #1111111a;
 $dark-icon-color: #ffffffcc;
+$dark-button-border: 1px solid #bedbb0;
+$dark-button-box-shadow: 0px 4px 16px 0px #16161614;
+$dark-scroll-track: rgba(255, 255, 255, 1);
+$dark-scroll-thumb: #121212;
 
 //Violet theme
 $violet-header-bg: #fff;
@@ -49,6 +57,10 @@ $violet-button-text: #fff;
 $violet-theme-title: #161616cc;
 $violet-box-shadow: 0px 4px 16px 0px #1111111a;
 $violet-border: 1px solid #ecedfd;
+$violet-button-border: 1px solid #5255bc;
+$violet-button-box-shadow: 0px 4px 16px 0px #16161614;
+$violet-scroll-track: rgba(255, 255, 255, 1);
+$violet-scroll-thumb: rgba(184, 188, 253, 1);
 
 //Welcome
 $welcome-background: linear-gradient(

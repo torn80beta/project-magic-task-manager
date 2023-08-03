@@ -79,9 +79,11 @@
 }
 
 .open-modal-button {
-  // background-color: transparent;
-  // border: none;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
+  outline: none;
+  font-family: inherit;
 
   // &.theme-light {
   //   color: $light-main-text;

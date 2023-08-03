@@ -1,5 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { register, login, logout, getCurrent, editProfile } from 'api/api';
+import {
+  register,
+  login,
+  logout,
+  getCurrent,
+  editProfile,
+  editAvatar,
+} from 'api/auth';
 import axios from 'axios';
 
 const token = {
@@ -69,11 +76,22 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
-export const editUser = createAsyncThunk(
+export const editUserData = createAsyncThunk(
   'users/edit',
   async (editedUser, thunkAPI) => {
     try {
       const { data } = await editProfile(editedUser);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const editUserAvatar = createAsyncThunk(
+  'users/edit',
+  async (editedUser, thunkAPI) => {
+    try {
+      const { data } = await editAvatar(editedUser);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

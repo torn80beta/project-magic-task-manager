@@ -1,0 +1,66 @@
+@import '../../../styles/responsive';
+@import '../../../styles/variables';
+
+.boardButtonSubmit {
+  width: 100%;
+  padding: 10px 0px 11px 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  color: $light-button-text;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.28px;
+  border: none;
+  cursor: pointer;
+  &.theme-light {
+    background: $light-button-bg;
+  }
+  &.theme-dark {
+    background: $dark-button-bg;
+  }
+  &.theme-violet {
+    background: $violet-button-bg;
+    color: $violet-header-bg;
+  }
+}
+.boardButtonIcon {
+  display: block;
+  // background-color: $light-button-text;
+  &.theme-light {
+    background-color: $light-button-text;
+    stroke: $light-sidebar-bg;
+  }
+  &.theme-dark {
+    background-color: $dark-button-text;
+    stroke: $dark-main-text;
+  }
+  &.theme-violet {
+    background-color: $violet-button-text;
+    stroke: $violet-main-text;
+  }
+}
+.boardButtonIcon_wrapper {
+  // width: 28px;
+  // height: 28px;
+  border: 7px solid $light-button-text;
+  border-radius: 5px;
+  &.theme-light {
+    background-color: $light-button-text;
+  }
+  &.theme-dark {
+    background-color: $dark-button-text;
+  }
+  &.theme-violet {
+    border: 7px solid $violet-button-text;
+  }
+}
+.boardButtonInfo_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
