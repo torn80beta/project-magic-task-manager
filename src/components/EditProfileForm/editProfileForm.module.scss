@@ -3,16 +3,19 @@
 
 .editProfileForm {
   width: 285px;
-  // width: 350px;
   height: 390px;
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  background-color: #151515;
+  background-color: #fcfcfc;
 
   @include tablet {
     width: 350px;
+  }
+
+  &.dark {
+    background-color: #151515;
   }
 }
 
@@ -22,8 +25,11 @@
   line-height: 27px;
   letter-spacing: -0.02em;
   text-align: left;
-  color: #ffffff;
+  color: #161616;
   margin-bottom: 24px;
+  &.dark {
+    color: #ffffff;
+  }
 }
 
 .avatar {
@@ -34,6 +40,16 @@
   color: #151515;
   background-color: #1f1f1f;
   overflow: hidden;
+
+  &.light {
+    color: #ffffff;
+    background-color: #f6f6f7;
+  }
+
+  &.violet {
+    color: #ffffff;
+    background-color: #ecedfd;
+  }
 }
 
 .newAvatar {
@@ -56,8 +72,15 @@
   &:hover {
     background-color: #9dc888;
   }
+
+  &:hover.violet {
+    background-color: #979cea;
+  }
   @include tablet {
     left: 163px;
+  }
+  &.violet {
+    background-color: #ecedfd;
   }
 }
 
@@ -80,6 +103,16 @@
   &:last-child {
     padding-right: 45px;
   }
+
+  &.light {
+    color: rgba(22, 22, 22, 0.6);
+  }
+
+  &.violet {
+    color: rgba(22, 22, 22, 0.6);
+    border: 1px solid rgba(82, 85, 188, 0.4);
+  }
+
   &::placeholder {
     font-family: Poppins;
     font-size: 14px;
@@ -88,20 +121,34 @@
     letter-spacing: -0.02em;
     text-align: left;
   }
+
   &:focus {
     color: #ffffff;
     border: 1px solid #bedbb0;
+
+    &.light {
+      color: #161616;
+    }
+    &.violet {
+      color: #161616;
+      border: 1px solid rgba(82, 85, 188, 1);
+    }
   }
 }
 
 .showPwd {
   border: none;
   color: rgba(255, 255, 255, 0.4);
+
   background-color: transparent;
   position: absolute;
   right: 18px;
   top: 286px;
   cursor: pointer;
+  &.light,
+  &.violet {
+    color: rgba(22, 22, 22, 0.4);
+  }
 }
 
 .submitBtn {
@@ -112,5 +159,12 @@
   cursor: pointer;
   &:hover {
     background-color: #9dc888;
+  }
+  &.violet {
+    background-color: #5255bc;
+  }
+
+  &:hover.violet {
+    background-color: #7b7ede;
   }
 }
