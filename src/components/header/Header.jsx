@@ -3,20 +3,24 @@ import UserInfo from 'components/userInfo/UserInfo';
 import './header.scss';
 import Icon from 'components/icon/Icon';
 import avatar from '../../images/user.png';
+import { themeState, changeTheme } from 'redux/theme/themeSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Header = ({ children }) => {
-  const [theme, setTheme] = useState('violet');
   const themes = ['light', 'dark', 'violet'];
   const [isMenuActive, setMenuActive] = useState(false);
   const selectSingleRef = useRef(null);
   const user = { name: 'Ivetta', avatar: avatar };
+
+  const theme = useSelector(themeState);
+  const dispatch = useDispatch();
 
   const handleToggleMenu = () => {
     setMenuActive(prevState => !prevState);
   };
 
   const handleOptionClick = label => {
-    setTheme(label);
+    dispatch(changeTheme(label));
     setMenuActive(false);
   };
 
