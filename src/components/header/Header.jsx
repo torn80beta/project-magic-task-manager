@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PopUp from 'components/modal/PopUp';
-import { EditProfileForm } from 'components/EditProfileForm/EditProfileForm';
+import UserInfo from 'components/userInfo/UserInfo';
 import './header.scss';
 import Icon from 'components/icon/Icon';
+import avatar from '../../images/user.png';
 
 const Header = ({ children }) => {
   const [theme, setTheme] = useState('violet');
   const themes = ['light', 'dark', 'violet'];
   const [isMenuActive, setMenuActive] = useState(false);
   const selectSingleRef = useRef(null);
+  const user = { name: 'Ivetta', avatar: avatar };
   const handleToggleMenu = () => {
     setMenuActive(prevState => !prevState);
   };
@@ -89,9 +90,7 @@ const Header = ({ children }) => {
         </div>
       </form>
       {children}
-      <PopUp theme={theme} modalName={'Edit profile'}>
-        <EditProfileForm />
-      </PopUp>
+      <UserInfo theme={theme} user={user} />
     </div>
   );
 };
