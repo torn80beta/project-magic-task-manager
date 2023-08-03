@@ -42,17 +42,29 @@
   }
 }
 
-.column_headerIcons {
+.column_headerIconWrap {
   display: flex;
   gap: 8px;
+}
+
+.column_headerIconColor {
   &.theme-light {
     color: $light-secondary-text;
+    &:hover {
+      color: $light-icon-hover;
+    }
   }
   &.theme-dark {
     color: $dark-secondary-text;
+    &:hover {
+      color: $dark-icon-hover;
+    }
   }
   &.theme-violet {
     color: $violet-secondary-text;
+    &:hover {
+      color: $violet-icon-hover;
+    }
   }
 }
 
@@ -63,8 +75,6 @@
 
   margin-bottom: 14px;
   overflow-y: auto;
-
-  // height: calc(100vh - 322px);
 
   @include pre-mobile {
     max-height: calc(100vh - 330px);
