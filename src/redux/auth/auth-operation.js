@@ -6,7 +6,7 @@ import {
   getCurrent,
   editProfile,
   editAvatar,
-} from 'api/api';
+} from 'api/auth';
 import axios from 'axios';
 
 const token = {
