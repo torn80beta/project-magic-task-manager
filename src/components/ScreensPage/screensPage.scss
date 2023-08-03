@@ -72,21 +72,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: none;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  cursor: pointer;
 
-  // &.theme-light {
-  //   fill: $light-main-text;
-  // }
-  // &.theme-dark {
-  //   fill: $dark-main-text;
-  // }
-  // &.theme-violet {
-  //   fill: $violet-main-text;
-  // }
+  &.theme-light {
+    color: $light-theme-title;
+  }
+  &.theme-dark {
+    color: $dark-icon-color;
+  }
+  &.theme-violet {
+    color: $violet-theme-title;
+  }
 }
 
 .screenPage_filterText {
@@ -95,13 +90,13 @@
   font-weight: 500;
   letter-spacing: -0.02em;
   &.theme-light {
-    color: $light-main-text;
+    color: $light-theme-title;
   }
   &.theme-dark {
-    color: $dark-main-text;
+    color: $dark-icon-color;
   }
   &.theme-violet {
-    color: $violet-main-text;
+    color: $violet-theme-title;
   }
 }
 .screenPage_canvas {
@@ -176,13 +171,15 @@
   align-items: center;
 
   &.theme-light {
-    background: $light-sidebar-bg;
+    background: $light-button-text;
+    color: $light-sidebar-bg;
   }
   &.theme-dark {
-    background: $dark-sidebar-bg;
+    background: $dark-main-text;
+    color: $dark-sidebar-bg;
   }
   &.theme-violet {
-    background: $violet-sidebar-bg;
-    fill: #fff;
+    background: $violet-button-bg;
+    color: $violet-header-bg;
   }
 }

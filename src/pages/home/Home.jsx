@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import './home.scss';
 
 import Sidebar from 'components/Sidebar/Sidebar';
-import Header from 'components/header/Header';
+import Header from 'components/Header/Header';
 
 const Home = () => {
   return (

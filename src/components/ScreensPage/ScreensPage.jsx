@@ -1,8 +1,9 @@
 import './screensPage.scss';
 import PopUp from 'components/modal/PopUp';
-// import { useState } from 'react';
+import { useState } from 'react';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
+import FilterPopup from 'components/filterPopup/FilterPopup';
 
 //temporary
 const columnsArray = [
@@ -15,32 +16,32 @@ const columnsArray = [
   { title: 'Done', id: 7 },
   { title: 'Done', id: 8 },
 ];
+const themes = ['light', 'dark', 'violet'];
 
 const ScreensPage = () => {
-  // const [modalIsOpen, setIsOpen] = useState(false);
-  const currentTheme = 'violet';
+  const currentTheme = themes[2];
+  // const [isFilterMenuOpen, setOpenMenu] = useState(false);
+  // const [filter, setFilter] = useState(null);
 
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
-  // function closeModal() {
-  //   setIsOpen(false);
-  // }
+  // const toggleFilterMenu = () => setOpenMenu(prevStat => !prevStat);
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
         <h1 className={`screenPage_title theme-${currentTheme}`}>
           Project office
         </h1>
-        <PopUp modalName={'Add another column'}>
-          <p>Screens page popup</p>
+        <PopUp
+          modalName={
+            <span className={`screenPage_filter theme-${currentTheme}`}>
+              <Icon id={'filter'} width={16} height={16} />
+              <span className={`screenPage_filterText theme-${currentTheme}`}>
+                Filter
+              </span>
+            </span>
+          }
+        >
+          <FilterPopup />
         </PopUp>
-        <button className={`screenPage_filter theme-${currentTheme}`}>
-          <Icon id={'filter'} width={16} height={16} />
-          <span className={`screenPage_filterText theme-${currentTheme}`}>
-            Filter
-          </span>
-        </button>
       </div>
 
       <div className={`screenPage_canvas theme-${currentTheme}`}>
@@ -49,21 +50,26 @@ const ScreensPage = () => {
             <Columns title={item.title} key={item.id} />
           ))}
         </div>
-        <button
-          // onClick={openModal}
-          className={`screenPage_addButton theme-${currentTheme}`}
+
+        <PopUp
+          modalName={
+            <span className={`screenPage_addButton theme-${currentTheme}`}>
+              <span
+                className={`screenPage_addButtonPlus theme-${currentTheme}`}
+              >
+                <Icon id={'plus'} width={14} height={14} />
+              </span>
+              <span
+                className={`screenPage_addButtonText theme-${currentTheme}`}
+              >
+                Add another column
+              </span>
+            </span>
+          }
         >
-          <span className={`screenPage_addButtonPlus theme-${currentTheme}`}>
-            <Icon id={'plus'} width={14} height={14} />
-          </span>
-          <span className={`screenPage_addButtonText theme-${currentTheme}`}>
-            Add another column
-          </span>
-        </button>
+          <p>Screens page popup</p>
+        </PopUp>
       </div>
-      <PopUp modalName={'Add another column'}>
-        <p>Screens page popup</p>
-      </PopUp>
     </div>
   );
 };
