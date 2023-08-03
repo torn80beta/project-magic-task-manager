@@ -19,7 +19,6 @@ const columnsArray = [
   { title: 'Done', id: 7 },
   { title: 'Done', id: 8 },
 ];
-const themes = ['light', 'dark', 'violet'];
 
 const ScreensPage = () => {
   const currentTheme = useSelector(themeState);
