@@ -6,6 +6,7 @@ import Icon from '../icon/Icon';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import AddColumnForm from 'components/addColumnForm/AddColumnForm';
+import EditColumnForm from 'components/editColumnForm/EditColumnForm';
 
 //temporary
 const columnsArray = [
@@ -48,7 +49,12 @@ const ScreensPage = () => {
       <div className={`screenPage_canvas theme-${currentTheme}`}>
         <div className={`screenPage_columns theme-${currentTheme}`}>
           {columnsArray.map(item => (
-            <Columns title={item.title} key={item.id} />
+            <>
+              <Columns title={item.title} key={item.id} />
+              <PopUp data={'Click'}>
+                <EditColumnForm title={item.title} />
+              </PopUp>
+            </>
           ))}
         </div>
         <button
