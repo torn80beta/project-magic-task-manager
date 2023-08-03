@@ -3,6 +3,7 @@ import PopUp from 'components/modal/PopUp';
 // import { useState } from 'react';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
+import FilterPopup from 'components/filterPopup/FilterPopup';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import AddColumnForm from 'components/addColumnForm/AddColumnForm';
@@ -22,27 +23,26 @@ const columnsArray = [
 const ScreensPage = () => {
   const currentTheme = useSelector(themeState);
 
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
-  // function closeModal() {
-  //   setIsOpen(false);
-  // }
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
         <h1 className={`screenPage_title theme-${currentTheme}`}>
           Project office
         </h1>
-        <PopUp data={'Add another column'}>
+
+        <PopUp
+          data={
+            <span className={`screenPage_filter theme-${currentTheme}`}>
+              <Icon id={'filter'} width={16} height={16} />
+              <span className={`screenPage_filterText theme-${currentTheme}`}>
+                Filter
+              </span>
+            </span>
+          }
+        >
           <AddColumnForm />
+          <FilterPopup />
         </PopUp>
-        <button className={`screenPage_filter theme-${currentTheme}`}>
-          <Icon id={'filter'} width={16} height={16} />
-          <span className={`screenPage_filterText theme-${currentTheme}`}>
-            Filter
-          </span>
-        </button>
       </div>
 
       <div className={`screenPage_canvas theme-${currentTheme}`}>
@@ -51,17 +51,25 @@ const ScreensPage = () => {
             <Columns title={item.title} key={item.id} />
           ))}
         </div>
-        <button
-          // onClick={openModal}
-          className={`screenPage_addButton theme-${currentTheme}`}
+
+        <PopUp
+          data={
+            <span className={`screenPage_addButton theme-${currentTheme}`}>
+              <span
+                className={`screenPage_addButtonPlus theme-${currentTheme}`}
+              >
+                <Icon id={'plus'} width={14} height={14} />
+              </span>
+              <span
+                className={`screenPage_addButtonText theme-${currentTheme}`}
+              >
+                Add another column
+              </span>
+            </span>
+          }
         >
-          <span className={`screenPage_addButtonPlus theme-${currentTheme}`}>
-            <Icon id={'plus'} width={14} height={14} />
-          </span>
-          <span className={`screenPage_addButtonText theme-${currentTheme}`}>
-            Add another column
-          </span>
-        </button>
+          <p>Screens page popup</p>
+        </PopUp>
       </div>
     </div>
   );
