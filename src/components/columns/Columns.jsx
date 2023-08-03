@@ -13,11 +13,19 @@ const Columns = ({ title }) => {
     <div className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>
         <h2 className={`column_headerTitle theme-${currentTheme}`}>{title}</h2>
-        <div className={`column_headerIcons theme-${currentTheme}`}>
-          <PopUp data={<Icon id="pencil" width="16" height="16" />}>
+        <div className={`column_headerIconWrap theme-${currentTheme}`}>
+          <PopUp
+            data={
+              <span className={`column_headerIconColor theme-${currentTheme}`}>
+                <Icon id="pencil" width="16" height="16" />
+              </span>
+            }
+          >
             <EditColumnForm title={title} />
           </PopUp>
-          <Icon id="trash" width="16" height="16" />
+          <span className={`column_headerIconColor theme-${currentTheme}`}>
+            <Icon id="trash" width="16" height="16" />
+          </span>
         </div>
       </div>
 
