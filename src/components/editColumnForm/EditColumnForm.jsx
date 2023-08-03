@@ -2,6 +2,7 @@ import { themeState } from '../../redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Icon from 'components/icon/Icon';
+import './editColumnForm.scss';
 
 const EditColumnForm = ({ title }) => {
   const theme = useSelector(themeState);
@@ -20,15 +21,10 @@ const EditColumnForm = ({ title }) => {
     }
   };
 
-  // const handleColumnButtonClick = e => {
-  //   e.preventDefault();
-  //   const columnName = e.target.elements.title.value;
-  //   console.log(columnName);
-  // };
   return (
-    <form className="addColumnForm" onSubmit={onSubmit}>
-      <p className={`addColumnTitle theme-${theme}`}>Edit column</p>
-      <div className="addColumnInputWrapper">
+    <form className="editColumnForm" onSubmit={onSubmit}>
+      <p className={`editColumnTitle theme-${theme}`}>Edit column</p>
+      <div className="editColumnInputWrapper">
         <input
           type="text"
           name="title"
@@ -40,14 +36,14 @@ const EditColumnForm = ({ title }) => {
         {error && <p className={`errorMessage theme-${theme}`}>{error}</p>}
       </div>
       <button
-        className={`addButton theme-${theme}`}
+        className={`editButton theme-${theme}`}
         type="submit"
         // onSubmit={handleColumnButtonClick}
       >
-        <span className={`addIcon theme-${theme}`}>
+        <span className={`editIcon theme-${theme}`}>
           <Icon id={'plus'} width={14} height={14} />
         </span>
-        Add
+        Edit
       </button>
     </form>
   );
