@@ -26,20 +26,19 @@ const getCurrent = async () => {
     .catch(e => console.log(e.request.response));
 };
 
-const editProfile = async ({ user, avatar }) => {
+const editAvatar = async avatar => {
   const formData = new FormData();
-  formData.append('user', JSON.stringify(user));
-  formData.append('image', avatar);
+  formData.append('avatar', avatar);
 
   return await axios
     .patch('/users/edit', formData)
     .catch(e => console.log(e.request.response));
 };
 
-// const refreshCurrentUser = async () => {
-//   return await axios
-//     .get('/users/current')
-//     .catch(e => console.log(e.request.response));
-// };
+const editProfile = async user => {
+  return await axios
+    .patch('/users/avatars', user)
+    .catch(e => console.log(e.request.response));
+};
 
-export { register, login, logout, getCurrent, editProfile };
+export { register, login, logout, getCurrent, editProfile, editAvatar };
