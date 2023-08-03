@@ -68,14 +68,23 @@
     &.theme-violet {
       background: $violet-button-bg;
       color: $violet-button-text;
+      &:hover {
+        background-color: $violet-button-bg-hover;
+      }
     }
     &.theme-light {
       background: $light-button-bg;
       color: $light-button-text;
+      &:hover {
+        background-color: $light-button-bg-hover;
+      }
     }
     &.theme-dark {
       background: $dark-button-bg;
       color: $dark-button-text;
+      &:hover {
+        background-color: $dark-button-bg-hover;
+      }
     }
     & .addIcon {
       border-radius: 8px;
