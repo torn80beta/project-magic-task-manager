@@ -33,6 +33,13 @@
   margin: 0 auto 24px auto;
   color: #151515;
   background-color: #1f1f1f;
+  overflow: hidden;
+}
+
+.newAvatar {
+  object-fit: cover;
+  width: 68px;
+  height: 68px;
 }
 
 .uploadBtn {

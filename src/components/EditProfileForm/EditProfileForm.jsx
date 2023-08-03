@@ -3,11 +3,16 @@ import Icon from 'components/icon/Icon';
 import css from './editProfileForm.module.scss';
 
 export const EditProfileForm = () => {
-  // const theme = 'light';
   const hiddenFileInput = useRef(null);
   const handleUploadClick = () => {
     hiddenFileInput.current.click();
   };
+
+  const [file, setFile] = useState(null);
+
+  function handleChange(e) {
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
@@ -18,9 +23,19 @@ export const EditProfileForm = () => {
     <form className={css.editProfileForm} autoComplete="of">
       <span className={css.formTitle}>Edit profile</span>
       <div className={css.avatar}>
-        <Icon id="avatar" width={68} height={73} />
+        {file ? (
+          <img className={css.newAvatar} src={file} alt="avatar" />
+        ) : (
+          <Icon id="avatar" width={68} height={73} />
+        )}
       </div>
-      <input type="file" ref={hiddenFileInput} style={{ display: 'none' }} />
+      <input
+        onChange={handleChange}
+        type="file"
+        accept="image/jpeg, image/png, image/gif"
+        ref={hiddenFileInput}
+        style={{ display: 'none' }}
+      />
 
       <button
         className={css.uploadBtn}
