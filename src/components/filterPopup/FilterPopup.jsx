@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import './FilterPopup.scss';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
 
-const themes = ['light', 'dark', 'violet'];
 const FilterPopup = () => {
-  const currentTheme = themes[1];
+  const currentTheme = useSelector(themeState);
   const [filter, setFilter] = useState('empty');
   const handleFilter = e => {
     e.target.value === 'without'
