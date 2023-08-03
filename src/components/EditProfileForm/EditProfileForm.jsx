@@ -12,7 +12,6 @@ export const EditProfileForm = () => {
   };
 
   const theme = useSelector(themeState);
-  console.log(theme);
 
   const [file, setFile] = useState(null);
 
