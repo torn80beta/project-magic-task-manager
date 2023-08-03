@@ -15,13 +15,13 @@ export const App = () => {
     [
       {
         path: '/',
-        element: <Layout />,
+        // element: <Layout />,
         // loader: Loader,
         children: [
           {
             path: '/',
             element: (
-              <PrivateRoute redirectTo="/welcome" component={<Home />} />
+              <PrivateRoute redirectTo="/welcome" component={<Welcome />} />
             ),
             children: [
               {
@@ -39,7 +39,7 @@ export const App = () => {
             element: <Auth />,
             children: [
               {
-                path: '/auth/login',
+                path: '/auth/:id',
                 element: (
                   <RestrictedRoute redirectTo="/" component={<LoginForm />} />
                 ),
@@ -47,7 +47,7 @@ export const App = () => {
                 // loader: Loader,
               },
               {
-                path: '/auth/register',
+                path: '/auth/:id',
                 element: (
                   <RestrictedRoute
                     redirectTo="/"
