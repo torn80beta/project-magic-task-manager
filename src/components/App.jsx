@@ -15,13 +15,13 @@ export const App = () => {
     [
       {
         path: '/',
-        // element: <Layout />,
+        element: <Layout />,
         // loader: Loader,
         children: [
           {
             path: '/',
             element: (
-              <PrivateRoute redirectTo="/welcome" component={<Welcome />} />
+              <PrivateRoute redirectTo="/welcome" component={<Home />} />
             ),
             children: [
               {
