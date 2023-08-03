@@ -2,16 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import UserInfo from 'components/userInfo/UserInfo';
 import './header.scss';
 import Icon from 'components/icon/Icon';
-import avatar from '../../images/user.png';
 import { themeState, changeTheme } from 'redux/theme/themeSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { selectUserName, selectUserAvatar } from 'redux/auth/auth-slice';
 
 const Header = ({ children }) => {
   const themes = ['light', 'dark', 'violet'];
   const [isMenuActive, setMenuActive] = useState(false);
   const selectSingleRef = useRef(null);
-  const user = { name: 'Ivetta', avatar: avatar };
-
+  const user = {
+    name: useSelector(selectUserName),
+    avatar: useSelector(selectUserAvatar),
+  };
   const theme = useSelector(themeState);
   const dispatch = useDispatch();
 
