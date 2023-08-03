@@ -4,6 +4,9 @@ import PopUp from 'components/modal/PopUp';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
+import AddColumnForm from 'components/addColumnForm/AddColumnForm';
 
 //temporary
 const columnsArray = [
@@ -19,7 +22,7 @@ const columnsArray = [
 const themes = ['light', 'dark', 'violet'];
 
 const ScreensPage = () => {
-  const currentTheme = themes[1];
+  const currentTheme = useSelector(themeState);
 
   return (
     <div className={`theme-${currentTheme} screenPage`}>
@@ -27,6 +30,7 @@ const ScreensPage = () => {
         <h1 className={`screenPage_title theme-${currentTheme}`}>
           Project office
         </h1>
+
         <PopUp
           modalName={
             <span className={`screenPage_filter theme-${currentTheme}`}>
@@ -37,6 +41,7 @@ const ScreensPage = () => {
             </span>
           }
         >
+          <AddColumnForm />
           <FilterPopup />
         </PopUp>
       </div>
