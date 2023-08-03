@@ -76,6 +76,40 @@
   margin-bottom: 14px;
   overflow-y: auto;
 
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &.theme-light {
+    &::-webkit-scrollbar-track {
+      background: $light-scrollbar-track;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $light-scroll-thumb;
+    }
+  }
+
+  &.theme-dark {
+    &::-webkit-scrollbar-track {
+      background: $dark-scrollbar-track;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $dark-scroll-thumb;
+    }
+  }
+
+  &.theme-violet {
+    &::-webkit-scrollbar-track {
+      background: $violet-scroll-track;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $violet-scroll-thumb;
+    }
+  }
+
   @include pre-mobile {
     max-height: calc(100vh - 330px);
   }
