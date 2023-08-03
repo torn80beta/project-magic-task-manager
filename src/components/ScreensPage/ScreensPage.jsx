@@ -32,7 +32,7 @@ const ScreensPage = () => {
         </h1>
 
         <PopUp
-          modalName={
+          data={
             <span className={`screenPage_filter theme-${currentTheme}`}>
               <Icon id={'filter'} width={16} height={16} />
               <span className={`screenPage_filterText theme-${currentTheme}`}>
@@ -54,7 +54,7 @@ const ScreensPage = () => {
         </div>
 
         <PopUp
-          modalName={
+          data={
             <span className={`screenPage_addButton theme-${currentTheme}`}>
               <span
                 className={`screenPage_addButtonPlus theme-${currentTheme}`}
