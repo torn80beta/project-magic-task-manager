@@ -23,11 +23,6 @@
   line-height: 1.5;
   letter-spacing: -0.02em;
   color: $welcome-light-color;
-  transition: 500ms ease-in-out;
-
-  &:hover {
-    color: $register-button-hov;
-  }
 }
 
 .login {
@@ -35,7 +30,11 @@
   font-size: 18px;
   line-height: 1.5px;
   letter-spacing: -0.02em;
-  color: $noActiveLink;
+  color: $no-active-link;
+  transition: 500ms ease-in-out;
+  &:hover {
+    color: $register-button-hov;
+  }
 }
 
 .inputContainer {
