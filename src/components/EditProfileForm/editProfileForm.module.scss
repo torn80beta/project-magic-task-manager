@@ -3,7 +3,7 @@
 
 .editProfileForm {
   width: 285px;
-  height: 390px;
+  // height: 390px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -136,6 +136,10 @@
   }
 }
 
+.btnWrapper {
+  position: relative;
+}
+
 .showPwd {
   border: none;
   color: rgba(255, 255, 255, 0.4);
@@ -143,7 +147,8 @@
   background-color: transparent;
   position: absolute;
   right: 18px;
-  top: 286px;
+  top: 15px;
+
   cursor: pointer;
   &.light,
   &.violet {
@@ -152,6 +157,12 @@
 }
 
 .submitBtn {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #161616;
+
   height: 49px;
   border-radius: 8px;
   background-color: #bedbb0;
@@ -162,9 +173,16 @@
   }
   &.violet {
     background-color: #5255bc;
+    color: #ffffff;
   }
 
   &:hover.violet {
     background-color: #7b7ede;
   }
+}
+
+.error {
+  font-size: 14px;
+  color: $wrong-data-text;
+  margin-left: 18px;
 }
