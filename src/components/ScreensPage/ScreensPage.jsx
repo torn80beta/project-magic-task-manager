@@ -5,6 +5,7 @@ import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
+import AddColumnForm from 'components/addColumnForm/AddColumnForm';
 
 //temporary
 const columnsArray = [
@@ -34,7 +35,7 @@ const ScreensPage = () => {
           Project office
         </h1>
         <PopUp data={'Add another column'}>
-          <p>Screens page popup</p>
+          <AddColumnForm />
         </PopUp>
         <button className={`screenPage_filter theme-${currentTheme}`}>
           <Icon id={'filter'} width={16} height={16} />
