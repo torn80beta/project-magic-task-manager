@@ -44,7 +44,7 @@
 
   input {
     @include pre-mobile {
-      width: calc(100% - 40px);
+      width: 100%;
     }
     width: 287px;
     height: 49px;
@@ -81,7 +81,7 @@
 
 .registerButton {
   @include pre-mobile {
-    width: calc(100% - 40px);
+    width: 100%;
   }
   width: 287px;
   height: 49px;
