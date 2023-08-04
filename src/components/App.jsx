@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
 import Home from 'pages/home/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './layout/Layout';
@@ -9,8 +12,15 @@ import NotFound from 'pages/notFound/NotFound';
 import ScreensPage from './ScreensPage/ScreensPage';
 import { PrivateRoute } from 'helpers/PrivateRoute';
 import { RestrictedRoute } from 'helpers/RestrictedRoute';
+import { getCurrentUser } from 'redux/auth/auth-operation';
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
   const router = createBrowserRouter(
     [
       {

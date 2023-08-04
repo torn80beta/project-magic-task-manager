@@ -31,13 +31,16 @@ const editAvatar = async avatar => {
   formData.append('avatar', avatar);
 
   return await axios
-    .patch('/edit', formData)
+    .patch('/avatars', formData)
     .catch(e => console.log(e.request.response));
 };
 
-const editProfile = async user => {
+const editProfile = async (user, avatar) => {
+  const formData = new FormData();
+  formData.append('avatar', avatar);
+  formData.append('user', user);
   return await axios
-    .patch('/avatars', user)
+    .patch('/edit', user)
     .catch(e => console.log(e.request.response));
 };
 

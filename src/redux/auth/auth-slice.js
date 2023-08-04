@@ -5,7 +5,7 @@ import {
   logoutUser,
   editUserData,
   getCurrentUser,
-  // editUserAvatar,
+  editUserAvatar,
 } from './auth-operation';
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
-  // isRefreshing: false,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -30,6 +30,9 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
       })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.isLoading = false;
+      })
       .addCase(loginUser.pending, state => {
         state.isLoading = true;
       })
@@ -41,17 +44,17 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUser.pending, state => {
         state.isLoading = true;
-        // state.isRefreshing = true;
+        state.isRefreshing = true;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        // state.isLoggedIn = true;
-        // state.isRefreshing = false;
         state.isLoading = false;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
-      // .addCase(getCurrentUser.rejected, state => {
-      //   state.isRefreshing = false;
-      // })
+      .addCase(getCurrentUser.rejected, state => {
+        state.isRefreshing = false;
+      })
       .addCase(logoutUser.pending, state => {
         state.isLoading = true;
       })
@@ -65,20 +68,16 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(editUserData.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = null;
-        state.isLoggedIn = true;
+        state.user = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(editUserAvatar.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(editUserAvatar.fulfilled, (state, action) => {
+        state.user.avatar = action.payload.user.avatar;
         state.isLoading = false;
       });
-    // .addCase(editUserAvatar.pending, state => {
-    //   state.isLoading = true;
-    // })
-    // .addCase(editUserAvatar.fulfilled, (state, action) => {
-    //   state.user.avatar = action.payload.user.avatar;
-    //   state.token = null;
-    //   state.isLoggedIn = true;
-    //   state.isLoading = false;
-    // });
   },
 });
 
@@ -86,7 +85,7 @@ export const authReducer = authSlice.reducer;
 
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectUserName = state => state.auth.user.name;
-// export const selectIsRefreshing = state => state.auth.isRefreshing;
+export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectToken = state => state.auth.token;
 export const selectUserAvatar = state => state.auth.user.avatar;
 export const selectIsLoading = state => state.auth.isLoading;
