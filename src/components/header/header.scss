@@ -2,7 +2,7 @@
 @import '../../styles/variables';
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   width: 100%;
@@ -32,6 +32,20 @@
   @include desktop {
     width: 1180px;
   }
+  .header-wrapper {
+    display: flex;
+  }
+  .open-menu-button {
+    &.theme-violet {
+      color: $violet-main-text;
+    }
+    &.theme-dark {
+      color: $dark-main-text;
+    }
+    &.theme-light {
+      color: $light-main-text;
+    }
+  }
 }
 .select {
   position: relative;
@@ -40,23 +54,23 @@
   margin: 0 auto;
 
   &[data-state='active'] {
-    .selectTitle {
+    .select-title {
       svg {
         transform: translate(1px, 1%) rotate(180deg);
       }
     }
 
-    .selectContent {
-      opacity: 1;
+    .select-content {
+      display: block;
       max-height: 300px;
     }
 
-    .selectLabel + .selectInput + .selectLabel {
+    .select-label + .select-input + .select-label {
       max-height: 40px;
       border-top-width: 1px;
     }
   }
-  & .selectTitle {
+  & .select-title {
     display: flex;
     align-items: center;
     width: 100%;
@@ -85,20 +99,18 @@
       color: $light-theme-title;
     }
   }
-  & .selectContent {
+  & .select-content {
     position: absolute;
     top: 40px;
     left: 3px;
 
-    display: flex;
-    flex-direction: column;
     padding: 18px 44px 18px 18px;
     text-align: left;
 
     transition: all 0.3s ease-out;
     max-height: 0;
     overflow: hidden;
-    opacity: 0;
+    display: none;
     z-index: 8;
     &.theme-violet {
       border: $violet-border;
@@ -116,10 +128,10 @@
       background: $light-modal-bg;
     }
   }
-  & .selectContainer:not(:last-child) {
+  & .select-container:not(:last-child) {
     padding-bottom: 4px;
   }
-  & .selectInput {
+  & .select-input {
     display: none;
     &:disabled + label {
       opacity: 0.6;
@@ -141,7 +153,7 @@
       }
     }
   }
-  & .selectLabel {
+  & .select-label {
     max-height: 40px;
 
     font-size: 14px;
@@ -167,6 +179,21 @@
     &.theme-light {
       color: $light-main-text;
       background: none;
+    }
+  }
+}
+@include mobile {
+  .menu {
+    .sidebar {
+      display: block;
+      height: 100%;
+    }
+  }
+}
+@include desktop {
+  .header {
+    .open-menu-button {
+      display: none;
     }
   }
 }
