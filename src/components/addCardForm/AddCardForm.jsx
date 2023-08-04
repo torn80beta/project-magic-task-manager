@@ -86,8 +86,8 @@ const AddCardForm = () => {
                       name="priority"
                       value="low"
                     />
-                    <span class="outer-circle"></span>
-                    <span class="inner-circle"></span>
+                    <span className="outer-circle"></span>
+                    <span className="inner-circle"></span>
                   </label>
                   <label className="add-form-radio medium">
                     <Field
@@ -96,8 +96,8 @@ const AddCardForm = () => {
                       name="priority"
                       value="medium"
                     />
-                    <span class="outer-circle"></span>
-                    <span class="inner-circle"></span>
+                    <span className="outer-circle"></span>
+                    <span className="inner-circle"></span>
                   </label>
                   <label className="add-form-radio high">
                     <Field
@@ -106,8 +106,8 @@ const AddCardForm = () => {
                       name="priority"
                       value="high"
                     />
-                    <span class="outer-circle"></span>
-                    <span class="inner-circle"></span>
+                    <span className="outer-circle"></span>
+                    <span className="inner-circle"></span>
                   </label>
                   <label className="add-form-radio without">
                     <Field
@@ -116,8 +116,8 @@ const AddCardForm = () => {
                       name="priority"
                       value="without"
                     />
-                    <span class={`outer-circle theme-${theme}`}></span>
-                    <span class={`inner-circle theme-${theme}`}></span>
+                    <span className={`outer-circle theme-${theme}`}></span>
+                    <span className={`inner-circle theme-${theme}`}></span>
                   </label>
                 </div>
               </div>
@@ -126,7 +126,7 @@ const AddCardForm = () => {
               <p className={`add-form-deadline-title theme-${theme}`}>
                 Deadline
               </p>
-              <DateCalendar/>
+              <DateCalendar />
             </div>
             <button
               className={`add-form-submit theme-${theme}`}
