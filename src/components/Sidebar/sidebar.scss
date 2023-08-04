@@ -1,62 +1,50 @@
-// @import '../../styles/responsive';
-// @import '../../styles/variables';
-
-// .sidebar {
-//   display: none;
-//   color: white;
-//   background-color: $dark-sidebar-bg;
-
-//   &.theme-violet {
-//     background-color: $violet-sidebar-bg;
-//     color: $violet-sidebar-text;
-//   }
-//   &.theme-dark {
-//     background-color: $dark-sidebar-bg;
-//     color: $dark-main-text;
-//   }
-//   &.theme-light {
-//     background-color: $light-sidebar-bg;
-//     color: $light-main-text;
-//   }
-
-//   @include desktop {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     align-items: center;
-//     width: 260px;
-//     padding: 20px;
-//   }
-// }
-
 @import '../../styles/responsive';
 @import '../../styles/variables';
 
-.sidebarBackdrop {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(21, 21, 21, 0.5);
-}
-
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  // overflow-y: scroll;
- 
+  display: none;
   color: white;
   background-color: $dark-sidebar-bg;
-  width: 225px;
-  height: 100vh;
+
+  &.theme-violet {
+    background-color: $violet-sidebar-bg;
+    color: $violet-sidebar-text;
+  }
+  &.theme-dark {
+    background-color: $dark-sidebar-bg;
+    color: $dark-main-text;
+  }
+  &.theme-light {
+    background-color: $light-sidebar-bg;
+    color: $light-main-text;
+  }
 
   @include desktop {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 260px;
+    // padding: 20px;
   }
 }
+
+// .sidebar {
+//   display: flex;
+//   flex-direction: column;
+//   // overflow-y: scroll;
+
+//   color: white;
+//   background-color: $dark-sidebar-bg;
+//   width: 225px;
+//   height: 100vh;
+
+//   @include desktop {
+//     display: flex;
+//     justify-content: center;
+//     width: 260px;
+//   }
+// }
 
 .logoIcon {
   width: 32px;
@@ -189,7 +177,7 @@
   margin-top: 18px;
   display: flex;
   align-items: center;
-  gap:8px;
+  gap: 8px;
 }
 
 .helpCircleIcon {
@@ -202,26 +190,24 @@
   font-size: 12px;
   font-weight: 500;
   letter-spacing: -0.24px;
-
 }
 
-.logOutButton{
-display: flex;
-align-items: center;
-gap:14px;
-color: #FFF;
-font-size: 14px;
-font-weight: 500;
-background: none;
-border: none;
+.logOutButton {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  background: none;
+  border: none;
 }
 
-.buttonWrapper{
+.buttonWrapper {
   padding: 24px;
 }
 .BackSidebarWrapper {
   display: flex;
   flex-direction: column;
   margin-top: auto;
-
 }

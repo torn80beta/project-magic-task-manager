@@ -1,34 +1,10 @@
 // import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
-// import './sidebar.scss';
 // import PopUp from 'components/modal/PopUp';
-// import { themeState } from 'redux/theme/themeSlice';
-// import { useSelector, useDispatch } from 'react-redux';
+import { themeState } from 'redux/theme/themeSlice';
+import { useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import BoardForm from 'components/boardForm/BoardForm';
 // import { logoutUser } from 'redux/auth/auth-operation';
-
-// const Sidebar = () => {
-//   const currentTheme = useSelector(themeState);
-//   const dispatch = useDispatch();
-
-//   return (
-//     <div className={`sidebar theme-${currentTheme}`}>
-//       Sidebar
-//       <PopUp data={'Create a new board'}>
-//         <BoardForm />
-//         {/* <p>Sidebar popup</p> */}
-//       </PopUp>
-//       <PopUp data={'Need help'}>
-//         <NeedHelpForm />
-//       </PopUp>
-//       <button type="button" onClick={() => dispatch(logoutUser())}>
-//         Logout
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
-
 import './sidebar.scss';
 import { ReactComponent as LogoIcon } from './img/icons/logo-icon.svg';
 import { ReactComponent as ProjectIcon } from './img/icons/project.svg';
@@ -41,8 +17,11 @@ import { ReactComponent as HelpCircleIcon } from './img/icons/help-circle.svg';
 import { ReactComponent as LogOutIcon } from './img/icons/logout.svg';
 
 const Sidebar = () => {
+  const currentTheme = useSelector(themeState);
+  // const dispatch = useDispatch();
+
   return (
-    <div className="sidebarBackdrop">
+    <div className={`sidebar theme-${currentTheme}`}>
       <div className="sidebar">
         <div className="logoWrapp">
           <LogoIcon className="logoIcon" />
@@ -98,7 +77,7 @@ const Sidebar = () => {
               </div>
             </div>
           </div>
-          <div className='buttonWrapper'>
+          <div className="buttonWrapper">
             <button type="button" className="logOutButton">
               <LogOutIcon className="logOutIcon" />
               Log out
@@ -106,9 +85,17 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+      {/* <PopUp data={'Create a new board'}>
+        <BoardForm />
+      </PopUp>
+      <PopUp data={'Need help'}>
+        <NeedHelpForm />
+      </PopUp>
+      <button type="button" onClick={() => dispatch(logoutUser())}>
+        Logout
+      </button> */}
     </div>
   );
 };
 
 export default Sidebar;
-
