@@ -7,7 +7,6 @@ import FilterPopup from 'components/filterPopup/FilterPopup';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import AddColumnForm from 'components/addColumnForm/AddColumnForm';
-import DatePicker from 'react-date-picker';
 import { useEffect } from 'react';
 
 //temporary
@@ -30,16 +29,6 @@ const ScreensPage = () => {
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
         <h1 className={`screenPage_title theme-${currentTheme}`}>Project</h1>
-        <PopUp
-          data={
-            <span className={`screenPage_filterText theme-${currentTheme}`}>
-              Date Picker
-            </span>
-          }
-        >
-          <DatePicker />
-        </PopUp>
-
         <PopUp
           data={
             <span className={`screenPage_filter theme-${currentTheme}`}>
