@@ -7,6 +7,34 @@ import PopUp from 'components/modal/PopUp';
 import './Columns.scss';
 import AddCardForm from 'components/addCardForm/AddCardForm';
 
+// import Card from 'components/card/Card';
+// test
+// const cards = [
+//   {
+//     id: 1,
+//     title: 'Card 1 Title',
+//     description: 'Card 1 Description',
+//     priority: 'high',
+//     deadline: '11/09/2023',
+//   },
+//   {
+//     id: 2,
+//     title: 'Card 2 Title',
+//     description: 'Card 2 Description',
+//     priority: 'low',
+//     deadline: '11/09/2023',
+//   },
+
+//   {
+//     id: 3,
+//     title: 'Card 3 Title',
+//     description: 'Card 3 Description',
+//     priority: 'low',
+//     deadline: '11/09/2023',
+//   },
+  
+// ];
+
 const Columns = ({ title }) => {
   const currentTheme = useSelector(themeState);
 
@@ -31,6 +59,18 @@ const Columns = ({ title }) => {
       </div>
 
       <ul className={`cards theme-${currentTheme}`}>
+
+           {/* {cards.map(card => (
+          <Card
+        
+            title={card.title}
+            description={card.description}
+            priority={card.priority}
+            deadline={card.deadline} 
+             key={card.id} 
+          />
+        ))}  */}
+        
         {/* {cards.map(card => (
           <div className="card" title={card.title} key={card.id}>
           </div>
@@ -90,6 +130,8 @@ const Columns = ({ title }) => {
           <p>desc</p>
           <p>+</p>
         </li>
+
+
       </ul>
       <PopUp
         data={
