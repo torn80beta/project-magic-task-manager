@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/project-magic-task-manager/static/css/main.c2baaeaf.css",
-    "main.js": "/project-magic-task-manager/static/js/main.2faaee6e.js",
+    "main.css": "/project-magic-task-manager/static/css/main.edab74da.css",
+    "main.js": "/project-magic-task-manager/static/js/main.2b623946.js",
     "static/media/Poppins-Regular.woff2": "/project-magic-task-manager/static/media/Poppins-Regular.934a773c7d8da904dc17.woff2",
     "static/media/Poppins-SemiBold.woff2": "/project-magic-task-manager/static/media/Poppins-SemiBold.a1b4d7642afcc4220c80.woff2",
     "static/media/Poppins-Medium.woff2": "/project-magic-task-manager/static/media/Poppins-Medium.61de7475405db79077d0.woff2",
@@ -9,13 +9,18 @@
     "static/media/Poppins-SemiBold.woff": "/project-magic-task-manager/static/media/Poppins-SemiBold.539a38b92a09ffeabcb9.woff",
     "static/media/Poppins-Medium.woff": "/project-magic-task-manager/static/media/Poppins-Medium.d42abfb2f0121bc1595b.woff",
     "static/media/icons.svg": "/project-magic-task-manager/static/media/icons.c4e34148593cc510dfe083656af8aa3e.svg",
-    "static/media/icons_sprite_Board.svg": "/project-magic-task-manager/static/media/icons_sprite_Board.9f18d0d5be7521d7581c1e46115e0347.svg",
+    "static/media/project.svg": "/project-magic-task-manager/static/media/project.378da355ef0528abd61c91827313268a.svg",
+    "static/media/help-circle.svg": "/project-magic-task-manager/static/media/help-circle.8ec5f518d8057c0bbd6f1c96e887ce38.svg",
+    "static/media/logo-icon.svg": "/project-magic-task-manager/static/media/logo-icon.b1359900ecfd4020ac0aa38f78f79245.svg",
     "index.html": "/project-magic-task-manager/index.html",
-    "main.c2baaeaf.css.map": "/project-magic-task-manager/static/css/main.c2baaeaf.css.map",
-    "main.2faaee6e.js.map": "/project-magic-task-manager/static/js/main.2faaee6e.js.map"
+    "static/media/pencil-01.svg": "/project-magic-task-manager/static/media/pencil-01.d266f29833c6d80bfd808dd708781037.svg",
+    "static/media/logout.svg": "/project-magic-task-manager/static/media/logout.5e45d971f452b23689b54ff948ef50f8.svg",
+    "static/media/trash-04.svg": "/project-magic-task-manager/static/media/trash-04.4776b797dcbcc3d4a5f2c87f2b4b4600.svg",
+    "main.edab74da.css.map": "/project-magic-task-manager/static/css/main.edab74da.css.map",
+    "main.2b623946.js.map": "/project-magic-task-manager/static/js/main.2b623946.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2baaeaf.css",
-    "static/js/main.2faaee6e.js"
+    "static/css/main.edab74da.css",
+    "static/js/main.2b623946.js"
   ]
 }
