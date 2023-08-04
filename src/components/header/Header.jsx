@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { selectUserName, selectUserAvatar } from 'redux/auth/auth-slice';
 import PopUp from 'components/modal/PopUp';
+import BurgerMenuModal from 'components/modal/burgerMenuModal/BurgerMenuModal';
 
 const Header = ({ children }) => {
   const themes = ['light', 'dark', 'violet'];
@@ -63,7 +64,7 @@ const Header = ({ children }) => {
 
   return (
     <header className={`header theme-${theme}`}>
-      <PopUp
+      <BurgerMenuModal
         data={
           <Icon
             className={`select-icon theme-${theme}`}
@@ -74,7 +75,7 @@ const Header = ({ children }) => {
         }
       >
         <Sidebar />
-      </PopUp>
+      </BurgerMenuModal>
 
       <div className="header-wrapper">
         <form>

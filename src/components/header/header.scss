@@ -35,6 +35,17 @@
   .header-wrapper {
     display: flex;
   }
+  .open-menu-button {
+    &.theme-violet {
+      color: $violet-main-text;
+    }
+    &.theme-dark {
+      color: $dark-main-text;
+    }
+    &.theme-light {
+      color: $light-main-text;
+    }
+  }
 }
 .select {
   position: relative;
@@ -172,44 +183,17 @@
   }
 }
 @include mobile {
-  .modal {
+  .menu {
     .sidebar {
       display: block;
+      height: 100%;
     }
   }
 }
-// @include mobile {
-//   .modal {
-//     padding: 0;
-//     left: 25%;
-//     min-width: 225px;
-//     .sidebar {
-//       display: block;
-//       height: 100dvh;
-//       padding: 20px;
-//     }
-//   }
-// }
-// @include tablet {
-//   .modal {
-//     left: 29%;
-//     max-width: 260px;
-//   }
-// }
 @include desktop {
-  .modal {
-    display: none;
-  }
   .header {
-    .open-modal-button {
+    .open-menu-button {
       display: none;
-    }
-  }
-  .header {
-    .header-wrapper {
-      .open-modal-button {
-        display: block;
-      }
     }
   }
 }
