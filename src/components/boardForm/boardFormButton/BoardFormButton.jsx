@@ -3,26 +3,24 @@ import Icons from '../../../images/svg/icons_sprite_Board.svg';
 import './boardFormButton.scss';
 
 const BoardFormButton = ({ currentTheme, submitForm, ...props }) => {
-  console.log(props);
+  // console.log(props);
   return (
     <div
       role="button"
       className={`boardButtonSubmit theme-${currentTheme}`}
       onClick={submitForm}
     >
-      <div className={`boardButtonInfo_wrapper theme-${currentTheme}`}>
-        <div className={`boardButtonIcon_wrapper theme-${currentTheme}`}>
-          <svg
-            className={`boardButtonIcon theme-${currentTheme}`}
-            width="14"
-            height="14"
-          >
-            <use href={`${Icons}#plus`} />
-          </svg>
-        </div>
-        {/* {props.isSubmitting ? 'submitting' : 'Create'} */}
-        Create
-      </div>
+      <span className={`boardButtonIcon_wrapper theme-${currentTheme}`}>
+        <svg
+          className={`boardButtonIcon theme-${currentTheme}`}
+          width="14"
+          height="14"
+        >
+          <use href={`${Icons}#plus`} />
+        </svg>
+      </span>
+      {/* {props.isSubmitting ? 'submitting' : 'Create'} */}
+      Create
     </div>
   );
 };
