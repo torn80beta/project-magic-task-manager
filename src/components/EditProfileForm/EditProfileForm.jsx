@@ -1,12 +1,13 @@
 import { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
+import { Formik, Field, ErrorMessage, Form } from 'formik';
 import * as Yup from 'yup';
 import { clsx } from 'clsx';
 
 import { themeState } from 'redux/theme/themeSlice';
 import Icon from 'components/icon/Icon';
 import css from './editProfileForm.module.scss';
+import { editUserData } from 'redux/auth/auth-operation';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -26,6 +27,7 @@ const schema = Yup.object().shape({
 });
 
 export const EditProfileForm = () => {
+  const dispatch = useDispatch();
   const hiddenFileInput = useRef(null);
   const handleUploadClick = () => {
     hiddenFileInput.current.click();
@@ -38,22 +40,27 @@ export const EditProfileForm = () => {
   function handleChange(e) {
     setFile(URL.createObjectURL(e.target.files[0]));
   }
-
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
 
+  const handleSubmit = (editedContact, file) => {
+    console.log('editedContact:', editedContact, file);
+    dispatch(editUserData(editedContact));
+  };
+
   return (
     <Formik
+      onSubmit={handleSubmit}
       initialValues={{ name: '', email: '', password: '' }}
       validationSchema={schema}
     >
-      <form
+      <Form
         className={clsx(css.editProfileForm, {
           [css.dark]: theme === 'dark',
         })}
-        autoComplete="of"
+        autoComplete="off"
       >
         <span
           className={clsx(css.formTitle, {
@@ -151,7 +158,7 @@ export const EditProfileForm = () => {
         >
           Send
         </button>
-      </form>
+      </Form>
     </Formik>
   );
 };

@@ -36,7 +36,6 @@ export const loginUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await login(credentials);
-      console.log('data:', data);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -79,6 +78,7 @@ export const getCurrentUser = createAsyncThunk(
 export const editUserData = createAsyncThunk(
   'users/edit',
   async (editedUser, thunkAPI) => {
+    console.log('editedUser:', editedUser);
     try {
       const { data } = await editProfile(editedUser);
       return data;
@@ -87,8 +87,9 @@ export const editUserData = createAsyncThunk(
     }
   }
 );
+
 export const editUserAvatar = createAsyncThunk(
-  'users/edit',
+  'users/avatar',
   async (editedUser, thunkAPI) => {
     try {
       const { data } = await editAvatar(editedUser);
