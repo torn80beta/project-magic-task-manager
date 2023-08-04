@@ -1,7 +1,7 @@
 // import { useAuth } from 'hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/auth-slice';
+import { selectIsLoggedIn } from 'redux/auth/auth-slice';
 
 export const RestrictedRoute = ({
   component: Component,

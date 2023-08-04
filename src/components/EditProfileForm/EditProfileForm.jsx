@@ -45,8 +45,8 @@ export const EditProfileForm = () => {
     setPasswordShown(!passwordShown);
   };
 
-  const handleSubmit = (editedContact, file) => {
-    console.log('editedContact:', editedContact, file);
+  const handleSubmit = editedContact => {
+    console.log('editedContact:', editedContact);
     dispatch(editUserData(editedContact));
   };
 
