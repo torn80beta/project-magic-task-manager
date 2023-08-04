@@ -5,6 +5,7 @@ import EditColumnForm from 'components/editColumnForm/EditColumnForm';
 import PopUp from 'components/modal/PopUp';
 
 import './Columns.scss';
+import AddCardForm from 'components/addCardForm/AddCardForm';
 
 const Columns = ({ title }) => {
   const currentTheme = useSelector(themeState);
@@ -90,12 +91,20 @@ const Columns = ({ title }) => {
           <p>+</p>
         </li>
       </ul>
-      <button className={`column_button theme-${currentTheme}`}>
-        <span className={`column_buttonIcon theme-${currentTheme}`}>
-          <Icon id="plus" width="14" height="14" />
-        </span>
-        Add another card
-      </button>
+      <PopUp
+        data={
+          <span className={`column_button theme-${currentTheme}`}>
+            <span className={`column_buttonIcon theme-${currentTheme}`}>
+              <Icon id="plus" width="14" height="14" />
+            </span>
+            <span className={`column_button_text theme-${currentTheme}`}>
+              Add another card
+            </span>
+          </span>
+        }
+      >
+        <AddCardForm />
+      </PopUp>
     </div>
   );
 };
