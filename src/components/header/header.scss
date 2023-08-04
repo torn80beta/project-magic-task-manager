@@ -196,20 +196,20 @@
 //     max-width: 260px;
 //   }
 // }
-// @include desktop {
-//   .modal {
-//     display: none;
-//   }
-//   .header {
-//     .open-modal-button {
-//       display: none;
-//     }
-//   }
-//   .header {
-//     .header-wrapper {
-//       .open-modal-button {
-//         display: block;
-//       }
-//     }
-//   }
-// }
+@include desktop {
+  .modal {
+    display: none;
+  }
+  .header {
+    .open-modal-button {
+      display: none;
+    }
+  }
+  .header {
+    .header-wrapper {
+      .open-modal-button {
+        display: block;
+      }
+    }
+  }
+}
