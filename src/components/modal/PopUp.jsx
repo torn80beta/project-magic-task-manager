@@ -25,7 +25,7 @@ const PopUp = props => {
   }
 
   return (
-    <div>
+    <>
       <button
         className={`open-modal-button theme-${currentTheme}`}
         onClick={openModal}
@@ -48,7 +48,7 @@ const PopUp = props => {
         </button>
         {children}
       </Modal>
-    </div>
+    </>
   );
 };
 

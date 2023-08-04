@@ -47,7 +47,12 @@
   gap: 8px;
 }
 
-.column_headerIconColor {
+.column_headerIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &.theme-light {
     color: $light-secondary-text;
     &:hover {
@@ -68,89 +73,6 @@
   }
 }
 
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  margin-bottom: 14px;
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    border-radius: 12px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-  }
-
-  &.theme-light {
-    &::-webkit-scrollbar-track {
-      background: $light-scrollbar-track;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $light-scroll-thumb;
-    }
-  }
-
-  &.theme-dark {
-    &::-webkit-scrollbar-track {
-      background: $dark-scrollbar-track;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $dark-scroll-thumb;
-    }
-  }
-
-  &.theme-violet {
-    &::-webkit-scrollbar-track {
-      background: $violet-scroll-track;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: $violet-scroll-thumb;
-    }
-  }
-
-  @include pre-mobile {
-    max-height: calc(100vh - 330px);
-  }
-  @include mobile {
-    height: calc(100vh - 330px);
-  }
-
-  @include tablet {
-    height: calc(100vh - 374px);
-  }
-
-  @include desktop {
-    height: calc(100vh - 282px);
-  }
-}
-
-.card {
-  width: 334px;
-  padding: 14px 14px;
-  padding-left: 24px;
-  border-radius: 8px;
-  color: rgb(25, 175, 75);
-  &.theme-light {
-    background-color: $light-sidebar-bg;
-  }
-  &.theme-dark {
-    background-color: $dark-sidebar-bg;
-  }
-  &.theme-violet {
-    background-color: $violet-button-text;
-  }
-}
-
 .column_button {
   display: flex;
   justify-content: center;
@@ -160,24 +82,33 @@
   width: 334px;
   padding: 14px 88px;
 
-  font-family: inherit;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.28px;
 
   border-radius: 8px;
-  border: none;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &.theme-light {
     color: $light-button-text;
     background-color: $light-button-bg;
+    &:hover {
+      background-color: $dark-button-bg-hover;
+    }
   }
   &.theme-dark {
     color: $dark-button-text;
     background-color: $dark-button-bg;
+    &:hover {
+      background-color: $light-button-bg-hover;
+    }
   }
   &.theme-violet {
     color: $violet-button-text;
     background-color: $violet-button-bg;
+    &:hover {
+      background-color: $violet-button-bg-hover;
+    }
   }
 }
 
@@ -202,5 +133,72 @@
   &.theme-violet {
     color: $violet-secondary-text;
     background-color: $violet-button-text;
+  }
+}
+
+.cardsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-bottom: 14px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+  }
+
+  &.theme-light {
+    &::-webkit-scrollbar-track {
+      background-color: $light-vertical-scrollbar-track;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $light-vertical-scrollbar-thumb;
+    }
+  }
+
+  &.theme-dark {
+    &::-webkit-scrollbar-track {
+      background-color: $dark-vertical-scrollbar-track;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $dark-vertical-scrollbar-thumb;
+    }
+  }
+
+  &.theme-violet {
+    &::-webkit-scrollbar-track {
+      background-color: $violet-vertical-scrollbar-track;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $violet-vertical-scrollbar-thumb;
+    }
+  }
+
+  @include pre-mobile {
+    max-height: calc(100vh - 330px);
+  }
+
+  @include mobile {
+    height: calc(100vh - 330px);
+  }
+
+  @include tablet {
+    height: calc(100vh - 374px);
+  }
+
+  @include desktop {
+    height: calc(100vh - 282px);
   }
 }
