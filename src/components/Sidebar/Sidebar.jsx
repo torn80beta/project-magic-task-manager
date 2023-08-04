@@ -22,69 +22,68 @@ const Sidebar = () => {
 
   return (
     <div className={`sidebar theme-${currentTheme}`}>
-      <div className="sidebar">
-        <div className="logoWrapp">
-          <LogoIcon className="logoIcon" />
-          <h1 className="logoName">Task Pro</h1>
-        </div>
+      <div className="logoWrapp">
+        <LogoIcon className="logoIcon" />
+        <h1 className="logoName">Task Pro</h1>
+      </div>
 
-        <div className="customAdviseWrapper">
-          <h3 className="customAdvise">My boards</h3>
+      <div className="customAdviseWrapper">
+        <h3 className="customAdvise">My boards</h3>
 
-          <div className="createBoard">
-            <h2 className="createBoardText">Create a new board</h2>
+        <div className="createBoard">
+          <h2 className="createBoardText">Create a new board</h2>
 
-            <button type="button" className="createBoardButton">
-              <HiPlus />
-            </button>
-          </div>
-        </div>
-
-        <div className="backGround">
-          <NavLink className="backGroudWrapper">
-            <div className="projectNameWrapper">
-              <ProjectIcon className="projectIcon" />
-              <h2 className="projectName">Project office</h2>
-            </div>
-            <div className="prodject">
-              <PencilIcon className="pencilIcon" />
-              <TrashIcon className="trashIcon" />
-            </div>
-          </NavLink>
-        </div>
-        <div className="BackSidebarWrapper">
-          <div className="helpWrapper">
-            <div className="helpIsideWrapper">
-              <div>
-                <img
-                  src={cactusIcon}
-                  alt="cactusimg"
-                  width="54"
-                  height="78"
-                  className="cactusIcon"
-                />
-              </div>
-
-              <p className="helpTextSidebar">
-                If you need help with
-                <span className="taskProWord"> TaskPro </span>, check out our
-                support resources or reach out to our customer support team.
-              </p>
-
-              <div className="helpCircleWrapper">
-                <HelpCircleIcon className="helpCircleIcon" />
-                <h3 className="needHelpText">Need help?</h3>
-              </div>
-            </div>
-          </div>
-          <div className="buttonWrapper">
-            <button type="button" className="logOutButton">
-              <LogOutIcon className="logOutIcon" />
-              Log out
-            </button>
-          </div>
+          <button type="button" className="createBoardButton">
+            <HiPlus />
+          </button>
         </div>
       </div>
+
+      <div className="backGround">
+        <NavLink className="backGroudWrapper">
+          <div className="projectNameWrapper">
+            <ProjectIcon className="projectIcon" />
+            <h2 className="projectName">Project office</h2>
+          </div>
+          <div className="prodject">
+            <PencilIcon className="pencilIcon" />
+            <TrashIcon className="trashIcon" />
+          </div>
+        </NavLink>
+      </div>
+      <div className="BackSidebarWrapper">
+        <div className="helpWrapper">
+          <div className="helpIsideWrapper">
+            <div>
+              <img
+                src={cactusIcon}
+                alt="cactusimg"
+                width="54"
+                height="78"
+                className="cactusIcon"
+              />
+            </div>
+
+            <p className="helpTextSidebar">
+              If you need help with
+              <span className="taskProWord"> TaskPro </span>, check out our
+              support resources or reach out to our customer support team.
+            </p>
+
+            <div className="helpCircleWrapper">
+              <HelpCircleIcon className="helpCircleIcon" />
+              <h3 className="needHelpText">Need help?</h3>
+            </div>
+          </div>
+        </div>
+        <div className="buttonWrapper">
+          <button type="button" className="logOutButton">
+            <LogOutIcon className="logOutIcon" />
+            Log out
+          </button>
+        </div>
+      </div>
+
       {/* <PopUp data={'Create a new board'}>
         <BoardForm />
       </PopUp>
