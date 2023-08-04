@@ -22,7 +22,7 @@ const Sidebar = () => {
 
   return (
     <div className={`sidebar theme-${currentTheme}`}>
-      <div className="logoWrapp">
+      <div className="logoWrapper">
         <LogoIcon className="logoIcon" />
         <h1 className="logoName">Task Pro</h1>
       </div>
@@ -32,51 +32,66 @@ const Sidebar = () => {
 
         <div className="createBoard">
           <h2 className="createBoardText">Create a new board</h2>
-
           <button type="button" className="createBoardButton">
             <HiPlus />
           </button>
         </div>
       </div>
 
-      <div className="backGround">
-        <NavLink className="backGroudWrapper">
-          <div className="projectNameWrapper">
+      <div className="projects-wrapper">
+        <div className="boardLinkWrapper">
+          <NavLink className="boardLink">
             <ProjectIcon className="projectIcon" />
             <h2 className="projectName">Project office</h2>
-          </div>
-          <div className="prodject">
-            <PencilIcon className="pencilIcon" />
-            <TrashIcon className="trashIcon" />
-          </div>
-        </NavLink>
-      </div>
-      <div className="BackSidebarWrapper">
-        <div className="helpWrapper">
-          <div className="helpIsideWrapper">
-            <div>
-              <img
-                src={cactusIcon}
-                alt="cactusimg"
-                width="54"
-                height="78"
-                className="cactusIcon"
-              />
+          </NavLink>
+          <div className="tools-wrapper">
+            <div className="toolsIcons">
+              <PencilIcon className="pencilIcon" />
+              <TrashIcon className="trashIcon" />
             </div>
-
-            <p className="helpTextSidebar">
-              If you need help with
-              <span className="taskProWord"> TaskPro </span>, check out our
-              support resources or reach out to our customer support team.
-            </p>
-
-            <div className="helpCircleWrapper">
-              <HelpCircleIcon className="helpCircleIcon" />
-              <h3 className="needHelpText">Need help?</h3>
-            </div>
+            <div className="board-marker"></div>
           </div>
         </div>
-        <div className="buttonWrapper">
+
+        <div className="boardLinkWrapper">
+          <NavLink className="boardLink">
+            <ProjectIcon className="projectIcon" />
+            <h2 className="projectName">Neon Light Project</h2>
+          </NavLink>
+          <div className="tools-wrapper">
+            <div className="toolsIcons">
+              <PencilIcon className="pencilIcon" />
+              <TrashIcon className="trashIcon" />
+            </div>
+            <div className="board-marker"></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="backSidebarWrapper">
+        <div className="helpInsideWrapper">
+          <div>
+            <img
+              src={cactusIcon}
+              alt="cactusimg"
+              width="54"
+              height="78"
+              className="cactusIcon"
+            />
+          </div>
+
+          <p className="helpTextSidebar">
+            If you need help with <span className="taskProWord">TaskPro</span>,
+            check out our support resources or reach out to our customer support
+            team.
+          </p>
+
+          <div className="helpCircleWrapper">
+            <HelpCircleIcon className="helpCircleIcon" />
+            <h3 className="needHelpText">Need help?</h3>
+          </div>
+        </div>
+        <div className="logOutWrapper">
           <button type="button" className="logOutButton">
             <LogOutIcon className="logOutIcon" />
             Log out
