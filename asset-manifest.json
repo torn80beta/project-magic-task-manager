@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-magic-task-manager/static/css/main.c2baaeaf.css",
-    "main.js": "/project-magic-task-manager/static/js/main.372c3c0e.js",
+    "main.js": "/project-magic-task-manager/static/js/main.587c0332.js",
     "static/media/Poppins-Regular.woff2": "/project-magic-task-manager/static/media/Poppins-Regular.934a773c7d8da904dc17.woff2",
     "static/media/Poppins-SemiBold.woff2": "/project-magic-task-manager/static/media/Poppins-SemiBold.a1b4d7642afcc4220c80.woff2",
     "static/media/Poppins-Medium.woff2": "/project-magic-task-manager/static/media/Poppins-Medium.61de7475405db79077d0.woff2",
@@ -12,10 +12,10 @@
     "static/media/icons_sprite_Board.svg": "/project-magic-task-manager/static/media/icons_sprite_Board.9f18d0d5be7521d7581c1e46115e0347.svg",
     "index.html": "/project-magic-task-manager/index.html",
     "main.c2baaeaf.css.map": "/project-magic-task-manager/static/css/main.c2baaeaf.css.map",
-    "main.372c3c0e.js.map": "/project-magic-task-manager/static/js/main.372c3c0e.js.map"
+    "main.587c0332.js.map": "/project-magic-task-manager/static/js/main.587c0332.js.map"
   },
   "entrypoints": [
     "static/css/main.c2baaeaf.css",
-    "static/js/main.372c3c0e.js"
+    "static/js/main.587c0332.js"
   ]
 }
