@@ -31,7 +31,7 @@
 
 import './sidebar.scss';
 import { ReactComponent as LogoIcon } from './img/icons/logo-icon.svg';
-import { ReactComponent as ProjectIcon } from './img/icons/Project.svg';
+import { ReactComponent as ProjectIcon } from './img/icons/project.svg';
 import { HiPlus } from 'react-icons/hi';
 import { ReactComponent as PencilIcon } from './img/icons/pencil-01.svg';
 import { ReactComponent as TrashIcon } from './img/icons/trash-04.svg';
