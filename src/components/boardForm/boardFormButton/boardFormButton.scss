@@ -2,10 +2,12 @@
 @import '../../../styles/variables';
 
 .boardButtonSubmit {
-  width: 100%;
-  padding: 10px 0px 11px 0px;
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 0px 11px 0px;
   border-radius: 8px;
   color: $light-button-text;
   font-family: Poppins;
@@ -15,21 +17,33 @@
   line-height: normal;
   letter-spacing: -0.28px;
   border: none;
+
   cursor: pointer;
-  &.theme-light {
-    background: $light-button-bg;
+  &.theme-violet {
+    background-color: $violet-button-bg;
+    color: $violet-button-text;
+    transition: background-color linear 200ms;
+    &:hover {
+      background-color: $violet-button-bg-hover;
+    }
   }
   &.theme-dark {
-    background: $dark-button-bg;
+    background-color: $dark-button-bg;
+    color: $dark-button-text;
+    &:hover {
+      background-color: $dark-button-bg-hover;
+    }
   }
-  &.theme-violet {
-    background: $violet-button-bg;
-    color: $violet-header-bg;
+  &.theme-light {
+    background-color: $light-button-bg;
+    color: $light-button-text;
+    &:hover {
+      background-color: $light-button-bg-hover;
+    }
   }
 }
 .boardButtonIcon {
   display: block;
-  // background-color: $light-button-text;
   &.theme-light {
     background-color: $light-button-text;
     stroke: $light-sidebar-bg;
@@ -44,9 +58,11 @@
   }
 }
 .boardButtonIcon_wrapper {
-  // width: 28px;
-  // height: 28px;
-  border: 7px solid $light-button-text;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   border-radius: 5px;
   &.theme-light {
     background-color: $light-button-text;
@@ -55,12 +71,6 @@
     background-color: $dark-button-text;
   }
   &.theme-violet {
-    border: 7px solid $violet-button-text;
+    background-color: $violet-button-text;
   }
-}
-.boardButtonInfo_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
 }

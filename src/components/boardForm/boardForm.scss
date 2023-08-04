@@ -26,11 +26,9 @@
   }
 }
 .boardCardForm_Input {
-  // box-sizing: border-box;
   width: 100%;
   padding: 14px 18px;
   border-radius: 8px;
-  opacity: 0.4;
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   margin-bottom: 24px;
   font-family: Poppins;
@@ -39,39 +37,37 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.28px;
-
+  &::placeholder {
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.28px;
+  }
   &.theme-light {
-    border: $light-border;
+    border: 1px solid $light-modal-input-border;
+    &:focus {
+      outline: none;
+      border: 1px solid $light-modal-input-border-active;
+    }
   }
   &.theme-dark {
     background-color: $dark-screens-bg;
-    border: $dark-border;
+    border: 1px solid $dark-modal-input-border;
     color: $dark-main-text;
+    &:focus {
+      outline: none;
+      border: 1px solid $dark-modal-input-border-active;
+    }
   }
   &.theme-violet {
-    border: 1px solid $violet-button-bg;
+    border: 1px solid $violet-modal-input-border;
+    &:focus {
+      outline: none;
+      border: 1px solid $violet-modal-input-border-active;
+    }
   }
-}
-
-.boardCardForm_Input:focus {
-  &.theme-light {
-    outline: 1px solid $light-button-bg;
-  }
-  &.theme-dark {
-    outline: 1px solid $dark-button-bg;
-  }
-  &.theme-violet {
-    outline: 1px solid $violet-button-bg;
-  }
-}
-
-.boardCardForm_Input::placeholder {
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -0.28px;
 }
 .boardCardForm_Title {
   font-family: Poppins;
@@ -90,10 +86,13 @@
 
 .boardCardForm_error {
   position: absolute;
-  color: red;
+  color: #b80808;
   font-family: Poppins;
   font-size: 12px;
   top: 132px;
+  &.theme-dark {
+    color: #af6b6b;
+  }
 }
 .boardCardForm_IconTitle,
 .boardCardForm_BackgroundTitle {
@@ -136,9 +135,11 @@
     stroke: $light-main-text;
   }
 }
+.boardCardForm_svgIcon:hover,
 .boardCardForm_svgIconActive {
   width: 18px;
   height: 18px;
+  stroke-opacity: 1;
   &.theme-light {
     stroke: $light-main-text;
   }
@@ -159,19 +160,23 @@
 }
 
 .backgroundFirstImageContainer {
-  padding: 7px;
+  padding: 8px;
   border-radius: 4px;
-  border: 1px transparent;
 }
-.backgroundFirstImageContainerActive {
-  padding: 7px;
-  border-radius: 4px;
-  border: 2px $dark-button-bg;
-}
-.imageContainerActive {
-  outline: 2px solid $dark-button-bg;
+
+.imageContainerActive,
+.imageContainer:hover {
   border-radius: 7px;
   overflow: hidden;
+  &.theme-light {
+    outline: 2px solid $light-button-bg;
+  }
+  &.theme-dark {
+    outline: 2px solid $dark-button-bg;
+  }
+  &.theme-violet {
+    outline: 2px solid $violet-button-bg;
+  }
 }
 .imageContainer {
   border-radius: 7px;
@@ -192,66 +197,3 @@
     fill: $violet-screens-bg;
   }
 }
-// .boardButtonSubmit {
-//   width: 100%;
-//   padding: 10px 0px 11px 0px;
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 8px;
-//   color: $light-button-text;
-//   font-family: Poppins;
-//   font-size: 14px;
-//   font-style: normal;
-//   font-weight: 500;
-//   line-height: normal;
-//   letter-spacing: -0.28px;
-//   border: none;
-//   cursor: pointer;
-//   &.theme-light {
-//     background: $light-button-bg;
-//   }
-//   &.theme-dark {
-//     background: $dark-button-bg;
-//   }
-//   &.theme-violet {
-//     background: $violet-button-bg;
-//     color: $violet-header-bg;
-//   }
-// }
-// .boardButtonIcon {
-//   display: block;
-//   // background-color: $light-button-text;
-//   &.theme-light {
-//     background-color: $light-button-text;
-//     stroke: $light-sidebar-bg;
-//   }
-//   &.theme-dark {
-//     background-color: $dark-button-text;
-//     stroke: $dark-main-text;
-//   }
-//   &.theme-violet {
-//     background-color: $violet-button-text;
-//     stroke: $violet-main-text;
-//   }
-// }
-// .boardButtonIcon_wrapper {
-//   // width: 28px;
-//   // height: 28px;
-//   border: 7px solid $light-button-text;
-//   border-radius: 5px;
-//   &.theme-light {
-//     background-color: $light-button-text;
-//   }
-//   &.theme-dark {
-//     background-color: $dark-button-text;
-//   }
-//   &.theme-violet {
-//     border: 7px solid $violet-button-text;
-//   }
-// }
-// .boardButtonInfo_wrapper {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   gap: 4px;
-// }

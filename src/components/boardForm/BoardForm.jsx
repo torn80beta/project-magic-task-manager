@@ -35,10 +35,10 @@ const imagesBackgroundInitial = [
   { id: 14, value: 14 },
   { id: 15, value: 15 },
 ];
-function TextError(props) {
+function TextError(currentTheme) {
   return (
     <div
-      className={'boardCardForm_error'}
+      className={`boardCardForm_error theme-${currentTheme}`}
     >{`This field is required to fill`}</div>
   );
 }
@@ -111,7 +111,10 @@ const BoardForm = ({ props }) => {
                 name="boardTitle"
                 placeholder="Title"
               />
-              <ErrorMessage name="boardTitle" component={TextError} />
+              <ErrorMessage
+                name="boardTitle"
+                component={() => TextError(currentTheme)}
+              />
               <h4 className={'boardCardForm_IconTitle'}>Icons</h4>
               <div
                 role="group"
@@ -154,8 +157,8 @@ const BoardForm = ({ props }) => {
                   <div
                     className={
                       0 === Number(values.backgroundIcon)
-                        ? 'imageContainerActive'
-                        : 'imageContainer'
+                        ? `imageContainerActive theme-${currentTheme}`
+                        : `imageContainer theme-${currentTheme}`
                     }
                   >
                     <div className={'boardCardForm_SvgBackgroundWrapper'}>
@@ -183,8 +186,8 @@ const BoardForm = ({ props }) => {
                       <div
                         className={
                           image.value === Number(values.backgroundIcon)
-                            ? 'imageContainerActive'
-                            : 'imageContainer'
+                            ? `imageContainerActive theme-${currentTheme}`
+                            : `imageContainer theme-${currentTheme}`
                         }
                       >
                         <img
