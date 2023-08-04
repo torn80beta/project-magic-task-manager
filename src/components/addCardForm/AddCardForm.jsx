@@ -4,6 +4,7 @@ import { Field } from 'formik';
 import { themeState } from 'redux/theme/themeSlice';
 import './addCardForm.scss';
 import Icon from 'components/icon/Icon';
+import DateCalendar from 'components/calendar/DatePicker';
 
 const AddCardForm = () => {
   const theme = useSelector(themeState);
@@ -125,6 +126,7 @@ const AddCardForm = () => {
               <p className={`add-form-deadline-title theme-${theme}`}>
                 Deadline
               </p>
+              <DateCalendar/>
             </div>
             <button
               className={`add-form-submit theme-${theme}`}
