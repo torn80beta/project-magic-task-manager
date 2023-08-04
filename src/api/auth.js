@@ -26,22 +26,10 @@ const getCurrent = async () => {
     .catch(e => console.log(e.request.response));
 };
 
-const editAvatar = async avatar => {
-  const formData = new FormData();
-  formData.append('avatar', avatar);
-
-  return await axios
-    .patch('/avatars', formData)
-    .catch(e => console.log(e.request.response));
-};
-
-const editProfile = async (user, avatar) => {
-  const formData = new FormData();
-  formData.append('avatar', avatar);
-  formData.append('user', user);
+const editProfile = async user => {
   return await axios
     .patch('/edit', user)
     .catch(e => console.log(e.request.response));
 };
 
-export { register, login, logout, getCurrent, editProfile, editAvatar };
+export { register, login, logout, getCurrent, editProfile };

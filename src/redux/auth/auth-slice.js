@@ -5,7 +5,6 @@ import {
   logoutUser,
   editUserData,
   getCurrentUser,
-  editUserAvatar,
 } from './auth-operation';
 
 const initialState = {
@@ -47,7 +46,8 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isLoading = false;
         state.isLoggedIn = true;
         state.isRefreshing = false;
@@ -70,13 +70,6 @@ const authSlice = createSlice({
       .addCase(editUserData.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoading = false;
-      })
-      .addCase(editUserAvatar.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(editUserAvatar.fulfilled, (state, action) => {
-        state.user.avatar = action.payload.user.avatar;
-        state.isLoading = false;
       });
   },
 });
@@ -85,6 +78,7 @@ export const authReducer = authSlice.reducer;
 
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectUserName = state => state.auth.user.name;
+export const selectUserEmail = state => state.auth.user.email;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectToken = state => state.auth.token;
 export const selectUserAvatar = state => state.auth.user.avatar;

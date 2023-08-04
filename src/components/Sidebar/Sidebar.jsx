@@ -2,9 +2,10 @@
 // import PopUp from 'components/modal/PopUp';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
 // import BoardForm from 'components/boardForm/BoardForm';
-// import { logoutUser } from 'redux/auth/auth-operation';
+import { logoutUser } from 'redux/auth/auth-operation';
 import './sidebar.scss';
 import { ReactComponent as LogoIcon } from './img/icons/logo-icon.svg';
 import { ReactComponent as ProjectIcon } from './img/icons/project.svg';
@@ -18,7 +19,7 @@ import { ReactComponent as LogOutIcon } from './img/icons/logout.svg';
 
 const Sidebar = () => {
   const currentTheme = useSelector(themeState);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <div className={`sidebar theme-${currentTheme}`}>
@@ -77,7 +78,11 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="buttonWrapper">
-          <button type="button" className="logOutButton">
+          <button
+            type="button"
+            className="logOutButton"
+            onClick={() => dispatch(logoutUser())}
+          >
             <LogOutIcon className="logOutIcon" />
             Log out
           </button>
