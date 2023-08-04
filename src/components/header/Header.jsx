@@ -6,7 +6,6 @@ import { themeState, changeTheme } from 'redux/theme/themeSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { selectUserName, selectUserAvatar } from 'redux/auth/auth-slice';
-import PopUp from 'components/modal/PopUp';
 import BurgerMenuModal from 'components/modal/burgerMenuModal/BurgerMenuModal';
 
 const Header = ({ children }) => {
