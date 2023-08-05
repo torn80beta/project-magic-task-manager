@@ -17,6 +17,7 @@ const AddCardForm = ({
 
   const getDeadline = value => {
     setDate(value);
+    console.log(date);
   };
   // const theme = useSelector(themeState);
   const theme = useSelector(selectCurrentTheme);
