@@ -36,12 +36,22 @@
   .menu {
     width: 60%;
     left: 30%;
+    .sidebar {
+      width: 60%;
+      max-width: 60%;
+      min-width: 60%;
+    }
   }
 }
 @include tablet {
   .menu {
     width: 34%;
     left: 17%;
+    .sidebar {
+      width: 34%;
+      max-width: 34%;
+      min-width: 34%;
+    }
   }
 }
 .menu-overlay {
