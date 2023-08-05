@@ -68,30 +68,6 @@ const Sidebar = () => {
       </div>
 
       <div className={`projects-wrapper theme-${currentTheme}`}>
-        {/* <div className={`currentProject theme-${currentTheme}`}>
-          <NavLink
-            to={currentLink}
-            className={`currentBoardLink theme-${currentTheme}`}
-          >
-            <Icon id={'four-circles'} width={18} height={18} />
-
-            <h2 className={`currentProjectName theme-${currentTheme}`}>
-              {currentBoardTitle}
-            </h2>
-          </NavLink>
-          <div className={`tools-wrapper theme-${currentTheme}`}>
-            <div className={`toolsIcons theme-${currentTheme}`}>
-              <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                <BoardForm />
-              </PopUp>
-
-              <Icon id={'trash'} width={16} height={16} />
-            </div>
-            <div className={`board-marker theme-${currentTheme}`}></div>
-          </div>
-        </div> */}
-
-        {/* <div className={`projects-wrapper  theme-${currentTheme}`}> */}
         <ul className="projectsList">
           {boardArray.map(item =>
             !item.current ? (
@@ -109,7 +85,10 @@ const Sidebar = () => {
                 </NavLink>
               </li>
             ) : (
-              <div className={`currentProject theme-${currentTheme}`}>
+              <li
+                key={item.id}
+                className={`currentProject theme-${currentTheme}`}
+              >
                 <NavLink
                   to={currentLink}
                   className={`currentBoardLink theme-${currentTheme}`}
@@ -130,7 +109,7 @@ const Sidebar = () => {
                   </div>
                   <div className={`board-marker theme-${currentTheme}`}></div>
                 </div>
-              </div>
+              </li>
             )
           )}
         </ul>
