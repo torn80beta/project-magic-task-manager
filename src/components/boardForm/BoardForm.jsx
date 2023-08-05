@@ -4,7 +4,9 @@ import * as yup from 'yup';
 import './boardForm.scss';
 import Icons from '../../images/svg/icons_sprite_Board.svg';
 import BoardFormButton from './boardFormButton/BoardFormButton';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import { useSelector } from 'react-redux';
 
 const iconsSvgInitial = [
@@ -91,7 +93,7 @@ const BoardForm = ({
   boardIcon = 'circles',
   boardBackground = 0,
 }) => {
-  const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
   const initialValues = {
     // boardTitle: '',
     // svgIcon: 'circles',

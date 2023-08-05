@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import { themeReducer } from './theme/themeSlice';
+// import { themeReducer } from './theme/themeSlice';
 import { filterReducer } from './filter/filterSlice';
 
 import {
@@ -19,13 +19,13 @@ import { authReducer } from './auth/auth-slice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'theme'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    theme: themeReducer,
+    // theme: themeReducer,
     filter: filterReducer,
   },
   middleware(getDefaultMiddleware) {

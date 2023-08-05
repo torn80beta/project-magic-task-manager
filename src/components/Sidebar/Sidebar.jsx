@@ -1,5 +1,5 @@
 // import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import cactusIcon from './img/icons/cactus_2.png';
 import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 const boardArray = [
   { title: 'To Do List', id: 1, current: false },
@@ -23,7 +24,7 @@ const boardArray = [
 ];
 
 const Sidebar = () => {
-  const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
   const [currentBoardTitle, setCurrentBoard] = useState('');
   const [currentLink, setCurrentLink] = useState(
     currentBoardTitle.toLowerCase().split(' ').join('-')
@@ -37,7 +38,7 @@ const Sidebar = () => {
   }, [currentBoardTitle]);
 
   const changeBoard = e => {
-    console.log(e);
+    // console.log(e);
   };
   return (
     <div className={`sidebar theme-${currentTheme}`}>
@@ -68,30 +69,6 @@ const Sidebar = () => {
       </div>
 
       <div className={`projects-wrapper theme-${currentTheme}`}>
-        {/* <div className={`currentProject theme-${currentTheme}`}>
-          <NavLink
-            to={currentLink}
-            className={`currentBoardLink theme-${currentTheme}`}
-          >
-            <Icon id={'four-circles'} width={18} height={18} />
-
-            <h2 className={`currentProjectName theme-${currentTheme}`}>
-              {currentBoardTitle}
-            </h2>
-          </NavLink>
-          <div className={`tools-wrapper theme-${currentTheme}`}>
-            <div className={`toolsIcons theme-${currentTheme}`}>
-              <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                <BoardForm />
-              </PopUp>
-
-              <Icon id={'trash'} width={16} height={16} />
-            </div>
-            <div className={`board-marker theme-${currentTheme}`}></div>
-          </div>
-        </div> */}
-
-        {/* <div className={`projects-wrapper  theme-${currentTheme}`}> */}
         <ul className="projectsList">
           {boardArray.map(item =>
             !item.current ? (
@@ -109,7 +86,10 @@ const Sidebar = () => {
                 </NavLink>
               </li>
             ) : (
-              <div className={`currentProject theme-${currentTheme}`}>
+              <li
+                key={item.id}
+                className={`currentProject theme-${currentTheme}`}
+              >
                 <NavLink
                   to={currentLink}
                   className={`currentBoardLink theme-${currentTheme}`}
@@ -130,7 +110,7 @@ const Sidebar = () => {
                   </div>
                   <div className={`board-marker theme-${currentTheme}`}></div>
                 </div>
-              </div>
+              </li>
             )
           )}
         </ul>

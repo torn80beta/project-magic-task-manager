@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
 import './FilterPopup.scss';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import { filterState, changeFilter } from 'redux/filter/filterSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 const FilterPopup = () => {
   const dispatch = useDispatch();
-  const currentTheme = useSelector(themeState);
+  // const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
 
   const filter = useSelector(filterState);
   const handleFilter = e => {

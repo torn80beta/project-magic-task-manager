@@ -204,6 +204,8 @@
     align-items: center;
     width: 100%;
     gap: 4px;
+    height: calc(100vh - 686px);
+    min-height: 126px;
     @include desktop {
       height: calc(100vh - 644px);
       min-height: 126px;
@@ -294,8 +296,15 @@
     flex-direction: column;
     gap: 4px;
     width: 100%;
-    overflow-y: auto;
+    // overflow-y: auto;
     min-height: 126px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .projectsLinks {
     display: flex;
