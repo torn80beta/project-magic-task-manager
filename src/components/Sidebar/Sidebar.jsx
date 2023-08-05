@@ -38,7 +38,7 @@ const Sidebar = () => {
   }, [currentBoardTitle]);
 
   const changeBoard = e => {
-    console.log(e);
+    // console.log(e);
   };
   return (
     <div className={`sidebar theme-${currentTheme}`}>
