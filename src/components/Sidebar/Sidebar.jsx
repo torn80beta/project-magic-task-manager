@@ -3,7 +3,6 @@
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
-
 // import BoardForm from 'components/boardForm/BoardForm';
 // import { logoutUser } from 'redux/auth/auth-operation';
 import './sidebar.scss';
@@ -19,7 +18,7 @@ import { ReactComponent as LogOutIcon } from './img/icons/logout.svg';
 
 const Sidebar = () => {
   const currentTheme = useSelector(themeState);
-//   const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div className={`sidebar theme-${currentTheme}`}>
