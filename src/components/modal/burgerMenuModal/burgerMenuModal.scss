@@ -3,18 +3,10 @@
 
 .menu {
   position: absolute;
-  display: flex;
-  flex-direction: column;
   top: 50%;
-  left: 5%;
-  width: 10%;
+  width: 0%;
   height: 100dvh;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
-  border-radius: 8px;
-  background: transparent;
 
   &.theme-light {
     color: $light-main-text;
@@ -59,4 +51,17 @@
   cursor: pointer;
   outline: none;
   font-family: inherit;
+}
+.menu-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 375px;
+  height: 100dvh;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  @include tablet {
+    min-width: 768px;
+  }
 }

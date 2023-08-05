@@ -22,7 +22,6 @@ const BurgerMenuModal = props => {
   function closeModal() {
     setIsOpen(false);
   }
-
   return (
     <div>
       <button
@@ -36,6 +35,11 @@ const BurgerMenuModal = props => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         className={`menu theme-${currentTheme}`}
+        overlayElement={(props, contentElement) => (
+          <div {...props}>
+            <div className="menu-wrapper">{contentElement}</div>
+          </div>
+        )}
         overlayClassName={`menu-overlay theme-${currentTheme}`}
         contentLabel="menu"
       >
