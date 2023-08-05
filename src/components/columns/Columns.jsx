@@ -9,18 +9,22 @@ import Card from 'components/card/Card';
 
 import './Columns.scss';
 
+const description = `Conduct in-depth research and analysis on the
+   project's topic, gather relevant data, and identify
+   key insights to inform decision-making and project planning.`;
+
 const cards = [
   {
     id: 1,
     title: 'Card 1 Title',
-    description: 'Card 1 Description',
+    description: description,
     priority: 'high',
     deadline: '11/09/2023',
   },
   {
     id: 2,
     title: 'Card 2 Title',
-    description: 'Card 2 Description',
+    description: description,
     priority: 'low',
     deadline: '11/09/2023',
   },
@@ -28,21 +32,21 @@ const cards = [
   {
     id: 3,
     title: 'Card 3 Title',
-    description: 'Card 3 Description',
+    description: description,
     priority: 'low',
     deadline: '11/09/2023',
   },
   {
     id: 4,
     title: 'Card 4 Title',
-    description: 'Card 4 Description',
+    description: description,
     priority: 'low',
     deadline: '11/09/2023',
   },
   {
     id: 5,
     title: 'Card 5 Title',
-    description: 'Card 5 Description',
+    description: description,
     priority: 'low',
     deadline: '11/09/2023',
   },

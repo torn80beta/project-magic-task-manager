@@ -76,21 +76,44 @@ const schema = yup.object().shape({
   boardTitle: yup.string().required(),
 });
 
-const initialValues = {
-  boardTitle: '',
-  svgIcon: 'circles',
-  backgroundIcon: 0,
-};
-const handleSubmit = (values, actions) => {
-  console.log(values);
-  actions.resetForm();
-};
-const BoardForm = ({ props }) => {
+// const initialValues = {
+//   boardTitle: '',
+//   svgIcon: 'circles',
+//   backgroundIcon: 0,
+// };
+// const handleSubmit = (values, actions) => {
+//   console.log(values);
+//   actions.resetForm();
+// };
+const BoardForm = ({
+  boardId = null,
+  boardTitle = '',
+  boardIcon = 'circles',
+  boardBackground = 0,
+}) => {
   const currentTheme = useSelector(themeState);
-
+  const initialValues = {
+    // boardTitle: '',
+    // svgIcon: 'circles',
+    // backgroundIcon: 0,
+    boardTitle: boardTitle,
+    svgIcon: boardIcon,
+    backgroundIcon: boardBackground,
+  };
+  const handleSubmit = (values, actions) => {
+    console.log(values);
+    if (boardId) {
+      console.log('make PATCH query with current Id');
+    } else {
+      console.log('make POST query for new board creation');
+    }
+    actions.resetForm();
+  };
   return (
     <div className={`boardCardForm_Container theme-${currentTheme}`}>
-      <h2 className={'boardCardForm_Title'}>New board</h2>
+      <h2 className={'boardCardForm_Title'}>
+        {boardId ? 'Edit board' : 'New board'}
+      </h2>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
