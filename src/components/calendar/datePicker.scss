@@ -209,10 +209,10 @@
     &.react-datepicker__day-name {
       color: $violet-main-text;
     }
-  //   &.react-datepicker__day--selected {
-  //     background-color: $violet-button-bg;
-  //     color: $light-main-text;
-  //     border-radius: 50%;
-  // }
+    &.react-datepicker__day--selected {
+      background-color: $violet-button-bg;
+      color: $light-main-text;
+      border-radius: 50%;
+  }
 }
 
