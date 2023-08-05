@@ -1,7 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import { useEffect } from 'react';
 
 import './Card.scss';
@@ -12,7 +14,8 @@ import AddCardForm from 'components/addCardForm/AddCardForm';
 
 const Card = ({ title, description, priority, deadline }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
-  const currentTheme = useSelector(themeState);
+  // const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
 
   useEffect(() => {
     setCurrentPriority(priority);

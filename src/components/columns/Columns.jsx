@@ -1,4 +1,6 @@
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import { useSelector } from 'react-redux';
 
 import Icon from 'components/icon/Icon';
@@ -53,7 +55,8 @@ const cards = [
 ];
 
 const Columns = ({ title }) => {
-  const currentTheme = useSelector(themeState);
+  // const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
 
   return (
     <div className={`column theme-${currentTheme}`}>

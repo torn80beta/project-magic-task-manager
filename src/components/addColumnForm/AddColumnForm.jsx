@@ -1,11 +1,13 @@
-import { themeState } from '../../redux/theme/themeSlice';
+// import { themeState } from '../../redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import './addColumnForm.scss';
 import Icon from 'components/icon/Icon';
 
 const AddColumnForm = () => {
-  const theme = useSelector(themeState);
+  // const theme = useSelector(themeState);
+  const theme = useSelector(selectCurrentTheme);
   const [error, setError] = useState('');
   const onSubmit = e => {
     const title = e.target.elements.title.value;
