@@ -2,10 +2,10 @@
 // import PopUp from 'components/modal/PopUp';
 import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 // import BoardForm from 'components/boardForm/BoardForm';
-import { logoutUser } from 'redux/auth/auth-operation';
+// import { logoutUser } from 'redux/auth/auth-operation';
 import './sidebar.scss';
 import { ReactComponent as LogoIcon } from './img/icons/logo-icon.svg';
 import { ReactComponent as ProjectIcon } from './img/icons/project.svg';
