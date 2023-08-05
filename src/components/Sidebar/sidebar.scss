@@ -294,8 +294,15 @@
     flex-direction: column;
     gap: 4px;
     width: 100%;
-    overflow-y: auto;
+    // overflow-y: auto;
     min-height: 126px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .projectsLinks {
     display: flex;
