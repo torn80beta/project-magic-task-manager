@@ -21,6 +21,7 @@ $light-vertical-scrollbar-track: #e8e8e8;
 $light-vertical-scrollbar-thumb: rgba(22, 22, 22, 0.1);
 $light-horizontal-scrollbar-track: #fff;
 $light-horizontal-scrollbar-thumb: #e8e8e8;
+$light-active-board-marker: #bedbb0;
 
 //Dark theme
 $dark-header-bg: #161616;
@@ -46,6 +47,7 @@ $dark-vertical-scrollbar-thumb: #121212;
 $dark-horizontal-scrollbar-track: #161616;
 $dark-horizontal-scrollbar-thumb: rgba(255, 255, 255, 0.1);
 $dark-50-transparent: #ffffff80;
+$dark-active-board-marker: #bedbb0;
 
 //Violet theme
 $violet-header-bg: #fff;
@@ -71,6 +73,7 @@ $violet-vertical-scrollbar-track: #fff;
 $violet-vertical-scrollbar-thumb: rgba(184, 188, 253, 1);
 $violet-horizontal-scrollbar-track: #fff;
 $violet-horizontal-scrollbar-thumb: #b8bcfd;
+$violet-active-board-marker: #fff;
 
 //Welcome
 $welcome-background: linear-gradient(
