@@ -8,6 +8,7 @@
   justify-content: space-between;
   align-items: flex-start;
   min-width: 225px;
+  max-width: 225px;
   color: white;
   background-color: $dark-sidebar-bg;
 
@@ -26,6 +27,7 @@
 
   @include tablet {
     min-width: 260px;
+    max-width: 260px;
   }
 
   @include desktop {
