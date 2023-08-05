@@ -1,16 +1,15 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
-import { useEffect } from 'react';
 
 import './Card.scss';
 import Icon from '../icon/Icon';
 import PopUp from 'components/modal/PopUp';
 import AddCardForm from 'components/addCardForm/AddCardForm';
-// import EditCard from 'components'
+
 
 const Card = ({ title, description, priority, deadline }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
@@ -21,15 +20,19 @@ const Card = ({ title, description, priority, deadline }) => {
     setCurrentPriority(priority);
   }, [priority]);
 
-  function formatDate(date) {
-    const year = date.getFullYear().toString().slice(-2);
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${month}/${day}/${year}`;
-  }
-
+  const convertToDateFormat = (dateString) => {
+    const parts = dateString.split('/');
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; 
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  };
+  
   const today = new Date();
-  const formattedDate = formatDate(today);
+  const formattedDeadline = convertToDateFormat(deadline);
+  const isToday = today.toDateString() === formattedDeadline.toDateString();
+
+
   const [setShowModal] = useState(false);
 
   const onOpen = () => {
@@ -48,6 +51,7 @@ const Card = ({ title, description, priority, deadline }) => {
         <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
         <p className={`cardDescription theme-${currentTheme}`}>{description}</p>
         <span className={`cardLine theme-${currentTheme}`} />
+        <div className={`topWrapper theme-${currentTheme}`}>  
         <div className={`cardPriority theme-${currentTheme}`}>
           <div>
             <h3 className={`cardSubtitle theme-${currentTheme}`}>Priority</h3>
@@ -65,12 +69,13 @@ const Card = ({ title, description, priority, deadline }) => {
               {deadline}
             </p>
           </div>
+          </div>
           <div className={`IconWrapper theme-${currentTheme}`}>
-            {deadline === formattedDate && (
-              <span className={`cardIcon theme-${currentTheme}`}>
-                <Icon id={'bell'} width={16} height={16} />
-              </span>
-            )}
+          {isToday && (
+                <span className={`cardIcon theme-${currentTheme}`}>
+                  <Icon id={'bell'} width={16} height={16} />
+                </span>
+              )}
             <span className={`cardIcon theme-${currentTheme}`}>
               <Icon id={'arrow-circle-broken-right'} width={16} height={16} />
             </span>
@@ -83,10 +88,7 @@ const Card = ({ title, description, priority, deadline }) => {
             >
               <AddCardForm title={'Edit Card'} />
             </PopUp>
-            {/* {showModal && (
-              <EditCard
-              />
-            )} */}
+          
             <span className={`cardIcon theme-${currentTheme}`}>
               <Icon
                 className={`cardIcon theme-${currentTheme}`}

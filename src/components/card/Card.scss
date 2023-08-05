@@ -34,17 +34,6 @@
   &.priorityClass-without {
     border-left: 4px solid rgb(128, 128, 128);
   }
-
-  // @include pre-mobile {
-  //   max-height: calc(100vh - 330px);
-  // }
-  // @include mobile {
-  //   height: calc(100vh - 330px);
-  // }
-
-  // @include tablet {
-  //   height: calc(100vh - 374px);
-  // }
 }
 
 .cardTitle {
@@ -115,13 +104,13 @@
   margin-top: 14px;
 
   &.theme-light {
-    color: $light-main-text;
+    color: $light-secondary-text;
   }
   &.theme-dark {
-    color: $dark-main-text;
+    color: $dark-secondary-text;
   }
   &.theme-violet {
-    color: $violet-main-text;
+    color: $violet-secondary-text;
   }
 }
 
@@ -166,8 +155,19 @@
   }
 }
 
-.cardIcon {
+.IconWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 25px;
   cursor: pointer;
+}
+.cardIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &.theme-light {
     color: $light-secondary-text;
     &:hover {
@@ -185,16 +185,7 @@
     &:hover {
       color: $violet-icon-hover;
     }
-  }
 }
-
-.IconWrapper {
-  /*  */
-  // margin-left: 110px;
-  margin-left: auto;
-  align-items: flex-end;
-  display: flex;
-  gap: 8px;
 }
 
 .cardSubtextDeadline {
@@ -212,3 +203,8 @@
     color: $violet-main-text;
   }
 }
+.topWrapper {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+ }
