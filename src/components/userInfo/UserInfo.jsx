@@ -7,9 +7,15 @@ const UserInfo = ({ theme, user }) => {
     <PopUp
       theme={theme}
       data={
-        <div className="userInfo">
-          <p className="userName">{user.name}</p>{' '}
-          <img alt="IMG" src={user.avatar} width={32} height={32} />
+        <div className="user-info">
+          <p className="user-name">{user.name}</p>{' '}
+          <img
+            className="user-avatar"
+            alt="Avatar"
+            src={user.avatar}
+            width={32}
+            height={32}
+          />
         </div>
       }
     >
