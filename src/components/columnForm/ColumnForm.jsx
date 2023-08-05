@@ -10,13 +10,15 @@ const ColumnForm = ({ title }) => {
   const [error, setError] = useState('');
   const [columnName, setColumnName] = useState(title);
   const onSubmit = e => {
-    const title = e.target.elements.title.value;
+    const InputTitle = e.target.elements.title.value;
     e.preventDefault();
-    if (title === '') {
+    if (InputTitle === '') {
       setError('Required');
       return;
+    } else if (title) {
+      console.log('Edit column');
     } else {
-      console.log(columnName);
+      console.log('Add column');
       e.target.reset();
       return;
     }
