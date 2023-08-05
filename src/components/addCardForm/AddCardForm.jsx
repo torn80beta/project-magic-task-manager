@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
@@ -7,13 +8,26 @@ import Icon from 'components/icon/Icon';
 import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
 
-const AddCardForm = () => {
+const AddCardForm = ({
+  columnId = null,
+  taskId = null,
+  data: { title, description, labelColor, deadline },
+}) => {
+  const [date, setDate] = useState('');
+
+  const getDeadline = value => {
+    setDate(value);
+  };
   // const theme = useSelector(themeState);
   const theme = useSelector(selectCurrentTheme);
 
   return (
     <Formik
-      initialValues={{ title: '', desc: '', priority: 'without' }}
+      initialValues={{
+        title: title ? title : '',
+        desc: description ? description : '',
+        priority: labelColor ? labelColor : 'without',
+      }}
       validate={values => {
         const errors = {};
         if (!values.title) {
@@ -25,10 +39,16 @@ const AddCardForm = () => {
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          console.log(JSON.stringify(values));
+        if (!columnId && taskId) {
+          //Робимо PATCH запит при сабміті
           setSubmitting(false);
-        }, 400);
+        } else if (!taskId && columnId) {
+          //Робимо POST запит при сабміті
+          setSubmitting(false);
+        } else {
+          setSubmitting(false);
+          return;
+        }
       }}
     >
       {({
@@ -41,7 +61,9 @@ const AddCardForm = () => {
         isSubmitting,
       }) => (
         <form className={`add-form theme-${theme}`} onSubmit={handleSubmit}>
-          <p className={`add-form-title theme-${theme}`}>Add card</p>
+          <p className={`add-form-title theme-${theme}`}>
+            {!columnId && taskId ? 'Edit card' : 'Add card'}
+          </p>
           <div className="add-form-wrap">
             <div className="add-form-email-wrap">
               <input
@@ -128,7 +150,7 @@ const AddCardForm = () => {
               <p className={`add-form-deadline-title theme-${theme}`}>
                 Deadline
               </p>
-              <DateCalendar />
+              <DateCalendar getDeadline={getDeadline} />
             </div>
             <button
               className={`add-form-submit theme-${theme}`}
@@ -138,7 +160,7 @@ const AddCardForm = () => {
               <div className={`add-form-icon-wrap theme-${theme}`}>
                 <Icon id="plus" width={14} height={14} />
               </div>
-              Add
+              {!columnId && taskId ? 'Edit' : 'Add'}
             </button>
           </div>
         </form>
