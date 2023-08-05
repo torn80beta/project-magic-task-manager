@@ -5,6 +5,11 @@ import * as Yup from 'yup';
 import { clsx } from 'clsx';
 
 import { themeState } from 'redux/theme/themeSlice';
+import {
+  selectUserAvatar,
+  selectUserName,
+  selectUserEmail,
+} from 'redux/auth/auth-slice';
 import Icon from 'components/icon/Icon';
 import css from './editProfileForm.module.scss';
 import { editUserData } from 'redux/auth/auth-operation';
@@ -34,11 +39,16 @@ export const EditProfileForm = () => {
   };
 
   const theme = useSelector(themeState);
-
+  const userAvatar = useSelector(selectUserAvatar);
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
   const [file, setFile] = useState(null);
+  const [fileURL, setFileURL] = useState(null);
 
   function handleChange(e) {
-    setFile(URL.createObjectURL(e.target.files[0]));
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFileURL(URL.createObjectURL(selectedFile));
   }
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
@@ -47,13 +57,22 @@ export const EditProfileForm = () => {
 
   const handleSubmit = editedContact => {
     console.log('editedContact:', editedContact);
-    dispatch(editUserData(editedContact));
+    const formData = new FormData();
+    formData.append('name', editedContact.name);
+    formData.append('email', editedContact.email);
+    formData.append('password', editedContact.password);
+    if (file) {
+      formData.append('avatar', file);
+    }
+
+    console.log('formData:', formData);
+    dispatch(editUserData(formData));
   };
 
   return (
     <Formik
       onSubmit={handleSubmit}
-      initialValues={{ name: '', email: '', password: '' }}
+      initialValues={{ name: userName, email: userEmail, password: '' }}
       validationSchema={schema}
     >
       <Form
@@ -75,8 +94,10 @@ export const EditProfileForm = () => {
             [css.violet]: theme === 'violet',
           })}
         >
-          {file ? (
-            <img className={css.newAvatar} src={file} alt="avatar" />
+          {fileURL ? (
+            <img className={css.newAvatar} src={fileURL} alt="avatar" />
+          ) : userAvatar ? (
+            <img src={userAvatar} alt="User Avatar" />
           ) : (
             <Icon id="avatar" width={68} height={73} />
           )}
@@ -84,6 +105,7 @@ export const EditProfileForm = () => {
         <input
           onChange={handleChange}
           type="file"
+          name="avatar"
           accept="image/jpeg, image/png, image/gif"
           ref={hiddenFileInput}
           style={{ display: 'none' }}
