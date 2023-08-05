@@ -5,11 +5,14 @@ import {
   logoutUser,
   editUserData,
   getCurrentUser,
+  editUserTheme,
 } from './auth-operation';
 
 const initialState = {
   user: { name: null, email: null, avatar: null },
+  theme: 'violet',
   token: null,
+  board: null,
   isLoggedIn: false,
   isLoading: false,
   isRefreshing: false,
@@ -38,6 +41,8 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.theme = action.payload.theme;
+        state.board = action.payload.board;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -48,6 +53,8 @@ const authSlice = createSlice({
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.theme = action.payload.theme;
+        state.board = action.payload.board;
         state.isLoading = false;
         state.isLoggedIn = true;
         state.isRefreshing = false;
@@ -60,6 +67,8 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, state => {
         state.user = { name: null, email: null, avatar: null };
+        state.theme = 'violet';
+        state.board = null;
         state.token = null;
         state.isLoggedIn = false;
         state.isLoading = false;
@@ -69,6 +78,13 @@ const authSlice = createSlice({
       })
       .addCase(editUserData.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(editUserTheme.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(editUserTheme.fulfilled, (state, action) => {
+        state.theme = action.payload.theme;
         state.isLoading = false;
       });
   },
@@ -83,3 +99,4 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectToken = state => state.auth.token;
 export const selectUserAvatar = state => state.auth.user.avatar;
 export const selectIsLoading = state => state.auth.isLoading;
+export const selectCurrentTheme = state => state.auth.theme;

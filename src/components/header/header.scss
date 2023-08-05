@@ -185,8 +185,7 @@
 @include mobile {
   .menu {
     .sidebar {
-      display: block;
-      height: 100%;
+      display: flex;
     }
   }
 }

@@ -4,7 +4,9 @@ import { Formik, Field, ErrorMessage, Form } from 'formik';
 import * as Yup from 'yup';
 import { clsx } from 'clsx';
 
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import {
   selectUserAvatar,
   selectUserName,
@@ -38,7 +40,8 @@ export const EditProfileForm = () => {
     hiddenFileInput.current.click();
   };
 
-  const theme = useSelector(themeState);
+  // const theme = useSelector(themeState);
+  const theme = useSelector(selectCurrentTheme);
   const userAvatar = useSelector(selectUserAvatar);
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);

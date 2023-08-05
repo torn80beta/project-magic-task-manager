@@ -4,10 +4,13 @@ import PopUp from 'components/modal/PopUp';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import { useSelector } from 'react-redux';
-import AddColumnForm from 'components/addColumnForm/AddColumnForm';
+import ColumnForm from 'components/columnForm/ColumnForm';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 //temporary
 const columnsArray = [
@@ -22,13 +25,17 @@ const columnsArray = [
 ];
 
 const ScreensPage = () => {
-  const currentTheme = useSelector(themeState);
+  // const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
+  const { boardName } = useParams();
 
   useEffect(() => {}, []);
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
-        <h1 className={`screenPage_title theme-${currentTheme}`}>Project</h1>
+        <h1 className={`screenPage_title theme-${currentTheme}`}>
+          {boardName.split('-').join(' ')}
+        </h1>
         <PopUp
           data={
             <span className={`screenPage_filter theme-${currentTheme}`}>
@@ -44,11 +51,11 @@ const ScreensPage = () => {
       </div>
 
       <div className={`screenPage_canvas theme-${currentTheme}`}>
-        <div className={`screenPage_columns theme-${currentTheme}`}>
+        <ul className={`screenPage_columns theme-${currentTheme}`}>
           {columnsArray.map(item => (
-            <Columns title={item.title} key={item.id} />
+            <Columns {...item} key={item.id} />
           ))}
-        </div>
+        </ul>
 
         <PopUp
           data={
@@ -66,7 +73,7 @@ const ScreensPage = () => {
             </span>
           }
         >
-          <AddColumnForm />
+          <ColumnForm />
         </PopUp>
       </div>
     </div>

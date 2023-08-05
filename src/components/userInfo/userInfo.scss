@@ -1,8 +1,8 @@
-.userInfo {
+.user-info {
   display: flex;
   align-items: center;
   gap: 8px;
-  & .userName {
+  & .user-name {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
@@ -11,5 +11,8 @@
   & .open-modal-button {
     border: none;
     background: none;
+  }
+  .user-avatar {
+    border-radius: 20%;
   }
 }

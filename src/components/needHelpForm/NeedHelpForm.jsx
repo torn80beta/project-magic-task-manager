@@ -1,14 +1,19 @@
 import { Formik } from 'formik';
-import { useSelector } from 'react-redux';
-import { themeState } from 'redux/theme/themeSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { needHelp } from 'redux/auth/auth-operation';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import './needHelpForm.scss';
 
 const NeedHelpForm = () => {
-  const theme = useSelector(themeState);
+  const dispatch = useDispatch();
+  // const theme = useSelector(themeState);
+  const theme = useSelector(selectCurrentTheme);
 
   return (
     <Formik
-      initialValues={{ email: '', comment: '' }}
+      initialValues={{ email: '', text: '' }}
       validate={values => {
         const errors = {};
         if (!values.email) {
@@ -22,11 +27,9 @@ const NeedHelpForm = () => {
         }
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          console.log(JSON.stringify(values));
-          setSubmitting(false);
-        }, 400);
+      onSubmit={(values, { resetForm }) => {
+        dispatch(needHelp(values));
+        resetForm();
       }}
     >
       {({
@@ -58,7 +61,7 @@ const NeedHelpForm = () => {
             <textarea
               className={`help-form-input comment theme-${theme}`}
               rows={5}
-              name="comment"
+              name="text"
               placeholder="Comment"
               onChange={handleChange}
               onBlur={handleBlur}

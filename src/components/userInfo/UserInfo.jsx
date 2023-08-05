@@ -4,15 +4,23 @@ import { EditProfileForm } from 'components/EditProfileForm/EditProfileForm';
 
 const UserInfo = ({ theme, user }) => {
   return (
-    <div className="userInfo">
-      <p className="userName">{user.name}</p>
-      <PopUp
-        theme={theme}
-        data={<img alt="IMG" src={user.avatar} width={32} height={32} />}
-      >
-        <EditProfileForm />
-      </PopUp>
-    </div>
+    <PopUp
+      theme={theme}
+      data={
+        <div className="user-info">
+          <p className="user-name">{user.name}</p>{' '}
+          <img
+            className="user-avatar"
+            alt="Avatar"
+            src={user.avatar}
+            width={32}
+            height={32}
+          />
+        </div>
+      }
+    >
+      <EditProfileForm />
+    </PopUp>
   );
 };
 

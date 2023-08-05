@@ -8,6 +8,7 @@ import Welcome from 'pages/welcome/Welcome';
 import Auth from 'pages/auth/Auth';
 import LoginForm from './LoginForm/LoginForm';
 // import RegisterForm from './RegisterForm/RegisterForm';
+// import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import NotFound from 'pages/notFound/NotFound';
 import ScreensPage from './ScreensPage/ScreensPage';
 import { PrivateRoute } from 'helpers/PrivateRoute';
@@ -16,6 +17,7 @@ import { getCurrentUser } from 'redux/auth/auth-operation';
 
 export const App = () => {
   const dispatch = useDispatch();
+  // const theme = useSelector(selectCurrentTheme);
 
   useEffect(() => {
     dispatch(getCurrentUser());
