@@ -6,6 +6,7 @@ import { themeState } from 'redux/theme/themeSlice';
 import DatePicker from 'react-datepicker';
 import './datePicker.scss'
 import Icon from 'components/icon/Icon';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 const DateCalendar = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -40,7 +41,9 @@ const DateCalendar = () => {
         minDate={new Date()}
         calendarStartDay={1}
         customInput={<ExampleCustomInput/>}
-        // calendarClassName={`button-custom-input theme-${currentTheme}`}
+        calendarClassName={`theme-${currentTheme}`}
+       
+       
         // popperPlacement='right-end'
 
       />
