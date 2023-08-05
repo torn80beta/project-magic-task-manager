@@ -8,6 +8,7 @@ import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import AddColumnForm from 'components/addColumnForm/AddColumnForm';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 //temporary
 const columnsArray = [
@@ -23,12 +24,15 @@ const columnsArray = [
 
 const ScreensPage = () => {
   const currentTheme = useSelector(themeState);
+  const { boardName } = useParams();
 
   useEffect(() => {}, []);
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
-        <h1 className={`screenPage_title theme-${currentTheme}`}>Project</h1>
+        <h1 className={`screenPage_title theme-${currentTheme}`}>
+          {boardName.split('-').join(' ')}
+        </h1>
         <PopUp
           data={
             <span className={`screenPage_filter theme-${currentTheme}`}>
