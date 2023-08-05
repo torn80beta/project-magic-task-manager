@@ -51,11 +51,11 @@ const ScreensPage = () => {
       </div>
 
       <div className={`screenPage_canvas theme-${currentTheme}`}>
-        <div className={`screenPage_columns theme-${currentTheme}`}>
+        <ul className={`screenPage_columns theme-${currentTheme}`}>
           {columnsArray.map(item => (
-            <Columns title={item.title} key={item.id} />
+            <Columns {...item} key={item.id} />
           ))}
-        </div>
+        </ul>
 
         <PopUp
           data={

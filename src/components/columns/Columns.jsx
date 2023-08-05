@@ -12,8 +12,8 @@ import Card from 'components/card/Card';
 import './Columns.scss';
 
 const description = `Conduct in-depth research and analysis on the
-   project's topic, gather relevant data, and identify
-   key insights to inform decision-making and project planning.`;
+    project's topic, gather relevant data, and identify
+    key insights to inform decision-making and project planning.`;
 
 const cards = [
   {
@@ -54,12 +54,12 @@ const cards = [
   },
 ];
 
-const Columns = ({ title }) => {
+const Columns = ({ id, title }) => {
   // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
 
   return (
-    <div className={`column theme-${currentTheme}`}>
+    <li className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>
         <h2 className={`column_headerTitle theme-${currentTheme}`}>{title}</h2>
         <div className={`column_headerIconWrap theme-${currentTheme}`}>
@@ -99,9 +99,9 @@ const Columns = ({ title }) => {
           </span>
         }
       >
-        <AddCardForm />
+        <AddCardForm columnId={id} />
       </PopUp>
-    </div>
+    </li>
   );
 };
 export default Columns;
