@@ -2,11 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import UserInfo from 'components/userInfo/UserInfo';
 import './header.scss';
 import Icon from 'components/icon/Icon';
-import { themeState, changeTheme } from 'redux/theme/themeSlice';
+// import { themeState, changeTheme } from 'redux/theme/themeSlice';
+
 import { useSelector, useDispatch } from 'react-redux';
 import Sidebar from 'components/Sidebar/Sidebar';
-import { selectUserName, selectUserAvatar } from 'redux/auth/auth-slice';
+import {
+  selectUserName,
+  selectUserAvatar,
+  selectCurrentTheme,
+} from 'redux/auth/auth-slice';
 import BurgerMenuModal from 'components/modal/burgerMenuModal/BurgerMenuModal';
+import { editUserTheme } from 'redux/auth/auth-operation';
 
 const Header = ({ children }) => {
   const themes = ['light', 'dark', 'violet'];
@@ -16,14 +22,16 @@ const Header = ({ children }) => {
     name: useSelector(selectUserName),
     avatar: useSelector(selectUserAvatar),
   };
-  const theme = useSelector(themeState);
+  // const theme = useSelector(themeState);
+  const theme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 
   const handleToggleMenu = () => {
     setMenuActive(prevState => !prevState);
   };
   const handleOptionClick = label => {
-    dispatch(changeTheme(label));
+    dispatch(editUserTheme(label));
+    // dispatch(changeTheme(label));
     setMenuActive(false);
   };
 

@@ -1,5 +1,5 @@
 // import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import cactusIcon from './img/icons/cactus_2.png';
 import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 const boardArray = [
   { title: 'To Do List', id: 1, current: false },
@@ -23,7 +24,7 @@ const boardArray = [
 ];
 
 const Sidebar = () => {
-  const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
   const [currentBoardTitle, setCurrentBoard] = useState('');
   const [currentLink, setCurrentLink] = useState(
     currentBoardTitle.toLowerCase().split(' ').join('-')

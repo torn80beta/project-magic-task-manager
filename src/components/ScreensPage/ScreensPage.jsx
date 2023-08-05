@@ -4,7 +4,9 @@ import PopUp from 'components/modal/PopUp';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+
 import { useSelector } from 'react-redux';
 import AddColumnForm from 'components/addColumnForm/AddColumnForm';
 import { useEffect } from 'react';
@@ -23,7 +25,8 @@ const columnsArray = [
 ];
 
 const ScreensPage = () => {
-  const currentTheme = useSelector(themeState);
+  // const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
   const { boardName } = useParams();
 
   useEffect(() => {}, []);

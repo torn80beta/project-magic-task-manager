@@ -32,4 +32,14 @@ const editProfile = async user => {
     .catch(e => console.log(e.request.response));
 };
 
-export { register, login, logout, getCurrent, editProfile };
+const editTheme = async theme => {
+  return await axios
+    .patch('/theme', { theme })
+    .catch(e => console.log(e.request.response));
+};
+const help = async help => {
+  return await axios
+    .post('/help', help)
+    .catch(e => console.log(e.request.response));
+};
+export { register, login, logout, getCurrent, editProfile, editTheme, help };

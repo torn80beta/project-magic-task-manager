@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { Formik } from 'formik';
 import { Field } from 'formik';
 import Icon from 'components/icon/Icon';
@@ -7,7 +8,8 @@ import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
 
 const AddCardForm = () => {
-  const theme = useSelector(themeState);
+  // const theme = useSelector(themeState);
+  const theme = useSelector(selectCurrentTheme);
 
   return (
     <Formik
