@@ -1,9 +1,9 @@
 @import '../../styles/variables';
-.editColumnForm {
+.columnForm {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  .editColumnTitle {
+  .columnTitle {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
@@ -16,8 +16,9 @@
     border-radius: 8px;
     font-size: 14px;
     font-weight: 400;
-    line-height: 21px;
+    line-height: 1.5;
     letter-spacing: -0.02em;
+    font-family: 'Poppins', sans-serif;
     text-align: left;
     opacity: 40%;
     &:active,
@@ -25,36 +26,27 @@
       opacity: 100%;
     }
 
-    &::placeholder {
-      font-size: 14px;
-      line-height: normal;
-    }
     &.theme-violet {
       background: transparent;
       border: $violet-button-border;
       box-shadow: $violet-button-box-shadow;
-      &::placeholder {
-        color: $violet-main-text;
-      }
+      color: $violet-main-text;
     }
     &.theme-light {
+      color: $dark-main-text;
       background: transparent;
       border: $light-button-border;
       box-shadow: $light-button-box-shadow;
-      &::placeholder {
-        color: $light-main-text;
-      }
+      color: $light-main-text;
     }
     &.theme-dark {
       background: transparent;
       border: $dark-button-border;
       box-shadow: $dark-button-box-shadow;
-      &::placeholder {
-        color: $dark-main-text;
-      }
+      color: $dark-main-text;
     }
   }
-  .editButton {
+  .columnButton {
     padding: 10px 0;
     border-radius: 8px;
     cursor: pointer;
@@ -91,7 +83,7 @@
         background-color: $dark-button-bg-hover;
       }
     }
-    & .editIcon {
+    & .columnIcon {
       border-radius: 8px;
       height: 28px;
       &.theme-violet {
@@ -115,7 +107,7 @@
     font-size: 12px;
     color: #f75e66;
   }
-  .editColumnInputWrapper {
+  .columnInputWrapper {
     .titleInput {
       margin-bottom: 5px;
     }

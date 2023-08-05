@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import Icon from 'components/icon/Icon';
 import PopUp from 'components/modal/PopUp';
-import EditColumnForm from 'components/editColumnForm/EditColumnForm';
+import ColumnForm from 'components/columnForm/ColumnForm';
 import AddCardForm from 'components/addCardForm/AddCardForm';
 import Card from 'components/card/Card';
 
@@ -70,7 +70,7 @@ const Columns = ({ title }) => {
               </span>
             }
           >
-            <EditColumnForm title={title} />
+            <ColumnForm title={title} />
           </PopUp>
           <span className={`column_headerIcon theme-${currentTheme}`}>
             <Icon id="trash" width="16" height="16" />
