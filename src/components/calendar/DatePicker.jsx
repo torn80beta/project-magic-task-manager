@@ -7,6 +7,7 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import DatePicker from 'react-datepicker';
 import './datePicker.scss';
 import Icon from 'components/icon/Icon';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 const DateCalendar = ({ getDeadline }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -43,8 +44,8 @@ const DateCalendar = ({ getDeadline }) => {
         onChange={onChange}
         minDate={new Date()}
         calendarStartDay={1}
-        customInput={<ExampleCustomInput />}
-        // calendarClassName={`button-custom-input theme-${currentTheme}`}
+        customInput={<ExampleCustomInput/>}
+        calendarClassName={`theme-${currentTheme}`}
         // popperPlacement='right-end'
       />
     </div>
