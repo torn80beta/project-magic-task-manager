@@ -8,7 +8,7 @@ import FilterPopup from 'components/filterPopup/FilterPopup';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import { useSelector } from 'react-redux';
-import AddColumnForm from 'components/addColumnForm/AddColumnForm';
+import ColumnForm from 'components/columnForm/ColumnForm';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -73,7 +73,7 @@ const ScreensPage = () => {
             </span>
           }
         >
-          <AddColumnForm />
+          <ColumnForm />
         </PopUp>
       </div>
     </div>

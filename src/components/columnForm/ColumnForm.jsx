@@ -1,33 +1,35 @@
-// import { themeState } from '../../redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Icon from 'components/icon/Icon';
-import './editColumnForm.scss';
+import './columnForm.scss';
 
-const EditColumnForm = ({ title }) => {
-  // const theme = useSelector(themeState);
+const ColumnForm = ({ title }) => {
   const theme = useSelector(selectCurrentTheme);
   const [error, setError] = useState('');
   const [columnName, setColumnName] = useState(title);
   const onSubmit = e => {
-    const title = e.target.elements.title.value;
+    const InputTitle = e.target.elements.title.value;
     e.preventDefault();
-    if (title === '') {
+    if (InputTitle === '') {
       setError('Required');
       return;
+    } else if (title) {
+      console.log('Edit column');
     } else {
-      console.log(columnName);
+      console.log('Add column');
       e.target.reset();
       return;
     }
   };
 
   return (
-    <form className="editColumnForm" onSubmit={onSubmit}>
-      <p className={`editColumnTitle theme-${theme}`}>Edit column</p>
-      <div className="editColumnInputWrapper">
+    <form className="columnForm" onSubmit={onSubmit}>
+      <p className={`columnTitle theme-${theme}`}>
+        {!title ? 'Add' : 'Edit'} column
+      </p>
+      <div className="columnInputWrapper">
         <input
           type="text"
           name="title"
@@ -38,18 +40,14 @@ const EditColumnForm = ({ title }) => {
         />
         {error && <p className={`errorMessage theme-${theme}`}>{error}</p>}
       </div>
-      <button
-        className={`editButton theme-${theme}`}
-        type="submit"
-        // onSubmit={handleColumnButtonClick}
-      >
-        <span className={`editIcon theme-${theme}`}>
+      <button className={`columnButton theme-${theme}`} type="submit">
+        <span className={`columnIcon theme-${theme}`}>
           <Icon id={'plus'} width={14} height={14} />
         </span>
-        Edit
+        {!title ? 'Add' : 'Edit'}
       </button>
     </form>
   );
 };
 
-export default EditColumnForm;
+export default ColumnForm;
