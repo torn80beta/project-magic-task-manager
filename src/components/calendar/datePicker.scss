@@ -140,14 +140,14 @@
             }
             &.react-datepicker__day--today {
               color: $light-main-text;
-              background-color: #bedbb0;
+              background-color: $light-button-bg;
             }
             &.react-datepicker__day--selected {
-              background-color: #bedbb0;
+              background-color: $light-button-bg;
             }
             &:hover {
               color: $light-main-text;
-              background-color: #bedbb0;
+              background-color: $light-button-bg;
             }
           }
         }
