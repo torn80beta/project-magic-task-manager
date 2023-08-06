@@ -1,8 +1,7 @@
 // import { themeState } from 'redux/theme/themeSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
-import { useDispatch } from 'react-redux';
 import { logoutUser } from 'redux/auth/auth-operation';
 import './sidebar.scss';
 import Icon from '../icon/Icon';
@@ -11,6 +10,7 @@ import cactusIcon from './img/icons/cactus_2.png';
 // import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
+import { filterState, changeFilter } from 'redux/filter/filterSlice';
 
 const boardArray = [
   { title: 'To Do List', id: '1hk677' },
@@ -24,6 +24,10 @@ const boardArray = [
 const Sidebar = () => {
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
+
+  const onBoardChange = () => {
+    dispatch(changeFilter('all'));
+  };
 
   return (
     <div className={`sidebar theme-${currentTheme}`}>
@@ -63,6 +67,7 @@ const Sidebar = () => {
               <NavLink
                 to={`/${item.id}`}
                 className={`projectsLinks theme-${currentTheme}`}
+                onClick={onBoardChange}
               >
                 <Icon id={'four-circles'} width={18} height={18} />
 
