@@ -10,7 +10,7 @@ import cactusIcon from './img/icons/cactus_2.png';
 // import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-import { filterState, changeFilter } from 'redux/filter/filterSlice';
+import { changeFilter } from 'redux/filter/filterSlice';
 
 const boardArray = [
   { title: 'To Do List', id: '1hk677' },
