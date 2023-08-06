@@ -9,7 +9,7 @@ import Icon from '../icon/Icon';
 import PopUp from 'components/modal/PopUp';
 import AddCardForm from 'components/addCardForm/AddCardForm';
 
-const Card = ({ title, description, priority, deadline }) => {
+const Card = ({ id, title, description, priority, deadline, columnId }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
   // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
@@ -84,8 +84,8 @@ const Card = ({ title, description, priority, deadline }) => {
               }
             >
               <AddCardForm
-                taskId={title} //TMP!!!
-                columnId={null} // TMP!!!
+                taskId={id}
+                columnId={columnId}
                 data={{
                   title: title,
                   description,
