@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
 import Icon from 'components/icon/Icon';
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import { useSelector } from 'react-redux';
@@ -12,7 +11,6 @@ Modal.setAppElement('#root');
 const PopUp = props => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const { children, data } = props;
-  // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
 
   function openModal() {
@@ -25,6 +23,12 @@ const PopUp = props => {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function cloneChildren(child) {
+    return React.cloneElement(child, {
+      closeModal: closeModal,
+    });
   }
 
   return (
@@ -49,7 +53,7 @@ const PopUp = props => {
         >
           <Icon id="x-close" width={18} height={18} />
         </button>
-        {children}
+        {cloneChildren(children)}
       </Modal>
     </>
   );
