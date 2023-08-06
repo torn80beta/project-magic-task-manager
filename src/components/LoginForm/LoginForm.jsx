@@ -7,7 +7,7 @@ import Icon from '../../components/icon/Icon';
 import css from './loginForm.module.scss';
 import { getCurrentUser, loginUser } from 'redux/auth/auth-operation';
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -60,7 +60,7 @@ const RegisterForm = () => {
             </span>
           </div>
         </div>
-        <button className={css.registerButton} type="submit">
+        <button className={css.logInButton} type="submit">
           Log In Now
         </button>
       </Form>
@@ -68,4 +68,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
