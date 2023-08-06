@@ -59,7 +59,6 @@ const Columns = ({ id, title }) => {
   // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
   const filter = useSelector(filterState);
-
   const getFilteredCards = () => {
     if (filter === 'all') {
       return cards;
@@ -90,7 +89,7 @@ const Columns = ({ id, title }) => {
 
       <ul className={`cardsWrap theme-${currentTheme}`}>
         {filteredCards.map(card => (
-          <Card {...card} key={card.id} />
+          <Card {...{ ...card, columnId: id }} key={card.id} />
         ))}
       </ul>
       <PopUp
