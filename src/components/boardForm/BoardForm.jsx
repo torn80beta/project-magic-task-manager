@@ -9,98 +9,92 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import { useSelector } from 'react-redux';
 
+// const iconsSvgInitial = [
+//   { id: 1, value: 'circles' },
+//   { id: 2, value: 'star' },
+//   { id: 3, value: 'ball' },
+//   { id: 4, value: 'puzzle' },
+//   { id: 5, value: 'cube' },
+//   { id: 6, value: 'lightning' },
+//   { id: 7, value: 'colors' },
+//   { id: 8, value: 'hexagon' },
+// ];
 const iconsSvgInitial = [
-  { id: 1, value: 'circles' },
-  { id: 2, value: 'star' },
-  { id: 3, value: 'ball' },
-  { id: 4, value: 'puzzle' },
-  { id: 5, value: 'cube' },
-  { id: 6, value: 'lightning' },
-  { id: 7, value: 'colors' },
-  { id: 8, value: 'hexagon' },
+  { id: 1, value: 'icon-1' },
+  { id: 2, value: 'icon-2' },
+  { id: 3, value: 'icon-3' },
+  { id: 4, value: 'icon-4' },
+  { id: 5, value: 'icon-5' },
+  { id: 6, value: 'icon-6' },
+  { id: 7, value: 'icon-7' },
+  { id: 8, value: 'icon-8' },
 ];
+// const imagesBackgroundInitial = [
+//   // { id: 0, value: 0 },
+//   { id: 1, value: 1 },
+//   { id: 2, value: 2 },
+//   { id: 3, value: 3 },
+//   { id: 4, value: 4 },
+//   { id: 5, value: 5 },
+//   { id: 6, value: 6 },
+//   { id: 7, value: 7 },
+//   { id: 8, value: 8 },
+//   { id: 9, value: 9 },
+//   { id: 10, value: 10 },
+//   { id: 11, value: 11 },
+//   { id: 12, value: 12 },
+//   { id: 13, value: 13 },
+//   { id: 14, value: 14 },
+//   { id: 15, value: 15 },
+// ];
 const imagesBackgroundInitial = [
   // { id: 0, value: 0 },
-  { id: 1, value: 1 },
-  { id: 2, value: 2 },
-  { id: 3, value: 3 },
-  { id: 4, value: 4 },
-  { id: 5, value: 5 },
-  { id: 6, value: 6 },
-  { id: 7, value: 7 },
-  { id: 8, value: 8 },
-  { id: 9, value: 9 },
-  { id: 10, value: 10 },
-  { id: 11, value: 11 },
-  { id: 12, value: 12 },
-  { id: 13, value: 13 },
-  { id: 14, value: 14 },
-  { id: 15, value: 15 },
+  { id: 1, value: 'bg-2' },
+  { id: 2, value: 'bg-3' },
+  { id: 3, value: 'bg-4' },
+  { id: 4, value: 'bg-5' },
+  { id: 5, value: 'bg-6' },
+  { id: 6, value: 'bg-7' },
+  { id: 7, value: 'bg-8' },
+  { id: 8, value: 'bg-9' },
+  { id: 9, value: 'bg-10' },
+  { id: 10, value: 'bg-11' },
+  { id: 11, value: 'bg-12' },
+  { id: 12, value: 'bg-13' },
+  { id: 13, value: 'bg-14' },
+  { id: 14, value: 'bg-15' },
+  { id: 15, value: 'bg-16' },
 ];
-function TextError(currentTheme) {
+function TextError(currentTheme, errorText) {
   return (
-    <div
-      className={`boardCardForm_error theme-${currentTheme}`}
-    >{`This field is required to fill`}</div>
+    <div className={`boardCardForm_error theme-${currentTheme}`}>
+      {errorText}
+    </div>
   );
 }
-// const ImageSvg = ({ id, name, value, color }) => {
-//   return (
-//     <svg
-//       className={
-//         value === name
-//           ? `boardCardForm_svgIconActive theme-${currentTheme}`
-//           : `boardCardForm_svgIcon theme-${currentTheme}`
-//       }
-//     >
-//       <use href={`${Icons}#image_${id}`} />
-//     </svg>
-//   );
-// };
-
-// const ImageBackGround = ({ id, name, value }) => {
-//   return (
-//     <div
-//       className={
-//         name === Number(value) ? 'imageContainerActive' : 'imageContainer'
-//       }
-//     >
-//       <img
-//         className={'backgroundImage'}
-//         src={require(`./img/image_${id}.jpg`)}
-//         alt={`Background type ${id}`}
-//       />
-//     </div>
-//   );
-// };
 
 const schema = yup.object().shape({
-  boardTitle: yup.string().required(),
+  name: yup
+    .string()
+    .max(25, 'Field can contain 25 symbols maximum')
+    .required('This field is required to fill'),
 });
 
-// const initialValues = {
-//   boardTitle: '',
-//   svgIcon: 'circles',
-//   backgroundIcon: 0,
-// };
-// const handleSubmit = (values, actions) => {
-//   console.log(values);
-//   actions.resetForm();
-// };
 const BoardForm = ({
   boardId = null,
   boardTitle = '',
-  boardIcon = 'circles',
-  boardBackground = 0,
+  boardIcon = 'icon-1',
+  boardBackground = 'bg-1',
 }) => {
   const currentTheme = useSelector(selectCurrentTheme);
   const initialValues = {
     // boardTitle: '',
     // svgIcon: 'circles',
     // backgroundIcon: 0,
-    boardTitle: boardTitle,
-    svgIcon: boardIcon,
-    backgroundIcon: boardBackground,
+    // boardTitle: boardTitle,
+    name: boardTitle,
+    icon: boardIcon,
+    background: boardBackground,
   };
   const handleSubmit = (values, actions) => {
     console.log(values);
@@ -122,23 +116,20 @@ const BoardForm = ({
         onSubmit={handleSubmit}
       >
         {props => {
-          // console.log(props);
+          // console.log(props.values);
           const { values } = props;
           return (
             <Form>
-              <label
-                className={'boardCardForm_label'}
-                htmlFor="boardTitle"
-              ></label>
+              <label className={'boardCardForm_label'} htmlFor="name"></label>
               <Field
                 className={`boardCardForm_Input theme-${currentTheme}`}
                 type="text"
-                name="boardTitle"
+                name="name"
                 placeholder="Title"
               />
               <ErrorMessage
-                name="boardTitle"
-                component={() => TextError(currentTheme)}
+                name="name"
+                component={() => TextError(currentTheme, props.errors.name)}
               />
               <h4 className={'boardCardForm_IconTitle'}>Icons</h4>
               <div
@@ -152,21 +143,16 @@ const BoardForm = ({
                       className={'boardCardForm_RadioIconLabel'}
                       key={icon.id}
                     >
-                      <Field type="radio" name="svgIcon" value={icon.value} />
+                      <Field type="radio" name="icon" value={icon.value} />
                       <svg
                         className={
-                          values.svgIcon === icon.value
+                          values.icon === icon.value
                             ? `boardCardForm_svgIconActive theme-${currentTheme}`
                             : `boardCardForm_svgIcon theme-${currentTheme}`
                         }
                       >
                         <use href={`${Icons}#image_${icon.id}`} />
                       </svg>
-                      {/* <ImageSvg
-                        id={icon.id}
-                        name={icon.value}
-                        value={values.svgIcon}
-                      /> */}
                     </label>
                   );
                 })}
@@ -178,10 +164,10 @@ const BoardForm = ({
                 className={'boardCardForm_RadioGroupImage'}
               >
                 <label className={'boardCardForm_RadioIconLabel'}>
-                  <Field type="radio" name="backgroundIcon" value="0" />
+                  <Field type="radio" name="background" value="bg-1" />
                   <div
                     className={
-                      0 === Number(values.backgroundIcon)
+                      'bg-1' === values.background
                         ? `imageContainerActive theme-${currentTheme}`
                         : `imageContainer theme-${currentTheme}`
                     }
@@ -205,12 +191,12 @@ const BoardForm = ({
                     >
                       <Field
                         type="radio"
-                        name="backgroundIcon"
+                        name="background"
                         value={image.value}
                       />
                       <div
                         className={
-                          image.value === Number(values.backgroundIcon)
+                          image.value === values.background
                             ? `imageContainerActive theme-${currentTheme}`
                             : `imageContainer theme-${currentTheme}`
                         }
@@ -221,11 +207,6 @@ const BoardForm = ({
                           alt={`Background type ${image.id}`}
                         />
                       </div>
-                      {/* <ImageBackGround
-                        id={image.id}
-                        name={image.value}
-                        value={values.backgroundIcon}
-                      /> */}
                     </label>
                   );
                 })}
@@ -233,31 +214,9 @@ const BoardForm = ({
               <BoardFormButton
                 currentTheme={currentTheme}
                 submitForm={props.submitForm}
+                boardId={boardId}
                 {...props}
               />
-              {/* <div
-                role="button"
-                className={`boardButtonSubmit theme-${currentTheme}`}
-                type="submit"
-                onClick={props.submitForm}
-              >
-                <div
-                  className={`boardButtonInfo_wrapper theme-${currentTheme}`}
-                >
-                  <div
-                    className={`boardButtonIcon_wrapper theme-${currentTheme}`}
-                  >
-                    <svg
-                      className={`boardButtonIcon theme-${currentTheme}`}
-                      width="14"
-                      height="14"
-                    >
-                      <use href={`${Icons}#plus`} />
-                    </svg>
-                  </div>
-                  Create
-                </div>
-              </div> */}
             </Form>
           );
         }}
