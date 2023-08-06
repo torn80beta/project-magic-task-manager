@@ -182,11 +182,9 @@
     }
   }
 }
-@include mobile {
-  .menu {
-    .sidebar {
-      display: flex;
-    }
+.menu {
+  .sidebar {
+    display: flex;
   }
 }
 @include desktop {
