@@ -84,10 +84,10 @@ const Card = ({ id, title, description, priority, deadline, columnId }) => {
               }
             >
               <AddCardForm
-                taskId={id}
                 columnId={columnId}
+                taskId={id}
                 data={{
-                  title: title,
+                  title,
                   description,
                   labelColor: priority,
                   deadline,
