@@ -27,7 +27,7 @@ const PopUp = props => {
 
   function cloneChildren(child) {
     return React.cloneElement(child, {
-      closeModal: closeModal,
+      closeModal,
     });
   }
 
