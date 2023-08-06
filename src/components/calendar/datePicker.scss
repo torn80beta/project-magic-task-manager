@@ -31,6 +31,9 @@
   margin-right: 10px;
 }
 
+.react-datepicker-popper {
+  z-index: 999;
+}
 .react-datepicker__header {
   text-align: center;
   background-color: inherit;
