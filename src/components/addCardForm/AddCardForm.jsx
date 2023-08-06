@@ -15,7 +15,6 @@ const AddCardForm = ({
   data: { title, description, labelColor, deadline } = {},
 }) => {
   const [date, setDate] = useState('');
-  console.log(closeModal);
   const getDeadline = value => {
     setDate(value);
     console.log(date);
