@@ -112,6 +112,7 @@
     overflow: hidden;
     display: none;
     z-index: 8;
+    border-radius: 8px;
     &.theme-violet {
       border: $violet-border;
       box-shadow: $violet-box-shadow;
