@@ -16,7 +16,7 @@ const boardArray = [
   { title: 'To Do List', id: '1hk677' },
   { title: 'Home', id: '289kl0' },
   { title: 'Family', id: '34g56' },
-  { title: 'Garden tree', id: '48hjk90' },
+  { title: 'Garden', id: '48hjk90' },
   { title: 'Project', id: '51gjj24' },
   { title: 'English', id: '6fgh678' },
   { title: 'Shopping', id: '73bnm45' },
@@ -75,8 +75,12 @@ const Sidebar = () => {
                   <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
                     <BoardForm boardId={item.id} boardTitle={item.title} />
                   </PopUp>
-
-                  <Icon id={'trash'} width={16} height={16} />
+                  <button
+                    className={`boardDeleteButton theme-${currentTheme} `}
+                    onClick={() => {}}
+                  >
+                    <Icon id={'trash'} width={16} height={16} />
+                  </button>
                 </div>
                 <div className={`board-marker theme-${currentTheme}`}></div>
               </div>
