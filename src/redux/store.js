@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-// import { themeReducer } from './theme/themeSlice';
 import { filterReducer } from './filter/filterSlice';
+import { authReducer } from './auth/auth-slice';
+import { workplaceReducer } from './workplace/workplace-slice';
 
 import {
   persistStore,
@@ -14,8 +15,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { authReducer } from './auth/auth-slice';
-
 const persistConfig = {
   key: 'auth',
   storage,
@@ -25,7 +24,7 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    // theme: themeReducer,
+    workplace: workplaceReducer,
     filter: filterReducer,
   },
   middleware(getDefaultMiddleware) {

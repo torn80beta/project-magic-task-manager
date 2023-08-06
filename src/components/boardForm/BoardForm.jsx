@@ -7,7 +7,8 @@ import BoardFormButton from './boardFormButton/BoardFormButton';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addNewBoard } from 'redux/workplace/workplace-operation';
 
 // const iconsSvgInitial = [
 //   { id: 1, value: 'circles' },
@@ -87,6 +88,7 @@ const BoardForm = ({
   boardBackground = 'bg-1',
 }) => {
   const currentTheme = useSelector(selectCurrentTheme);
+  const dispatch = useDispatch();
   const initialValues = {
     // boardTitle: '',
     // svgIcon: 'circles',
@@ -96,14 +98,15 @@ const BoardForm = ({
     icon: boardIcon,
     background: boardBackground,
   };
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     if (boardId) {
       console.log('make PATCH query with current Id');
     } else {
       console.log('make POST query for new board creation');
     }
-    actions.resetForm();
+    dispatch(addNewBoard(values));
+    resetForm();
   };
   return (
     <div className={`boardCardForm_Container theme-${currentTheme}`}>
