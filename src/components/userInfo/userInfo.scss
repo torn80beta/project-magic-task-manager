@@ -1,3 +1,4 @@
+@import '../../styles/variables.scss';
 .user-info {
   display: flex;
   align-items: center;
@@ -14,5 +15,17 @@
   }
   .user-avatar {
     border-radius: 20%;
+  }
+  .avatar {
+    &.theme-light {
+      color: $light-main-text;
+    }
+
+    &.theme-violet {
+      color: $violet-main-text;
+    }
+    &.theme-dark {
+      color: $dark-main-text;
+    }
   }
 }
