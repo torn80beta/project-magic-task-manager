@@ -6,10 +6,9 @@ import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import { useSelector } from 'react-redux';
 import AddColumnForm from 'components/addColumnForm/AddColumnForm';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 //temporary
@@ -23,18 +22,29 @@ const columnsArray = [
   { title: 'Done', id: 7 },
   { title: 'Done', id: 8 },
 ];
+const boardArray = [
+  { title: 'To Do List', id: '1hk677' },
+  { title: 'Home', id: '289kl0' },
+  { title: 'Family', id: '34g56' },
+  { title: 'Garden tree', id: '48hjk90' },
+  { title: 'Project', id: '51gjj24' },
+  { title: 'English', id: '6fgh678' },
+  { title: 'Shopping', id: '73bnm45' },
+];
 
 const ScreensPage = () => {
-  // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
   const { boardName } = useParams();
-
-  useEffect(() => {}, []);
+  const [currentBoardTitle, setCurrentBoard] = useState('');
+  useEffect(() => {
+    const foundBoard = boardArray.find(item => item.id === boardName);
+    foundBoard ? setCurrentBoard(foundBoard.title) : setCurrentBoard('');
+  }, [boardName]);
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
         <h1 className={`screenPage_title theme-${currentTheme}`}>
-          {boardName.split('-').join(' ')}
+          {currentBoardTitle}
         </h1>
         <PopUp
           data={
