@@ -2,14 +2,17 @@ import React from 'react';
 import { useState, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { format, isToday } from 'date-fns';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import DatePicker from 'react-datepicker';
 import './datePicker.scss';
 import Icon from 'components/icon/Icon';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 const DateCalendar = ({ getDeadline }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const currentTheme = useSelector(themeState);
+  // const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
 
   const onChange = date => {
     getDeadline(date);
@@ -41,8 +44,8 @@ const DateCalendar = ({ getDeadline }) => {
         onChange={onChange}
         minDate={new Date()}
         calendarStartDay={1}
-        customInput={<ExampleCustomInput />}
-        // calendarClassName={`button-custom-input theme-${currentTheme}`}
+        customInput={<ExampleCustomInput/>}
+        calendarClassName={`theme-${currentTheme}`}
         // popperPlacement='right-end'
       />
     </div>

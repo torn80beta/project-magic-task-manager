@@ -44,6 +44,7 @@
       padding: 24px 24px 0;
     }
   }
+
   .sidebar_logoIcon {
     width: 32px;
     height: 32px;
@@ -64,6 +65,7 @@
       color: $violet-sidebar-bg;
     }
   }
+
   .logoName {
     color: #fff;
     font-size: 16px;
@@ -313,6 +315,7 @@
       }
     }
   }
+
   .projectsName {
     font-size: 14px;
     font-style: normal;
@@ -320,22 +323,23 @@
     line-height: normal;
     letter-spacing: -0.02em;
   }
+
   .board-marker {
     position: absolute;
-    height: 100%;
-    width: 3px;
+    height: 98%;
     top: 0;
     right: 0;
-    background: #bedbb0;
+    border: 2px solid #bedbb0;
     border-radius: 4px 0px 0px 4px;
+
     &.theme-light {
-      background: $light-main-text;
+      border-color: $light-active-board-marker;
     }
     &.theme-dark {
-      background: $dark-border;
+      border-color: $dark-active-board-marker;
     }
     &.theme-violet {
-      background: $violet-button-text;
+      border-color: $violet-active-board-marker;
     }
   }
 

@@ -7,7 +7,7 @@ import FilterPopup from 'components/filterPopup/FilterPopup';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useSelector } from 'react-redux';
-import AddColumnForm from 'components/addColumnForm/AddColumnForm';
+import ColumnForm from 'components/columnForm/ColumnForm';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -61,11 +61,11 @@ const ScreensPage = () => {
       </div>
 
       <div className={`screenPage_canvas theme-${currentTheme}`}>
-        <div className={`screenPage_columns theme-${currentTheme}`}>
+        <ul className={`screenPage_columns theme-${currentTheme}`}>
           {columnsArray.map(item => (
-            <Columns title={item.title} key={item.id} />
+            <Columns {...item} key={item.id} />
           ))}
-        </div>
+        </ul>
 
         <PopUp
           data={
@@ -83,7 +83,7 @@ const ScreensPage = () => {
             </span>
           }
         >
-          <AddColumnForm />
+          <ColumnForm />
         </PopUp>
       </div>
     </div>
