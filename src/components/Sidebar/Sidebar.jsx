@@ -1,4 +1,3 @@
-// import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
 // import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
@@ -9,37 +8,23 @@ import './sidebar.scss';
 import Icon from '../icon/Icon';
 import { NavLink } from 'react-router-dom';
 import cactusIcon from './img/icons/cactus_2.png';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 const boardArray = [
-  { title: 'To Do List', id: 1, current: false },
-  { title: 'Home', id: 2, current: false },
-  { title: 'Family', id: 3, current: false },
-  { title: 'Garden tree', id: 4, current: true },
-  { title: 'Project', id: 5, current: false },
-  { title: 'English', id: 6, current: false },
-  { title: 'Shopping', id: 7, current: false },
+  { title: 'To Do List', id: '1hk677' },
+  { title: 'Home', id: '289kl0' },
+  { title: 'Family', id: '34g56' },
+  { title: 'Garden tree', id: '48hjk90' },
+  { title: 'Project', id: '51gjj24' },
+  { title: 'English', id: '6fgh678' },
+  { title: 'Shopping', id: '73bnm45' },
 ];
-
 const Sidebar = () => {
   const currentTheme = useSelector(selectCurrentTheme);
-  const [currentBoardTitle, setCurrentBoard] = useState('');
-  const [currentLink, setCurrentLink] = useState(
-    currentBoardTitle.toLowerCase().split(' ').join('-')
-  );
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const findBoard = boardArray.find(item => item.current);
-    setCurrentBoard(findBoard.title);
-    setCurrentLink(currentBoardTitle.toLowerCase().split(' ').join('-'));
-  }, [currentBoardTitle]);
-
-  const changeBoard = e => {
-    // console.log(e);
-  };
   return (
     <div className={`sidebar theme-${currentTheme}`}>
       <div className={`logoWrapper theme-${currentTheme}`}>
@@ -70,51 +55,34 @@ const Sidebar = () => {
 
       <div className={`projects-wrapper theme-${currentTheme}`}>
         <ul className="projectsList">
-          {boardArray.map(item =>
-            !item.current ? (
-              <li key={item.id}>
-                <NavLink
-                  onClick={changeBoard}
-                  to={item.title.toLowerCase().split(' ').join('-')}
-                  className={`projectsLinks theme-${currentTheme}`}
-                >
-                  <Icon id={'puzzle-piece'} width={16} height={16} />
-
-                  <h2 className={`projectsName theme-${currentTheme}`}>
-                    {item.title}
-                  </h2>
-                </NavLink>
-              </li>
-            ) : (
-              <li
-                key={item.id}
-                className={`currentProject theme-${currentTheme}`}
+          {boardArray.map(item => (
+            <li
+              key={item.id}
+              className={`projectsListItem theme-${currentTheme}`}
+            >
+              <NavLink
+                to={`/${item.id}`}
+                className={`projectsLinks theme-${currentTheme}`}
               >
-                <NavLink
-                  to={currentLink}
-                  className={`currentBoardLink theme-${currentTheme}`}
-                >
-                  <Icon id={'four-circles'} width={18} height={18} />
+                <Icon id={'four-circles'} width={18} height={18} />
 
-                  <h2 className={`currentProjectName theme-${currentTheme}`}>
-                    {currentBoardTitle}
-                  </h2>
-                </NavLink>
-                <div className={`tools-wrapper theme-${currentTheme}`}>
-                  <div className={`toolsIcons theme-${currentTheme}`}>
-                    <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                      <BoardForm />
-                    </PopUp>
+                <h2 className={`projectsName theme-${currentTheme}`}>
+                  {item.title}
+                </h2>
+              </NavLink>
+              <div className={`tools-wrapper theme-${currentTheme}`}>
+                <div className={`toolsIcons theme-${currentTheme}`}>
+                  <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
+                    <BoardForm boardId={item.id} boardTitle={item.title} />
+                  </PopUp>
 
-                    <Icon id={'trash'} width={16} height={16} />
-                  </div>
-                  <div className={`board-marker theme-${currentTheme}`}></div>
+                  <Icon id={'trash'} width={16} height={16} />
                 </div>
-              </li>
-            )
-          )}
+                <div className={`board-marker theme-${currentTheme}`}></div>
+              </div>
+            </li>
+          ))}
         </ul>
-        {/* </div> */}
       </div>
 
       <div className={`helpInsideWrapper theme-${currentTheme}`}>
