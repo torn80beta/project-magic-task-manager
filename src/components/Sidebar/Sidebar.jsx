@@ -22,6 +22,7 @@ const boardArray = [
   { title: 'Shopping', id: '73bnm45' },
 ];
 const Sidebar = () => {
+  // const BoardList = useSelector(selectBoard);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 
