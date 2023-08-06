@@ -100,7 +100,13 @@ $wrong-data-text: rgb(255, 99, 99);
 // Calendar
 
 $calendar-line:rgba(22, 22, 22, 0.2);
+$violet-day-disable-text:rgba(22, 22, 22, 0.2);
 $calendar-selected-day:rgba(252, 252, 252, 1);
 $violet-calendar-day-text: rgba(22, 22, 22, 1);
-$violet-navigation-icon-previous: rgba(22, 22, 22, 0.8);
+$calendar-navigation-icon: rgba(22, 22, 22, 0.8);
+$calendar-navigation-icon-dark: rgba(255, 255, 255, 0.8);
 $violet-calendar-weekday-text: rgba(22, 22, 22, 0.5);
+$dark-calendar-line:rgba(252, 252, 252, 0.2);
+$dark-month-text: rgba(255, 255, 255, 1);
+$dark-weekday-text: rgba(255, 255, 255, 0.5);
+$dark-day-disable-text: rgba(255, 255, 255, 0.2)
