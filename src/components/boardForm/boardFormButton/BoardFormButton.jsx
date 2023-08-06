@@ -2,7 +2,7 @@ import React from 'react';
 import Icons from '../../../images/svg/icons_sprite_Board.svg';
 import './boardFormButton.scss';
 
-const BoardFormButton = ({ currentTheme, submitForm, ...props }) => {
+const BoardFormButton = ({ currentTheme, submitForm, boardId, ...props }) => {
   // console.log(props);
   return (
     <div
@@ -20,7 +20,7 @@ const BoardFormButton = ({ currentTheme, submitForm, ...props }) => {
         </svg>
       </span>
       {/* {props.isSubmitting ? 'submitting' : 'Create'} */}
-      Create
+      {boardId ? 'Edit' : 'Create'}
     </div>
   );
 };
