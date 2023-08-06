@@ -4,31 +4,22 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Icon from 'components/icon/Icon';
 import './columnForm.scss';
-import { useParams } from 'react-router';
 
-const ColumnForm = ({ title, id, boardId }) => {
+const ColumnForm = ({ title }) => {
   const theme = useSelector(selectCurrentTheme);
   const [error, setError] = useState('');
-  const [columnName, setColumnName] = useState(title || '');
-  const { boardName } = useParams();
+  const [columnName, setColumnName] = useState(title);
   const onSubmit = e => {
     const InputTitle = e.target.elements.title.value;
     e.preventDefault();
     if (InputTitle === '') {
       setError('Required');
       return;
-    } else if (title && id) {
-      // Edit (PATCH edit column)
-      console.log(`Edit column ${id}`);
-      console.log(id);
-      console.log(InputTitle);
-      // e.target.reset();
+    } else if (title) {
+      console.log('Edit column');
     } else {
-      // Add (POST create column)
       console.log('Add column');
-      console.log(boardName);
-      console.log(InputTitle);
-      // e.target.reset();
+      e.target.reset();
       return;
     }
   };

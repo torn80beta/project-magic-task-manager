@@ -80,7 +80,7 @@ const Columns = ({ id, title }) => {
               </span>
             }
           >
-            <ColumnForm title={title} id={id} />
+            <ColumnForm title={title} />
           </PopUp>
           <span className={`column_headerIcon theme-${currentTheme}`}>
             <Icon id="trash" width="16" height="16" />
