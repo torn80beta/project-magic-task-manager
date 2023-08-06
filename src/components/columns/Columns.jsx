@@ -1,7 +1,8 @@
 // import { themeState } from 'redux/theme/themeSlice';
-import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import { useSelector } from 'react-redux';
+
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
+import { filterState } from 'redux/filter/filterSlice';
 
 import Icon from 'components/icon/Icon';
 import PopUp from 'components/modal/PopUp';
@@ -12,15 +13,15 @@ import Card from 'components/card/Card';
 import './Columns.scss';
 
 const description = `Conduct in-depth research and analysis on the
-   project's topic, gather relevant data, and identify
-   key insights to inform decision-making and project planning.`;
+    project's topic, gather relevant data, and identify
+    key insights to inform decision-making and project planning.`;
 
 const cards = [
   {
     id: 1,
     title: 'Card 1 Title',
     description: description,
-    priority: 'high',
+    priority: 'without',
     deadline: '11/09/2023',
   },
   {
@@ -35,31 +36,40 @@ const cards = [
     id: 3,
     title: 'Card 3 Title',
     description: description,
-    priority: 'low',
+    priority: 'medium',
     deadline: '11/09/2023',
   },
   {
     id: 4,
     title: 'Card 4 Title',
     description: description,
-    priority: 'low',
+    priority: 'high',
     deadline: '11/09/2023',
   },
   {
     id: 5,
     title: 'Card 5 Title',
     description: description,
-    priority: 'low',
+    priority: 'without',
     deadline: '11/09/2023',
   },
 ];
 
-const Columns = ({ title }) => {
+const Columns = ({ id, title }) => {
   // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
+  const filter = useSelector(filterState);
+
+  const getFilteredCards = () => {
+    if (filter === 'all') {
+      return cards;
+    }
+    return cards.filter(({ priority }) => priority.includes(filter));
+  };
+  const filteredCards = getFilteredCards();
 
   return (
-    <div className={`column theme-${currentTheme}`}>
+    <li className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>
         <h2 className={`column_headerTitle theme-${currentTheme}`}>{title}</h2>
         <div className={`column_headerIconWrap theme-${currentTheme}`}>
@@ -79,14 +89,8 @@ const Columns = ({ title }) => {
       </div>
 
       <ul className={`cardsWrap theme-${currentTheme}`}>
-        {cards.map(card => (
-          <Card
-            title={card.title}
-            description={card.description}
-            priority={card.priority}
-            deadline={card.deadline}
-            key={card.id}
-          />
+        {filteredCards.map(card => (
+          <Card {...card} key={card.id} />
         ))}
       </ul>
       <PopUp
@@ -99,9 +103,9 @@ const Columns = ({ title }) => {
           </span>
         }
       >
-        <AddCardForm />
+        <AddCardForm columnId={id} />
       </PopUp>
-    </div>
+    </li>
   );
 };
 export default Columns;

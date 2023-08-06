@@ -3,7 +3,6 @@
 
 .sidebar {
   display: none;
-  // display: flex;
   flex-direction: column;
   height: 100vh;
   align-items: flex-start;
@@ -11,6 +10,7 @@
   max-width: 225px;
   color: white;
   background-color: $dark-sidebar-bg;
+  overflow-y: auto;
 
   &.theme-violet {
     background-color: $violet-sidebar-bg;
@@ -44,6 +44,7 @@
       padding: 24px 24px 0;
     }
   }
+
   .sidebar_logoIcon {
     width: 32px;
     height: 32px;
@@ -64,6 +65,7 @@
       color: $violet-sidebar-bg;
     }
   }
+
   .logoName {
     color: #fff;
     font-size: 16px;
@@ -86,12 +88,13 @@
     flex-direction: column;
     width: 100%;
     gap: 8px;
-    margin-top: 70px;
-    margin-bottom: 40px;
+    margin-top: 60px;
+    margin-bottom: 24px;
 
     @include tablet {
       padding: 0px 24px;
       margin-top: 60px;
+      margin-bottom: 40px;
     }
   }
 
@@ -212,77 +215,8 @@
     }
   }
 
-  .currentProject {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 22px 14px;
-    background-color: #1f1f1f;
-
-    @include tablet {
-      padding: 22px 24px;
-    }
-    &.theme-light {
-      background: $light-screens-bg;
-    }
-    &.theme-dark {
-      background: $dark-screens-bg;
-    }
-    &.theme-violet {
-      background: $dark-50-transparent;
-    }
-  }
-
-  .currentBoardLink {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    @include desktop {
-      gap: 8px;
-    }
-    &.theme-light {
-      color: $light-main-text;
-    }
-    &.theme-dark {
-      color: $dark-main-text;
-    }
-    &.theme-violet {
-      color: $violet-sidebar-text;
-    }
-  }
-
-  .currentProjectName {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.28px;
-    &.theme-light {
-      color: $light-main-text;
-    }
-    &.theme-dark {
-      color: $dark-main-text;
-    }
-    &.theme-violet {
-      color: $violet-button-text;
-    }
-  }
-
   .tools-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    &.theme-light {
-      color: #16161680;
-    }
-    &.theme-dark {
-      color: $dark-50-transparent;
-    }
-    &.theme-violet {
-      color: $dark-50-transparent;
-    }
+    display: none;
   }
 
   .toolsIcons {
@@ -296,7 +230,6 @@
     flex-direction: column;
     gap: 4px;
     width: 100%;
-    // overflow-y: auto;
     min-height: 126px;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -306,15 +239,24 @@
       display: none;
     }
   }
+  .projectsListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
   .projectsLinks {
     display: flex;
     gap: 8px;
     align-items: center;
     width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     padding-left: 24px;
-
+    @include tablet {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
     &.theme-light {
       color: #16161680;
     }
@@ -324,7 +266,56 @@
     &.theme-violet {
       color: $dark-50-transparent;
     }
+
+    &.active {
+      height: 100%;
+      &.theme-light {
+        color: $light-main-text;
+        background: $light-screens-bg;
+      }
+      &.theme-dark {
+        color: $dark-main-text;
+        background: $dark-screens-bg;
+      }
+      &.theme-violet {
+        color: $violet-sidebar-text;
+        background: $dark-50-transparent;
+      }
+    }
+
+    &.active .projectsName {
+      &.theme-light {
+        color: $light-main-text;
+      }
+      &.theme-dark {
+        color: $dark-main-text;
+      }
+      &.theme-violet {
+        color: $violet-button-text;
+      }
+    }
+
+    &.active + .tools-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 20px 20px 20px 0;
+
+      &.theme-light {
+        color: #16161680;
+        background: $light-screens-bg;
+      }
+      &.theme-dark {
+        color: $dark-50-transparent;
+        background: $dark-screens-bg;
+      }
+      &.theme-violet {
+        color: $dark-50-transparent;
+        background: $dark-50-transparent;
+      }
+    }
   }
+
   .projectsName {
     font-size: 14px;
     font-style: normal;
@@ -332,22 +323,23 @@
     line-height: normal;
     letter-spacing: -0.02em;
   }
+
   .board-marker {
     position: absolute;
-    height: 100%;
-    width: 3px;
+    height: 98%;
     top: 0;
     right: 0;
-    background: #bedbb0;
+    border: 2px solid #bedbb0;
     border-radius: 4px 0px 0px 4px;
+
     &.theme-light {
-      background: $light-main-text;
+      border-color: $light-active-board-marker;
     }
     &.theme-dark {
-      background: $dark-border;
+      border-color: $dark-active-board-marker;
     }
     &.theme-violet {
-      background: $violet-button-text;
+      border-color: $violet-active-board-marker;
     }
   }
 
@@ -355,7 +347,7 @@
     align-self: flex-end;
     background-color: #1f1f1f;
     padding: 14px;
-    margin: 0 14px;
+    margin: 20px 14px 0;
     border-radius: 8px;
 
     @include tablet {
@@ -441,7 +433,10 @@
   }
 
   .logOutWrapper {
-    margin: 24px 0px 24px 24px;
+    padding: 18px 0px 18px 24px;
+    @include desktop {
+      padding: 24px 0px 24px 24px;
+    }
   }
 
   .logOutButton {

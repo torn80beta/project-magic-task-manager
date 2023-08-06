@@ -1,22 +1,24 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import './FilterPopup.scss';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import { filterState, changeFilter } from 'redux/filter/filterSlice';
-import { useSelector, useDispatch } from 'react-redux';
+
+import './FilterPopup.scss';
 
 const FilterPopup = () => {
   const dispatch = useDispatch();
   // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
-
   const filter = useSelector(filterState);
+
   const handleFilter = e => {
-    e.target.value === 'without'
-      ? dispatch(changeFilter('empty'))
-      : dispatch(changeFilter(e.target.value));
+    // e.target.value === 'without'
+    //   ? dispatch(changeFilter('empty'))
+    //   : dispatch(changeFilter(e.target.value));
+    dispatch(changeFilter(e.target.value));
   };
+
   useEffect(() => {}, [filter]);
   return (
     <div className={`theme-${currentTheme} filterPopup`}>
@@ -30,7 +32,8 @@ const FilterPopup = () => {
             <input
               className={`filterPopup_showAllBtnInput`}
               type="radio"
-              value="without"
+              // value="without"
+              value="all"
               name="priority"
               onChange={handleFilter}
             />
@@ -41,7 +44,8 @@ const FilterPopup = () => {
         <label className={`filterPopup_label theme-${currentTheme}`}>
           <input
             type="radio"
-            value="empty"
+            // value="empty"
+            value="without"
             name="priority"
             onChange={handleFilter}
           />

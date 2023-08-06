@@ -2,14 +2,30 @@ import React from 'react';
 import { useState, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { format, isToday } from 'date-fns';
-import { themeState } from 'redux/theme/themeSlice';
+// import { themeState } from 'redux/theme/themeSlice';
+import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import DatePicker from 'react-datepicker';
 import './datePicker.scss';
 import Icon from 'components/icon/Icon';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 const DateCalendar = ({ getDeadline }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const currentTheme = useSelector(themeState);
+  // const currentTheme = useSelector(themeState);
+  const currentTheme = useSelector(selectCurrentTheme);
+
+  // const MyContainer = ({ className, children }) => {
+  //   return (
+  //     <div style={{ padding: '16px', background: '#216ba5', color: '#fff' }}>
+  //       <CalendarContainer className={className}>
+  //         <div style={{ background: '#f0f0f0' }}>
+  //           What is your favorite day?
+  //         </div>
+  //         <div style={{ position: 'relative' }}>{children}</div>
+  //       </CalendarContainer>
+  //     </div>
+  //   );
+  // };
 
   const onChange = date => {
     getDeadline(date);
@@ -42,7 +58,7 @@ const DateCalendar = ({ getDeadline }) => {
         minDate={new Date()}
         calendarStartDay={1}
         customInput={<ExampleCustomInput />}
-        // calendarClassName={`button-custom-input theme-${currentTheme}`}
+        calendarClassName={`theme-${currentTheme}`}
         // popperPlacement='right-end'
       />
     </div>
