@@ -86,6 +86,7 @@ const BoardForm = ({
   boardTitle = '',
   boardIcon = 'icon-1',
   boardBackground = 'bg-1',
+  closeModal,
 }) => {
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
@@ -98,6 +99,7 @@ const BoardForm = ({
     icon: boardIcon,
     background: boardBackground,
   };
+
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     if (boardId) {
@@ -107,7 +109,9 @@ const BoardForm = ({
     }
     dispatch(addNewBoard(values));
     resetForm();
+    closeModal();
   };
+
   return (
     <div className={`boardCardForm_Container theme-${currentTheme}`}>
       <h2 className={'boardCardForm_Title'}>

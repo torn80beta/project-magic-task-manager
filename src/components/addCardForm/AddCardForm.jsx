@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { Formik } from 'formik';
 import { Field } from 'formik';
@@ -11,16 +10,17 @@ import './addCardForm.scss';
 const AddCardForm = ({
   columnId = null,
   taskId = null,
+  closeModal,
   // data: { title, description, labelColor, deadline },
   data: { title, description, labelColor, deadline } = {},
 }) => {
   const [date, setDate] = useState('');
-
+  console.log(closeModal);
   const getDeadline = value => {
     setDate(value);
     console.log(date);
   };
-  // const theme = useSelector(themeState);
+
   const theme = useSelector(selectCurrentTheme);
 
   return (
@@ -47,11 +47,14 @@ const AddCardForm = ({
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
           setSubmitting(false);
+          closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
           setSubmitting(false);
+          closeModal();
         } else {
           setSubmitting(false);
+          closeModal();
           return;
         }
       }}
