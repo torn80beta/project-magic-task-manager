@@ -1,23 +1,21 @@
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-
-import Home from 'pages/home/Home';
+import { useEffect, lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './layout/Layout';
-import Welcome from 'pages/welcome/Welcome';
-import Auth from 'pages/auth/Auth';
-import LoginForm from './LoginForm/LoginForm';
-// import RegisterForm from './RegisterForm/RegisterForm';
-// import { selectCurrentTheme } from 'redux/auth/auth-slice';
-import NotFound from 'pages/notFound/NotFound';
-import ScreensPage from './ScreensPage/ScreensPage';
 import { PrivateRoute } from 'helpers/PrivateRoute';
 import { RestrictedRoute } from 'helpers/RestrictedRoute';
 import { getCurrentUser } from 'redux/auth/auth-operation';
+import Loader from './loader/Loader';
+
+const HomePage = lazy(() => import('../pages/home/Home'));
+const Welcome = lazy(() => import('../pages/welcome/Welcome'));
+const Auth = lazy(() => import('../pages/auth/Auth'));
+const LoginForm = lazy(() => import('./LoginForm/LoginForm'));
+const ScreensPage = lazy(() => import('./ScreensPage/ScreensPage'));
+const NotFound = lazy(() => import('../pages/notFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const theme = useSelector(selectCurrentTheme);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -28,47 +26,39 @@ export const App = () => {
       {
         path: '/',
         element: <Layout />,
-        // loader: Loader,
+        loader: Loader,
         children: [
           {
             path: '/',
             element: (
-              <PrivateRoute redirectTo="/welcome" component={<Home />} />
+              <PrivateRoute redirectTo="/welcome" component={<HomePage />} />
             ),
+            loader: Loader,
             children: [
               {
                 path: '/:boardName',
                 element: <ScreensPage />,
+                loader: Loader,
               },
             ],
           },
           {
             path: '/welcome',
             element: <RestrictedRoute redirectTo="/" component={<Welcome />} />,
+            loader: Loader,
           },
           {
             path: '/auth',
             element: <RestrictedRoute redirectTo="/" component={<Auth />} />,
+            loader: Loader,
             children: [
               {
                 path: '/auth/:id',
                 element: (
                   <RestrictedRoute redirectTo="/" component={<LoginForm />} />
                 ),
-                // element: <LoginForm />,
-                // loader: Loader,
+                loader: Loader,
               },
-              // {
-              //   path: '/auth/:id',
-              //   element: (
-              //     <RestrictedRoute
-              //       redirectTo="/"
-              //       component={<RegisterForm />}
-              //     />
-              //   ),
-              //   // element: <Register />,
-              //   // loader: Loader,
-              // },
             ],
           },
         ],
@@ -76,6 +66,7 @@ export const App = () => {
       {
         path: '*',
         element: <NotFound />,
+        loader: Loader,
       },
     ],
     {
@@ -83,5 +74,9 @@ export const App = () => {
     }
   );
 
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 };
