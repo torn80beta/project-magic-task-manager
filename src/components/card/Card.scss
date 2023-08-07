@@ -82,14 +82,15 @@
 
 .cardLine {
   display: flex;
+  
   &.theme-light {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(22, 22, 22, 0.1);
   }
   &.theme-dark {
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
   &.theme-violet {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(22, 22, 22, 0.1);
   }
 }
 

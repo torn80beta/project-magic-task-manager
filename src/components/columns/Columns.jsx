@@ -12,14 +12,12 @@ import Card from 'components/card/Card';
 
 import './Columns.scss';
 
-const description = `Conduct in-depth research and analysis on the 
-project's topic, gather relevant data, and identify
-key insights to inform decision-making and project planning.`;
+const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
 
 const cards = [
   {
     id: 1,
-    title: 'Card 1 Title',
+    title: 'The Watch Spot Design',
     description: description,
     priority: 'without',
     deadline: '11/09/2023',
