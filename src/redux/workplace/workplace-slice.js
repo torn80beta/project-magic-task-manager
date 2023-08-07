@@ -33,6 +33,7 @@ const workplaceSlice = createSlice({
       .addCase(addNewBoard.fulfilled, (state, action) => {
         // const { name, background, icon, _id: id } = action.payload;
         // state.board = { name, background, icon, id };
+
         state.board = action.payload;
         state.isLoading = false;
       })

@@ -11,6 +11,8 @@ import {
   editTask,
   getBoard,
 } from 'api/workplace.js';
+
+// import { getCurrentUser } from 'redux/auth/auth-operation';
 import axios from 'axios';
 
 const token = {
