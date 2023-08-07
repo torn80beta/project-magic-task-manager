@@ -3,16 +3,22 @@ import './home.scss';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Header from 'components/header/Header';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import Loader from 'components/loader/Loader';
+import { getAllBoards } from 'redux/workplace/workplace-operation';
 
 const Home = () => {
   const theme = useSelector(selectCurrentTheme);
   const shouldRenderHomePage =
     Object.keys(useParams()).length > 0 ? false : true;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllBoards());
+  }, [dispatch]);
 
   return (
     <div className="home">
