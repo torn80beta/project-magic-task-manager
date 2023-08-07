@@ -2,10 +2,9 @@ import React from 'react';
 import Modal from 'react-modal';
 import Icon from 'components/icon/Icon';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import { useSelector } from 'react-redux';
-
 import './popup.scss';
+
 Modal.setAppElement('#root');
 
 const PopUp = props => {
