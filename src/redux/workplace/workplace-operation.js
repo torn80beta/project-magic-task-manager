@@ -30,7 +30,6 @@ export const addNewBoard = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await addBoard(credentials);
-      thunkAPI.dispatch(getAllBoards());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
