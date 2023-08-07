@@ -11,7 +11,6 @@ const PopUp = props => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const { children, data } = props;
   const currentTheme = useSelector(selectCurrentTheme);
-
   function openModal() {
     setIsOpen(true);
   }

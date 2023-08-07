@@ -12,7 +12,7 @@ import {
   getBoard,
 } from 'api/workplace.js';
 
-// import { getCurrentUser } from 'redux/auth/auth-operation';
+import { getCurrentUser } from 'redux/auth/auth-operation';
 import axios from 'axios';
 
 const token = {
@@ -30,6 +30,7 @@ export const addNewBoard = createAsyncThunk(
     try {
       const { data } = await addBoard(credentials);
       token.set(data.token);
+      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -43,6 +44,7 @@ export const getBoardById = createAsyncThunk(
     try {
       const { data } = await getBoard(id);
       token.set(data.token);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -56,6 +58,7 @@ export const editBoardById = createAsyncThunk(
     try {
       const { data } = await editBoard(editedBoard);
       token.set(data.token);
+      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -69,6 +72,7 @@ export const deleteBoardById = createAsyncThunk(
     try {
       const { data } = await deleteBoard(id);
       token.set(data.token);
+      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

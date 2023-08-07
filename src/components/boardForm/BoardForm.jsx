@@ -9,6 +9,7 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewBoard } from 'redux/workplace/workplace-operation';
+import { editBoardById } from 'redux/workplace/workplace-operation';
 
 // const iconsSvgInitial = [
 //   { id: 1, value: 'circles' },
@@ -101,13 +102,14 @@ const BoardForm = ({
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
     if (boardId) {
-      console.log('make PATCH query with current Id');
+      values.id = boardId;
+      console.log('values', values);
+      dispatch(editBoardById(values));
     } else {
-      console.log('make POST query for new board creation');
+      dispatch(addNewBoard(values));
     }
-    dispatch(addNewBoard(values));
+
     resetForm();
     closeModal();
   };
@@ -123,8 +125,8 @@ const BoardForm = ({
         onSubmit={handleSubmit}
       >
         {props => {
-          // console.log(props.values);
           const { values } = props;
+
           return (
             <Form>
               <label className={'boardCardForm_label'} htmlFor="name"></label>

@@ -6,7 +6,7 @@ import './sidebar.scss';
 import Icon from '../icon/Icon';
 import { NavLink } from 'react-router-dom';
 import cactusIcon from './img/icons/cactus_2.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
 import {
   selectCurrentTheme,
@@ -17,17 +17,21 @@ import { deleteBoardById } from 'redux/workplace/workplace-operation';
 
 const Sidebar = () => {
   const selectedBoards = useSelector(selectCurrentUserBoards);
-  const [boardsList] = useState(selectedBoards);
+  const [boardsList, setBoardList] = useState(selectedBoards);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 
-  console.log(boardsList);
-  const onBoardChange = () => {
+  const onAnotherBoard = () => {
     dispatch(changeFilter('all'));
   };
   const onDeleteButton = boardId => {
     dispatch(deleteBoardById(boardId));
   };
+
+  useEffect(() => {
+    setBoardList(selectedBoards);
+  }, [selectedBoards, boardsList]);
+
   return (
     <div className={`sidebar theme-${currentTheme}`}>
       <div className={`logoWrapper theme-${currentTheme}`}>
@@ -58,38 +62,39 @@ const Sidebar = () => {
 
       <div className={`projects-wrapper theme-${currentTheme}`}>
         <ul className="projectsList">
-          {boardsList.map(item => (
-            <li
-              key={item._id}
-              className={`projectsListItem theme-${currentTheme}`}
-            >
-              <NavLink
-                to={`/${item._id}`}
-                className={`projectsLinks theme-${currentTheme}`}
-                onClick={onBoardChange}
+          {boardsList &&
+            boardsList.map(item => (
+              <li
+                key={item._id}
+                className={`projectsListItem theme-${currentTheme}`}
               >
-                <Icon id={item.icon} width={18} height={18} />
+                <NavLink
+                  to={`/${item._id}`}
+                  className={`projectsLinks theme-${currentTheme}`}
+                  onClick={onAnotherBoard}
+                >
+                  <Icon id={item.icon} width={18} height={18} />
 
-                <h2 className={`projectsName theme-${currentTheme}`}>
-                  {item.name}
-                </h2>
-              </NavLink>
-              <div className={`tools-wrapper theme-${currentTheme}`}>
-                <div className={`toolsIcons theme-${currentTheme}`}>
-                  <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                    <BoardForm boardId={item.id} boardTitle={item.title} />
-                  </PopUp>
-                  <button
-                    className={`boardDeleteButton theme-${currentTheme} `}
-                    onClick={() => onDeleteButton('64d00925fdec1417f177017d')}
-                  >
-                    <Icon id={'trash'} width={16} height={16} />
-                  </button>
+                  <h2 className={`projectsName theme-${currentTheme}`}>
+                    {item.name}
+                  </h2>
+                </NavLink>
+                <div className={`tools-wrapper theme-${currentTheme}`}>
+                  <div className={`toolsIcons theme-${currentTheme}`}>
+                    <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
+                      <BoardForm boardId={item._id} boardTitle={item.name} />
+                    </PopUp>
+                    <button
+                      className={`boardDeleteButton theme-${currentTheme} `}
+                      onClick={() => onDeleteButton(item._id)}
+                    >
+                      <Icon id={'trash'} width={16} height={16} />
+                    </button>
+                  </div>
+                  <div className={`board-marker theme-${currentTheme}`}></div>
                 </div>
-                <div className={`board-marker theme-${currentTheme}`}></div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))}
         </ul>
       </div>
 

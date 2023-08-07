@@ -40,17 +40,22 @@ const ScreensPage = () => {
   const currentTheme = useSelector(selectCurrentTheme);
   const { boardName } = useParams();
   const selectedBoards = useSelector(selectCurrentUserBoards);
-  const [boardsList] = useState(selectedBoards);
-
+  const [boardsList, setBoardList] = useState(selectedBoards);
   const [currentBoardTitle, setCurrentBoard] = useState('');
   // const dispatch = useDispatch(boardsList);
 
   useEffect(() => {
-    const foundBoard = boardsList.find(item => item._id === boardName);
-    console.log(boardsList);
+    const foundBoard =
+      boardsList && boardsList.find(item => item._id === boardName);
     foundBoard ? setCurrentBoard(foundBoard.name) : setCurrentBoard('');
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [boardName]);
+  }, [boardsList, boardName]);
+
+  useEffect(() => {
+    setBoardList(selectedBoards);
+  }, [selectedBoards]);
+
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
