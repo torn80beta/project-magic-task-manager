@@ -41,9 +41,10 @@ const deleteColumn = async id => {
     .delete(`/columns/${id}`)
     .catch(e => console.log(e.request.response));
 };
-const addTask = async newColumn => {
+
+const addTask = async (idColumn, newTask) => {
   return await axios
-    .post('/tasks', newColumn)
+    .post(`/tasks/${idColumn}`, newTask)
     .catch(e => console.log(e.request.response));
 };
 

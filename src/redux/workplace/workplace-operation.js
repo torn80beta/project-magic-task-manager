@@ -71,7 +71,6 @@ export const addNewColumn = createAsyncThunk(
     try {
       // console.log('cred', credentials);
       const { data } = await addColumn(credentials);
-      // console.log('data', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
