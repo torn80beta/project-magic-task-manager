@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './layout/Layout';
 import { PrivateRoute } from 'helpers/PrivateRoute';
@@ -74,9 +74,5 @@ export const App = () => {
     }
   );
 
-  return (
-    <Suspense fallback={<Loader />}>
-      <RouterProvider router={router} />
-    </Suspense>
-  );
+  return <RouterProvider router={router} />;
 };

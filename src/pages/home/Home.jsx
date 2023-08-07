@@ -6,6 +6,8 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useSelector } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
+import { Suspense } from 'react';
+import Loader from 'components/loader/Loader';
 
 const Home = () => {
   const theme = useSelector(selectCurrentTheme);
@@ -17,7 +19,10 @@ const Home = () => {
       <Sidebar />
       <div className={`home-wrapper theme-${theme}`}>
         <Header />
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+
         {shouldRenderHomePage && (
           <div className={`home-content-wrapper`}>
             <p className={`home-text theme-${theme}`}>
