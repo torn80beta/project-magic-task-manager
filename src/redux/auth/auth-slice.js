@@ -7,6 +7,11 @@ import {
   getCurrentUser,
   editUserTheme,
 } from './auth-operation';
+import {
+  addNewBoard,
+  editBoardById,
+  deleteBoardById,
+} from 'redux/workplace/workplace-operation';
 
 const initialState = {
   user: { name: null, email: null, avatar: null },
@@ -87,6 +92,20 @@ const authSlice = createSlice({
       .addCase(editUserTheme.fulfilled, (state, action) => {
         state.theme = action.payload.theme;
         state.isLoading = false;
+      })
+      .addCase(addNewBoard.fulfilled, (state, action) => {
+        state.boards.push(action.payload);
+      })
+      .addCase(editBoardById.fulfilled, (state, action) => {
+        return state.boards.filter(item => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
+      })
+      .addCase(deleteBoardById.fulfilled, (state, action) => {
+        return state.boards.filter(item => item._id !== action.payload._id);
       });
   },
 });
