@@ -31,7 +31,7 @@ import {
 //   { title: 'Shopping', id: '73bnm45' },
 // ];
 const Sidebar = () => {
-  const boardArray = useSelector(selectAllBoards);
+  const boardArray = useSelector(selectAllBoards).toReversed();
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 

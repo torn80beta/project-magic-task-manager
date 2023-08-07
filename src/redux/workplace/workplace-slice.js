@@ -40,7 +40,7 @@ const workplaceSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
-        state.boardsList.unshift(action.payload);
+        state.boardsList.push(action.payload);
         state.isLoading = false;
       })
       .addCase(getBoardById.pending, state => {
