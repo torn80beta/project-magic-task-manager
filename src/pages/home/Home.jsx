@@ -4,8 +4,8 @@ import Sidebar from 'components/Sidebar/Sidebar';
 import Header from 'components/header/Header';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useSelector } from 'react-redux';
-import PopUp from 'components/modal/PopUp';
-import BoardForm from 'components/boardForm/BoardForm';
+// import PopUp from 'components/modal/PopUp';
+// import BoardForm from 'components/boardForm/BoardForm';
 
 const Home = () => {
   const theme = useSelector(selectCurrentTheme);
@@ -16,7 +16,7 @@ const Home = () => {
       <div className={`home-wrapper theme-${theme}`}>
         <Header />
         <Outlet />
-        <div className={`home-content-wrapper`}>
+        {/* <div className={`home-content-wrapper`}>
           <p className={`home-text theme-${theme}`}>
             Before starting your project, it is essential{' '}
             <PopUp
@@ -32,7 +32,7 @@ const Home = () => {
             board serves as a powerful tool to organize the workflow and ensure
             effective collaboration among team members.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
