@@ -60,12 +60,19 @@
   }
 }
 
-.column_headerIconWrap {
+.column_buttonWrap {
   display: flex;
   gap: 8px;
 }
 
-.column_headerIcon {
+.column_buttonBox {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.column_buttonIcon {
   display: block;
   width: 16px;
   height: 16px;
@@ -91,7 +98,7 @@
   }
 }
 
-.column_button {
+.column_buttonAdd {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,7 +143,7 @@
   }
 }
 
-.column_buttonIcon {
+.column_buttonAddIcon {
   display: flex;
   justify-content: center;
   align-items: center;

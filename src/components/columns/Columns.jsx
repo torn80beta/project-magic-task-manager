@@ -57,6 +57,16 @@ const Columns = ({ id, title }) => {
   // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
   const filter = useSelector(filterState);
+
+  const handleDeleteButton = columnId => {
+    if (cards.length !== 0) {
+      console.log('The column must be empty');
+      return;
+    }
+    console.log(`Column deleted ${columnId}`);
+    // робимо DELETE запит при кліку
+  };
+
   const getFilteredCards = () => {
     if (filter === 'all') {
       return cards;
@@ -69,19 +79,24 @@ const Columns = ({ id, title }) => {
     <li className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>
         <h2 className={`column_headerTitle theme-${currentTheme}`}>{title}</h2>
-        <div className={`column_headerIconWrap theme-${currentTheme}`}>
+        <div className={`column_buttonWrap theme-${currentTheme}`}>
           <PopUp
             data={
-              <span className={`column_headerIcon theme-${currentTheme}`}>
+              <span className={`column_buttonIcon theme-${currentTheme}`}>
                 <Icon id="pencil" width="16" height="16" />
               </span>
             }
           >
             <ColumnForm title={title} id={id} />
           </PopUp>
-          <span className={`column_headerIcon theme-${currentTheme}`}>
-            <Icon id="trash" width="16" height="16" />
-          </span>
+          <button
+            className={`column_buttonBox theme-${currentTheme}`}
+            onClick={() => handleDeleteButton(id)}
+          >
+            <span className={`column_buttonIcon theme-${currentTheme}`}>
+              <Icon id="trash" width="16" height="16" />
+            </span>
+          </button>
         </div>
       </div>
 
@@ -92,8 +107,8 @@ const Columns = ({ id, title }) => {
       </ul>
       <PopUp
         data={
-          <span className={`column_button theme-${currentTheme}`}>
-            <span className={`column_buttonIcon theme-${currentTheme}`}>
+          <span className={`column_buttonAdd theme-${currentTheme}`}>
+            <span className={`column_buttonAddIcon theme-${currentTheme}`}>
               <Icon id="plus" width="14" height="14" />
             </span>
             Add another card
