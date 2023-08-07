@@ -18,7 +18,7 @@ const editBoard = async ({ name, background, icon, id }) => {
     .catch(e => console.log(e.request.response));
 };
 
-const deleteBoard = async ({ id }) => {
+const deleteBoard = async id => {
   return await axios
     .delete(`/boards/${id}`)
     .catch(e => console.log(e.request.response));
@@ -36,7 +36,7 @@ const editColumn = async ({ name, id }) => {
     .catch(e => console.log(e.request.response));
 };
 
-const deleteColumn = async ({ id }) => {
+const deleteColumn = async id => {
   return await axios
     .delete(`/columns/${id}`)
     .catch(e => console.log(e.request.response));
@@ -53,7 +53,7 @@ const editTask = async ({ title, description, labelColor, deadline, id }) => {
     .catch(e => console.log(e.request.response));
 };
 
-const deleteTask = async ({ id }) => {
+const deleteTask = async id => {
   return await axios
     .delete(`/tasks/${id}`)
     .catch(e => console.log(e.request.response));
