@@ -11,7 +11,6 @@ const AddCardForm = ({
   columnId = null,
   taskId = null,
   closeModal,
-  // data: { title, description, labelColor, deadline },
   data: { title, description, labelColor, deadline } = {},
 }) => {
   const [date, setDate] = useState('');
@@ -25,9 +24,6 @@ const AddCardForm = ({
   return (
     <Formik
       initialValues={{
-        // title: title ? title : '',
-        // desc: description ? description : '',
-        // priority: labelColor ? labelColor : 'without',
         title: title || '',
         desc: description || '',
         priority: labelColor || 'without',

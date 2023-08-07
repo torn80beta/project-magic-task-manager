@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import EllipsisText from 'react-ellipsis-text';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
@@ -46,7 +47,9 @@ const Card = ({ id, title, description, priority, deadline, columnId }) => {
     >
       <div>
         <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
-        <p className={`cardDescription theme-${currentTheme}`}>{description}</p>
+        <p className={`cardDescription theme-${currentTheme}`}>
+          <EllipsisText className={`cardDescription`}text={description} length={100} />
+        </p>
         <span className={`cardLine theme-${currentTheme}`} />
         <div className={`topWrapper theme-${currentTheme}`}>
           <div className={`cardPriority theme-${currentTheme}`}>
