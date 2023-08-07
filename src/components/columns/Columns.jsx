@@ -11,9 +11,9 @@ import AddCardForm from 'components/addCardForm/AddCardForm';
 import Card from 'components/card/Card';
 
 import './Columns.scss';
-import { selectColumns, selectTasks } from 'redux/workplace/workplace-slice';
+import { selectColumns } from 'redux/workplace/workplace-slice';
 
-const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
+// const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
 
 // const cards = [
 //   {
@@ -109,12 +109,9 @@ const Columns = ({ _id: id, name }) => {
       </div>
 
       <ul className={`cardsWrap theme-${currentTheme}`}>
-        {filteredCards.map(
-          card => (
-            console.log(card),
-            (<Card {...{ ...card, columnId: id }} key={card._id} />)
-          )
-        )}
+        {filteredCards.map(card => (
+          <Card {...{ ...card, columnId: id }} key={card._id} />
+        ))}
       </ul>
       <PopUp
         data={
