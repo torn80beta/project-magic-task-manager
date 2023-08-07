@@ -58,9 +58,10 @@ const Columns = ({ _id: id, name }) => {
   // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
 
-  const cardsList = useSelector(selectColumns);
-  console.log('cardsList:', cardsList);
-  const cards = cardsList[cardsList.findIndex(item => item._id === id)].tasks;
+  const columnsList = useSelector(selectColumns);
+  console.log('columnsList:', columnsList);
+  const cards =
+    columnsList[columnsList.findIndex(item => item._id === id)].tasks;
   console.log('cards:', cards);
 
   const filter = useSelector(filterState);
@@ -78,7 +79,7 @@ const Columns = ({ _id: id, name }) => {
     if (filter === 'all') {
       return cards;
     }
-    return cards.filter(({ priority }) => priority.includes(filter));
+    return cards.filter(({ labelColor }) => labelColor.includes(filter));
   };
   const filteredCards = getFilteredCards();
   console.log('filteredCards:', filteredCards);
@@ -87,7 +88,7 @@ const Columns = ({ _id: id, name }) => {
     <li className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>
         <h2 className={`column_headerTitle theme-${currentTheme}`}>{name}</h2>
-        <div className={`column_headerIconWrap theme-${currentTheme}`}>
+        <div className={`column_buttonWrap theme-${currentTheme}`}>
           <PopUp
             data={
               <span className={`column_buttonIcon theme-${currentTheme}`}>
