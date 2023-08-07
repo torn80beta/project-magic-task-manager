@@ -11,13 +11,14 @@ import {
   editTask,
   getBoard,
 } from 'api/workplace.js';
+import { getCurrentUser } from 'redux/auth/auth-operation';
 
 export const addNewBoard = createAsyncThunk(
   'board/add',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await addBoard(credentials);
-
+      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -30,7 +31,7 @@ export const getBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await getBoard(id);
-
+      // console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -43,7 +44,7 @@ export const editBoardById = createAsyncThunk(
   async (editedBoard, thunkAPI) => {
     try {
       const { data } = await editBoard(editedBoard);
-
+      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -56,7 +57,7 @@ export const deleteBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await deleteBoard(id);
-
+      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -68,8 +69,8 @@ export const addNewColumn = createAsyncThunk(
   'column/add',
   async (credentials, thunkAPI) => {
     try {
+      // console.log('cred', credentials);
       const { data } = await addColumn(credentials);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

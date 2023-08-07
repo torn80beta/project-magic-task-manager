@@ -1,4 +1,3 @@
-// import { themeState } from 'redux/theme/themeSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
@@ -7,28 +6,33 @@ import './sidebar.scss';
 import Icon from '../icon/Icon';
 import { NavLink } from 'react-router-dom';
 import cactusIcon from './img/icons/cactus_2.png';
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
-import { selectCurrentTheme } from 'redux/auth/auth-slice';
+import {
+  selectCurrentTheme,
+  selectCurrentUserBoards,
+} from 'redux/auth/auth-slice';
 import { changeFilter } from 'redux/filter/filterSlice';
+import { deleteBoardById } from 'redux/workplace/workplace-operation';
+import { getBoardById } from 'redux/workplace/workplace-operation';
 
-const boardArray = [
-  { title: 'To Do List', id: '1hk677' },
-  { title: 'Home', id: '289kl0' },
-  { title: 'Family', id: '34g56' },
-  { title: 'Garden', id: '48hjk90' },
-  { title: 'Project', id: '51gjj24' },
-  { title: 'English', id: '6fgh678' },
-  { title: 'Shopping', id: '73bnm45' },
-];
 const Sidebar = () => {
-  // const BoardList = useSelector(selectBoard);
+  const selectedBoards = useSelector(selectCurrentUserBoards);
+  const [boardsList, setBoardList] = useState(selectedBoards);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 
-  const onBoardChange = () => {
+  const onAnotherBoard = boardId => {
     dispatch(changeFilter('all'));
+    dispatch(getBoardById(boardId));
   };
+  const onDeleteButton = boardId => {
+    dispatch(deleteBoardById(boardId));
+  };
+
+  useEffect(() => {
+    setBoardList(selectedBoards);
+  }, [selectedBoards, boardsList]);
 
   return (
     <div className={`sidebar theme-${currentTheme}`}>
@@ -60,38 +64,39 @@ const Sidebar = () => {
 
       <div className={`projects-wrapper theme-${currentTheme}`}>
         <ul className="projectsList">
-          {boardArray.map(item => (
-            <li
-              key={item.id}
-              className={`projectsListItem theme-${currentTheme}`}
-            >
-              <NavLink
-                to={`/${item.id}`}
-                className={`projectsLinks theme-${currentTheme}`}
-                onClick={onBoardChange}
+          {boardsList &&
+            boardsList.map(item => (
+              <li
+                key={item._id}
+                className={`projectsListItem theme-${currentTheme}`}
               >
-                <Icon id={'four-circles'} width={18} height={18} />
+                <NavLink
+                  to={`/${item._id}`}
+                  className={`projectsLinks theme-${currentTheme}`}
+                  onClick={onAnotherBoard(item._id)}
+                >
+                  <Icon id={item.icon} width={18} height={18} />
 
-                <h2 className={`projectsName theme-${currentTheme}`}>
-                  {item.title}
-                </h2>
-              </NavLink>
-              <div className={`tools-wrapper theme-${currentTheme}`}>
-                <div className={`toolsIcons theme-${currentTheme}`}>
-                  <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                    <BoardForm boardId={item.id} boardTitle={item.title} />
-                  </PopUp>
-                  <button
-                    className={`boardDeleteButton theme-${currentTheme} `}
-                    onClick={() => {}}
-                  >
-                    <Icon id={'trash'} width={16} height={16} />
-                  </button>
+                  <h2 className={`projectsName theme-${currentTheme}`}>
+                    {item.name}
+                  </h2>
+                </NavLink>
+                <div className={`tools-wrapper theme-${currentTheme}`}>
+                  <div className={`toolsIcons theme-${currentTheme}`}>
+                    <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
+                      <BoardForm boardId={item._id} boardTitle={item.name} />
+                    </PopUp>
+                    <button
+                      className={`boardDeleteButton theme-${currentTheme} `}
+                      onClick={() => onDeleteButton(item._id)}
+                    >
+                      <Icon id={'trash'} width={16} height={16} />
+                    </button>
+                  </div>
+                  <div className={`board-marker theme-${currentTheme}`}></div>
                 </div>
-                <div className={`board-marker theme-${currentTheme}`}></div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))}
         </ul>
       </div>
 
