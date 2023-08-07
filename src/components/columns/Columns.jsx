@@ -87,7 +87,7 @@ const Columns = ({ _id: id, name }) => {
     <li className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>
         <h2 className={`column_headerTitle theme-${currentTheme}`}>{name}</h2>
-        <div className={`column_headerIconWrap theme-${currentTheme}`}>
+        <div className={`column_buttonWrap theme-${currentTheme}`}>
           <PopUp
             data={
               <span className={`column_buttonIcon theme-${currentTheme}`}>
