@@ -31,14 +31,7 @@ const Card = ({ id, title, description, priority, deadline, columnId }) => {
   const formattedDeadline = convertToDateFormat(deadline);
   const isToday = today.toDateString() === formattedDeadline.toDateString();
 
-  const [setShowModal] = useState(false);
-
-  const onOpen = () => {
-    setShowModal(true);
-  };
-  // const onClose = () => {
-  //   setShowModal(false);
-  // };
+ 
 
   return (
     <div
@@ -48,9 +41,9 @@ const Card = ({ id, title, description, priority, deadline, columnId }) => {
       <div>
         <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
         <p className={`cardDescription theme-${currentTheme}`}>
-          <EllipsisText className={`cardDescription`}text={description} length={100} />
+          <EllipsisText text={description} length={100} />
         </p>
-        <span className={`cardLine theme-${currentTheme}`} />
+        <hr className={`cardLine theme-${currentTheme}`} />
         <div className={`topWrapper theme-${currentTheme}`}>
           <div className={`cardPriority theme-${currentTheme}`}>
             <div>
@@ -82,7 +75,7 @@ const Card = ({ id, title, description, priority, deadline, columnId }) => {
             <PopUp
               data={
                 <span className={`cardIcon theme-${currentTheme}`}>
-                  <Icon id={'pencil'} width={16} height={16} onClick={onOpen} />
+                  <Icon id={'pencil'} width={16} height={16}  />
                 </span>
               }
             >
