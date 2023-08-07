@@ -14,6 +14,7 @@ import {
 } from 'redux/auth/auth-slice';
 import { changeFilter } from 'redux/filter/filterSlice';
 import { deleteBoardById } from 'redux/workplace/workplace-operation';
+import { getBoardById } from 'redux/workplace/workplace-operation';
 
 const Sidebar = () => {
   const selectedBoards = useSelector(selectCurrentUserBoards);
@@ -21,8 +22,9 @@ const Sidebar = () => {
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 
-  const onAnotherBoard = () => {
+  const onAnotherBoard = boardId => {
     dispatch(changeFilter('all'));
+    dispatch(getBoardById(boardId));
   };
   const onDeleteButton = boardId => {
     dispatch(deleteBoardById(boardId));
@@ -71,7 +73,7 @@ const Sidebar = () => {
                 <NavLink
                   to={`/${item._id}`}
                   className={`projectsLinks theme-${currentTheme}`}
-                  onClick={onAnotherBoard}
+                  onClick={onAnotherBoard(item._id)}
                 >
                   <Icon id={item.icon} width={18} height={18} />
 

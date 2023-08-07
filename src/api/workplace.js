@@ -24,9 +24,9 @@ const deleteBoard = async id => {
     .catch(e => console.log(e.request.response));
 };
 
-const addColumn = async newColumn => {
+const addColumn = async ({ idBoard, newColumn }) => {
   return await axios
-    .post('/columns', newColumn)
+    .post(`/columns/${idBoard}`, { name: newColumn })
     .catch(e => console.log(e.request.response));
 };
 
@@ -36,7 +36,7 @@ const editColumn = async ({ name, id }) => {
     .catch(e => console.log(e.request.response));
 };
 
-const deleteColumn = async ({ id }) => {
+const deleteColumn = async id => {
   return await axios
     .delete(`/columns/${id}`)
     .catch(e => console.log(e.request.response));
