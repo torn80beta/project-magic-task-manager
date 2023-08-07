@@ -10,15 +10,27 @@ import {
   editColumn,
   editTask,
   getBoard,
+  getBoards,
 } from 'api/workplace.js';
 import { getCurrentUser } from 'redux/auth/auth-operation';
 
 export const addNewBoard = createAsyncThunk(
-  'board/add',
+  'boards/add',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await addBoard(credentials);
       thunkAPI.dispatch(getCurrentUser());
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const getAllBoards = createAsyncThunk(
+  'boards/getAll',
+  async thunkAPI => {
+    try {
+      const { data } = await getBoards();
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -31,7 +43,6 @@ export const getBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await getBoard(id);
-      // console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -44,7 +55,6 @@ export const editBoardById = createAsyncThunk(
   async (editedBoard, thunkAPI) => {
     try {
       const { data } = await editBoard(editedBoard);
-      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -57,7 +67,6 @@ export const deleteBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await deleteBoard(id);
-      thunkAPI.dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -66,7 +75,7 @@ export const deleteBoardById = createAsyncThunk(
 );
 
 export const addNewColumn = createAsyncThunk(
-  'column/add',
+  'columns/add',
   async (credentials, thunkAPI) => {
     try {
       // console.log('cred', credentials);
@@ -78,7 +87,7 @@ export const addNewColumn = createAsyncThunk(
   }
 );
 export const editColumnById = createAsyncThunk(
-  'column/edit',
+  'columns/edit',
   async (editedColumn, thunkAPI) => {
     try {
       const { data } = await editColumn(editedColumn);
@@ -89,11 +98,10 @@ export const editColumnById = createAsyncThunk(
   }
 );
 export const deleteColumnById = createAsyncThunk(
-  'column/delete',
+  'columns/delete',
   async (id, thunkAPI) => {
     try {
       const { data } = await deleteColumn(id);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -102,11 +110,10 @@ export const deleteColumnById = createAsyncThunk(
 );
 
 export const addNewTask = createAsyncThunk(
-  'task/add',
+  'tasks/add',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await addTask(credentials);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -114,11 +121,10 @@ export const addNewTask = createAsyncThunk(
   }
 );
 export const editTaskById = createAsyncThunk(
-  'task/edit',
+  'tasks/edit',
   async (editedColumn, thunkAPI) => {
     try {
       const { data } = await editTask(editedColumn);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -126,11 +132,10 @@ export const editTaskById = createAsyncThunk(
   }
 );
 export const deleteTaskById = createAsyncThunk(
-  'task/delete',
+  'tasks/delete',
   async (id, thunkAPI) => {
     try {
       const { data } = await deleteTask(id);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -139,11 +144,10 @@ export const deleteTaskById = createAsyncThunk(
 );
 
 export const dragTaskById = createAsyncThunk(
-  'task/dragTask',
+  'tasks/dragTask',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await editTask(credentials);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

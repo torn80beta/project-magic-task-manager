@@ -5,6 +5,9 @@ const addBoard = async newBoard => {
     .post('/boards', newBoard)
     .catch(e => console.log(e.request.response));
 };
+const getBoards = async () => {
+  return await axios.get(`/boards`).catch(e => console.log(e.request.response));
+};
 
 const getBoard = async id => {
   return await axios
@@ -68,6 +71,7 @@ const dragTask = async ({ name, id }) => {
 
 export {
   addBoard,
+  getBoards,
   getBoard,
   editBoard,
   deleteBoard,

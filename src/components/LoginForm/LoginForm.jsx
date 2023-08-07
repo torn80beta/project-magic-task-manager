@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 import LoginSchema from './LoginSchema';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/icon/Icon';
 import css from './loginForm.module.scss';
-import { getCurrentUser, loginUser } from 'redux/auth/auth-operation';
+import { loginUser } from 'redux/auth/auth-operation';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -14,9 +14,6 @@ const LoginForm = () => {
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch]);
 
   const handleSubmit = (user, { resetForm }) => {
     dispatch(loginUser(user));
