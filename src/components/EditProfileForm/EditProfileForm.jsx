@@ -3,10 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
 import * as Yup from 'yup';
 import { clsx } from 'clsx';
-
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import {
   selectUserAvatar,
   selectUserName,
@@ -33,14 +30,14 @@ const schema = Yup.object().shape({
     .max(64, 'Password must be at most 64 characters'),
 });
 
-export const EditProfileForm = () => {
+export const EditProfileForm = props => {
+  const { closeModal } = props;
   const dispatch = useDispatch();
   const hiddenFileInput = useRef(null);
   const handleUploadClick = () => {
     hiddenFileInput.current.click();
   };
 
-  // const theme = useSelector(themeState);
   const theme = useSelector(selectCurrentTheme);
   const userAvatar = useSelector(selectUserAvatar);
   const userName = useSelector(selectUserName);
@@ -70,6 +67,7 @@ export const EditProfileForm = () => {
 
     console.log('formData:', formData);
     dispatch(editUserData(formData));
+    closeModal();
   };
 
   return (

@@ -8,19 +8,19 @@ const addBoard = async newBoard => {
 
 const getBoard = async id => {
   return await axios
-    .get(`/boards${id}`)
+    .get(`/boards/${id}`)
     .catch(e => console.log(e.request.response));
 };
 
 const editBoard = async ({ name, background, icon, id }) => {
   return await axios
-    .patch(`/boards${id}`, { name, background, icon })
+    .patch(`/boards/${id}`, { name, background, icon })
     .catch(e => console.log(e.request.response));
 };
 
 const deleteBoard = async ({ id }) => {
   return await axios
-    .delete(`/boards${id}`)
+    .delete(`/boards/${id}`)
     .catch(e => console.log(e.request.response));
 };
 
@@ -32,13 +32,13 @@ const addColumn = async newColumn => {
 
 const editColumn = async ({ name, id }) => {
   return await axios
-    .patch(`/columns${id}`, { name })
+    .patch(`/columns/${id}`, { name })
     .catch(e => console.log(e.request.response));
 };
 
 const deleteColumn = async ({ id }) => {
   return await axios
-    .delete(`/columns${id}`)
+    .delete(`/columns/${id}`)
     .catch(e => console.log(e.request.response));
 };
 const addTask = async newColumn => {
@@ -49,19 +49,19 @@ const addTask = async newColumn => {
 
 const editTask = async ({ title, description, labelColor, deadline, id }) => {
   return await axios
-    .patch(`/tasks${id}`, { title, description, labelColor, deadline })
+    .patch(`/tasks/${id}`, { title, description, labelColor, deadline })
     .catch(e => console.log(e.request.response));
 };
 
 const deleteTask = async ({ id }) => {
   return await axios
-    .delete(`/tasks${id}`)
+    .delete(`/tasks/${id}`)
     .catch(e => console.log(e.request.response));
 };
 
 const dragTask = async ({ name, id }) => {
   return await axios
-    .patch(`/tasks/dragTask${id}`, { name })
+    .patch(`/tasks/dragTask/${id}`, { name })
     .catch(e => console.log(e.request.response));
 };
 

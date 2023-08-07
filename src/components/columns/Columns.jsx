@@ -12,9 +12,9 @@ import Card from 'components/card/Card';
 
 import './Columns.scss';
 
-const description = `Conduct in-depth research and analysis on the
-    project's topic, gather relevant data, and identify
-    key insights to inform decision-making and project planning.`;
+const description = `Conduct in-depth research and analysis on the 
+project's topic, gather relevant data, and identify
+key insights to inform decision-making and project planning.`;
 
 const cards = [
   {
