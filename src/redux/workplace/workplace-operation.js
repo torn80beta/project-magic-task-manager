@@ -12,25 +12,24 @@ import {
   getBoard,
   getBoards,
 } from 'api/workplace.js';
-import { getCurrentUser } from 'redux/auth/auth-operation';
 
-export const addNewBoard = createAsyncThunk(
-  'boards/add',
-  async (credentials, thunkAPI) => {
+export const getAllBoards = createAsyncThunk(
+  'boards/getAll',
+  async thunkAPI => {
     try {
-      const { data } = await addBoard(credentials);
-      thunkAPI.dispatch(getCurrentUser());
+      const { data } = await getBoards();
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-export const getAllBoards = createAsyncThunk(
-  'boards/getAll',
-  async thunkAPI => {
+
+export const addNewBoard = createAsyncThunk(
+  'boards/add',
+  async (credentials, thunkAPI) => {
     try {
-      const { data } = await getBoards();
+      const { data } = await addBoard(credentials);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

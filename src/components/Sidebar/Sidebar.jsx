@@ -1,5 +1,5 @@
 // import { themeState } from 'redux/theme/themeSlice';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
@@ -17,7 +17,7 @@ import {
   // selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
 import {
-  getAllBoards,
+  // getAllBoards,
   getBoardById,
 } from 'redux/workplace/workplace-operation';
 
@@ -31,13 +31,13 @@ import {
 //   { title: 'Shopping', id: '73bnm45' },
 // ];
 const Sidebar = () => {
-  const boardArray = useSelector(selectAllBoards);
+  const boardArray = useSelector(selectAllBoards).toReversed();
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllBoards());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllBoards());
+  // }, [dispatch]);
 
   const onBoardChange = id => {
     // console.log('item:', id);
