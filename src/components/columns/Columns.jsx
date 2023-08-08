@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { filterState } from 'redux/filter/filterSlice';
 import Icon from 'components/icon/Icon';
@@ -8,6 +8,7 @@ import AddCardForm from 'components/addCardForm/AddCardForm';
 import Card from 'components/card/Card';
 import './Columns.scss';
 import { selectColumns } from 'redux/workplace/workplace-slice';
+import { deleteColumnById } from 'redux/workplace/workplace-operation';
 
 // const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
 
@@ -61,13 +62,15 @@ const Columns = ({ _id: id, name }) => {
 
   const filter = useSelector(filterState);
 
-  const handleDeleteButton = columnId => {
+  const dispatch = useDispatch();
+
+  const handleDeleteButton = id => {
     if (cards.length !== 0) {
       console.log('The column must be empty');
       return;
     }
-    console.log(`Column deleted ${columnId}`);
-    // робимо DELETE запит при кліку
+    console.log(`Column deleted ${id}`);
+    dispatch(deleteColumnById(id));
   };
 
   const getFilteredCards = () => {
