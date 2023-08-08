@@ -51,9 +51,9 @@ const Card = ({
     >
       <div>
         <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
-        <p className={`cardDescription theme-${currentTheme}`}>
+        <p>
           <EllipsisText
-            className={`cardDescription`}
+            className={`cardDescription theme-${currentTheme}`}
             text={description}
             length={100}
           />
