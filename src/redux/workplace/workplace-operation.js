@@ -112,6 +112,7 @@ export const addNewTask = createAsyncThunk(
   'tasks/add',
   async (credentials, thunkAPI) => {
     try {
+      console.log(credentials);
       const { data } = await addTask(credentials);
       return data;
     } catch (error) {
@@ -119,6 +120,7 @@ export const addNewTask = createAsyncThunk(
     }
   }
 );
+
 export const editTaskById = createAsyncThunk(
   'tasks/edit',
   async (editedColumn, thunkAPI) => {
