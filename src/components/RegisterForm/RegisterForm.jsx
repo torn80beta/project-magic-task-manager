@@ -37,12 +37,7 @@ const RegisterForm = () => {
           </Link>
         </div>
         <div className={css.inputContainer}>
-          <Field
-            autoFocus
-            name="name"
-            type="text"
-            placeholder="Enter your name"
-          />
+          <Field name="name" type="text" placeholder="Enter your name" />
           <ErrorMessage className={css.errmes} name="name" component="p" />
           <Field name="email" type="email" placeholder="Enter your email" />
           <ErrorMessage className={css.errmes} name="email" component="div" />

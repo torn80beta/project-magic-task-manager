@@ -223,7 +223,7 @@
   .toolsIcons {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    // gap: 8px;
   }
   .toolsIcons button {
     padding: 20px 8px 20px 0;
@@ -264,6 +264,7 @@
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 24px;
+    height: 62px;
     @include tablet {
       padding-top: 20px;
       padding-bottom: 20px;

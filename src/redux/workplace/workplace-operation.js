@@ -10,24 +10,26 @@ import {
   editColumn,
   editTask,
   getBoard,
+  getBoards,
 } from 'api/workplace.js';
-import axios from 'axios';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+export const getAllBoards = createAsyncThunk(
+  'boards/getAll',
+  async thunkAPI => {
+    try {
+      const { data } = await getBoards();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const addNewBoard = createAsyncThunk(
-  'board/add',
+  'boards/add',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await addBoard(credentials);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -40,7 +42,6 @@ export const getBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await getBoard(id);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -53,7 +54,6 @@ export const editBoardById = createAsyncThunk(
   async (editedBoard, thunkAPI) => {
     try {
       const { data } = await editBoard(editedBoard);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -66,7 +66,6 @@ export const deleteBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await deleteBoard(id);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -75,11 +74,11 @@ export const deleteBoardById = createAsyncThunk(
 );
 
 export const addNewColumn = createAsyncThunk(
-  'column/add',
+  'columns/add',
   async (credentials, thunkAPI) => {
     try {
+      // console.log('cred', credentials);
       const { data } = await addColumn(credentials);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -87,11 +86,10 @@ export const addNewColumn = createAsyncThunk(
   }
 );
 export const editColumnById = createAsyncThunk(
-  'column/edit',
+  'columns/edit',
   async (editedColumn, thunkAPI) => {
     try {
       const { data } = await editColumn(editedColumn);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -99,11 +97,10 @@ export const editColumnById = createAsyncThunk(
   }
 );
 export const deleteColumnById = createAsyncThunk(
-  'column/delete',
+  'columns/delete',
   async (id, thunkAPI) => {
     try {
       const { data } = await deleteColumn(id);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -112,23 +109,23 @@ export const deleteColumnById = createAsyncThunk(
 );
 
 export const addNewTask = createAsyncThunk(
-  'task/add',
+  'tasks/add',
   async (credentials, thunkAPI) => {
     try {
+      console.log(credentials);
       const { data } = await addTask(credentials);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 export const editTaskById = createAsyncThunk(
-  'task/edit',
+  'tasks/edit',
   async (editedColumn, thunkAPI) => {
     try {
       const { data } = await editTask(editedColumn);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -136,11 +133,10 @@ export const editTaskById = createAsyncThunk(
   }
 );
 export const deleteTaskById = createAsyncThunk(
-  'task/delete',
+  'tasks/delete',
   async (id, thunkAPI) => {
     try {
       const { data } = await deleteTask(id);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -149,11 +145,10 @@ export const deleteTaskById = createAsyncThunk(
 );
 
 export const dragTaskById = createAsyncThunk(
-  'task/dragTask',
+  'tasks/dragTask',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await editTask(credentials);
-      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

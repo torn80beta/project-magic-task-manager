@@ -9,17 +9,8 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewBoard } from 'redux/workplace/workplace-operation';
+import { editBoardById } from 'redux/workplace/workplace-operation';
 
-// const iconsSvgInitial = [
-//   { id: 1, value: 'circles' },
-//   { id: 2, value: 'star' },
-//   { id: 3, value: 'ball' },
-//   { id: 4, value: 'puzzle' },
-//   { id: 5, value: 'cube' },
-//   { id: 6, value: 'lightning' },
-//   { id: 7, value: 'colors' },
-//   { id: 8, value: 'hexagon' },
-// ];
 const iconsSvgInitial = [
   { id: 1, value: 'icon-1' },
   { id: 2, value: 'icon-2' },
@@ -30,24 +21,6 @@ const iconsSvgInitial = [
   { id: 7, value: 'icon-7' },
   { id: 8, value: 'icon-8' },
 ];
-// const imagesBackgroundInitial = [
-//   // { id: 0, value: 0 },
-//   { id: 1, value: 1 },
-//   { id: 2, value: 2 },
-//   { id: 3, value: 3 },
-//   { id: 4, value: 4 },
-//   { id: 5, value: 5 },
-//   { id: 6, value: 6 },
-//   { id: 7, value: 7 },
-//   { id: 8, value: 8 },
-//   { id: 9, value: 9 },
-//   { id: 10, value: 10 },
-//   { id: 11, value: 11 },
-//   { id: 12, value: 12 },
-//   { id: 13, value: 13 },
-//   { id: 14, value: 14 },
-//   { id: 15, value: 15 },
-// ];
 const imagesBackgroundInitial = [
   // { id: 0, value: 0 },
   { id: 1, value: 'bg-2' },
@@ -77,7 +50,9 @@ function TextError(currentTheme, errorText) {
 const schema = yup.object().shape({
   name: yup
     .string()
-    .max(25, 'Field can contain 25 symbols maximum')
+    .max(20, 'Field can contain 20 symbols maximum')
+    .trim('Board name cannot include leading and trailing spaces')
+    .min(1, 'Board name needs to be at least 1 char')
     .required('This field is required to fill'),
 });
 
@@ -86,6 +61,7 @@ const BoardForm = ({
   boardTitle = '',
   boardIcon = 'icon-1',
   boardBackground = 'bg-1',
+  closeModal,
 }) => {
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
@@ -98,16 +74,20 @@ const BoardForm = ({
     icon: boardIcon,
     background: boardBackground,
   };
+
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
     if (boardId) {
-      console.log('make PATCH query with current Id');
+      values.id = boardId;
+      // console.log('values', values);
+      dispatch(editBoardById(values));
     } else {
-      console.log('make POST query for new board creation');
+      dispatch(addNewBoard(values));
     }
-    dispatch(addNewBoard(values));
+
     resetForm();
+    closeModal();
   };
+
   return (
     <div className={`boardCardForm_Container theme-${currentTheme}`}>
       <h2 className={'boardCardForm_Title'}>
@@ -119,8 +99,8 @@ const BoardForm = ({
         onSubmit={handleSubmit}
       >
         {props => {
-          // console.log(props.values);
           const { values } = props;
+
           return (
             <Form>
               <label className={'boardCardForm_label'} htmlFor="name"></label>

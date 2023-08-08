@@ -1,57 +1,71 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-// import { themeState } from 'redux/theme/themeSlice';
+// import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { Formik } from 'formik';
 import { Field } from 'formik';
 import Icon from 'components/icon/Icon';
 import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
+import { addNewTask, editTaskById } from 'redux/workplace/workplace-operation';
+// import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 const AddCardForm = ({
   columnId = null,
   taskId = null,
-  // data: { title, description, labelColor, deadline },
-  data: { title, description, labelColor, deadline } = {},
+  closeModal,
+  data: { title, description, labelColor, deadLine } = {},
 }) => {
-  const [date, setDate] = useState('');
-
-  const getDeadline = value => {
-    setDate(value);
-    console.log(date);
-  };
-  // const theme = useSelector(themeState);
+  // console.log('columnId: ' + columnId);
+  // console.log('taskId ' + taskId);
+  // console.log(title);
+  // console.log(description);
+  // const [date, setDate] = useState('');
+  // const getDeadline = value => {
+  //   setDate(value);
+  //   console.log(date);
+  // };
+  const date = '2023-08-03T17:01:27.257+00:00';
   const theme = useSelector(selectCurrentTheme);
+  const dispatch = useDispatch();
 
   return (
     <Formik
       initialValues={{
-        // title: title ? title : '',
-        // desc: description ? description : '',
-        // priority: labelColor ? labelColor : 'without',
+        columnId,
+        _id: taskId,
+        description: description,
         title: title || '',
-        desc: description || '',
-        priority: labelColor || 'without',
+        labelColor: labelColor || 'without',
+        deadLine: date,
       }}
       validate={values => {
         const errors = {};
         if (!values.title) {
           errors.title = 'Required';
         }
-        if (!values.desc) {
-          errors.desc = 'Required';
+        if (!values.description) {
+          errors.description = 'Required';
         }
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
+          // console.log('Updating a card ' + values);
           setSubmitting(false);
+          closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
+          console.log('Creating a new card');
+          dispatch(addNewTask(values));
           setSubmitting(false);
+          closeModal();
         } else {
+          // Update card
+          console.log('Updating a card');
+          dispatch(editTaskById(values));
           setSubmitting(false);
+          closeModal();
           return;
         }
       }}
@@ -88,11 +102,11 @@ const AddCardForm = ({
               <textarea
                 className={`add-form-input desc theme-${theme}`}
                 rows={7}
-                name="desc"
+                name="description"
                 placeholder="Description"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.desc}
+                value={values.description}
               />
               <p className={`add-form-input-error theme-${theme}`}>
                 {errors.desc && touched.desc && errors.desc}
@@ -106,13 +120,13 @@ const AddCardForm = ({
                 <div
                   className="add-form-radio-group"
                   role="group"
-                  aria-labelledby="priority-group"
+                  aria-labelledby="labelColor-group"
                 >
                   <label className="add-form-radio low">
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="low"
                     />
                     <span className="outer-circle"></span>
@@ -122,7 +136,7 @@ const AddCardForm = ({
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="medium"
                     />
                     <span className="outer-circle"></span>
@@ -132,7 +146,7 @@ const AddCardForm = ({
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="high"
                     />
                     <span className="outer-circle"></span>
@@ -142,7 +156,7 @@ const AddCardForm = ({
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="without"
                     />
                     <span className={`outer-circle theme-${theme}`}></span>
@@ -155,7 +169,11 @@ const AddCardForm = ({
               <p className={`add-form-deadline-title theme-${theme}`}>
                 Deadline
               </p>
-              <DateCalendar getDeadline={getDeadline} />
+              <DateCalendar
+              // getDeadline={() => {
+              //   getDeadline();
+              // }}
+              />
             </div>
             <button
               className={`add-form-submit theme-${theme}`}

@@ -2,8 +2,6 @@
 @import '../../styles/responsive.scss';
 
 .add-form {
-  min-width: 287px;
-
   &.theme-violet {
     background-color: $violet-modal-bg;
   }
@@ -14,6 +12,12 @@
     background-color: $light-modal-bg;
   }
 
+  @include pre-mobile {
+    width: 240px;
+  }
+  @include mobile {
+    min-width: 287px;
+  }
   @include tablet {
     min-width: 302px;
   }
