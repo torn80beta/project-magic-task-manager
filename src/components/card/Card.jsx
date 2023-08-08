@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
+// import { deleteTaskById } from 'redux/workplace/workplace-operation';
+// import { useDispatch } from 'react-redux';
+
 
 import './Card.scss';
 import Icon from '../icon/Icon';
@@ -18,6 +21,7 @@ const Card = ({
 }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
   const currentTheme = useSelector(selectCurrentTheme);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrentPriority(priority);
@@ -48,7 +52,7 @@ const Card = ({
     >
       <div>
         <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
-        <p>
+        <p className={`cardDescriptionWrapper theme-${currentTheme}`}>
           <EllipsisText
             className={`cardDescription theme-${currentTheme}`}
             text={description}
@@ -60,9 +64,9 @@ const Card = ({
           <div className={`cardPriority theme-${currentTheme}`}>
             <div>
               <h3 className={`cardSubtitle theme-${currentTheme}`}>Priority</h3>
-              <p className={`cardSubtext theme-${currentTheme}`}>
+              <p className={`cardSubtextPrimary theme-${currentTheme}`}>
                 <span
-                  className={`cardPrimaryIcon theme-${currentTheme} priorityClass-${currentPriority}`}
+                  className={`cardBellPrimary theme-${currentTheme} priorityClass-${currentPriority}`}
                   priority={priority}
                 />
                 {priority}
@@ -108,6 +112,7 @@ const Card = ({
                 id={'trash'}
                 width={16}
                 height={16}
+                // onClick={() => dispatch(deleteTaskById(id))}
               />
             </span>
           </div>
