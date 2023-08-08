@@ -105,7 +105,6 @@ const Card = ({
               />
             </PopUp>
 
-            {/* <button type="button" onClick={() => dispatch(deleteTaskById(id))}> */}
             <span
               type="button"
               onClick={() => dispatch(deleteTaskById(id))}
@@ -118,7 +117,6 @@ const Card = ({
                 height={16}
               />
             </span>
-            {/* </button> */}
           </div>
         </div>
       </div>

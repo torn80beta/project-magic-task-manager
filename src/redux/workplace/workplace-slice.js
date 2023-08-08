@@ -147,19 +147,15 @@ const workplaceSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteTaskById.fulfilled, (state, action) => {
-        console.log(action.payload);
         const targetColumn = state.currentBoard.columns.find(
           column => column._id === action.payload.columnId
         );
         if (targetColumn) {
-          console.log(targetColumn);
           const taskIndex = targetColumn.tasks.findIndex(
             task => task._id === action.payload.taskId
           );
-          console.log(taskIndex);
           if (taskIndex !== -1) {
-            console.log('deleting task');
-            targetColumn.splice(taskIndex, 1);
+            targetColumn.tasks.splice(taskIndex, 1);
           }
         }
         state.isLoading = false;
