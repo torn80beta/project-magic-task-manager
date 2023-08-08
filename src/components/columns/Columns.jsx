@@ -12,6 +12,7 @@ import Card from 'components/card/Card';
 
 import './Columns.scss';
 import { selectColumns } from 'redux/workplace/workplace-slice';
+// import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 // const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
 
@@ -59,10 +60,10 @@ const Columns = ({ _id: id, name }) => {
   const currentTheme = useSelector(selectCurrentTheme);
 
   const columnsList = useSelector(selectColumns);
-  console.log('columnsList:', columnsList);
+  // console.log('columnsList:', columnsList);
   const cards =
     columnsList[columnsList.findIndex(item => item._id === id)].tasks;
-  console.log('cards:', cards);
+  // console.log('cards:', cards);
 
   const filter = useSelector(filterState);
 
@@ -82,7 +83,7 @@ const Columns = ({ _id: id, name }) => {
     return cards.filter(({ labelColor }) => labelColor.includes(filter));
   };
   const filteredCards = getFilteredCards();
-  console.log('filteredCards:', filteredCards);
+  // console.log('filteredCards:', filteredCards);
 
   return (
     <li className={`column theme-${currentTheme}`}>
@@ -111,7 +112,10 @@ const Columns = ({ _id: id, name }) => {
 
       <ul className={`cardsWrap theme-${currentTheme}`}>
         {filteredCards.map(card => (
-          <Card {...{ ...card, columnId: id }} key={card._id} />
+          <Card
+            {...{ ...card, columnId: id, taskId: card._id }}
+            key={card._id}
+          />
         ))}
       </ul>
       <PopUp
