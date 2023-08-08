@@ -54,6 +54,21 @@
   }
 }
 
+.cardDescriptionWrapper {
+  max-width: 290px;
+  height: 39px;
+ 
+  &.theme-light {
+    color: $light-secondary-text;
+  }
+  &.theme-dark {
+    color: $dark-secondary-text;
+  }
+  &.theme-violet {
+    color: $violet-secondary-text;
+  }
+}
+
 .cardDescription {
   font-weight: 400;
   font-size: 12px;
@@ -80,6 +95,7 @@
   }
 }
 
+
 .cardLine {
   display: flex;
   
@@ -93,7 +109,12 @@
     border: 1px solid rgba(22, 22, 22, 0.1);
   }
 }
-
+.topWrapper {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+ }
+ 
 .cardPriority {
   display: flex;
   gap: 12px;
@@ -116,7 +137,7 @@
   }
 }
 
-.cardPrimaryIcon {
+.cardBellPrimary {
   display: flex;
   width: 12px;
   height: 12px;
@@ -137,7 +158,7 @@
   }
 }
 
-.cardSubtext {
+.cardSubtextPrimary {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -145,7 +166,6 @@
   font-size: 10px;
   letter-spacing: -0.2px;
 
-  // margin-bottom: 14px;
   &.theme-light {
     color: $light-main-text;
   }
@@ -156,6 +176,22 @@
     color: $violet-main-text;
   }
 }
+
+.cardSubtextDeadline {
+  font-weight: 400;
+  font-size: 10px;
+  margin-top: 4px;
+  &.theme-light {
+    color: $light-main-text;
+  }
+  &.theme-dark {
+    color: $dark-main-text;
+  }
+  &.theme-violet {
+    color: $violet-main-text;
+  }
+}
+
 
 .IconWrapper {
   display: flex;
@@ -190,23 +226,4 @@
 }
 }
 
-.cardSubtextDeadline {
-  font-weight: 400;
-  font-size: 10px;
-  // margin-bottom: 14px;
-  margin-top: 4px;
-  &.theme-light {
-    color: $light-main-text;
-  }
-  &.theme-dark {
-    color: $dark-main-text;
-  }
-  &.theme-violet {
-    color: $violet-main-text;
-  }
-}
-.topWrapper {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
- }
+
