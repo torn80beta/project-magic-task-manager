@@ -2,6 +2,11 @@
 @import '../../styles/variables';
 
 .formContainer {
+  width: calc(100% - 40px);
+
+  @include pre-mobile {
+    width: 300px;
+  }
   @include mobile {
     width: 335px;
   }
