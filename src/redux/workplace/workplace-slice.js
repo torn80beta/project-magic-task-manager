@@ -41,6 +41,7 @@ const workplaceSlice = createSlice({
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
         state.boardsList.push(action.payload);
+        state.currentBoard = action.payload;
         state.isLoading = false;
       })
       .addCase(getBoardById.pending, state => {
@@ -64,9 +65,9 @@ const workplaceSlice = createSlice({
       .addCase(deleteBoardById.pending, state => {
         state.isLoading = true;
       })
-      .addCase(deleteBoardById.fulfilled, state => {
+      .addCase(deleteBoardById.fulfilled, (state, action) => {
         state.boardsList.splice(
-          state.boardsList.findIndex(state.currentBoard._id),
+          state.boardsList.findIndex(item => item._id === action.payload._id),
           1
         );
         state.currentBoard = {
