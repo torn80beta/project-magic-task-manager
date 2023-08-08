@@ -112,7 +112,6 @@ const workplaceSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addNewTask.fulfilled, (state, action) => {
-        // console.log(action);
         const targetColumn = state.currentBoard.columns.find(
           column => column._id === action.payload.columnId
         );
@@ -121,8 +120,6 @@ const workplaceSlice = createSlice({
             task => task._id === action.payload._id
           );
           if (!task) {
-            // console.log(current(targetColumn));
-            // console.log(targetColumn);
             targetColumn.tasks.push(action.payload);
           }
         }
@@ -132,8 +129,6 @@ const workplaceSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(editTaskById.fulfilled, (state, action) => {
-        // console.log(action.payload);
-
         const targetColumn = state.currentBoard.columns.find(
           column => column._id === action.payload.columnId
         );
@@ -142,7 +137,6 @@ const workplaceSlice = createSlice({
             task => task._id === action.payload._id
           );
           if (task) {
-            // console.log(current(task));
             task.title = action.payload.title;
             task.description = action.payload.description;
             task.deadLine = action.payload.deadLine;

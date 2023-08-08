@@ -7,7 +7,6 @@ import Icon from 'components/icon/Icon';
 import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
 import { addNewTask, editTaskById } from 'redux/workplace/workplace-operation';
-// import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 const AddCardForm = ({
   columnId = null,
@@ -15,10 +14,6 @@ const AddCardForm = ({
   closeModal,
   data: { title, description, labelColor, deadLine } = {},
 }) => {
-  // console.log('columnId: ' + columnId);
-  // console.log('taskId ' + taskId);
-  // console.log(title);
-  // console.log(description);
   // const [date, setDate] = useState('');
   // const getDeadline = value => {
   //   setDate(value);
@@ -51,21 +46,18 @@ const AddCardForm = ({
       onSubmit={(values, { setSubmitting }) => {
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
-          // console.log('Updating a card ' + values);
+          // console.log('Updating a card');
+          dispatch(editTaskById(values));
           setSubmitting(false);
           closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
-          console.log('Creating a new card');
+          // console.log('Creating a new card');
           dispatch(addNewTask(values));
           setSubmitting(false);
           closeModal();
         } else {
-          // Update card
-          console.log('Updating a card');
-          dispatch(editTaskById(values));
-          setSubmitting(false);
-          closeModal();
+          console.log('Oops! Something went wrong :(');
           return;
         }
       }}
