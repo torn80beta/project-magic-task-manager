@@ -10,55 +10,12 @@ import './Columns.scss';
 import { selectColumns } from 'redux/workplace/workplace-slice';
 import { deleteColumnById } from 'redux/workplace/workplace-operation';
 
-// const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
-
-// const cards = [
-//   {
-//     id: 1,
-//     title: 'Card 1 Title',
-//     description: description,
-//     priority: 'without',
-//     deadline: '11/09/2023',
-//   },
-//   {
-//     id: 2,
-//     title: 'Card 2 Title',
-//     description: description,
-//     priority: 'low',
-//     deadline: '11/09/2023',
-//   },
-
-//   {
-//     id: 3,
-//     title: 'Card 3 Title',
-//     description: description,
-//     priority: 'medium',
-//     deadline: '11/09/2023',
-//   },
-//   {
-//     id: 4,
-//     title: 'Card 4 Title',
-//     description: description,
-//     priority: 'high',
-//     deadline: '11/09/2023',
-//   },
-//   {
-//     id: 5,
-//     title: 'Card 5 Title',
-//     description: description,
-//     priority: 'without',
-//     deadline: '11/09/2023',
-//   },
-// ];
-
 const Columns = ({ _id: id, name }) => {
   const currentTheme = useSelector(selectCurrentTheme);
 
   const columnsList = useSelector(selectColumns);
-  // console.log('columnsList:', columnsList);
   const cards =
     columnsList[columnsList.findIndex(item => item._id === id)].tasks;
-  // console.log('cards:', cards);
 
   const filter = useSelector(filterState);
 
@@ -69,7 +26,7 @@ const Columns = ({ _id: id, name }) => {
       console.log('The column must be empty');
       return;
     }
-    console.log(`Column deleted ${id}`);
+    // console.log(`Column deleted ${id}`);
     dispatch(deleteColumnById(id));
   };
 
@@ -80,7 +37,6 @@ const Columns = ({ _id: id, name }) => {
     return cards.filter(({ labelColor }) => labelColor.includes(filter));
   };
   const filteredCards = getFilteredCards();
-  // console.log('filteredCards:', filteredCards);
 
   return (
     <li className={`column theme-${currentTheme}`}>
