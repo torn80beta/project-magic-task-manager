@@ -63,9 +63,9 @@ const addTask = async ({
     .catch(e => console.log(e.request.response));
 };
 
-const editTask = async ({ title, description, labelColor, deadline, id }) => {
+const editTask = async ({ title, description, labelColor, deadLine, _id }) => {
   return await axios
-    .patch(`/tasks/${id}`, { title, description, labelColor, deadline })
+    .patch(`/tasks/${_id}`, { title, description, labelColor, deadLine })
     .catch(e => console.log(e.request.response));
 };
 

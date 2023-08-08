@@ -6,7 +6,8 @@ import { Field } from 'formik';
 import Icon from 'components/icon/Icon';
 import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
-import { addNewTask } from 'redux/workplace/workplace-operation';
+import { addNewTask, editTaskById } from 'redux/workplace/workplace-operation';
+import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 const AddCardForm = ({
   columnId = null,
@@ -14,7 +15,16 @@ const AddCardForm = ({
   closeModal,
   data: { title, description, labelColor, deadLine } = {},
 }) => {
-  console.log('card id: ' + taskId);
+  console.log('columnId: ' + columnId);
+  console.log('taskId ' + taskId);
+  console.log(title);
+  console.log(description);
+  // console.log(props.data);
+  // console.log(
+  //   'card id: ' + taskId,
+  //   'columnId : ' + columnId,
+  //   'title :' + title
+  // );
   // const [date, setDate] = useState('');
   // const getDeadline = value => {
   //   setDate(value);
@@ -26,11 +36,19 @@ const AddCardForm = ({
 
   return (
     <Formik
+      // initialValues={{
+      //   columnId: columnId,
+      //   _id: taskId,
+      //   title: title,
+      //   description: description,
+      //   labelColor: labelColor,
+      //   deadLine: date,
+      // }}
       initialValues={{
         columnId,
         _id: taskId,
+        description: description,
         title: title || '',
-        description: description || '',
         labelColor: labelColor || 'without',
         deadLine: date,
       }}
@@ -47,18 +65,18 @@ const AddCardForm = ({
       onSubmit={(values, { setSubmitting }) => {
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
-          console.log(values);
+          console.log('Updating a card ' + values);
           setSubmitting(false);
           closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
-          // console.log(values);
+          console.log('Creating a new card ' + values);
           dispatch(addNewTask(values));
           setSubmitting(false);
           closeModal();
         } else {
-          console.log(values);
-          // dispatch(values);
+          console.log('Updating a card ' + values);
+          dispatch(editTaskById(values));
           setSubmitting(false);
           closeModal();
           return;
@@ -101,7 +119,7 @@ const AddCardForm = ({
                 placeholder="Description"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.desc}
+                value={values.description}
               />
               <p className={`add-form-input-error theme-${theme}`}>
                 {errors.desc && touched.desc && errors.desc}
@@ -115,13 +133,13 @@ const AddCardForm = ({
                 <div
                   className="add-form-radio-group"
                   role="group"
-                  aria-labelledby="priority-group"
+                  aria-labelledby="labelColor-group"
                 >
                   <label className="add-form-radio low">
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="low"
                     />
                     <span className="outer-circle"></span>
@@ -131,7 +149,7 @@ const AddCardForm = ({
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="medium"
                     />
                     <span className="outer-circle"></span>
@@ -141,7 +159,7 @@ const AddCardForm = ({
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="high"
                     />
                     <span className="outer-circle"></span>
@@ -151,7 +169,7 @@ const AddCardForm = ({
                     <Field
                       className="visually-hidden"
                       type="radio"
-                      name="priority"
+                      name="labelColor"
                       value="without"
                     />
                     <span className={`outer-circle theme-${theme}`}></span>

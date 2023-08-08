@@ -120,13 +120,8 @@ const workplaceSlice = createSlice({
           );
           if (!task) {
             // console.log(current(targetColumn));
-            console.log(targetColumn);
+            // console.log(targetColumn);
             targetColumn.tasks.push(action.payload);
-
-            //   = [
-            //   ...targetColumn,
-            //   action.payload,
-            // ];
           }
         }
         state.isLoading = false;
@@ -135,11 +130,23 @@ const workplaceSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(editTaskById.fulfilled, (state, action) => {
-        state.currentBoard.columns.splice(
-          state.currentBoard.columns.findIndex(action.payload._id),
-          1,
-          action.payload
+        // console.log(action.payload);
+
+        const targetColumn = state.currentBoard.columns.find(
+          column => column._id === action.payload.columnId
         );
+        if (targetColumn) {
+          const task = targetColumn.tasks.find(
+            task => task._id === action.payload._id
+          );
+          if (task) {
+            // console.log(current(task));
+            task.title = action.payload.title;
+            task.description = action.payload.description;
+            task.deadLine = action.payload.deadLine;
+            task.labelColor = action.payload.labelColor;
+          }
+        }
         state.isLoading = false;
       })
       .addCase(deleteTaskById.pending, state => {
