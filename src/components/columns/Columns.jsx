@@ -12,7 +12,7 @@ import Card from 'components/card/Card';
 
 import './Columns.scss';
 import { selectColumns } from 'redux/workplace/workplace-slice';
-import ColumnGroup from 'antd/es/table/ColumnGroup';
+// import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 // const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
 
