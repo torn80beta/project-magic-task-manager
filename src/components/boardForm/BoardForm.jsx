@@ -78,7 +78,7 @@ const BoardForm = ({
   const handleSubmit = (values, { resetForm }) => {
     if (boardId) {
       values.id = boardId;
-      console.log('values', values);
+      // console.log('values', values);
       dispatch(editBoardById(values));
     } else {
       dispatch(addNewBoard(values));

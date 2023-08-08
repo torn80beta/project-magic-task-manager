@@ -1,53 +1,64 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { Formik } from 'formik';
 import { Field } from 'formik';
 import Icon from 'components/icon/Icon';
 import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
+import { addNewTask } from 'redux/workplace/workplace-operation';
 
 const AddCardForm = ({
   columnId = null,
   taskId = null,
   closeModal,
-  data: { title, description, labelColor, deadline } = {},
+  data: { title, description, labelColor, deadLine } = {},
 }) => {
-  const [date, setDate] = useState('');
-  const getDeadline = value => {
-    setDate(value);
-    console.log(date);
-  };
-
+  console.log('card id: ' + taskId);
+  // const [date, setDate] = useState('');
+  // const getDeadline = value => {
+  //   setDate(value);
+  //   console.log(date);
+  // };
+  const date = '2023-08-03T17:01:27.257+00:00';
   const theme = useSelector(selectCurrentTheme);
+  const dispatch = useDispatch();
 
   return (
     <Formik
       initialValues={{
+        columnId,
+        _id: taskId,
         title: title || '',
-        desc: description || '',
-        priority: labelColor || 'without',
+        description: description || '',
+        labelColor: labelColor || 'without',
+        deadLine: date,
       }}
       validate={values => {
         const errors = {};
         if (!values.title) {
           errors.title = 'Required';
         }
-        if (!values.desc) {
-          errors.desc = 'Required';
+        if (!values.description) {
+          errors.description = 'Required';
         }
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
+          console.log(values);
           setSubmitting(false);
           closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
+          // console.log(values);
+          dispatch(addNewTask(values));
           setSubmitting(false);
           closeModal();
         } else {
+          console.log(values);
+          // dispatch(values);
           setSubmitting(false);
           closeModal();
           return;
@@ -86,7 +97,7 @@ const AddCardForm = ({
               <textarea
                 className={`add-form-input desc theme-${theme}`}
                 rows={7}
-                name="desc"
+                name="description"
                 placeholder="Description"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -153,7 +164,11 @@ const AddCardForm = ({
               <p className={`add-form-deadline-title theme-${theme}`}>
                 Deadline
               </p>
-              <DateCalendar getDeadline={getDeadline} />
+              <DateCalendar
+              // getDeadline={() => {
+              //   getDeadline();
+              // }}
+              />
             </div>
             <button
               className={`add-form-submit theme-${theme}`}

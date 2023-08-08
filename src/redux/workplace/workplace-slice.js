@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import {
   addNewBoard,
   getBoardById,
@@ -55,13 +55,11 @@ const workplaceSlice = createSlice({
       })
       .addCase(editBoardById.fulfilled, (state, action) => {
         state.currentBoard = action.payload;
+        const index = state.boardsList.findIndex(
+          board => board._id === action.payload._id
+        );
+        state.boardsList.splice(index, 1, action.payload);
         state.isLoading = false;
-        state.boardsList = state.boardsList.map(board => {
-          if (board._id === action.payload._id) {
-            return action.payload;
-          }
-          return board;
-        });
       })
       .addCase(deleteBoardById.pending, state => {
         state.isLoading = true;
@@ -112,10 +110,25 @@ const workplaceSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(addNewTask.fulfilled, (state, action) => {
-        state.currentBoard.columns.push(action.payload);
-        // state.board.columns[
-        //   state.board.columns.findIndex(action.payload._id)
-        // ].push(action.payload);
+        // console.log(action);
+        const targetColumn = state.currentBoard.columns.find(
+          column => column._id === action.payload.columnId
+        );
+        if (targetColumn) {
+          const task = targetColumn.tasks.find(
+            task => task._id === action.payload._id
+          );
+          if (!task) {
+            // console.log(current(targetColumn));
+            console.log(targetColumn);
+            targetColumn.tasks.push(action.payload);
+
+            //   = [
+            //   ...targetColumn,
+            //   action.payload,
+            // ];
+          }
+        }
         state.isLoading = false;
       })
       .addCase(editTaskById.pending, state => {
