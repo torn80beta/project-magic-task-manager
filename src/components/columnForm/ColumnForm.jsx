@@ -26,10 +26,10 @@ const ColumnForm = props => {
       setError('Required');
       return;
     } else if (title && id) {
-      // Edit (PATCH edit column)
-      console.log(`Edit column ${id}`);
-      console.log(id);
-      console.log(InputTitle);
+      if (InputTitle === title) {
+        closeModal();
+        return;
+      }
       dispatch(
         editColumnById({
           name: InputTitle,
@@ -39,10 +39,6 @@ const ColumnForm = props => {
       closeModal();
     } else {
       dispatch(addNewColumn({ idBoard: boardName, newColumn: InputTitle }));
-      // Add (POST create column)
-      console.log('Add column');
-      console.log(boardName);
-      console.log(InputTitle);
       closeModal();
 
       return;
