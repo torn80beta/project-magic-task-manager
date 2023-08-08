@@ -19,6 +19,7 @@ import {
 import {
   // getAllBoards,
   getBoardById,
+  deleteBoardById,
 } from 'redux/workplace/workplace-operation';
 
 // const boardArray = [
@@ -100,7 +101,7 @@ const Sidebar = () => {
                   </PopUp>
                   <button
                     className={`boardDeleteButton theme-${currentTheme} `}
-                    onClick={() => {}}
+                    onClick={() => dispatch(deleteBoardById(item._id))}
                   >
                     <Icon id={'trash'} width={16} height={16} />
                   </button>
