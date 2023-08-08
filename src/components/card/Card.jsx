@@ -42,8 +42,6 @@ const Card = ({
   const formattedDeadline = convertToDateFormat(deadLine);
   const isToday = today.toDateString() === formattedDeadline.toDateString();
 
-  // const handleDeleteCard = () => {};
-
   return (
     <div
       className={`cardWrapper theme-${currentTheme}  priorityClass-${currentPriority}`}
@@ -51,7 +49,7 @@ const Card = ({
     >
       <div>
         <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
-        <p>
+        <p className={`cardDescriptionWrapper theme-${currentTheme}`}>
           <EllipsisText
             className={`cardDescription theme-${currentTheme}`}
             text={description}
@@ -63,9 +61,9 @@ const Card = ({
           <div className={`cardPriority theme-${currentTheme}`}>
             <div>
               <h3 className={`cardSubtitle theme-${currentTheme}`}>Priority</h3>
-              <p className={`cardSubtext theme-${currentTheme}`}>
+              <p className={`cardSubtextPrimary theme-${currentTheme}`}>
                 <span
-                  className={`cardPrimaryIcon theme-${currentTheme} priorityClass-${currentPriority}`}
+                  className={`cardBellPrimary theme-${currentTheme} priorityClass-${currentPriority}`}
                   priority={priority}
                 />
                 {priority}
