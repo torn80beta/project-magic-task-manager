@@ -97,13 +97,13 @@
 }
 
 .registrationLink {
-  @include pre-mobile {
-    width: calc(100% - 40px);
+  @include mobile {
+    width: 335px;
   }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 335px;
+  width: calc(100% - 40px);
   height: 49px;
   padding: 14px;
   margin-bottom: 14px;
