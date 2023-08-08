@@ -15,16 +15,10 @@ const AddCardForm = ({
   closeModal,
   data: { title, description, labelColor, deadLine } = {},
 }) => {
-  console.log('columnId: ' + columnId);
-  console.log('taskId ' + taskId);
-  console.log(title);
-  console.log(description);
-  // console.log(props.data);
-  // console.log(
-  //   'card id: ' + taskId,
-  //   'columnId : ' + columnId,
-  //   'title :' + title
-  // );
+  // console.log('columnId: ' + columnId);
+  // console.log('taskId ' + taskId);
+  // console.log(title);
+  // console.log(description);
   // const [date, setDate] = useState('');
   // const getDeadline = value => {
   //   setDate(value);
@@ -36,14 +30,6 @@ const AddCardForm = ({
 
   return (
     <Formik
-      // initialValues={{
-      //   columnId: columnId,
-      //   _id: taskId,
-      //   title: title,
-      //   description: description,
-      //   labelColor: labelColor,
-      //   deadLine: date,
-      // }}
       initialValues={{
         columnId,
         _id: taskId,
@@ -65,17 +51,18 @@ const AddCardForm = ({
       onSubmit={(values, { setSubmitting }) => {
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
-          console.log('Updating a card ' + values);
+          // console.log('Updating a card ' + values);
           setSubmitting(false);
           closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
-          console.log('Creating a new card ' + values);
+          console.log('Creating a new card');
           dispatch(addNewTask(values));
           setSubmitting(false);
           closeModal();
         } else {
-          console.log('Updating a card ' + values);
+          // Update card
+          console.log('Updating a card');
           dispatch(editTaskById(values));
           setSubmitting(false);
           closeModal();
