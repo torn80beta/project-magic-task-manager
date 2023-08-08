@@ -60,7 +60,9 @@ export const EditProfileForm = props => {
     const formData = new FormData();
     formData.append('name', editedContact.name);
     formData.append('email', editedContact.email);
-    formData.append('password', editedContact.password);
+    if (editedContact.password.trim() !== '') {
+      formData.append('password', editedContact.password);
+    }
     if (file) {
       formData.append('avatar', file);
     }
