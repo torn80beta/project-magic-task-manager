@@ -32,7 +32,7 @@ const addColumn = async newColumn => {
 
 const editColumn = async ({ name, id }) => {
   return await axios
-    .patch(`/columns${id}`, { name })
+    .patch(`/columns/${id}`, { name })
     .catch(e => console.log(e.request.response));
 };
 
