@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import './Card.scss';
@@ -16,10 +15,8 @@ const Card = ({
   description,
   labelColor: priority,
   deadLine,
-  columnId,
 }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
-  // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
 
   useEffect(() => {
@@ -95,7 +92,6 @@ const Card = ({
               }
             >
               <AddCardForm
-                columnId={columnId}
                 taskId={id}
                 data={{
                   title,

@@ -1,18 +1,13 @@
-// import { themeState } from 'redux/theme/themeSlice';
 import { useSelector } from 'react-redux';
-
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { filterState } from 'redux/filter/filterSlice';
-
 import Icon from 'components/icon/Icon';
 import PopUp from 'components/modal/PopUp';
 import ColumnForm from 'components/columnForm/ColumnForm';
 import AddCardForm from 'components/addCardForm/AddCardForm';
 import Card from 'components/card/Card';
-
 import './Columns.scss';
 import { selectColumns } from 'redux/workplace/workplace-slice';
-// import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 // const description = `Create a visually stunning and eye-catching watch dial design that embodies our brand's essence of sleek aesthetics and modern elegance. Your design should be unique, innovative, and reflective of the latest trends in watch design.`;
 
@@ -56,7 +51,6 @@ import { selectColumns } from 'redux/workplace/workplace-slice';
 // ];
 
 const Columns = ({ _id: id, name }) => {
-  // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
 
   const columnsList = useSelector(selectColumns);
@@ -112,10 +106,7 @@ const Columns = ({ _id: id, name }) => {
 
       <ul className={`cardsWrap theme-${currentTheme}`}>
         {filteredCards.map(card => (
-          <Card
-            {...{ ...card, columnId: id, taskId: card._id }}
-            key={card._id}
-          />
+          <Card {...{ ...card, taskId: card._id }} key={card._id} />
         ))}
       </ul>
       <PopUp
