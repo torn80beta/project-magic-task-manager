@@ -8,18 +8,17 @@ import './FilterPopup.scss';
 
 const FilterPopup = () => {
   const dispatch = useDispatch();
-  // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
   const filter = useSelector(filterState);
 
   const handleFilter = e => {
-    // e.target.value === 'without'
-    //   ? dispatch(changeFilter('empty'))
-    //   : dispatch(changeFilter(e.target.value));
     dispatch(changeFilter(e.target.value));
   };
 
-  useEffect(() => {}, [filter]);
+  useEffect(() => {
+    const element = document.querySelector(`[value=${filter}]`);
+    element.setAttribute('checked', true);
+  }, [filter]);
   return (
     <div className={`theme-${currentTheme} filterPopup`}>
       <h2 className={`filterPopup_header theme-${currentTheme}`}>Filters</h2>
@@ -32,7 +31,6 @@ const FilterPopup = () => {
             <input
               className={`filterPopup_showAllBtnInput`}
               type="radio"
-              // value="without"
               value="all"
               name="priority"
               onChange={handleFilter}
@@ -44,7 +42,6 @@ const FilterPopup = () => {
         <label className={`filterPopup_label theme-${currentTheme}`}>
           <input
             type="radio"
-            // value="empty"
             value="without"
             name="priority"
             onChange={handleFilter}

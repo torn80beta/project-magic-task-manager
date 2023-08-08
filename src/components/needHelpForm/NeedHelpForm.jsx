@@ -1,15 +1,14 @@
 import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { needHelp } from 'redux/auth/auth-operation';
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import './needHelpForm.scss';
 
-const NeedHelpForm = () => {
+const NeedHelpForm = props => {
   const dispatch = useDispatch();
-  // const theme = useSelector(themeState);
   const theme = useSelector(selectCurrentTheme);
+  const { closeModal } = props;
 
   return (
     <Formik
@@ -30,6 +29,7 @@ const NeedHelpForm = () => {
       onSubmit={(values, { resetForm }) => {
         dispatch(needHelp(values));
         resetForm();
+        closeModal();
       }}
     >
       {({

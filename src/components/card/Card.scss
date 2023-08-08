@@ -58,15 +58,16 @@
   font-weight: 400;
   font-size: 12px;
   margin-bottom: 14px;
-  line-height: 16px;
-  // max-width: 290px;
-  // padding-bottom: auto;
+  letter-spacing: -0.28px;
+  max-width: 290px;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  white-space: pre-line;
+  
 
   &.theme-light {
     color: $light-secondary-text;
@@ -81,14 +82,15 @@
 
 .cardLine {
   display: flex;
+  
   &.theme-light {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(22, 22, 22, 0.1);
   }
   &.theme-dark {
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
   &.theme-violet {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(22, 22, 22, 0.1);
   }
 }
 

@@ -32,6 +32,7 @@
 
   @include desktop {
     display: flex;
+    overflow-y: hidden;
   }
 
   .logoWrapper {
@@ -195,7 +196,7 @@
       color: $dark-sidebar-bg;
     }
     &.theme-violet {
-      background: $violet-button-bg;
+      background: $violet-horizontal-scrollbar-thumb;
       color: $violet-sidebar-text;
     }
   }
@@ -207,9 +208,9 @@
     align-items: center;
     width: 100%;
     gap: 4px;
-    height: calc(100vh - 686px);
+    height: calc(100vh - 570px);
     min-height: 126px;
-    @include desktop {
+    @include tablet {
       height: calc(100vh - 644px);
       min-height: 126px;
     }
@@ -222,7 +223,17 @@
   .toolsIcons {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    // gap: 8px;
+  }
+  .toolsIcons button {
+    padding: 20px 8px 20px 0;
+  }
+  .boardDeleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: inherit;
   }
 
   .projectsList {
@@ -253,6 +264,7 @@
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 24px;
+    height: 62px;
     @include tablet {
       padding-top: 20px;
       padding-bottom: 20px;
@@ -299,7 +311,7 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      padding: 20px 20px 20px 0;
+      // padding: 20px 20px 20px 0;
 
       &.theme-light {
         color: #16161680;
