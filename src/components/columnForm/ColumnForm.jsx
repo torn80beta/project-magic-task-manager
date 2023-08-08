@@ -5,8 +5,9 @@ import { useState } from 'react';
 import Icon from 'components/icon/Icon';
 import './columnForm.scss';
 import { useParams } from 'react-router';
-// import { addNewColumn } from 'redux/workplace/workplace-operation';
-// import { editColumnById } from 'redux/workplace/workplace-operation';
+import { addNewColumn } from 'redux/workplace/workplace-operation';
+import { editColumnById } from 'redux/workplace/workplace-operation';
+import { useDispatch } from 'react-redux';
 
 const ColumnForm = props => {
   // const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const ColumnForm = props => {
   const [error, setError] = useState('');
   const [columnName, setColumnName] = useState(title || '');
   const { boardName } = useParams();
+  const dispatch = useDispatch();
 
   const onSubmit = e => {
     const InputTitle = e.target.elements.title.value;
@@ -28,9 +30,15 @@ const ColumnForm = props => {
       console.log(`Edit column ${id}`);
       console.log(id);
       console.log(InputTitle);
+      dispatch(
+        editColumnById({
+          name: InputTitle,
+          id: id,
+        })
+      );
       closeModal();
     } else {
-      // dispatch(addNewColumn({ idBoard: boardName, newColumn: InputTitle }));
+      dispatch(addNewColumn({ idBoard: boardName, newColumn: InputTitle }));
       // Add (POST create column)
       console.log('Add column');
       console.log(boardName);

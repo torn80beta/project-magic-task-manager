@@ -90,7 +90,9 @@ const workplaceSlice = createSlice({
       })
       .addCase(editColumnById.fulfilled, (state, action) => {
         state.currentBoard.columns.splice(
-          state.currentBoard.columns.findIndex(action.payload._id),
+          state.currentBoard.columns.findIndex(
+            column => column._id === action.payload._id
+          ),
           1,
           action.payload
         );
