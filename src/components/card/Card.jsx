@@ -1,16 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-// import { deleteTaskById } from 'redux/workplace/workplace-operation';
-// import { useDispatch } from 'react-redux';
-
-
 import './Card.scss';
 import Icon from '../icon/Icon';
 import PopUp from 'components/modal/PopUp';
 import AddCardForm from 'components/addCardForm/AddCardForm';
+import { deleteTaskById } from 'redux/workplace/workplace-operation';
 
 const Card = ({
   _id: id,
@@ -21,7 +18,7 @@ const Card = ({
 }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
   const currentTheme = useSelector(selectCurrentTheme);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrentPriority(priority);
@@ -106,13 +103,16 @@ const Card = ({
               />
             </PopUp>
 
-            <span className={`cardIcon theme-${currentTheme}`}>
+            <span
+              type="button"
+              onClick={() => dispatch(deleteTaskById(id))}
+              className={`cardIcon theme-${currentTheme}`}
+            >
               <Icon
                 className={`cardIcon theme-${currentTheme}`}
                 id={'trash'}
                 width={16}
                 height={16}
-                // onClick={() => dispatch(deleteTaskById(id))}
               />
             </span>
           </div>
