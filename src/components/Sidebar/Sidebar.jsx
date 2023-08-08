@@ -96,7 +96,7 @@ const Sidebar = () => {
               <div className={`tools-wrapper theme-${currentTheme}`}>
                 <div className={`toolsIcons theme-${currentTheme}`}>
                   <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                    <BoardForm boardId={item._id} boardTitle={item.title} />
+                    <BoardForm boardId={item._id} boardTitle={item.name} />
                   </PopUp>
                   <button
                     className={`boardDeleteButton theme-${currentTheme} `}

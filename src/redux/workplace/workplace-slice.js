@@ -56,11 +56,21 @@ const workplaceSlice = createSlice({
       .addCase(editBoardById.fulfilled, (state, action) => {
         state.currentBoard = action.payload;
         state.isLoading = false;
+        state.boardsList = state.boardsList.map(board => {
+          if (board._id === action.payload._id) {
+            return action.payload;
+          }
+          return board;
+        });
       })
       .addCase(deleteBoardById.pending, state => {
         state.isLoading = true;
       })
       .addCase(deleteBoardById.fulfilled, state => {
+        state.boardsList.splice(
+          state.boardsList.findIndex(state.currentBoard._id),
+          1
+        );
         state.currentBoard = {
           name: null,
           columns: [],
