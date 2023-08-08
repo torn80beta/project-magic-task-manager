@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import './Card.scss';
 import Icon from '../icon/Icon';
 import PopUp from 'components/modal/PopUp';
 import AddCardForm from 'components/addCardForm/AddCardForm';
+import { deleteTaskById } from 'redux/workplace/workplace-operation';
 
 const Card = ({
   _id: id,
@@ -18,6 +18,7 @@ const Card = ({
 }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
   const currentTheme = useSelector(selectCurrentTheme);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrentPriority(priority);
@@ -40,6 +41,8 @@ const Card = ({
   const today = new Date();
   const formattedDeadline = convertToDateFormat(deadLine);
   const isToday = today.toDateString() === formattedDeadline.toDateString();
+
+  // const handleDeleteCard = () => {};
 
   return (
     <div
@@ -102,7 +105,12 @@ const Card = ({
               />
             </PopUp>
 
-            <span className={`cardIcon theme-${currentTheme}`}>
+            {/* <button type="button" onClick={() => dispatch(deleteTaskById(id))}> */}
+            <span
+              type="button"
+              onClick={() => dispatch(deleteTaskById(id))}
+              className={`cardIcon theme-${currentTheme}`}
+            >
               <Icon
                 className={`cardIcon theme-${currentTheme}`}
                 id={'trash'}
@@ -110,6 +118,7 @@ const Card = ({
                 height={16}
               />
             </span>
+            {/* </button> */}
           </div>
         </div>
       </div>
