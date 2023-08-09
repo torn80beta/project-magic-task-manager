@@ -83,6 +83,7 @@ const workplaceSlice = createSlice({
       .addCase(addNewColumn.pending, state => {
         state.isLoading = true;
       })
+    
       .addCase(addNewColumn.fulfilled, (state, action) => {
         state.currentBoard.columns.push(action.payload);
         state.isLoading = false;
