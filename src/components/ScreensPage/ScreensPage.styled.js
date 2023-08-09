@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import img from '../../images/desktop/bg-2.1x.jpg';
 
 export const breakpoints = {
   mobile: '375px',
@@ -17,9 +18,10 @@ export const BoardContainer = styled.section`
     background-image: url(${props => props.backgroundImg.source.desktop});
   }
   @media screen and (min-width: 768px) {
-    background-image: url(${props => props.backgroundImg.source.desktop}});
+    background-image: url(${props => props.backgroundImg.source.tablet});
   }
-  @media screen and (min-width: 375px) {
-    background-image: url(${props => props.backgroundImg.source.desktop});
-  }
+  // @media screen and (max-width: 767px) {
+  background-image: url(${props => props.backgroundImg.source.mobile});
+  // }
 `;
+//

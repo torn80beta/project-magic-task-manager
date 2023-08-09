@@ -28,6 +28,7 @@ const ScreensPage = () => {
   const columnsArray = useSelector(selectColumns);
   const [currentBoard, setCurrentBoard] = useState('');
   const [currentBoardBcg, setCurrentBoardBcg] = useState('');
+  const [currentBcgUrl, setCurrentBcgUrl] = useState('');
 
   const { boardName } = useParams();
 
@@ -35,15 +36,28 @@ const ScreensPage = () => {
     () => {
       const foundBoard = boardArray.find(item => item._id === boardName);
       foundBoard ? setCurrentBoard(foundBoard.name) : setCurrentBoard('');
-      setCurrentBoardBcg(foundBoard && foundBoard.background);
+      if (foundBoard) {
+        setCurrentBoardBcg(foundBoard.background);
+      }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [{ boardName }, boardArray]
+    [{ boardName }]
   );
   const bcgImg = () => {
-    const result = bcgArray.find(bcg => bcg.bgname === currentBoardBcg);
-    return result;
+    if (currentBoardBcg) {
+      const result = bcgArray.find(bcg => bcg.bgname === currentBoardBcg);
+      return result;
+    }
   };
+  useEffect(
+    () => {
+      if (bcgImg()) {
+        setCurrentBcgUrl(bcgImg());
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentBoardBcg]
+  );
 
   const dragHandler = async res => {
     if (!res.destination) {
@@ -94,56 +108,64 @@ const ScreensPage = () => {
   };
 
   return (
-    <BoardContainer backgroundImg={bcgImg()}>
-      <div className={`theme-${currentTheme} screenPage`}>
-        <div className={`screenPage_header theme-${currentTheme}`}>
-          <h1 className={`screenPage_title theme-${currentTheme}`}>
-            {currentBoard}
-          </h1>
-          <PopUp
-            data={
-              <span className={`screenPage_filter theme-${currentTheme}`}>
-                <Icon id={'filter'} width={16} height={16} />
-                <span className={`screenPage_filterText theme-${currentTheme}`}>
-                  Filter
-                </span>
-              </span>
-            }
-          >
-            <FilterPopup />
-          </PopUp>
-        </div>
+    <>
+      {currentBcgUrl && (
+        <BoardContainer backgroundImg={currentBcgUrl}>
+          <div className={`theme-${currentTheme} screenPage`}>
+            <div className={`screenPage_header theme-${currentTheme}`}>
+              <h1 className={`screenPage_title theme-${currentTheme}`}>
+                {currentBoard}
+              </h1>
+              <PopUp
+                data={
+                  <span className={`screenPage_filter theme-${currentTheme}`}>
+                    <Icon id={'filter'} width={16} height={16} />
+                    <span
+                      className={`screenPage_filterText theme-${currentTheme}`}
+                    >
+                      Filter
+                    </span>
+                  </span>
+                }
+              >
+                <FilterPopup />
+              </PopUp>
+            </div>
 
-        <div className={`screenPage_canvas theme-${currentTheme}`}>
-          <ul className={`screenPage_columns theme-${currentTheme}`}>
-            <DragDropContext onDragEnd={dragHandler}>
-              {columnsArray.map(item => (
-                <Columns {...item} key={item._id} />
-              ))}
-            </DragDropContext>
-          </ul>
+            <div className={`screenPage_canvas theme-${currentTheme}`}>
+              <ul className={`screenPage_columns theme-${currentTheme}`}>
+                <DragDropContext onDragEnd={dragHandler}>
+                  {columnsArray.map(item => (
+                    <Columns {...item} key={item._id} />
+                  ))}
+                </DragDropContext>
+              </ul>
 
-          <PopUp
-            data={
-              <span className={`screenPage_addButton theme-${currentTheme}`}>
-                <span
-                  className={`screenPage_addButtonPlus theme-${currentTheme}`}
-                >
-                  <Icon id={'plus'} width={14} height={14} />
-                </span>
-                <span
-                  className={`screenPage_addButtonText theme-${currentTheme}`}
-                >
-                  Add another column
-                </span>
-              </span>
-            }
-          >
-            <ColumnForm />
-          </PopUp>
-        </div>
-      </div>
-    </BoardContainer>
+              <PopUp
+                data={
+                  <span
+                    className={`screenPage_addButton theme-${currentTheme}`}
+                  >
+                    <span
+                      className={`screenPage_addButtonPlus theme-${currentTheme}`}
+                    >
+                      <Icon id={'plus'} width={14} height={14} />
+                    </span>
+                    <span
+                      className={`screenPage_addButtonText theme-${currentTheme}`}
+                    >
+                      Add another column
+                    </span>
+                  </span>
+                }
+              >
+                <ColumnForm />
+              </PopUp>
+            </div>
+          </div>
+        </BoardContainer>
+      )}
+    </>
   );
 };
 
