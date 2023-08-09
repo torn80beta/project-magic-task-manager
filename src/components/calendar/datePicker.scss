@@ -249,6 +249,28 @@
 //     }
 //   }
 // }
+
+.react-datepicker__day--outside-month {
+  color: $violet-calendar-weekday-text;
+}
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
+border-top-color: $violet-header-bg;
+}
+
+.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::before {
+border-top-color: $dark-border;
+}
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
+border-bottom-color: $violet-header-bg;
+}
+
+.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
+border-bottom-color:  $dark-border;
+}
+
+
 .theme-light {
   .react-datepicker {
     background-color:  $violet-header-bg;
@@ -359,6 +381,18 @@
   .react-datepicker__navigation-icon--next::before {
           border-color: $calendar-navigation-icon-dark;
         }
+
+  .react-datepicker__day--outside-month {
+          color: $dark-secondary-text;
+        }
+
+  .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
+          border-top-color: $dark-modal-bg;
+          }
+          
+  .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
+          border-bottom-color: $dark-modal-bg;
+          }
   
   }
   
@@ -415,5 +449,12 @@
               }
             }
           }
+    .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::before {
+            border-top-color: $violet-sidebar-bg;
+            }
+            
+    .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
+            border-bottom-color:  $violet-sidebar-bg;
+            }
     
   }
