@@ -27,6 +27,7 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const notify = () => toast('You can not delete board with existing columns.');
+
   const onBoardChange = id => {
     dispatch(changeFilter('all'));
     dispatch(getBoardById(id));
