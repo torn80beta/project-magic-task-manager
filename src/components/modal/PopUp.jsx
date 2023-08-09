@@ -32,7 +32,7 @@ const PopUp = props => {
   return (
     <>
       <button
-        className={`open-modal-button theme-${currentTheme}`}
+        className={`open-modal-button bordEdditIcon theme-${currentTheme}`}
         onClick={openModal}
       >
         {data}

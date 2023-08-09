@@ -98,7 +98,7 @@ const Sidebar = () => {
               </NavLink>
               <div className={`tools-wrapper theme-${currentTheme}`}>
                 <div className={`toolsIcons theme-${currentTheme}`}>
-                  <PopUp data={<div className="bordEdditIcon"><Icon  id={'pencil'} width={16} height={16} /></div>}>
+                  <PopUp data={<Icon  id={'pencil'} width={16} height={16} />}>
                     <BoardForm boardId={item._id} boardTitle={item.name} />
                   </PopUp>
                   <button
