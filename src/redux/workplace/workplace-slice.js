@@ -22,6 +22,7 @@ const initialState = {
     icon: null,
     id: null,
   },
+  isLoading:false,
 };
 
 const workplaceSlice = createSlice({
@@ -36,6 +37,9 @@ const workplaceSlice = createSlice({
         state.boardsList = action.payload;
         state.isLoading = false;
       })
+      .addCase(getAllBoards.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(addNewBoard.pending, state => {
         state.isLoading = true;
       })
@@ -44,11 +48,17 @@ const workplaceSlice = createSlice({
         state.currentBoard = action.payload;
         state.isLoading = false;
       })
+      .addCase(addNewBoard.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(getBoardById.pending, state => {
         state.isLoading = true;
       })
       .addCase(getBoardById.fulfilled, (state, action) => {
         state.currentBoard = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getBoardById.rejected, state => {
         state.isLoading = false;
       })
       .addCase(editBoardById.pending, state => {
@@ -60,6 +70,9 @@ const workplaceSlice = createSlice({
           board => board._id === action.payload._id
         );
         state.boardsList.splice(index, 1, action.payload);
+        state.isLoading = false;
+      })
+      .addCase(editBoardById.rejected, state => {
         state.isLoading = false;
       })
       .addCase(deleteBoardById.pending, state => {
@@ -81,11 +94,17 @@ const workplaceSlice = createSlice({
         };
         state.isLoading = false;
       })
+      .addCase(deleteBoardById.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(addNewColumn.pending, state => {
         state.isLoading = true;
       })
       .addCase(addNewColumn.fulfilled, (state, action) => {
         state.currentBoard.columns.push(action.payload);
+        state.isLoading = false;
+      })
+      .addCase(addNewColumn.rejected, state => {
         state.isLoading = false;
       })
       .addCase(editColumnById.pending, state => {
@@ -101,6 +120,9 @@ const workplaceSlice = createSlice({
         );
         state.isLoading = false;
       })
+      .addCase(editColumnById.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(deleteColumnById.pending, state => {
         state.isLoading = true;
       })
@@ -111,6 +133,9 @@ const workplaceSlice = createSlice({
           ),
           1
         );
+        state.isLoading = false;
+      })
+      .addCase(deleteColumnById.rejected, state => {
         state.isLoading = false;
       })
       .addCase(addNewTask.pending, state => {
@@ -128,6 +153,9 @@ const workplaceSlice = createSlice({
             targetColumn.tasks.push(action.payload);
           }
         }
+        state.isLoading = false;
+      })
+      .addCase(addNewTask.rejected, state => {
         state.isLoading = false;
       })
       .addCase(editTaskById.pending, state => {
@@ -150,6 +178,9 @@ const workplaceSlice = createSlice({
         }
         state.isLoading = false;
       })
+      .addCase(editTaskById.rejected, state => {
+        state.isLoading= false
+      })
       .addCase(deleteTaskById.pending, state => {
         state.isLoading = true;
       })
@@ -166,7 +197,10 @@ const workplaceSlice = createSlice({
           }
         }
         state.isLoading = false;
-      });
+      })
+    .addCase(deleteTaskById.rejected, state=>{
+      state.isLoading = false;
+    })
   },
 });
 

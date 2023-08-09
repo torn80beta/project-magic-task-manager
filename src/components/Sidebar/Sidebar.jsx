@@ -11,20 +11,22 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { changeFilter } from 'redux/filter/filterSlice';
 import {
   selectAllBoards,
-  // selectCurrentBoard,
+  selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
 import {
   // getAllBoards,
   getBoardById,
   deleteBoardById,
 } from 'redux/workplace/workplace-operation';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Sidebar = () => {
   const boardArray = useSelector(selectAllBoards).toReversed();
+  const currentBoard = useSelector(selectCurrentBoard);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const notify = () => toast('You can not delete board with existing columns.');
   const onBoardChange = id => {
     dispatch(changeFilter('all'));
     dispatch(getBoardById(id));
@@ -86,6 +88,13 @@ const Sidebar = () => {
                   <button
                     className={`boardDeleteButton theme-${currentTheme} `}
                     onClick={() => {
+                      if (
+                        item._id === currentBoard._id &&
+                        currentBoard.columns.length
+                      ) {
+                        notify();
+                        return;
+                      }
                       dispatch(deleteBoardById(item._id));
                       navigate('/');
                     }}
@@ -143,6 +152,16 @@ const Sidebar = () => {
           <span className={`logOutText theme-${currentTheme}`}>Log out</span>
         </button>
       </div>
+      <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            border: '1px solid red',
+            padding: '16px',
+            color: 'red',
+          },
+        }}
+      />
     </div>
   );
 };
