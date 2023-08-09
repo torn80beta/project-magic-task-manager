@@ -11,6 +11,7 @@ import {
   editTaskById,
   deleteTaskById,
   getAllBoards,
+  dragTaskById,
 } from './workplace-operation';
 
 const initialState = {
@@ -28,6 +29,11 @@ const initialState = {
 const workplaceSlice = createSlice({
   name: 'workplace',
   initialState,
+  reducers: {
+    setColumn(state, action) {
+      state.currentBoard.columns = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getAllBoards.pending, state => {
@@ -201,6 +207,14 @@ const workplaceSlice = createSlice({
     .addCase(deleteTaskById.rejected, state=>{
       state.isLoading = false;
     })
+
+      .addCase(dragTaskById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(dragTaskById.fulfilled, (state, action) => {
+        state.isLoading = false;
+      });
+
   },
 });
 
@@ -211,4 +225,5 @@ export const selectCurrentBoard = state => state.workplace.currentBoard;
 
 export const selectColumns = state => state.workplace.currentBoard.columns;
 
+export const { setColumn } = workplaceSlice.actions;
 // export const selectTasks = state => state.workplace.currentBoard.columns;
