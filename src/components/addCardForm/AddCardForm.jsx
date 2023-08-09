@@ -73,7 +73,7 @@ const AddCardForm = ({
       }) => (
         <form className={`add-form theme-${theme}`} onSubmit={handleSubmit}>
           <p className={`add-form-title theme-${theme}`}>
-            {columnId && taskId ? 'Edit card' : 'Add card'}
+            {!columnId && taskId ? 'Edit card' : 'Add card'}
           </p>
           <div className="add-form-wrap">
             <div className="add-form-email-wrap">
@@ -175,7 +175,7 @@ const AddCardForm = ({
               <div className={`add-form-icon-wrap theme-${theme}`}>
                 <Icon id="plus" width={14} height={14} />
               </div>
-              {columnId && taskId ? 'Edit' : 'Add'}
+              {!columnId && taskId ? 'Edit' : 'Add'}
             </button>
           </div>
         </form>
