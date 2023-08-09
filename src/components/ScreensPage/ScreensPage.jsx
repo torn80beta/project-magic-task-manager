@@ -12,7 +12,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   selectColumns,
-  selectCurrentBoard,
   setColumn,
   selectAllBoards,
 } from 'redux/workplace/workplace-slice';

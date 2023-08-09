@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import img from '../../images/desktop/bg-2.1x.jpg';
 
 export const breakpoints = {
   mobile: '375px',
