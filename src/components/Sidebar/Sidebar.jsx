@@ -1,46 +1,33 @@
-// import { themeState } from 'redux/theme/themeSlice';
-// import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PopUp from 'components/modal/PopUp';
 import BoardForm from 'components/boardForm/BoardForm';
 import { logoutUser } from 'redux/auth/auth-operation';
 import './sidebar.scss';
 import Icon from '../icon/Icon';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import cactusIcon from './img/icons/cactus_2.png';
-// import { useEffect, useState } from 'react';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { changeFilter } from 'redux/filter/filterSlice';
 import {
   selectAllBoards,
-  // selectCurrentBoard,
+  selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
 import {
   // getAllBoards,
   getBoardById,
+  deleteBoardById,
 } from 'redux/workplace/workplace-operation';
+import toast, { Toaster } from 'react-hot-toast';
 
-// const boardArray = [
-//   { title: 'To Do List', id: '1hk677' },
-//   { title: 'Home', id: '289kl0' },
-//   { title: 'Family', id: '34g56' },
-//   { title: 'Garden', id: '48hjk90' },
-//   { title: 'Project', id: '51gjj24' },
-//   { title: 'English', id: '6fgh678' },
-//   { title: 'Shopping', id: '73bnm45' },
-// ];
 const Sidebar = () => {
   const boardArray = useSelector(selectAllBoards).toReversed();
+  const currentBoard = useSelector(selectCurrentBoard);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getAllBoards());
-  // }, [dispatch]);
-
+  const navigate = useNavigate();
+  const notify = () => toast('You can not delete board with existing columns.');
   const onBoardChange = id => {
-    // console.log('item:', id);
     dispatch(changeFilter('all'));
     dispatch(getBoardById(id));
   };
@@ -96,11 +83,21 @@ const Sidebar = () => {
               <div className={`tools-wrapper theme-${currentTheme}`}>
                 <div className={`toolsIcons theme-${currentTheme}`}>
                   <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                    <BoardForm boardId={item._id} boardTitle={item.title} />
+                    <BoardForm boardId={item._id} boardTitle={item.name} />
                   </PopUp>
                   <button
                     className={`boardDeleteButton theme-${currentTheme} `}
-                    onClick={() => {}}
+                    onClick={() => {
+                      if (
+                        item._id === currentBoard._id &&
+                        currentBoard.columns.length
+                      ) {
+                        notify();
+                        return;
+                      }
+                      dispatch(deleteBoardById(item._id));
+                      navigate('/');
+                    }}
                   >
                     <Icon id={'trash'} width={16} height={16} />
                   </button>
@@ -155,6 +152,16 @@ const Sidebar = () => {
           <span className={`logOutText theme-${currentTheme}`}>Log out</span>
         </button>
       </div>
+      <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            border: '1px solid red',
+            padding: '16px',
+            color: 'red',
+          },
+        }}
+      />
     </div>
   );
 };

@@ -45,15 +45,27 @@ const deleteColumn = async id => {
     .catch(e => console.log(e.request.response));
 };
 
-const addTask = async (idColumn, newTask) => {
+const addTask = async ({
+  columnId,
+  title,
+  description,
+  labelColor,
+  deadLine,
+}) => {
+  // console.log(newTask);
   return await axios
-    .post(`/tasks/${idColumn}`, newTask)
+    .post(`/tasks/${columnId}`, {
+      title,
+      description,
+      labelColor,
+      deadLine,
+    })
     .catch(e => console.log(e.request.response));
 };
 
-const editTask = async ({ title, description, labelColor, deadline, id }) => {
+const editTask = async ({ title, description, labelColor, deadLine, _id }) => {
   return await axios
-    .patch(`/tasks/${id}`, { title, description, labelColor, deadline })
+    .patch(`/tasks/${_id}`, { title, description, labelColor, deadLine })
     .catch(e => console.log(e.request.response));
 };
 
@@ -63,9 +75,13 @@ const deleteTask = async id => {
     .catch(e => console.log(e.request.response));
 };
 
-const dragTask = async ({ name, id }) => {
+const dragTask = async ({ id, columnId, indexTo, indexFrom }) => {
   return await axios
-    .patch(`/tasks/dragTask/${id}`, { name })
+    .patch(`/tasks/dragTask/${id}`, {
+      columnId,
+      indexTo,
+      indexFrom,
+    })
     .catch(e => console.log(e.request.response));
 };
 

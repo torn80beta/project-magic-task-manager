@@ -6,7 +6,7 @@ import Icons from '../../images/svg/icons_sprite_Board.svg';
 import BoardFormButton from './boardFormButton/BoardFormButton';
 // import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewBoard } from 'redux/workplace/workplace-operation';
 import { editBoardById } from 'redux/workplace/workplace-operation';
@@ -50,7 +50,7 @@ function TextError(currentTheme, errorText) {
 const schema = yup.object().shape({
   name: yup
     .string()
-    .max(25, 'Field can contain 25 symbols maximum')
+    .max(20, 'Field can contain 20 symbols maximum')
     .trim('Board name cannot include leading and trailing spaces')
     .min(1, 'Board name needs to be at least 1 char')
     .required('This field is required to fill'),
@@ -65,6 +65,7 @@ const BoardForm = ({
 }) => {
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const initialValues = {
     // boardTitle: '',
     // svgIcon: 'circles',
@@ -75,13 +76,14 @@ const BoardForm = ({
     background: boardBackground,
   };
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     if (boardId) {
       values.id = boardId;
-      console.log('values', values);
+      // console.log('values', values);
       dispatch(editBoardById(values));
     } else {
-      dispatch(addNewBoard(values));
+      const response = await dispatch(addNewBoard(values));
+      navigate(response.payload._id);
     }
 
     resetForm();
