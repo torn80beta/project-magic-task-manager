@@ -27,7 +27,7 @@ const LoginForm = () => {
       if (data && data.token) {
         resetForm();
       } else {
-        toast.error('Incorrect login or password provided');
+        toast.error('Incorrect email or password provided');
       }
     } catch (error) {
       console.log(error.message);
