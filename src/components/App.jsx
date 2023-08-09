@@ -1,11 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Layout from './layout/Layout';
 import { PrivateRoute } from 'helpers/PrivateRoute';
 import { RestrictedRoute } from 'helpers/RestrictedRoute';
 import { getCurrentUser } from 'redux/auth/auth-operation';
 import Loader from './loader/Loader';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('../pages/home/Home'));
 const Welcome = lazy(() => import('../pages/welcome/Welcome'));
@@ -74,5 +77,10 @@ export const App = () => {
     }
   );
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />;
+      <ToastContainer hideProgressBar />
+    </>
+  );
 };
