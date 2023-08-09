@@ -4,6 +4,7 @@ import PopUp from 'components/modal/PopUp';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
+import { DragDropContext } from 'react-beautiful-dnd';
 // import { themeState } from 'redux/theme/themeSlice';
 import {
   selectCurrentTheme,
@@ -15,8 +16,11 @@ import ColumnForm from 'components/columnForm/ColumnForm';
 // import { useParams } from 'react-router-dom';
 import {
   selectColumns,
+  setColumn,
   // selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
+import { useDispatch } from 'react-redux';
+import { dragTaskById } from 'redux/workplace/workplace-operation';
 
 //temporary
 // const columnsArray = [
@@ -42,7 +46,9 @@ import {
 const ScreensPage = () => {
   const currentTheme = useSelector(selectCurrentTheme);
   // const boardArray = useSelector(selectCurrentBoard);
+  const dispatch = useDispatch();
   const columnsArray = useSelector(selectColumns);
+
   // const { boardName } = useParams();
   // const [currentBoardTitle, setCurrentBoard] = useState('');
 
@@ -50,6 +56,55 @@ const ScreensPage = () => {
   //   const foundBoard = boardArray.find(item => item.id === boardName);
   //   foundBoard ? setCurrentBoard(foundBoard.title) : setCurrentBoard('');
   // }, [boardName]);
+
+  const dragHandler = async res => {
+    if (!res.destination) {
+      return;
+    }
+    const sourceListIndex = columnsArray.findIndex(
+      el => el._id === res.source.droppableId
+    );
+    const destinationListIndex = columnsArray.findIndex(
+      el => el._id === res.destination.droppableId
+    );
+
+    const updatedSourceTasks = [...columnsArray[sourceListIndex].tasks];
+    const updatedDestinationTasks = [
+      ...columnsArray[destinationListIndex].tasks,
+    ];
+
+    const [movedTask] = updatedSourceTasks.splice(res.source.index, 1);
+
+    if (sourceListIndex === destinationListIndex) {
+      updatedSourceTasks.splice(res.destination.index, 0, movedTask);
+    } else {
+      updatedDestinationTasks.splice(res.destination.index, 0, movedTask);
+    }
+
+    const updatedData = [...columnsArray];
+    updatedData[sourceListIndex] = {
+      ...updatedData[sourceListIndex],
+      tasks: updatedSourceTasks,
+    };
+    if (sourceListIndex !== destinationListIndex) {
+      updatedData[destinationListIndex] = {
+        ...updatedData[destinationListIndex],
+        tasks: updatedDestinationTasks,
+      };
+    }
+
+    dispatch(setColumn(updatedData));
+
+    dispatch(
+      dragTaskById({
+        id: movedTask._id,
+        columnId: res.destination.droppableId,
+        indexTo: res.destination.index,
+        indexFrom: res.source.index,
+      })
+    );
+  };
+
   return (
     <div className={`theme-${currentTheme} screenPage`}>
       <div className={`screenPage_header theme-${currentTheme}`}>
@@ -72,10 +127,11 @@ const ScreensPage = () => {
 
       <div className={`screenPage_canvas theme-${currentTheme}`}>
         <ul className={`screenPage_columns theme-${currentTheme}`}>
-          {columnsArray.map(item => (
-            // console.log(item),
-            <Columns {...item} key={item._id} />
-          ))}
+          <DragDropContext onDragEnd={dragHandler}>
+            {columnsArray.map(item => (
+              <Columns {...item} key={item._id} />
+            ))}
+          </DragDropContext>
         </ul>
 
         <PopUp

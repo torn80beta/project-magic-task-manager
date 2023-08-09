@@ -6,6 +6,7 @@ import PopUp from 'components/modal/PopUp';
 import ColumnForm from 'components/columnForm/ColumnForm';
 import AddCardForm from 'components/addCardForm/AddCardForm';
 import Card from 'components/card/Card';
+import { Droppable } from 'react-beautiful-dnd';
 import './Columns.scss';
 import { selectColumns } from 'redux/workplace/workplace-slice';
 import { deleteColumnById } from 'redux/workplace/workplace-operation';
@@ -42,6 +43,7 @@ const Columns = ({ _id: id, name }) => {
     <li className={`column theme-${currentTheme}`}>
       <div className={`column_header theme-${currentTheme}`}>
         <h2 className={`column_headerTitle theme-${currentTheme}`}>{name}</h2>
+
         <div className={`column_buttonWrap theme-${currentTheme}`}>
           <PopUp
             data={
@@ -62,12 +64,24 @@ const Columns = ({ _id: id, name }) => {
           </button>
         </div>
       </div>
-
-      <ul className={`cardsWrap theme-${currentTheme}`}>
-        {filteredCards.map(card => (
-          <Card {...{ ...card, taskId: card._id }} key={card._id} />
-        ))}
-      </ul>
+      <Droppable droppableId={id} key={id}>
+        {provided => (
+          <ul
+            className={`cardsWrap theme-${currentTheme}`}
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {filteredCards.map((card, index) => (
+              <Card
+                {...{ ...card, taskId: card._id }}
+                index={index}
+                key={card._id}
+              />
+            ))}
+            {provided.placeholder}
+          </ul>
+        )}
+      </Droppable>
       <PopUp
         data={
           <span className={`column_buttonAdd theme-${currentTheme}`}>

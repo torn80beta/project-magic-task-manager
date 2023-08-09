@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
+import { Draggable } from 'react-beautiful-dnd';
 import './Card.scss';
 import Icon from '../icon/Icon';
 import PopUp from 'components/modal/PopUp';
@@ -15,6 +16,7 @@ const Card = ({
   description,
   labelColor: priority,
   deadLine,
+  index,
 }) => {
   const [currentPriority, setCurrentPriority] = useState(priority);
   const currentTheme = useSelector(selectCurrentTheme);
@@ -43,82 +45,97 @@ const Card = ({
   const isToday = today.toDateString() === formattedDeadline.toDateString();
 
   return (
-    <div
-      className={`cardWrapper theme-${currentTheme}  priorityClass-${currentPriority}`}
-      priority={priority}
-    >
-      <div>
-        <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
-        <p className={`cardDescriptionWrapper theme-${currentTheme}`}>
-          <EllipsisText
-            className={`cardDescription theme-${currentTheme}`}
-            text={description}
-            length={100}
-          />
-        </p>
-        <hr className={`cardLine theme-${currentTheme}`} />
-        <div className={`topWrapper theme-${currentTheme}`}>
-          <div className={`cardPriority theme-${currentTheme}`}>
-            <div>
-              <h3 className={`cardSubtitle theme-${currentTheme}`}>Priority</h3>
-              <p className={`cardSubtextPrimary theme-${currentTheme}`}>
-                <span
-                  className={`cardBellPrimary theme-${currentTheme} priorityClass-${currentPriority}`}
-                  priority={priority}
-                />
-                {priority}
-              </p>
-            </div>
-            <div>
-              <h3 className={`cardSubtitle theme-${currentTheme}`}>Deadline</h3>
-              <p className={`cardSubtextDeadline theme-${currentTheme}`}>
-                {`${day}\\${month}\\${year}`}
-              </p>
-            </div>
-          </div>
-          <div className={`IconWrapper theme-${currentTheme}`}>
-            {isToday && (
-              <span className={`cardIcon theme-${currentTheme}`}>
-                <Icon id={'bell'} width={16} height={16} />
-              </span>
-            )}
-            <span className={`cardIcon theme-${currentTheme}`}>
-              <Icon id={'arrow-circle-broken-right'} width={16} height={16} />
-            </span>
-            <PopUp
-              data={
+    <Draggable key={id} draggableId={id} index={index}>
+      {provided => (
+        <div
+          className={`cardWrapper theme-${currentTheme}  priorityClass-${currentPriority}`}
+          priority={priority}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <div>
+            <h2 className={`cardTitle theme-${currentTheme}`}>{title}</h2>
+            <p className={`cardDescriptionWrapper theme-${currentTheme}`}>
+              <EllipsisText
+                className={`cardDescription theme-${currentTheme}`}
+                text={description}
+                length={100}
+              />
+            </p>
+            <hr className={`cardLine theme-${currentTheme}`} />
+            <div className={`topWrapper theme-${currentTheme}`}>
+              <div className={`cardPriority theme-${currentTheme}`}>
+                <div>
+                  <h3 className={`cardSubtitle theme-${currentTheme}`}>
+                    Priority
+                  </h3>
+                  <p className={`cardSubtextPrimary theme-${currentTheme}`}>
+                    <span
+                      className={`cardBellPrimary theme-${currentTheme} priorityClass-${currentPriority}`}
+                      priority={priority}
+                    />
+                    {priority}
+                  </p>
+                </div>
+                <div>
+                  <h3 className={`cardSubtitle theme-${currentTheme}`}>
+                    Deadline
+                  </h3>
+                  <p className={`cardSubtextDeadline theme-${currentTheme}`}>
+                    {`${day}\\${month}\\${year}`}
+                  </p>
+                </div>
+              </div>
+              <div className={`IconWrapper theme-${currentTheme}`}>
+                {isToday && (
+                  <span className={`cardIcon theme-${currentTheme}`}>
+                    <Icon id={'bell'} width={16} height={16} />
+                  </span>
+                )}
                 <span className={`cardIcon theme-${currentTheme}`}>
-                  <Icon id={'pencil'} width={16} height={16} />
+                  <Icon
+                    id={'arrow-circle-broken-right'}
+                    width={16}
+                    height={16}
+                  />
                 </span>
-              }
-            >
-              <AddCardForm
-                taskId={id}
-                data={{
-                  title,
-                  description,
-                  labelColor: priority,
-                  deadLine,
-                }}
-              />
-            </PopUp>
+                <PopUp
+                  data={
+                    <span className={`cardIcon theme-${currentTheme}`}>
+                      <Icon id={'pencil'} width={16} height={16} />
+                    </span>
+                  }
+                >
+                  <AddCardForm
+                    taskId={id}
+                    data={{
+                      title,
+                      description,
+                      labelColor: priority,
+                      deadLine,
+                    }}
+                  />
+                </PopUp>
 
-            <span
-              type="button"
-              onClick={() => dispatch(deleteTaskById(id))}
-              className={`cardIcon theme-${currentTheme}`}
-            >
-              <Icon
-                className={`cardIcon theme-${currentTheme}`}
-                id={'trash'}
-                width={16}
-                height={16}
-              />
-            </span>
+                <span
+                  type="button"
+                  onClick={() => dispatch(deleteTaskById(id))}
+                  className={`cardIcon theme-${currentTheme}`}
+                >
+                  <Icon
+                    className={`cardIcon theme-${currentTheme}`}
+                    id={'trash'}
+                    width={16}
+                    height={16}
+                  />
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Draggable>
   );
 };
 

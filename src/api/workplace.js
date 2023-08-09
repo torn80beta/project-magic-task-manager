@@ -75,9 +75,13 @@ const deleteTask = async id => {
     .catch(e => console.log(e.request.response));
 };
 
-const dragTask = async ({ name, id }) => {
+const dragTask = async ({ id, columnId, indexTo, indexFrom }) => {
   return await axios
-    .patch(`/tasks/dragTask/${id}`, { name })
+    .patch(`/tasks/dragTask/${id}`, {
+      columnId,
+      indexTo,
+      indexFrom,
+    })
     .catch(e => console.log(e.request.response));
 };
 

@@ -7,6 +7,7 @@
   max-width: 280px;
   height: 154px;
   border-radius: 8px;
+  margin-top: 8px;
   padding: 14px 20px 14px 24px;
 
   @include mobile {
@@ -57,7 +58,7 @@
 .cardDescriptionWrapper {
   max-width: 290px;
   height: 39px;
- 
+
   &.theme-light {
     color: $light-secondary-text;
   }
@@ -82,7 +83,6 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   white-space: pre-line;
-  
 
   &.theme-light {
     color: $light-secondary-text;
@@ -95,10 +95,9 @@
   }
 }
 
-
 .cardLine {
   display: flex;
-  
+
   &.theme-light {
     border: 1px solid rgba(22, 22, 22, 0.1);
   }
@@ -111,10 +110,10 @@
 }
 .topWrapper {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
- }
- 
+}
+
 .cardPriority {
   display: flex;
   gap: 12px;
@@ -192,7 +191,6 @@
   }
 }
 
-
 .IconWrapper {
   display: flex;
   gap: 8px;
@@ -223,7 +221,5 @@
     &:hover {
       color: $violet-icon-hover;
     }
+  }
 }
-}
-
-
