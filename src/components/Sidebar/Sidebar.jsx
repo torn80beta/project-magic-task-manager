@@ -75,6 +75,8 @@ const Sidebar = () => {
 
       <div className={`projects-wrapper theme-${currentTheme}`}>
         <ul className="projectsList">
+
+
           {boardArray.map(item => (
             <li
               key={item._id}
@@ -95,7 +97,7 @@ const Sidebar = () => {
               </NavLink>
               <div className={`tools-wrapper theme-${currentTheme}`}>
                 <div className={`toolsIcons theme-${currentTheme}`}>
-                  <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
+                  <PopUp data={<div className="bordEdditIcon"><Icon  id={'pencil'} width={16} height={16} /></div>}>
                     <BoardForm boardId={item._id} boardTitle={item.name} />
                   </PopUp>
                   <button
