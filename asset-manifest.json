@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/project-magic-task-manager/static/css/main.fb23132f.css",
-    "main.js": "/project-magic-task-manager/static/js/main.5a858ab9.js",
-    "static/css/750.404f6b62.chunk.css": "/project-magic-task-manager/static/css/750.404f6b62.chunk.css",
-    "static/js/750.b3485c49.chunk.js": "/project-magic-task-manager/static/js/750.b3485c49.chunk.js",
+    "main.js": "/project-magic-task-manager/static/js/main.85cc3ed0.js",
+    "static/css/750.b61b03ce.chunk.css": "/project-magic-task-manager/static/css/750.b61b03ce.chunk.css",
+    "static/js/750.55287a37.chunk.js": "/project-magic-task-manager/static/js/750.55287a37.chunk.js",
     "static/css/107.f7e8c4df.chunk.css": "/project-magic-task-manager/static/css/107.f7e8c4df.chunk.css",
     "static/js/107.70722a4c.chunk.js": "/project-magic-task-manager/static/js/107.70722a4c.chunk.js",
     "static/css/895.b37ffaa9.chunk.css": "/project-magic-task-manager/static/css/895.b37ffaa9.chunk.css",
@@ -29,9 +29,9 @@
     "static/media/icons_sprite_Board.svg": "/project-magic-task-manager/static/media/icons_sprite_Board.9f18d0d5be7521d7581c1e46115e0347.svg",
     "index.html": "/project-magic-task-manager/index.html",
     "main.fb23132f.css.map": "/project-magic-task-manager/static/css/main.fb23132f.css.map",
-    "main.5a858ab9.js.map": "/project-magic-task-manager/static/js/main.5a858ab9.js.map",
-    "750.404f6b62.chunk.css.map": "/project-magic-task-manager/static/css/750.404f6b62.chunk.css.map",
-    "750.b3485c49.chunk.js.map": "/project-magic-task-manager/static/js/750.b3485c49.chunk.js.map",
+    "main.85cc3ed0.js.map": "/project-magic-task-manager/static/js/main.85cc3ed0.js.map",
+    "750.b61b03ce.chunk.css.map": "/project-magic-task-manager/static/css/750.b61b03ce.chunk.css.map",
+    "750.55287a37.chunk.js.map": "/project-magic-task-manager/static/js/750.55287a37.chunk.js.map",
     "107.f7e8c4df.chunk.css.map": "/project-magic-task-manager/static/css/107.f7e8c4df.chunk.css.map",
     "107.70722a4c.chunk.js.map": "/project-magic-task-manager/static/js/107.70722a4c.chunk.js.map",
     "895.b37ffaa9.chunk.css.map": "/project-magic-task-manager/static/css/895.b37ffaa9.chunk.css.map",
@@ -49,6 +49,6 @@
   },
   "entrypoints": [
     "static/css/main.fb23132f.css",
-    "static/js/main.5a858ab9.js"
+    "static/js/main.85cc3ed0.js"
   ]
 }
