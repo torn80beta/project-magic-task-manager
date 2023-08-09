@@ -67,7 +67,9 @@ const workplaceSlice = createSlice({
       })
       .addCase(deleteBoardById.fulfilled, (state, action) => {
         state.boardsList.splice(
-          state.boardsList.findIndex(item => item._id === action.payload._id),
+          state.boardsList.findIndex(
+            item => item._id === action.payload.boardId
+          ),
           1
         );
         state.currentBoard = {
@@ -105,7 +107,7 @@ const workplaceSlice = createSlice({
       .addCase(deleteColumnById.fulfilled, (state, action) => {
         state.currentBoard.columns.splice(
           state.currentBoard.columns.findIndex(
-            column => column._id === action.payload._id
+            column => column._id === action.payload.columnId
           ),
           1
         );
