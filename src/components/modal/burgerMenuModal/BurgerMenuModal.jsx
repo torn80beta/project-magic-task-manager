@@ -40,7 +40,9 @@ const BurgerMenuModal = props => {
         className={`menu theme-${currentTheme}`}
         overlayElement={(props, contentElement) => (
           <div {...props}>
-            <div className="menu-wrapper">{contentElement}</div>
+            <div className={`menu-wrapper ${modalIsOpen ? 'active' : ''}`}>
+              {contentElement}
+            </div>
           </div>
         )}
         overlayClassName={`menu-overlay theme-${currentTheme}`}

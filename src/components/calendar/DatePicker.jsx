@@ -6,7 +6,6 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import DatePicker from 'react-datepicker';
 import './datePicker.scss';
 import Icon from 'components/icon/Icon';
-// import 'react-datepicker/dist/react-datepicker.css';
 
 const DateCalendar = ({ getDeadline }) => {
   const [startDate, setStartDate] = useState(new Date());

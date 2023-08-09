@@ -60,7 +60,19 @@
   height: 100dvh;
   transform: translate(-50%, -50%);
   background: transparent;
+  &.active {
+    animation: slideIn 0.3s ease forwards;
+  }
   @include tablet {
     min-width: 768px;
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translate(-100%, -50%);
+    }
+    100% {
+      transform: translate(-50%, -50%);
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
+import { toast } from 'react-toastify';
 import LoginSchema from './LoginSchema';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/icon/Icon';
@@ -15,10 +16,24 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (user, { resetForm }) => {
-    dispatch(loginUser(user));
-    resetForm();
+  const handleSubmit = async (user, { resetForm }) => {
+    // dispatch(loginUser(user));
+    // resetForm();
+
+    try {
+      const response = await dispatch(loginUser(user));
+      const data = response.payload;
+
+      if (data && data.token) {
+        resetForm();
+      } else {
+        toast.error('Incorrect email or password provided');
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
   return (
     <Formik
       onSubmit={handleSubmit}

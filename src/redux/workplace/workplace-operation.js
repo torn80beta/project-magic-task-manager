@@ -6,6 +6,7 @@ import {
   deleteBoard,
   deleteColumn,
   deleteTask,
+  dragTask,
   editBoard,
   editColumn,
   editTask,
@@ -112,6 +113,7 @@ export const addNewTask = createAsyncThunk(
   'tasks/add',
   async (credentials, thunkAPI) => {
     try {
+      // console.log(credentials);
       const { data } = await addTask(credentials);
       return data;
     } catch (error) {
@@ -119,6 +121,7 @@ export const addNewTask = createAsyncThunk(
     }
   }
 );
+
 export const editTaskById = createAsyncThunk(
   'tasks/edit',
   async (editedColumn, thunkAPI) => {
@@ -146,7 +149,7 @@ export const dragTaskById = createAsyncThunk(
   'tasks/dragTask',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await editTask(credentials);
+      const { data } = await dragTask(credentials);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

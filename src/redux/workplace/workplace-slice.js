@@ -11,6 +11,7 @@ import {
   editTaskById,
   deleteTaskById,
   getAllBoards,
+  dragTaskById,
 } from './workplace-operation';
 
 const initialState = {
@@ -22,11 +23,17 @@ const initialState = {
     icon: null,
     id: null,
   },
+  isLoading:false,
 };
 
 const workplaceSlice = createSlice({
   name: 'workplace',
   initialState,
+  reducers: {
+    setColumn(state, action) {
+      state.currentBoard.columns = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getAllBoards.pending, state => {
@@ -36,11 +43,18 @@ const workplaceSlice = createSlice({
         state.boardsList = action.payload;
         state.isLoading = false;
       })
+      .addCase(getAllBoards.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(addNewBoard.pending, state => {
         state.isLoading = true;
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
         state.boardsList.push(action.payload);
+        state.currentBoard = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(addNewBoard.rejected, state => {
         state.isLoading = false;
       })
       .addCase(getBoardById.pending, state => {
@@ -50,17 +64,33 @@ const workplaceSlice = createSlice({
         state.currentBoard = action.payload;
         state.isLoading = false;
       })
+      .addCase(getBoardById.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(editBoardById.pending, state => {
         state.isLoading = true;
       })
       .addCase(editBoardById.fulfilled, (state, action) => {
         state.currentBoard = action.payload;
+        const index = state.boardsList.findIndex(
+          board => board._id === action.payload._id
+        );
+        state.boardsList.splice(index, 1, action.payload);
+        state.isLoading = false;
+      })
+      .addCase(editBoardById.rejected, state => {
         state.isLoading = false;
       })
       .addCase(deleteBoardById.pending, state => {
         state.isLoading = true;
       })
-      .addCase(deleteBoardById.fulfilled, state => {
+      .addCase(deleteBoardById.fulfilled, (state, action) => {
+        state.boardsList.splice(
+          state.boardsList.findIndex(
+            item => item._id === action.payload.boardId
+          ),
+          1
+        );
         state.currentBoard = {
           name: null,
           columns: [],
@@ -70,6 +100,9 @@ const workplaceSlice = createSlice({
         };
         state.isLoading = false;
       })
+      .addCase(deleteBoardById.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(addNewColumn.pending, state => {
         state.isLoading = true;
       })
@@ -77,15 +110,23 @@ const workplaceSlice = createSlice({
         state.currentBoard.columns.push(action.payload);
         state.isLoading = false;
       })
+      .addCase(addNewColumn.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(editColumnById.pending, state => {
         state.isLoading = true;
       })
       .addCase(editColumnById.fulfilled, (state, action) => {
         state.currentBoard.columns.splice(
-          state.currentBoard.columns.findIndex(action.payload._id),
+          state.currentBoard.columns.findIndex(
+            column => column._id === action.payload._id
+          ),
           1,
           action.payload
         );
+        state.isLoading = false;
+      })
+      .addCase(editColumnById.rejected, state => {
         state.isLoading = false;
       })
       .addCase(deleteColumnById.pending, state => {
@@ -93,42 +134,87 @@ const workplaceSlice = createSlice({
       })
       .addCase(deleteColumnById.fulfilled, (state, action) => {
         state.currentBoard.columns.splice(
-          state.currentBoard.columns.findIndex(action.payload._id),
+          state.currentBoard.columns.findIndex(
+            column => column._id === action.payload.columnId
+          ),
           1
         );
+        state.isLoading = false;
+      })
+      .addCase(deleteColumnById.rejected, state => {
         state.isLoading = false;
       })
       .addCase(addNewTask.pending, state => {
         state.isLoading = true;
       })
       .addCase(addNewTask.fulfilled, (state, action) => {
-        state.currentBoard.columns.push(action.payload);
-        // state.board.columns[
-        //   state.board.columns.findIndex(action.payload._id)
-        // ].push(action.payload);
+        const targetColumn = state.currentBoard.columns.find(
+          column => column._id === action.payload.columnId
+        );
+        if (targetColumn) {
+          const task = targetColumn.tasks.find(
+            task => task._id === action.payload._id
+          );
+          if (!task) {
+            targetColumn.tasks.push(action.payload);
+          }
+        }
+        state.isLoading = false;
+      })
+      .addCase(addNewTask.rejected, state => {
         state.isLoading = false;
       })
       .addCase(editTaskById.pending, state => {
         state.isLoading = true;
       })
       .addCase(editTaskById.fulfilled, (state, action) => {
-        state.currentBoard.columns.splice(
-          state.currentBoard.columns.findIndex(action.payload._id),
-          1,
-          action.payload
+        const targetColumn = state.currentBoard.columns.find(
+          column => column._id === action.payload.columnId
         );
+        if (targetColumn) {
+          const task = targetColumn.tasks.find(
+            task => task._id === action.payload._id
+          );
+          if (task) {
+            task.title = action.payload.title;
+            task.description = action.payload.description;
+            task.deadLine = action.payload.deadLine;
+            task.labelColor = action.payload.labelColor;
+          }
+        }
         state.isLoading = false;
+      })
+      .addCase(editTaskById.rejected, state => {
+        state.isLoading= false
       })
       .addCase(deleteTaskById.pending, state => {
         state.isLoading = true;
       })
       .addCase(deleteTaskById.fulfilled, (state, action) => {
-        state.currentBoard.columns.splice(
-          state.currentBoard.columns.findIndex(action.payload._id),
-          1
+        const targetColumn = state.currentBoard.columns.find(
+          column => column._id === action.payload.columnId
         );
+        if (targetColumn) {
+          const taskIndex = targetColumn.tasks.findIndex(
+            task => task._id === action.payload.taskId
+          );
+          if (taskIndex !== -1) {
+            targetColumn.tasks.splice(taskIndex, 1);
+          }
+        }
+        state.isLoading = false;
+      })
+    .addCase(deleteTaskById.rejected, state=>{
+      state.isLoading = false;
+    })
+
+      .addCase(dragTaskById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(dragTaskById.fulfilled, (state, action) => {
         state.isLoading = false;
       });
+
   },
 });
 
@@ -139,4 +225,5 @@ export const selectCurrentBoard = state => state.workplace.currentBoard;
 
 export const selectColumns = state => state.workplace.currentBoard.columns;
 
+export const { setColumn } = workplaceSlice.actions;
 // export const selectTasks = state => state.workplace.currentBoard.columns;

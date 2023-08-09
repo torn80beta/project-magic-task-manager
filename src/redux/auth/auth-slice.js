@@ -47,6 +47,10 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
       })
+      .addCase(loginUser.rejected, state => {
+        state.isLoading = false;
+        state.isLoggedIn = false;
+      })
       .addCase(getCurrentUser.pending, state => {
         state.isLoading = true;
         state.isRefreshing = true;
@@ -62,6 +66,7 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUser.rejected, state => {
         state.isRefreshing = false;
+        state.isLoading = false;
       })
       .addCase(logoutUser.pending, state => {
         state.isLoading = true;
@@ -74,6 +79,9 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isLoading = false;
       })
+      .addCase(logoutUser.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(editUserData.pending, state => {
         state.isLoading = true;
       })
@@ -81,11 +89,17 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoading = false;
       })
+      .addCase(editUserData.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(editUserTheme.pending, state => {
         state.isLoading = true;
       })
       .addCase(editUserTheme.fulfilled, (state, action) => {
         state.theme = action.payload.theme;
+        state.isLoading = false;
+      })
+      .addCase(editUserTheme.rejected, state => {
         state.isLoading = false;
       });
   },
