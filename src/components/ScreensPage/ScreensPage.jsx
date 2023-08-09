@@ -1,23 +1,25 @@
 import './screensPage.scss';
 import PopUp from 'components/modal/PopUp';
-// import { useState } from 'react';
 import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ColumnForm from 'components/columnForm/ColumnForm';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   selectColumns,
+  selectCurrentBoard,
   setColumn,
   selectAllBoards,
 } from 'redux/workplace/workplace-slice';
-import { useDispatch } from 'react-redux';
-import { dragTaskById } from 'redux/workplace/workplace-operation';
+import {
+  dragTaskById,
+  getBoardById,
+} from 'redux/workplace/workplace-operation';
 import { bcgArray } from 'images/bcgArrey';
 import { BoardContainer } from './ScreensPage.styled';
 
@@ -58,6 +60,9 @@ const ScreensPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentBoardBcg]
   );
+  useEffect(() => {
+    dispatch(getBoardById(boardName));
+  }, [boardName, dispatch]);
 
   const dragHandler = async res => {
     if (!res.destination) {
@@ -114,7 +119,7 @@ const ScreensPage = () => {
           <div className={`theme-${currentTheme} screenPage`}>
             <div className={`screenPage_header theme-${currentTheme}`}>
               <h1 className={`screenPage_title theme-${currentTheme}`}>
-                {currentBoard}
+                {currentBoard.name}
               </h1>
               <PopUp
                 data={
