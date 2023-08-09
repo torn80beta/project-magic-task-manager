@@ -7,6 +7,7 @@ import {
   editProfile,
   editTheme,
   help,
+  google,
 } from 'api/auth';
 import axios from 'axios';
 
@@ -39,6 +40,20 @@ export const loginUser = createAsyncThunk(
       const { data } = await login(credentials);
       token.set(data.token);
       // console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const Google = createAsyncThunk(
+  'users/google',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await google(credentials);
+      token.set(data.token);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

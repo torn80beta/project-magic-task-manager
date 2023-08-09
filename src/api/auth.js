@@ -14,6 +14,12 @@ const login = async user => {
     .catch(e => console.log(e.request.response));
 };
 
+const google = async user => {
+  return await axios
+    .post('/users/google', user)
+    .catch(e => console.log(e.request.response));
+};
+
 const logout = async () => {
   return await axios
     .post('/users/logout')
@@ -42,4 +48,13 @@ const help = async help => {
     .post('/users/help', help)
     .catch(e => console.log(e.request.response));
 };
-export { register, login, logout, getCurrent, editProfile, editTheme, help };
+export {
+  register,
+  login,
+  logout,
+  getCurrent,
+  editProfile,
+  editTheme,
+  help,
+  google,
+};
