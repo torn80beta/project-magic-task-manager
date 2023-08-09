@@ -20,7 +20,7 @@ import {
 } from 'redux/workplace/workplace-operation';
 
 const Sidebar = () => {
-  const boardArray = useSelector(selectAllBoards);
+  const boardArray = useSelector(selectAllBoards).toReversed();
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
