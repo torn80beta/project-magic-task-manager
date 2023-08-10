@@ -15,12 +15,15 @@ import { editUserData } from 'redux/auth/auth-operation';
 
 const schema = Yup.object().shape({
   name: Yup.string()
+    .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
     .max(15, 'Name must be at most 15 characters'),
-  email: Yup.string().matches(
-    /^[a-zA-Zа-яА-Я0-9._%+-]+@[a-zA-Zа-яА-Я0-9.-]+\.[a-zA-Zа-яА-Я]{2,}$/,
-    'Invalid email format'
-  ),
+  email: Yup.string()
+    .required('Email is required')
+    .matches(
+      /^[a-zA-Zа-яА-Я0-9._%+-]+@[a-zA-Zа-яА-Я0-9.-]+\.[a-zA-Zа-яА-Я]{2,}$/,
+      'Invalid email format'
+    ),
   password: Yup.string()
     .matches(
       /^[a-zA-Z0-9!@#$%^&*()_+,-./:;<=>?@[\]^_`{|}~]+$/,
