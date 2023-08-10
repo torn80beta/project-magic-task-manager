@@ -4,16 +4,15 @@ import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
 import { DragDropContext } from 'react-beautiful-dnd';
-
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import ColumnForm from 'components/columnForm/ColumnForm';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   selectColumns,
   setColumn,
-  selectAllBoards,
+  selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
 import {
   dragTaskById,
@@ -24,44 +23,25 @@ import { BoardContainer } from './ScreensPage.styled';
 
 const ScreensPage = () => {
   const currentTheme = useSelector(selectCurrentTheme);
-  const boardArray = useSelector(selectAllBoards);
   const dispatch = useDispatch();
   const columnsArray = useSelector(selectColumns);
-  const [currentBoard, setCurrentBoard] = useState('');
-  const [currentBoardBcg, setCurrentBoardBcg] = useState('');
-  const [currentBcgUrl, setCurrentBcgUrl] = useState('');
-
+  const currentBoard = useSelector(selectCurrentBoard);
   const { boardName } = useParams();
 
-  useEffect(
-    () => {
-      const foundBoard = boardArray.find(item => item._id === boardName);
-      foundBoard ? setCurrentBoard(foundBoard.name) : setCurrentBoard('');
-      if (foundBoard) {
-        setCurrentBoardBcg(foundBoard.background);
-      }
-    },
+  useEffect(() => {
+    dispatch(getBoardById(boardName));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [{ boardName }]
-  );
+  }, [boardName, dispatch]);
+
   const bcgImg = () => {
-    if (currentBoardBcg) {
-      const result = bcgArray.find(bcg => bcg.bgname === currentBoardBcg);
+    if (currentBoard.background) {
+      const result = bcgArray.find(
+        bcg => bcg.bgname === currentBoard.background
+      );
+
       return result;
     }
   };
-  useEffect(
-    () => {
-      if (bcgImg()) {
-        setCurrentBcgUrl(bcgImg());
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentBoardBcg]
-  );
-  useEffect(() => {
-    dispatch(getBoardById(boardName));
-  }, [boardName, dispatch]);
 
   const dragHandler = async res => {
     if (!res.destination) {
@@ -113,8 +93,8 @@ const ScreensPage = () => {
 
   return (
     <>
-      {currentBcgUrl && (
-        <BoardContainer backgroundImg={currentBcgUrl}>
+      {bcgImg() && (
+        <BoardContainer backgroundImg={bcgImg()}>
           <div className={`theme-${currentTheme} screenPage`}>
             <div className={`screenPage_header theme-${currentTheme}`}>
               <h1 className={`screenPage_title theme-${currentTheme}`}>
