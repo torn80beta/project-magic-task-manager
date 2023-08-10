@@ -46,6 +46,54 @@ import bg14m from './mobile/bg-14.1x.jpg';
 import bg15m from './mobile/bg-15.1x.jpg';
 import bg16m from './mobile/bg-16.1x.jpg';
 
+import bg2dRet from './desktop/bg-2.2x.jpg';
+import bg3dRet from './desktop/bg-3.2x.jpg';
+import bg4dRet from './desktop/bg-4.2x.jpg';
+import bg5dRet from './desktop/bg-5.2x.jpg';
+import bg6dRet from './desktop/bg-6.2x.jpg';
+import bg7dRet from './desktop/bg-7.2x.jpg';
+import bg8dRet from './desktop/bg-8.2x.jpg';
+import bg9dRet from './desktop/bg-9.2x.jpg';
+import bg10dRet from './desktop/bg-10.2x.jpg';
+import bg11dRet from './desktop/bg-11.2x.jpg';
+import bg12dRet from './desktop/bg-12.2x.jpg';
+import bg13dRet from './desktop/bg-13.2x.jpg';
+import bg14dRet from './desktop/bg-14.2x.jpg';
+import bg15dRet from './desktop/bg-15.2x.jpg';
+import bg16dRet from './desktop/bg-16.2x.jpg';
+
+import bg2tRet from './tablet/bg-2.2x.jpg';
+import bg3tRet from './tablet/bg-3.2x.jpg';
+import bg4tRet from './tablet/bg-4.2x.jpg';
+import bg5tRet from './tablet/bg-5.2x.jpg';
+import bg6tRet from './tablet/bg-6.2x.jpg';
+import bg7tRet from './tablet/bg-7.2x.jpg';
+import bg8tRet from './tablet/bg-8.2x.jpg';
+import bg9tRet from './tablet/bg-9.2x.jpg';
+import bg10tRet from './tablet/bg-10.2x.jpg';
+import bg11tRet from './tablet/bg-11.2x.jpg';
+import bg12tRet from './tablet/bg-12.2x.jpg';
+import bg13tRet from './tablet/bg-13.2x.jpg';
+import bg14tRet from './tablet/bg-14.2x.jpg';
+import bg15tRet from './tablet/bg-15.2x.jpg';
+import bg16tRet from './tablet/bg-16.2x.jpg';
+
+import bg2mRet from './mobile/bg-2.2x.jpg';
+import bg3mRet from './mobile/bg-3.2x.jpg';
+import bg4mRet from './mobile/bg-4.2x.jpg';
+import bg5mRet from './mobile/bg-5.2x.jpg';
+import bg6mRet from './mobile/bg-6.2x.jpg';
+import bg7mRet from './mobile/bg-7.2x.jpg';
+import bg8mRet from './mobile/bg-8.2x.jpg';
+import bg9mRet from './mobile/bg-9.2x.jpg';
+import bg10mRet from './mobile/bg-10.2x.jpg';
+import bg11mRet from './mobile/bg-11.2x.jpg';
+import bg12mRet from './mobile/bg-12.2x.jpg';
+import bg13mRet from './mobile/bg-13.2x.jpg';
+import bg14mRet from './mobile/bg-14.2x.jpg';
+import bg15mRet from './mobile/bg-15.2x.jpg';
+import bg16mRet from './mobile/bg-16.2x.jpg';
+
 export const bcgArray = [
   {
     bgname: 'bg-1',
@@ -63,6 +111,9 @@ export const bcgArray = [
       mobile: bg2m,
       tablet: bg2t,
       desktop: bg2d,
+      mobileRet: bg2mRet,
+      tabletRet: bg2tRet,
+      desktopRet: bg2dRet,
     },
   },
   {
@@ -72,6 +123,9 @@ export const bcgArray = [
       mobile: bg3m,
       tablet: bg3t,
       desktop: bg3d,
+      mobileRet: bg3mRet,
+      tabletRet: bg3tRet,
+      desktopRet: bg3dRet,
     },
   },
   {
@@ -81,6 +135,9 @@ export const bcgArray = [
       mobile: bg4m,
       tablet: bg4t,
       desktop: bg4d,
+      mobileRet: bg4mRet,
+      tabletRet: bg4tRet,
+      desktopRet: bg4dRet,
     },
   },
   {
@@ -90,6 +147,9 @@ export const bcgArray = [
       mobile: bg5m,
       tablet: bg5t,
       desktop: bg5d,
+      mobileRet: bg5mRet,
+      tabletRet: bg5tRet,
+      desktopRet: bg5dRet,
     },
   },
   {
@@ -99,6 +159,9 @@ export const bcgArray = [
       mobile: bg6m,
       tablet: bg6t,
       desktop: bg6d,
+      mobileRet: bg6mRet,
+      tabletRet: bg6tRet,
+      desktopRet: bg6dRet,
     },
   },
   {
@@ -108,6 +171,9 @@ export const bcgArray = [
       mobile: bg7m,
       tablet: bg7t,
       desktop: bg7d,
+      mobileRet: bg7mRet,
+      tabletRet: bg7tRet,
+      desktopRet: bg7dRet,
     },
   },
   {
@@ -117,6 +183,9 @@ export const bcgArray = [
       mobile: bg8m,
       tablet: bg8t,
       desktop: bg8d,
+      mobileRet: bg8mRet,
+      tabletRet: bg8tRet,
+      desktopRet: bg8dRet,
     },
   },
   {
@@ -126,6 +195,9 @@ export const bcgArray = [
       mobile: bg9m,
       tablet: bg9t,
       desktop: bg9d,
+      mobileRet: bg9mRet,
+      tabletRet: bg9tRet,
+      desktopRet: bg9dRet,
     },
   },
   {
@@ -135,6 +207,9 @@ export const bcgArray = [
       mobile: bg10m,
       tablet: bg10t,
       desktop: bg10d,
+      mobileRet: bg10mRet,
+      tabletRet: bg10tRet,
+      desktopRet: bg10dRet,
     },
   },
   {
@@ -144,15 +219,21 @@ export const bcgArray = [
       mobile: bg11m,
       tablet: bg11t,
       desktop: bg11d,
+      mobileRet: bg11mRet,
+      tabletRet: bg11tRet,
+      desktopRet: bg11dRet,
     },
   },
   {
-    bgname: 'bg-12',
-    id: '12',
+    bgname: 'bg-112',
+    id: '112',
     source: {
       mobile: bg12m,
       tablet: bg12t,
       desktop: bg12d,
+      mobileRet: bg12mRet,
+      tabletRet: bg12tRet,
+      desktopRet: bg12dRet,
     },
   },
   {
@@ -162,6 +243,9 @@ export const bcgArray = [
       mobile: bg13m,
       tablet: bg13t,
       desktop: bg13d,
+      mobileRet: bg13mRet,
+      tabletRet: bg13tRet,
+      desktopRet: bg13dRet,
     },
   },
   {
@@ -171,6 +255,9 @@ export const bcgArray = [
       mobile: bg14m,
       tablet: bg14t,
       desktop: bg14d,
+      mobileRet: bg14mRet,
+      tabletRet: bg14tRet,
+      desktopRet: bg14dRet,
     },
   },
   {
@@ -180,6 +267,9 @@ export const bcgArray = [
       mobile: bg15m,
       tablet: bg15t,
       desktop: bg15d,
+      mobileRet: bg15mRet,
+      tabletRet: bg15tRet,
+      desktopRet: bg15dRet,
     },
   },
   {
@@ -189,6 +279,9 @@ export const bcgArray = [
       mobile: bg16m,
       tablet: bg16t,
       desktop: bg16d,
+      mobileRet: bg16mRet,
+      tabletRet: bg16tRet,
+      desktopRet: bg16dRet,
     },
   },
 ];
