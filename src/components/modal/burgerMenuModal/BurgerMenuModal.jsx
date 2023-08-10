@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 
 import { useSelector } from 'react-redux';
@@ -11,7 +10,6 @@ Modal.setAppElement('#root');
 const BurgerMenuModal = props => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const { children, data } = props;
-  // const currentTheme = useSelector(themeState);
   const currentTheme = useSelector(selectCurrentTheme);
 
   function openModal() {
@@ -24,6 +22,11 @@ const BurgerMenuModal = props => {
 
   function closeModal() {
     setIsOpen(false);
+  }
+  function cloneChildren(child) {
+    return React.cloneElement(child, {
+      closeModal,
+    });
   }
   return (
     <div>
@@ -48,7 +51,7 @@ const BurgerMenuModal = props => {
         overlayClassName={`menu-overlay theme-${currentTheme}`}
         contentLabel="menu"
       >
-        {children}
+        {cloneChildren(children)}
       </Modal>
     </div>
   );
