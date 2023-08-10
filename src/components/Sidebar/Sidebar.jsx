@@ -20,7 +20,7 @@ import {
 } from 'redux/workplace/workplace-operation';
 import toast, { Toaster } from 'react-hot-toast';
 
-const Sidebar = () => {
+const Sidebar = ({ closeModal }) => {
   const boardArray = useSelector(selectAllBoards).toReversed();
   const currentBoard = useSelector(selectCurrentBoard);
   const currentTheme = useSelector(selectCurrentTheme);
@@ -30,6 +30,9 @@ const Sidebar = () => {
   const onBoardChange = id => {
     dispatch(changeFilter('all'));
     dispatch(getBoardById(id));
+    if (closeModal) {
+      closeModal();
+    }
   };
 
   return (
