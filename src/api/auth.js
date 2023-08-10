@@ -48,6 +48,20 @@ const help = async help => {
     .post('/users/help', help)
     .catch(e => console.log(e.request.response));
 };
+
+const forgetPass = async email => {
+  return await axios
+    .post('/users/forgetpassword', email)
+    .catch(e => console.log(e.request.response));
+};
+
+const resetPass = async ({ user, verificationToken }) => {
+  console.log(user, 1);
+  return await axios
+    .post(`/users/resetpassword/${verificationToken}`, user)
+    .catch(e => console.log(e.request.response));
+};
+
 export {
   register,
   login,
@@ -57,4 +71,6 @@ export {
   editTheme,
   help,
   google,
+  forgetPass,
+  resetPass,
 };

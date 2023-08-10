@@ -8,6 +8,8 @@ import {
   editTheme,
   help,
   google,
+  forgetPass,
+  resetPass,
 } from 'api/auth';
 import axios from 'axios';
 
@@ -120,6 +122,30 @@ export const needHelp = createAsyncThunk(
   async (request, thunkAPI) => {
     try {
       const { data } = await help(request);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const forgetPassword = createAsyncThunk(
+  'users/forgetpassword',
+  async (request, thunkAPI) => {
+    try {
+      const { data } = await forgetPass(request);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'users/resetpassword',
+  async (request, thunkAPI) => {
+    try {
+      const { data } = await resetPass(request);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
