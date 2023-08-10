@@ -4,7 +4,7 @@ import BoardForm from 'components/boardForm/BoardForm';
 import { logoutUser } from 'redux/auth/auth-operation';
 import './sidebar.scss';
 import Icon from '../icon/Icon';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import cactusIcon from './img/icons/cactus_2.png';
 import NeedHelpForm from 'components/needHelpForm/NeedHelpForm';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
@@ -14,7 +14,6 @@ import {
   selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
 import {
-  // getAllBoards,
   getBoardById,
   deleteBoardById,
 } from 'redux/workplace/workplace-operation';
@@ -35,12 +34,12 @@ const Sidebar = () => {
 
   return (
     <div className={`sidebar theme-${currentTheme}`}>
-      <div className={`logoWrapper theme-${currentTheme}`}>
+      <Link to="/" className={`logoWrapper theme-${currentTheme}`}>
         <span className={`sidebar_logoIcon theme-${currentTheme}`}>
           <Icon id={'logo'} width={16} height={20} />
         </span>
         <h1 className={`logoName theme-${currentTheme}`}>Task Pro</h1>
-      </div>
+      </Link>
 
       <div className={`customAdviseWrapper theme-${currentTheme}`}>
         <h3 className={`customAdvise theme-${currentTheme}`}>My boards</h3>
@@ -124,8 +123,10 @@ const Sidebar = () => {
 
         <p className={`helpTextSidebar theme-${currentTheme}`}>
           If you need help with{' '}
-          <span className={`taskProWord theme-${currentTheme}`}>TaskPro</span>,
-          check out our support resources or reach out to our customer support
+          <Link to="/" className={`taskProWord theme-${currentTheme}`}>
+            TaskPro
+          </Link>
+          , check out our support resources or reach out to our customer support
           team.
         </p>
         <PopUp
