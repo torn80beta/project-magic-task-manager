@@ -56,13 +56,7 @@ const schema = yup.object().shape({
     .min(1, 'Board name needs to be at least 1 char')
     .required('This field is required to fill'),
 });
-const BoardForm = ({
-  boardId = null,
-  boardTitle = '',
-  boardIcon = 'icon-1',
-  boardBackground = 'bg-1',
-  closeModal,
-}) => {
+const BoardForm = ({ boardId = null, closeModal }) => {
   const currentBoard = useSelector(selectCurrentBoard);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
@@ -72,9 +66,9 @@ const BoardForm = ({
     // svgIcon: 'circles',
     // backgroundIcon: 0,
     // boardTitle: boardTitle,
-    name: boardId ? currentBoard.name : '',
-    icon: boardId ? currentBoard.icon : '',
-    background: boardId ? currentBoard.background : '',
+    name: boardId && currentBoard.name,
+    icon: boardId && currentBoard.icon,
+    background: boardId && currentBoard.background,
   };
 
   const handleSubmit = async (values, { resetForm }) => {
