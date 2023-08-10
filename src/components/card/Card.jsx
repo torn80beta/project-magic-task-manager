@@ -74,13 +74,13 @@ const Card = ({
                     Deadline
                   </h3>
                   <p className={`cardSubtextDeadline theme-${currentTheme}`}>
-                    {`${day}\\${month}\\${year}`}
+                    {`${day}/${month}/${year}`}
                   </p>
                 </div>
               </div>
               <div className={`IconWrapper theme-${currentTheme}`}>
                 {isTodayDeadline && (
-                  <span className={`cardIcon theme-${currentTheme}`}>
+                  <span className={`cardBellIcon theme-${currentTheme}`}>
                     <Icon id={'bell'} width={16} height={16} />
                   </span>
                 )}
