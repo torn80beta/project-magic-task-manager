@@ -63,50 +63,51 @@ const Sidebar = () => {
 
       <div className={`projects-wrapper theme-${currentTheme}`}>
         <ul className="projectsList">
-          {boardArray.map(item => (
-            <li
-              key={item._id}
-              className={`projectsListItem theme-${currentTheme}`}
-            >
-              <NavLink
-                to={`/${item._id}`}
-                className={`projectsLinks theme-${currentTheme}`}
-                onClick={() => {
-                  onBoardChange(item._id);
-                }}
+          {boardArray &&
+            boardArray.map(item => (
+              <li
+                key={item._id}
+                className={`projectsListItem theme-${currentTheme}`}
               >
-                <Icon id={item.icon} width={18} height={18} />
+                <NavLink
+                  to={`/${item._id}`}
+                  className={`projectsLinks theme-${currentTheme}`}
+                  onClick={() => {
+                    onBoardChange(item._id);
+                  }}
+                >
+                  <Icon id={item.icon} width={18} height={18} />
 
-                <h2 className={`projectsName theme-${currentTheme}`}>
-                  {item.name}
-                </h2>
-              </NavLink>
-              <div className={`tools-wrapper theme-${currentTheme}`}>
-                <div className={`toolsIcons theme-${currentTheme}`}>
-                  <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
-                    <BoardForm boardId={item._id} boardTitle={item.name} />
-                  </PopUp>
-                  <button
-                    className={`boardDeleteButton theme-${currentTheme} `}
-                    onClick={() => {
-                      if (
-                        item._id === currentBoard._id &&
-                        currentBoard.columns.length
-                      ) {
-                        notify();
-                        return;
-                      }
-                      dispatch(deleteBoardById(item._id));
-                      navigate('/');
-                    }}
-                  >
-                    <Icon id={'trash'} width={16} height={16} />
-                  </button>
+                  <h2 className={`projectsName theme-${currentTheme}`}>
+                    {item.name}
+                  </h2>
+                </NavLink>
+                <div className={`tools-wrapper theme-${currentTheme}`}>
+                  <div className={`toolsIcons theme-${currentTheme}`}>
+                    <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
+                      <BoardForm boardId={item._id} boardTitle={item.name} />
+                    </PopUp>
+                    <button
+                      className={`boardDeleteButton theme-${currentTheme} `}
+                      onClick={() => {
+                        if (
+                          item._id === currentBoard._id &&
+                          currentBoard.columns.length
+                        ) {
+                          notify();
+                          return;
+                        }
+                        dispatch(deleteBoardById(item._id));
+                        navigate('/');
+                      }}
+                    >
+                      <Icon id={'trash'} width={16} height={16} />
+                    </button>
+                  </div>
+                  <div className={`board-marker theme-${currentTheme}`}></div>
                 </div>
-                <div className={`board-marker theme-${currentTheme}`}></div>
-              </div>
-            </li>
-          ))}
+              </li>
+            ))}
         </ul>
       </div>
 
