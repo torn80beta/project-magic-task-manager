@@ -2,7 +2,6 @@
 @import '../../styles/variables';
 
 .editProfileForm {
-  width: 285px;
   // height: 390px;
   position: relative;
   display: flex;
@@ -10,6 +9,9 @@
   border-radius: 8px;
   background-color: #fcfcfc;
 
+  @include mobile {
+    width: 285px;
+  }
   @include tablet {
     width: 350px;
   }
@@ -112,14 +114,18 @@
     color: rgba(22, 22, 22, 0.6);
     border: 1px solid rgba(82, 85, 188, 0.4);
   }
-
   &::placeholder {
     font-family: Poppins;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 21px;
     letter-spacing: -0.02em;
     text-align: left;
+  }
+  @include mobile {
+    &::placeholder {
+      font-size: 14px;
+    }
   }
 
   &:focus {
@@ -182,7 +188,10 @@
 }
 
 .error {
-  font-size: 14px;
+  font-size: 12px;
+  @include mobile {
+    font-size: 14px;
+  }
   color: $wrong-data-text;
   margin-left: 18px;
 }
