@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import welcomeImage from '../../images/welcome.png';
 import Icon from '../../components/icon/Icon';
 import css from './welcome.module.scss';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Google } from 'redux/auth/auth-operation';
 import GoogleButton from 'react-google-button';
@@ -13,16 +12,7 @@ const Welcome = () => {
   const distpatch = useDispatch();
 
   const googleLogin = useGoogleLogin({
-    onSuccess: async tokenResponse => {
-      const userInfo = await axios
-        .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-        })
-        .then(res => res.data);
-      const { email, name, sub, picture } = userInfo;
-
-      distpatch(Google({ email, name, sub, picture }));
-    },
+    onSuccess: async tokenResponse => distpatch(Google({ tokenResponse })),
   });
 
   return (
