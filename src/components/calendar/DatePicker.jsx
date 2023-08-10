@@ -38,7 +38,6 @@ const DateCalendar = ({ selected, onSelect }) => {
         calendarStartDay={1}
         customInput={<ExampleCustomInput />}
         calendarClassName={`theme-${currentTheme}`}
-        // popperPlacement='right-end'
       />
     </div>
   );
