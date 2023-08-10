@@ -72,9 +72,9 @@ const BoardForm = ({
     // svgIcon: 'circles',
     // backgroundIcon: 0,
     // boardTitle: boardTitle,
-    name: currentBoard.name,
-    icon: currentBoard.icon,
-    background: currentBoard.background,
+    name: boardId ? currentBoard.name : '',
+    icon: boardId ? currentBoard.icon : '',
+    background: boardId ? currentBoard.background : '',
   };
 
   const handleSubmit = async (values, { resetForm }) => {
