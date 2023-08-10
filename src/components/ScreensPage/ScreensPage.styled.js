@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const BoardContainer = styled.section`
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 68px);
   flex-wrap: nowrap;
   background-origin: border-box;
   background-repeat: no-repeat;
@@ -29,6 +29,7 @@ export const BoardContainer = styled.section`
   }
 
   @media screen and (max-width: 767px) {
+    height: calc(100vh - 60px);
     @media only screen and (-webkit-min-device-pixel-ratio: 2),
       only screen and (min--moz-device-pixel-ratio: 2),
       only screen and (-o-min-device-pixel-ratio: 2/1),
