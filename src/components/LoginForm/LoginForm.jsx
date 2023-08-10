@@ -58,6 +58,7 @@ const LoginForm = () => {
               type={showPassword ? 'text' : 'password'}
               placeholder="Confirm a password"
             />
+
             <ErrorMessage
               className={css.errmes}
               name="password"
@@ -70,7 +71,10 @@ const LoginForm = () => {
                 <Icon id="eye" width="18" height="18"></Icon>
               )}
             </span>
-          </div>
+          </div>{' '}
+          <Link className={css.forgetPass} to="forgetPassword">
+            Forget password
+          </Link>
         </div>
         <button className={css.logInButton} type="submit">
           Log In Now
