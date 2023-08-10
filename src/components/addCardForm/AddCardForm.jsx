@@ -40,15 +40,13 @@ const AddCardForm = ({
       onSubmit={(values, { setSubmitting }) => {
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
-          // console.log('Updating a card');
-          console.log(values);
+          // console.log('Updating a card ' + values);
           dispatch(editTaskById(values));
           setSubmitting(false);
           closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
-          // console.log('Creating a new card');
-          console.log(values);
+          // console.log('Creating a new card ' + values);
           dispatch(addNewTask(values));
           setSubmitting(false);
           closeModal();
