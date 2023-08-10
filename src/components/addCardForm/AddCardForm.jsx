@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { Formik } from 'formik';
@@ -14,14 +13,9 @@ const AddCardForm = ({
   closeModal,
   data: { title, description, labelColor, deadLine } = {},
 }) => {
-  // const [date, setDate] = useState('');
-  // const getDeadline = value => {
-  //   setDate(value);
-  //   console.log(date);
-  // };
-  const date = '2023-08-03T17:01:27.257+00:00';
-  const theme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
+  const normalizedDeadLine = deadLine ? deadLine : new Date();
+  const theme = useSelector(selectCurrentTheme);
 
   return (
     <Formik
@@ -31,7 +25,7 @@ const AddCardForm = ({
         description: description,
         title: title || '',
         labelColor: labelColor || 'without',
-        deadLine: date,
+        deadLine: new Date(normalizedDeadLine),
       }}
       validate={values => {
         const errors = {};
@@ -47,12 +41,14 @@ const AddCardForm = ({
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
           // console.log('Updating a card');
+          console.log(values);
           dispatch(editTaskById(values));
           setSubmitting(false);
           closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
           // console.log('Creating a new card');
+          console.log(values);
           dispatch(addNewTask(values));
           setSubmitting(false);
           closeModal();
@@ -70,6 +66,7 @@ const AddCardForm = ({
         handleBlur,
         handleSubmit,
         isSubmitting,
+        setFieldValue,
       }) => (
         <form className={`add-form theme-${theme}`} onSubmit={handleSubmit}>
           <p className={`add-form-title theme-${theme}`}>
@@ -162,9 +159,8 @@ const AddCardForm = ({
                 Deadline
               </p>
               <DateCalendar
-              // getDeadline={() => {
-              //   getDeadline();
-              // }}
+                selected={values.deadLine}
+                onSelect={date => setFieldValue('deadLine', date)}
               />
             </div>
             <button

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { format, isToday } from 'date-fns';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
@@ -7,14 +7,8 @@ import DatePicker from 'react-datepicker';
 import './datePicker.scss';
 import Icon from 'components/icon/Icon';
 
-const DateCalendar = ({ getDeadline }) => {
-  const [startDate, setStartDate] = useState(new Date());
+const DateCalendar = ({ selected, onSelect }) => {
   const currentTheme = useSelector(selectCurrentTheme);
-
-  const onChange = date => {
-    getDeadline(date);
-    setStartDate(date);
-  };
 
   const formatDate = date => {
     if (isToday(date)) {
@@ -30,15 +24,16 @@ const DateCalendar = ({ getDeadline }) => {
       onClick={onClick}
       ref={ref}
     >
-      <span className="input-custom-text">{formatDate(startDate)}</span>
+      <span className="input-custom-text">{formatDate(selected)}</span>
       <Icon id={'chevron-down'} width={18} height={18} />
     </button>
   ));
   return (
     <div>
       <DatePicker
-        selected={startDate}
-        onChange={onChange}
+        selected={selected}
+        onSelect={onSelect}
+        // onChange={onChange}
         minDate={new Date()}
         calendarStartDay={1}
         customInput={<ExampleCustomInput />}

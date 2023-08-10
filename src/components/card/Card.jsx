@@ -26,13 +26,14 @@ const Card = ({
     setCurrentPriority(priority);
   }, [priority]);
   const date = new Date(deadLine);
+  // console.log(date);
 
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
 
- const today = new Date();
- const isTodayDeadline = date.toDateString() === today.toDateString();
+  const today = new Date();
+  const isTodayDeadline = date.toDateString() === today.toDateString();
 
   return (
     <Draggable key={id} draggableId={id} index={index}>
@@ -78,12 +79,12 @@ const Card = ({
                 </div>
               </div>
               <div className={`IconWrapper theme-${currentTheme}`}>
-                 {isTodayDeadline && (
+                {isTodayDeadline && (
                   <span className={`cardIcon theme-${currentTheme}`}>
                     <Icon id={'bell'} width={16} height={16} />
                   </span>
                 )}
-           
+
                 <PopUp
                   data={
                     <span className={`cardIcon theme-${currentTheme}`}>

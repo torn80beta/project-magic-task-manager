@@ -179,6 +179,7 @@ const workplaceSlice = createSlice({
             task.title = action.payload.title;
             task.description = action.payload.description;
             task.deadLine = action.payload.deadLine;
+            console.log('Payload: ' + action.payload.deadLine);
             task.labelColor = action.payload.labelColor;
           }
         }
