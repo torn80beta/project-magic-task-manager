@@ -16,7 +16,7 @@ const Welcome = () => {
   const [searchParams] = useSearchParams();
   const accessToken = searchParams.get('accessToken');
   useEffect(() => {
-    if (!accessToken && accessToken === '') {
+    if (!accessToken || accessToken === '') {
       return;
     }
     dispatch(setToken({ token: accessToken }));
