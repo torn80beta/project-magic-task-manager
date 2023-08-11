@@ -26,7 +26,6 @@ const Card = ({
     setCurrentPriority(priority);
   }, [priority]);
   const date = new Date(deadLine);
-  // console.log(date);
 
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -38,7 +37,7 @@ const Card = ({
   return (
     <Draggable key={id} draggableId={id} index={index}>
       {provided => (
-        <div
+        <li
           className={`cardWrapper theme-${currentTheme}  priorityClass-${currentPriority}`}
           priority={priority}
           ref={provided.innerRef}
@@ -118,7 +117,7 @@ const Card = ({
               </div>
             </div>
           </div>
-        </div>
+        </li>
       )}
     </Draggable>
   );
