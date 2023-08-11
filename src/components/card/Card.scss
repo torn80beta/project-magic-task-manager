@@ -223,3 +223,33 @@
     }
   }
 }
+
+.cardBellIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+ 
+  filter: drop-shadow(0px 0px 6px $dark-icon-hover);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &.theme-light {
+    color: $light-bell-color;
+    &:hover {
+    color: $light-secondary-text;
+    }
+  }
+  &.theme-dark {
+    color: $dark-bell-color;
+    &:hover {
+    color: $dark-secondary-text;
+    }
+  }
+  &.theme-violet {
+    color:$violet-bell-color;
+    &:hover {
+    color: $violet-secondary-text;
+    }
+  }
+}
+
