@@ -67,8 +67,8 @@ const BoardForm = ({ boardId = null, closeModal }) => {
     // backgroundIcon: 0,
     // boardTitle: boardTitle,
     name: boardId && currentBoard.name,
-    icon: boardId && currentBoard.icon,
-    background: boardId && currentBoard.background,
+    icon: boardId ? currentBoard.icon : 'icon-1',
+    background: boardId ? currentBoard.background : 'bg-1',
   };
 
   const handleSubmit = async (values, { resetForm }) => {
