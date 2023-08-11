@@ -63,7 +63,7 @@
 
 .uploadBtn {
   position: absolute;
-  left: 130px;
+  left: 108px;
   top: 106px;
   color: #161616;
   cursor: pointer;
@@ -79,6 +79,10 @@
   &:hover.violet {
     background-color: #979cea;
   }
+  @include mobile {
+    left: 130px;
+  }
+
   @include tablet {
     left: 163px;
   }
