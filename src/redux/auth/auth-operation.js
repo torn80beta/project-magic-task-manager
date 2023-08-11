@@ -26,7 +26,8 @@ export const registerUser = createAsyncThunk(
   'users/register',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await register(credentials);
+      await register(credentials);
+      const { data } = await login(credentials);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -41,7 +42,6 @@ export const loginUser = createAsyncThunk(
     try {
       const { data } = await login(credentials);
       token.set(data.token);
-      // console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

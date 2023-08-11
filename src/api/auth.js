@@ -8,9 +8,10 @@ const register = async newUser => {
     .catch(e => console.log(e.request.response));
 };
 
-const login = async user => {
+const login = async ({ email, password }) => {
   return await axios
-    .post('/users/login', user)
+    .post('/users/login', { email, password })
+
     .catch(e => console.log(e.request.response));
 };
 
