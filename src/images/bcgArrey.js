@@ -225,8 +225,8 @@ export const bcgArray = [
     },
   },
   {
-    bgname: 'bg-112',
-    id: '112',
+    bgname: 'bg-12',
+    id: '12',
     source: {
       mobile: bg12m,
       tablet: bg12t,
