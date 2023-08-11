@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import UserInfo from 'components/userInfo/UserInfo';
 import './header.scss';
 import Icon from 'components/icon/Icon';
-// import { themeState, changeTheme } from 'redux/theme/themeSlice';
 
 import { useSelector, useDispatch } from 'react-redux';
 import Sidebar from 'components/Sidebar/Sidebar';
@@ -22,7 +21,6 @@ const Header = ({ children }) => {
     name: useSelector(selectUserName),
     avatar: useSelector(selectUserAvatar),
   };
-  // const theme = useSelector(themeState);
   const theme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
 
@@ -31,7 +29,6 @@ const Header = ({ children }) => {
   };
   const handleOptionClick = label => {
     dispatch(editUserTheme(label));
-    // dispatch(changeTheme(label));
     setMenuActive(false);
   };
 

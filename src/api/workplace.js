@@ -52,7 +52,6 @@ const addTask = async ({
   labelColor,
   deadLine,
 }) => {
-  // console.log(newTask);
   return await axios
     .post(`/tasks/${columnId}`, {
       title,
