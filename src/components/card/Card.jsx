@@ -37,7 +37,7 @@ const Card = ({
   return (
     <Draggable key={id} draggableId={id} index={index}>
       {provided => (
-        <div
+        <li
           className={`cardWrapper theme-${currentTheme}  priorityClass-${currentPriority}`}
           priority={priority}
           ref={provided.innerRef}
@@ -117,7 +117,7 @@ const Card = ({
               </div>
             </div>
           </div>
-        </div>
+        </li>
       )}
     </Draggable>
   );
