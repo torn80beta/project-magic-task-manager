@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 import {
   registerUser,
   loginUser,
@@ -22,6 +23,12 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    setToken: (state, action) => {
+      state.token = action.payload.token;
+      axios.defaults.headers.common.Authorization = `Bearer ${action.payload.token}`;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(registerUser.pending, state => {
@@ -128,3 +135,4 @@ export const selectToken = state => state.auth.token;
 export const selectUserAvatar = state => state.auth.user.avatar;
 export const selectIsLoading = state => state.auth.isLoading;
 export const selectCurrentTheme = state => state.auth.theme;
+export const { setToken } = authSlice.actions;
