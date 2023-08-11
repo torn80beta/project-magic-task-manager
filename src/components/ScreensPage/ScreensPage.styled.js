@@ -1,12 +1,15 @@
 import styled from '@emotion/styled';
 
 export const BoardContainer = styled.section`
-  width: 100%;
-  height: calc(100vh - 68px);
+  /* width: 100%; */
+  /* height: calc(100vh - 68px); */
+  width: auto;
+  height: auto;
   flex-wrap: nowrap;
   background-origin: border-box;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
   @media screen and (min-width: 768px) {
     @media only screen and (-webkit-min-device-pixel-ratio: 2),
       only screen and (min--moz-device-pixel-ratio: 2),

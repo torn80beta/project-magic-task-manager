@@ -14,7 +14,7 @@ import {
   selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
 import {
-  getBoardById,
+  // getBoardById,
   deleteBoardById,
 } from 'redux/workplace/workplace-operation';
 import { toast } from 'react-toastify';
@@ -28,7 +28,7 @@ const Sidebar = ({ closeModal }) => {
 
   const onBoardChange = id => {
     dispatch(changeFilter('all'));
-    dispatch(getBoardById(id));
+    // dispatch(getBoardById(id));
     if (closeModal) {
       closeModal();
     }
