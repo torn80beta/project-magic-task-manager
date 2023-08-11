@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { filterState } from 'redux/filter/filterSlice';
 import Icon from 'components/icon/Icon';
@@ -22,13 +23,12 @@ const Columns = ({ _id: id, name }) => {
 
   const dispatch = useDispatch();
 
-  const handleDeleteButton = id => {
+  const handleDeleteButton = columnId => {
     if (cards.length !== 0) {
-      console.log('The column must be empty');
+      toast.error('The column must be empty');
       return;
     }
-    // console.log(`Column deleted ${id}`);
-    dispatch(deleteColumnById(id));
+    dispatch(deleteColumnById(columnId));
   };
 
   const getFilteredCards = () => {
