@@ -1,27 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Droppable } from 'react-beautiful-dnd';
 import { toast } from 'react-toastify';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
+import { selectColumns } from 'redux/workplace/workplace-slice';
 import { filterState } from 'redux/filter/filterSlice';
-import Icon from 'components/icon/Icon';
+import { deleteColumnById } from 'redux/workplace/workplace-operation';
 import PopUp from 'components/modal/PopUp';
 import ColumnForm from 'components/columnForm/ColumnForm';
 import AddCardForm from 'components/addCardForm/AddCardForm';
 import Card from 'components/card/Card';
-import { Droppable } from 'react-beautiful-dnd';
+import Icon from 'components/icon/Icon';
+
 import './Columns.scss';
-import { selectColumns } from 'redux/workplace/workplace-slice';
-import { deleteColumnById } from 'redux/workplace/workplace-operation';
 
 const Columns = ({ _id: id, name }) => {
+  const dispatch = useDispatch();
+
   const currentTheme = useSelector(selectCurrentTheme);
-
   const columnsList = useSelector(selectColumns);
-  const cards =
-    columnsList[columnsList.findIndex(item => item._id === id)].tasks;
-
   const filter = useSelector(filterState);
 
-  const dispatch = useDispatch();
+  const cards =
+    columnsList[columnsList.findIndex(item => item._id === id)].tasks;
 
   const handleDeleteButton = columnId => {
     if (cards.length !== 0) {
