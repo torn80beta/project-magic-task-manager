@@ -9,7 +9,10 @@ import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewBoard } from 'redux/workplace/workplace-operation';
-import { editBoardById } from 'redux/workplace/workplace-operation';
+import {
+  editBoardById,
+  getBoardById,
+} from 'redux/workplace/workplace-operation';
 import { selectCurrentBoard } from 'redux/workplace/workplace-slice';
 
 const iconsSvgInitial = [
@@ -75,7 +78,8 @@ const BoardForm = ({ boardId = null, closeModal }) => {
     if (boardId) {
       values.id = boardId;
       // console.log('values', values);
-      dispatch(editBoardById(values));
+      await dispatch(editBoardById(values));
+      await dispatch(getBoardById(boardId));
     } else {
       const response = await dispatch(addNewBoard(values));
       navigate(response.payload._id);
