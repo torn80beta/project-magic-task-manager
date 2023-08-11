@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
+import { toast } from 'react-toastify';
 
 import forgetPassShema from './forgetPassShema';
 import { NavLink } from 'react-router-dom';
@@ -11,22 +12,19 @@ const ForgetPass = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (user, { resetForm }) => {
-    console.log(user);
-    dispatch(forgetPassword(user));
-    resetForm();
+    try {
+      const response = await dispatch(forgetPassword(user));
+      const data = response.payload.message;
 
-    // try {
-    //   const response = await dispatch(forgetPassword(user));
-    //   const data = response.payload;
-
-    //   if (data && data.token) {
-    //     resetForm();
-    //   } else {
-    //     toast.error('Incorrect email or password provided');
-    //   }
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
+      if (data) {
+        toast.info('Password recovery: Check your email for instructions');
+        resetForm();
+      } else {
+        toast.error('Invalid email address');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

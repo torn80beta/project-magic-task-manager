@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Field, ErrorMessage, Form } from 'formik';
+import { toast } from 'react-toastify';
 import RegisterSchema from './RegisterSchema';
 import { Link } from 'react-router-dom';
 import Icon from '../../components/icon/Icon';
@@ -16,9 +17,22 @@ const RegisterForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (newUser, { resetForm }) => {
-    dispatch(registerUser(newUser));
-    resetForm();
+  const handleSubmit = async (newUser, { resetForm }) => {
+    try {
+      const response = await dispatch(registerUser(newUser));
+      const data = response.payload.user;
+
+      if (data) {
+        toast.success('Welcome to Task Pro! Your registration was successful');
+        resetForm();
+      } else {
+        toast.error(
+          'Oops! Something went wrong during registration. Please double-check your information and try again'
+        );
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (

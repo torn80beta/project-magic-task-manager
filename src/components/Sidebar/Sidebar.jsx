@@ -17,7 +17,7 @@ import {
   getBoardById,
   deleteBoardById,
 } from 'redux/workplace/workplace-operation';
-import toast, { Toaster } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 const Sidebar = ({ closeModal }) => {
   const boardArray = useSelector(selectAllBoards).toReversed();
@@ -25,7 +25,6 @@ const Sidebar = ({ closeModal }) => {
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const notify = () => toast('You can not delete board with existing columns.');
 
   const onBoardChange = id => {
     dispatch(changeFilter('all'));
@@ -33,6 +32,15 @@ const Sidebar = ({ closeModal }) => {
     if (closeModal) {
       closeModal();
     }
+  };
+
+  const onDeleteButton = boardId => {
+    if (boardId === currentBoard._id && currentBoard.columns.length) {
+      toast.error('The board must be empty');
+      return;
+    }
+    dispatch(deleteBoardById(boardId));
+    navigate('/');
   };
 
   return (
@@ -91,17 +99,18 @@ const Sidebar = ({ closeModal }) => {
                     </PopUp>
                     <button
                       className={`boardDeleteButton theme-${currentTheme} `}
-                      onClick={() => {
-                        if (
-                          item._id === currentBoard._id &&
-                          currentBoard.columns.length
-                        ) {
-                          notify();
-                          return;
-                        }
-                        dispatch(deleteBoardById(item._id));
-                        navigate('/');
-                      }}
+                      onClick={() => onDeleteButton(item._id)}
+                      //   () => {
+                      //   if (
+                      //     item._id === currentBoard._id &&
+                      //     currentBoard.columns.length
+                      //   ) {
+                      //     notify();
+                      //     return;
+                      //   }
+                      //   dispatch(deleteBoardById(item._id));
+                      //   navigate('/');
+                      // }
                     >
                       <Icon id={'trash'} width={16} height={16} />
                     </button>
@@ -158,16 +167,6 @@ const Sidebar = ({ closeModal }) => {
           <span className={`logOutText theme-${currentTheme}`}>Log out</span>
         </button>
       </div>
-      <Toaster
-        toastOptions={{
-          className: '',
-          style: {
-            border: '1px solid red',
-            padding: '16px',
-            color: 'red',
-          },
-        }}
-      />
     </div>
   );
 };

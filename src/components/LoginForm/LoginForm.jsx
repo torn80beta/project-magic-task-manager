@@ -17,9 +17,6 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async (user, { resetForm }) => {
-    // dispatch(loginUser(user));
-    // resetForm();
-
     try {
       const response = await dispatch(loginUser(user));
       const data = response.payload;
