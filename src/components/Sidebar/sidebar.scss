@@ -8,8 +8,6 @@
   align-items: flex-start;
   min-width: 225px;
   max-width: 225px;
-  color: white;
-  background-color: $dark-sidebar-bg;
   overflow-y: auto;
 
   &.theme-violet {
@@ -69,7 +67,6 @@
   }
 
   .logoName {
-    color: #fff;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.04em;
@@ -92,12 +89,12 @@
     width: 100%;
     gap: 8px;
     margin-top: 60px;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
 
     @include tablet {
       padding: 0px 24px;
       margin-top: 60px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
   }
 
@@ -152,7 +149,6 @@
   }
 
   .createBoardText {
-    color: #fff;
     display: block;
     font-size: 14px;
     font-weight: 500;
@@ -214,11 +210,11 @@
     align-items: center;
     width: 100%;
     gap: 4px;
-    height: calc(100vh - 570px);
+    height: calc(100vh - 556px);
     min-height: 126px;
 
     @include tablet {
-      height: calc(100vh - 644px);
+      height: calc(100vh - 585px);
       min-height: 126px;
     }
   }
@@ -301,12 +297,21 @@
 
     &.theme-light {
       color: #16161680;
+      &:hover {
+        background: $light-screens-bg;
+      }
     }
     &.theme-dark {
       color: $dark-50-transparent;
+      &:hover {
+        background: $dark-screens-bg;
+      }
     }
     &.theme-violet {
       color: $dark-50-transparent;
+      &:hover {
+        background: $violet-active-board-bg;
+      }
     }
 
     &.active {
@@ -403,7 +408,6 @@
 
   .helpInsideWrapper {
     align-self: flex-end;
-    background-color: #1f1f1f;
     padding: 14px;
     margin: 20px 14px 0;
     border-radius: 8px;
@@ -430,7 +434,6 @@
   }
 
   .helpTextSidebar {
-    color: #fff;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -508,7 +511,6 @@
   }
 
   .needHelpText {
-    // color: #fff;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: -0.24px;

@@ -11,22 +11,8 @@ const ForgetPass = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (user, { resetForm }) => {
-    console.log(user);
     dispatch(forgetPassword(user));
     resetForm();
-
-    // try {
-    //   const response = await dispatch(forgetPassword(user));
-    //   const data = response.payload;
-
-    //   if (data && data.token) {
-    //     resetForm();
-    //   } else {
-    //     toast.error('Incorrect email or password provided');
-    //   }
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
   };
 
   return (

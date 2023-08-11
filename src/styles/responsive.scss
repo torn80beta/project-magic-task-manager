@@ -7,9 +7,6 @@ $desktop: 1440px;
   @media screen and (min-width: ($pre-mobile)) {
     @content;
   }
-  // @media screen and (max-width: ($mobile)) {
-  //   @content;
-  // }
 }
 
 @mixin mobile {

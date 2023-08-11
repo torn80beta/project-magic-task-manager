@@ -59,7 +59,6 @@ export const EditProfileForm = props => {
   };
 
   const handleSubmit = editedContact => {
-    console.log('editedContact:', editedContact);
     const formData = new FormData();
     formData.append('name', editedContact.name);
     formData.append('email', editedContact.email);
@@ -70,7 +69,6 @@ export const EditProfileForm = props => {
       formData.append('avatar', file);
     }
 
-    console.log('formData:', formData);
     dispatch(editUserData(formData));
     closeModal();
   };

@@ -223,4 +223,3 @@ export const selectCurrentBoard = state => state.workplace.currentBoard;
 export const selectColumns = state => state.workplace.currentBoard.columns;
 export const isLoading = state => state.workplace.isLoading;
 export const { setColumn } = workplaceSlice.actions;
-// export const selectTasks = state => state.workplace.currentBoard.columns;

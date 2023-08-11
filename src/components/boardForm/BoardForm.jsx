@@ -4,7 +4,6 @@ import * as yup from 'yup';
 import './boardForm.scss';
 import Icons from '../../images/svg/icons_sprite_Board.svg';
 import BoardFormButton from './boardFormButton/BoardFormButton';
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,7 +25,6 @@ const iconsSvgInitial = [
   { id: 8, value: 'icon-8' },
 ];
 const imagesBackgroundInitial = [
-  // { id: 0, value: 0 },
   { id: 1, value: 'bg-2' },
   { id: 2, value: 'bg-3' },
   { id: 3, value: 'bg-4' },
@@ -65,10 +63,6 @@ const BoardForm = ({ boardId = null, closeModal }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialValues = {
-    // boardTitle: '',
-    // svgIcon: 'circles',
-    // backgroundIcon: 0,
-    // boardTitle: boardTitle,
     name: boardId ? currentBoard.name : '',
     icon: boardId ? currentBoard.icon : 'icon-1',
     background: boardId ? currentBoard.background : 'bg-1',
@@ -77,7 +71,6 @@ const BoardForm = ({ boardId = null, closeModal }) => {
   const handleSubmit = async (values, { resetForm }) => {
     if (boardId) {
       values.id = boardId;
-      // console.log('values', values);
       await dispatch(editBoardById(values));
       await dispatch(getBoardById(boardId));
     } else {

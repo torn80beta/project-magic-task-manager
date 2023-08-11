@@ -10,7 +10,6 @@ import { editColumnById } from 'redux/workplace/workplace-operation';
 import { useDispatch } from 'react-redux';
 
 const ColumnForm = props => {
-  // const dispatch = useDispatch();
   const { title, id, closeModal } = props;
   const theme = useSelector(selectCurrentTheme);
   const [error, setError] = useState('');

@@ -13,10 +13,7 @@ import {
   selectAllBoards,
   selectCurrentBoard,
 } from 'redux/workplace/workplace-slice';
-import {
-  // getBoardById,
-  deleteBoardById,
-} from 'redux/workplace/workplace-operation';
+import { deleteBoardById } from 'redux/workplace/workplace-operation';
 import { toast } from 'react-toastify';
 
 const Sidebar = ({ closeModal }) => {
@@ -28,7 +25,6 @@ const Sidebar = ({ closeModal }) => {
 
   const onBoardChange = id => {
     dispatch(changeFilter('all'));
-    // dispatch(getBoardById(id));
     if (closeModal) {
       closeModal();
     }
@@ -100,17 +96,6 @@ const Sidebar = ({ closeModal }) => {
                     <button
                       className={`boardDeleteButton theme-${currentTheme} `}
                       onClick={() => onDeleteButton(item._id)}
-                      //   () => {
-                      //   if (
-                      //     item._id === currentBoard._id &&
-                      //     currentBoard.columns.length
-                      //   ) {
-                      //     notify();
-                      //     return;
-                      //   }
-                      //   dispatch(deleteBoardById(item._id));
-                      //   navigate('/');
-                      // }
                     >
                       <Icon id={'trash'} width={16} height={16} />
                     </button>

@@ -3,7 +3,6 @@ import Icons from '../../../images/svg/icons_sprite_Board.svg';
 import './boardFormButton.scss';
 
 const BoardFormButton = ({ currentTheme, submitForm, boardId, ...props }) => {
-  // console.log(props);
   return (
     <div
       role="button"
@@ -19,7 +18,6 @@ const BoardFormButton = ({ currentTheme, submitForm, boardId, ...props }) => {
           <use href={`${Icons}#plus`} />
         </svg>
       </span>
-      {/* {props.isSubmitting ? 'submitting' : 'Create'} */}
       {boardId ? 'Edit' : 'Create'}
     </div>
   );
