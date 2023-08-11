@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewBoard } from 'redux/workplace/workplace-operation';
 import { editBoardById } from 'redux/workplace/workplace-operation';
+import { selectCurrentBoard } from 'redux/workplace/workplace-slice';
 
 const iconsSvgInitial = [
   { id: 1, value: 'icon-1' },
@@ -55,14 +56,8 @@ const schema = yup.object().shape({
     .min(1, 'Board name needs to be at least 1 char')
     .required('This field is required to fill'),
 });
-
-const BoardForm = ({
-  boardId = null,
-  boardTitle = '',
-  boardIcon = 'icon-1',
-  boardBackground = 'bg-1',
-  closeModal,
-}) => {
+const BoardForm = ({ boardId = null, closeModal }) => {
+  const currentBoard = useSelector(selectCurrentBoard);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -71,9 +66,9 @@ const BoardForm = ({
     // svgIcon: 'circles',
     // backgroundIcon: 0,
     // boardTitle: boardTitle,
-    name: boardTitle,
-    icon: boardIcon,
-    background: boardBackground,
+    name: boardId ? currentBoard.name : '',
+    icon: boardId ? currentBoard.icon : 'icon-1',
+    background: boardId ? currentBoard.background : 'bg-1',
   };
 
   const handleSubmit = async (values, { resetForm }) => {
