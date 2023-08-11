@@ -33,7 +33,6 @@ const DateCalendar = ({ selected, onSelect }) => {
       <DatePicker
         selected={selected}
         onSelect={onSelect}
-        // onChange={onChange}
         minDate={new Date()}
         calendarStartDay={1}
         customInput={<ExampleCustomInput />}

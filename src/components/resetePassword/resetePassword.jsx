@@ -14,8 +14,6 @@ const ResetePassword = () => {
   const [searchParams] = useSearchParams();
   const verificationToken = searchParams.get('verificationToken');
 
-  console.log(verificationToken);
-
   const dispatch = useDispatch();
   const [finish, setFinish] = useState(false);
 
@@ -26,7 +24,6 @@ const ResetePassword = () => {
   };
 
   const handleSubmit = async (user, { resetForm }) => {
-    console.log(user, 2);
     dispatch(resetPassword({ user, verificationToken }));
     resetForm();
     setFinish(true);
