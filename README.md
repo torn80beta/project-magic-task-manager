@@ -1,113 +1,72 @@
-# React homework template
+# ![logo](./assets/logo.png) TaskPro
 
-Этот проект был создан при помощи
-[Create React App](https://github.com/facebook/create-react-app). Для знакомства
-и настройки дополнительных возможностей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+**WARNING!** In this project, the backend is deployed on a free cloud service [render.com](https://render.com/), 
+so it takes some time for the application to launch for the first time.
 
-## Создание репозитория по шаблону
+### Do you have anything planned?
+Use  **TaskPro** to increase productivity, prioritize tasks and achieve your goals with efficiency and simply eliminate unnecessary hassle. Do your daily tasks with **TaskPro** and enjoy life.
+**TaskPro** is the ultimate to-do list app for work and leisure.
+The application has a simple and intuitive interface for everyone.
+Thanks to the adaptive layout, you can access the list of your affairs and organize them at home on a computer, 
+even on the go in a mobile application.
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+**TaskPro** prioritizes data security and privacy. The application uses advanced encryption methods and strong authentication mechanisms, protecting your confidential information. You can rest assured that your data remains private and secure on the platform.
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+To start working with the application, you need to register
+![Registration](./assets/start.png)
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
+By changing the theme using the `Theme`, you can choose the theme of the application according to your mood and change it according to your preferences
+![Choose theme](./assets/theme.png)
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+TaskPro makes it easy for you to create task boards that you can personalize to suit your style and mood by choosing from a wide range of different themes and backgrounds. Thanks to boards, tasks are organized and work moves. One glance is enough to see all tasks, from planned to completed
+![Create new boards](./assets/boards.png)
 
-После того как репозиторий будет создан, необходимо перейти в настройки
-созданного репозитория на вкладку `Settings` > `Actions` > `General` как
-показано на изображении.
+Columns allow you to create different stages of tasks according to your needs.
+The cards represent the tasks and contain all the information necessary to complete the tasks and determine their priority. They help not to forget about important ideas, effectively plan their tasks and fulfill them on time. A properly created to-do list will set you up for tasks, because you will always have a clear picture of what needs to be done
+![Create new cards](./assets/cards.png)
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+The user has the ability to filter already loaded cards using the `Filter` interface located on the top panel.
+![Filtering of cards](./assets/filtercards.png)
 
-Проскролив страницу до самого конца, в секции `«Workflow permissions»` выбери
-опцию `«Read and write permissions»` и поставь галочку в чекбоксе. Это
-необходимо для автоматизации процесса деплоя проекта.
+As you complete the tasks, drag the cards between the columns to change their status
+![Drag the cards](./assets/movedcards.png)
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+Thanks to the adaptive layout, you can access the list of your affairs and organize them at home on a computer, 
+even on the go in a mobile application.
+![Adaptive layout](./assets/mobilescreen.png)
 
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
+You are welcome to **TaskPro**: [Frontend](https://torn80beta.github.io/project-magic-task-manager/)
 
-## Подготовка к работе
+Back-end for **TaskPro**: [Backend](https://github.com/vaaleerkiin/goit-final-project-backend.git)
 
-1. Убедись что на компьютере установлена LTS-версия Node.js.
-   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
-2. Установи базовые зависимости проекта командой `npm install`.
-3. Запусти режим разработки, выполнив команду `npm start`.
-4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
+## The technologies powering front-end:
+- SASS
 
-## Деплой
+- React
 
-Продакшн версия проекта будет автоматически проходить линтинг, собираться и
-деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
-ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
-необходимо в файле `package.json` отредактировать поле `homepage`, заменив
-`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
+- Redux Toolkit
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+- React Hooks
 
-Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
-выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
-это небыло сделано автоматически.
+- Styled components
 
-![GitHub Pages settings](./assets/repo-settings.png)
+- Formik
 
-### Статус деплоя
+- Axios
 
-Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
+- react-toastify
 
-- **Желтый цвет** - выполняется сборка и деплой проекта.
-- **Зеленый цвет** - деплой завершился успешно.
-- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
+- react-datepicker
 
-Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
-выпадающем окне перейти по ссылке `Details`.
+- Node.js
 
-![Deployment status](./assets/deploy-status.png)
+- cloudinary
 
-### Живая страница
+- mongoose
 
-Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
-по адресу указанному в отредактированном свойстве `homepage`. Например, вот
-ссылка на живую версию для этого репозитория
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
+- nanoid
 
-Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
-связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
-всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
+-jsonwebtoken
 
-### Маршрутизация
+### Thank you for your attention to the project, I hope you enjoy it!
 
-Если приложение использует библиотеку `react-router-dom` для маршрутизации,
-необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
-`basename` точное название твоего репозитория. Слеш в начале строки обязателен.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
-
-## Как это работает
-
-![How it works](./assets/how-it-works.png)
-
-1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
-   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
-2. Все файлы репозитория копируются на сервер, где проект инициализируется и
-   проходит линтинг и сборку перед деплоем.
-3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
-   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
-   скрипта будет указано в чем проблема.
