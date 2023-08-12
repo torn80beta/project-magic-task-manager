@@ -206,7 +206,7 @@
   &.theme-light {
     color: $light-secondary-text;
     &:hover {
-      color: $light-text-link;
+      color: $light-icon-hover;
     }
   }
   &.theme-dark {
@@ -218,7 +218,7 @@
   &.theme-violet {
     color: $violet-secondary-text;
     &:hover {
-      color: $violet-text-link;
+      color: $violet-icon-hover;
     }
   }
 }
