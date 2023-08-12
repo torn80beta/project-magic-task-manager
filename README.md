@@ -4,21 +4,19 @@
 so it takes some time for the application to launch for the first time.
 
 ### Do you have anything planned?
-Use  **TaskPro** to increase productivity, prioritize tasks and achieve your goals with efficiency and simply eliminate unnecessary hassle. Do your daily tasks with **TaskPro** and enjoy life.
-**TaskPro** is the ultimate to-do list app for work and leisure.
-The application has a simple and intuitive interface for everyone.
-Thanks to the adaptive layout, you can access the list of your affairs and organize them at home on a computer, 
-even on the go in a mobile application.
+Use  ***TaskPro*** to increase productivity, prioritize tasks and achieve your goals with efficiency and simply eliminate unnecessary hassle. Do your daily tasks with ***TaskPro*** and enjoy life.
+***TaskPro*** is the ultimate to-do list app for work and leisure. The application has a simple and intuitive interface for everyone.
 
-**TaskPro** prioritizes data security and privacy. The application uses advanced encryption methods and strong authentication mechanisms, protecting your confidential information. You can rest assured that your data remains private and secure on the platform.
+***TaskPro*** prioritizes data security and privacy. The application uses advanced encryption methods and strong authentication mechanisms, protecting your confidential information. You can rest assured that your data remains private and secure on the platform.
 
 To start working with the application, you need to register
 ![Registration](./assets/start.png)
 
 By changing the theme using the `Theme`, you can choose the theme of the application according to your mood and change it according to your preferences
+
 ![Choose theme](./assets/theme.png)
 
-TaskPro makes it easy for you to create task boards that you can personalize to suit your style and mood by choosing from a wide range of different themes and backgrounds. Thanks to boards, tasks are organized and work moves. One glance is enough to see all tasks, from planned to completed
+***TaskPro*** makes it easy for you to create task boards that you can personalize to suit your style and mood by choosing from a wide range of different themes and backgrounds. Thanks to boards, tasks are organized and work moves. One glance is enough to see all tasks, from planned to completed
 ![Create new boards](./assets/boards.png)
 
 Columns allow you to create different stages of tasks according to your needs.
@@ -32,10 +30,11 @@ As you complete the tasks, drag the cards between the columns to change their st
 ![Drag the cards](./assets/movedcards.png)
 
 Thanks to the adaptive layout, you can access the list of your affairs and organize them at home on a computer, 
-even on the go in a mobile application.
+even on the go in a mobile application. ***TaskPro*** can be comfortably used on devices with a screen width of 320px. When the screen width is less than 768px, the navigation buttons located on the Sidebar are moved to a modal menu, which is available by clicking on the `Burger Menu` icon. At the same time, for ease of use, the `Filter` and `Theme` remains available on the top panel.
+
 ![Adaptive layout](./assets/mobilescreen.png)
 
-You are welcome to **TaskPro**: [Frontend](https://torn80beta.github.io/project-magic-task-manager/)
+You are welcome to **TaskPro**: [Frontend](https://github.com/torn80beta/project-magic-task-manager.git)
 
 Back-end for **TaskPro**: [Backend](https://github.com/vaaleerkiin/goit-final-project-backend.git)
 
@@ -64,9 +63,11 @@ Back-end for **TaskPro**: [Backend](https://github.com/vaaleerkiin/goit-final-pr
 
 - mongoose
 
+- swagger-ui-express
+
 - nanoid
 
--jsonwebtoken
+- jsonwebtoken
 
 ### Thank you for your attention to the project, I hope you enjoy it!
 
