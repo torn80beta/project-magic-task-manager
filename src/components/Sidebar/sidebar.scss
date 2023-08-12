@@ -284,34 +284,34 @@
     gap: 8px;
     align-items: center;
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    // padding-top: 15px;
+    // padding-bottom: 15px;
     padding-left: 24px;
     height: 62px;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     @include tablet {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      // padding-top: 20px;
+      // padding-bottom: 20px;
     }
 
     &.theme-light {
       color: #16161680;
-      &:hover {
-        background: $light-screens-bg;
-      }
+      // &:hover {
+      //   background: $light-screens-bg;
+      // }
     }
     &.theme-dark {
       color: $dark-50-transparent;
-      &:hover {
-        background: $dark-screens-bg;
-      }
+      // &:hover {
+      //   background: $dark-screens-bg;
+      // }
     }
     &.theme-violet {
       color: $dark-50-transparent;
-      &:hover {
-        background: $violet-active-board-bg;
-      }
+      // &:hover {
+      //   background: $violet-active-board-bg;
+      // }
     }
 
     &.active {

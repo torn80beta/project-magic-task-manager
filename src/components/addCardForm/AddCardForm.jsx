@@ -5,6 +5,7 @@ import { Field } from 'formik';
 import Icon from 'components/icon/Icon';
 import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
+import * as yup from 'yup';
 import { addNewTask, editTaskById } from 'redux/workplace/workplace-operation';
 
 const AddCardForm = ({
@@ -16,6 +17,14 @@ const AddCardForm = ({
   const dispatch = useDispatch();
   const normalizedDeadLine = deadLine ? deadLine : new Date();
   const theme = useSelector(selectCurrentTheme);
+  const schema = yup.object().shape({
+    title: yup
+      .string()
+      .max(25, 'Name can contain 25 symbols max')
+      .trim('No leading or trailing spaces')
+      .min(1, 'Name needs to be at least 1 char')
+      .required('This field is required'),
+  });
 
   return (
     <Formik
@@ -27,6 +36,7 @@ const AddCardForm = ({
         labelColor: labelColor || 'without',
         deadLine: new Date(normalizedDeadLine),
       }}
+      validationSchema={schema}
       validate={values => {
         const errors = {};
         if (!values.title) {
