@@ -315,7 +315,8 @@
     }
 
     &.active {
-      height: 100%;
+      // height: 100%;
+      height: 61px;
       &.theme-light {
         color: $light-main-text;
         background: $light-screens-bg;
@@ -356,8 +357,10 @@
 
     &.active + .tools-wrapper {
       display: flex;
-      padding-top: 23px;
-      padding-bottom: 22px;
+      align-items: center;
+      height: 61px;
+      // padding-top: 23px;
+      // padding-bottom: 22px;
       padding-right: 18px;
 
       @include tablet {
