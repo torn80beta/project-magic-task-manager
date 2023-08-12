@@ -1,5 +1,4 @@
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Icon from 'components/icon/Icon';
@@ -57,6 +56,9 @@ const ColumnForm = props => {
           placeholder="Title"
           className={`titleInput theme-${theme}`}
           value={columnName}
+          required
+          minlength="1"
+          maxlength="25"
           onChange={e => setColumnName(e.target.value)}
         />
         {error && <p className={`errorMessage theme-${theme}`}>{error}</p>}
