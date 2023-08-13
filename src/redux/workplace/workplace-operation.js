@@ -14,6 +14,34 @@ import {
   getBoards,
 } from 'api/workplace.js';
 
+// import axios from 'axios';
+
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = '';
+//   },
+// };
+
+// axios.interceptors.response.use(
+//   response => response,
+//   async error => {
+//     if (error.response.status === 401) {
+//       const refreshToken = JSON.parse(
+//         localStorage.getItem('persist:auth')
+//       ).refreshToken.slice(1, -1);
+//       console.log(refreshToken);
+//       const { data } = await axios.post('/users/refresh', { refreshToken });
+//       console.log(data);
+//       token.set(data.accessToken);
+//       // localStorage.setItem("refreshToken", data.refreshToken)
+//       return axios(error.config);
+//     }
+//   }
+// );
+
 export const getAllBoards = createAsyncThunk(
   'boards/getAll',
   async thunkAPI => {

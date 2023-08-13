@@ -57,8 +57,8 @@ const ColumnForm = props => {
           className={`titleInput theme-${theme}`}
           value={columnName}
           required
-          minlength="1"
-          maxlength="25"
+          minLength="1"
+          maxLength="25"
           onChange={e => setColumnName(e.target.value)}
         />
         {error && <p className={`errorMessage theme-${theme}`}>{error}</p>}

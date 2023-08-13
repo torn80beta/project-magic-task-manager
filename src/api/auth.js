@@ -1,64 +1,65 @@
-import axios from 'axios';
+// import axios from 'axios';
+import axiosInstance from 'redux/auth/auth-operation';
 
-axios.defaults.baseURL = 'https://goit-final-project.onrender.com/api';
+// axios.defaults.baseURL = 'http://localhost:3001/api';
 
 const register = async newUser => {
-  return await axios
+  return await axiosInstance
     .post('/users/register', newUser)
     .catch(e => console.log(e.request.response));
 };
 
 const login = async ({ email, password }) => {
-  return await axios
+  return await axiosInstance
     .post('/users/login', { email, password })
 
     .catch(e => console.log(e.request.response));
 };
 
-const google = async user => {
-  return await axios
-    .post('/users/google', user)
-    .catch(e => console.log(e.request.response));
-};
+// const google = async user => {
+//   return await axios
+//     .post('/users/google', user)
+//     .catch(e => console.log(e.request.response));
+// };
 
 const logout = async () => {
-  return await axios
+  return await axiosInstance
     .post('/users/logout')
     .catch(e => console.log(e.request.response));
 };
 
 const getCurrent = async () => {
-  return await axios
+  return await axiosInstance
     .get('/users/current')
     .catch(e => console.log(e.request.response));
 };
 
 const editProfile = async user => {
-  return await axios
+  return await axiosInstance
     .patch('/users/edit', user)
     .catch(e => console.log(e.request.response));
 };
 
 const editTheme = async theme => {
-  return await axios
+  return await axiosInstance
     .patch('/users/theme', { theme })
     .catch(e => console.log(e.request.response));
 };
 const help = async help => {
-  return await axios
+  return await axiosInstance
     .post('/users/help', help)
     .catch(e => console.log(e.request.response));
 };
 
 const forgetPass = async email => {
-  return await axios
+  return await axiosInstance
     .post('/users/forgetpassword', email)
     .catch(e => console.log(e.request.response));
 };
 
 const resetPass = async ({ user, verificationToken }) => {
   console.log(user, 1);
-  return await axios
+  return await axiosInstance
     .post(`/users/resetpassword/${verificationToken}`, user)
     .catch(e => console.log(e.request.response));
 };
@@ -71,7 +72,7 @@ export {
   editProfile,
   editTheme,
   help,
-  google,
+  // google,
   forgetPass,
   resetPass,
 };

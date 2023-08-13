@@ -7,20 +7,80 @@ import {
   editProfile,
   editTheme,
   help,
-  google,
+  // google,
   forgetPass,
   resetPass,
 } from 'api/auth';
 import axios from 'axios';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:3001/api',
+  // headers: {
+  //   'Cache-Control': 'no-cache',
+  //   Pragma: 'no-cache',
+  //   Expires: '0',
+  // },
+});
+
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+//   unset() {
+//     axios.defaults.headers.common.Authorization = '';
+//   },
+// };
+
+const setToken = token => {
+  if (token) {
+    return (axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`);
+  }
+  axiosInstance.defaults.headers.common.Authorization = '';
 };
+
+axiosInstance.interceptors.response.use(
+  response => response,
+  async error => {
+    if (error.response.status === 401) {
+      console.log('INTERCEPTION');
+      const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+      // console.log(refreshToken);
+      console.log('refreshToken: ' + refreshToken);
+      // setToken();
+      // console.log(
+      //   'TOKEN UNSET: ' + axiosInstance.defaults.headers.common.Authorization
+      // );
+      try {
+        const { data } = await axiosInstance.post('/users/refresh', {
+          refreshToken,
+        });
+        console.log('refreshed accessToken: ' + data.accessToken);
+        // localStorage.setItem('accessToken', JSON.stringify(data.accessToken));
+        setToken(data.accessToken);
+        console.log(
+          'settled accessToken: ' +
+            axiosInstance.defaults.headers.common.Authorization
+        );
+        // console.log(typeof data.refreshToken);
+        localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+        console.log(error.config.headers.common.authorization);
+        // axiosInstance(
+        error.config.headers.common.authorization = `Bearer ${data.accessToken}`;
+        // );
+        return axiosInstance(error.config);
+        // return axiosInstance(
+        //   (error.config.headers.common.authorization = `Bearer ${data.accessToken}`)
+        // );
+      } catch (error) {
+        // console.log(error);
+        return Promise.reject(error);
+      }
+      // }
+    }
+    console.log('exit');
+    return Promise.reject(error);
+  }
+);
 
 export const registerUser = createAsyncThunk(
   'users/register',
@@ -29,7 +89,8 @@ export const registerUser = createAsyncThunk(
       const { status } = await register(credentials);
       if (status === 201) {
         const { data } = await login(credentials);
-        token.set(data.token);
+        // localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+        // setToken(data.accessToken);
         return data;
       }
     } catch (error) {
@@ -43,23 +104,13 @@ export const loginUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await login(credentials);
-      token.set(data.token);
+      // console.log(typeof data.refreshToken);
+      localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+      // localStorage.setItem('accessToken', JSON.stringify(data.accessToken));
+      setToken(data.accessToken);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const Google = createAsyncThunk(
-  'users/google',
-  async (credentials, thunkAPI) => {
-    try {
-      const { data } = await google(credentials);
-      token.set(data.token);
-
-      return data;
-    } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -70,7 +121,12 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await logout();
-      token.unset();
+      setToken();
+      console.log(
+        'TOKEN UNSET: ' + axiosInstance.defaults.headers.common.Authorization
+      );
+      localStorage.removeItem('refreshToken');
+      // localStorage.removeItem('accessToken');
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -78,17 +134,22 @@ export const logoutUser = createAsyncThunk(
 );
 
 export const getCurrentUser = createAsyncThunk(
-  'users/refresh',
+  // 'users/refresh',
+  'users/current',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-
+    // const state = thunkAPI.getState();
+    // const persistedToken = state.auth.accessToken;
+    // if (persistedToken === null) {
+    //   return thunkAPI.rejectWithValue('Unable to fetch user');
+    // }
+    // const accessToken = localStorage.getItem('accessToken');
+    // token.set(accessToken);
     try {
-      token.set(persistedToken);
+      // token.set(persistedToken);
       const { data } = await getCurrent();
+      // console.log('Current user: ');
+      // localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+      // token.set(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -99,6 +160,8 @@ export const getCurrentUser = createAsyncThunk(
 export const editUserData = createAsyncThunk(
   'users/edit',
   async (editedUser, thunkAPI) => {
+    // const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+    // token.set(accessToken);
     try {
       const { data } = await editProfile(editedUser);
       return data;
@@ -111,6 +174,8 @@ export const editUserData = createAsyncThunk(
 export const editUserTheme = createAsyncThunk(
   'users/theme',
   async (theme, thunkAPI) => {
+    // const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+    // token.set(accessToken);
     try {
       const { data } = await editTheme(theme);
       return data;
@@ -154,3 +219,5 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+export default axiosInstance;

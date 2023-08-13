@@ -18,7 +18,7 @@ import {
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'theme'],
+  whitelist: ['theme'],
 };
 
 export const store = configureStore({
