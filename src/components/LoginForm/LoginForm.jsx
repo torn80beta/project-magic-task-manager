@@ -21,7 +21,7 @@ const LoginForm = () => {
       const response = await dispatch(loginUser(user));
       const data = response.payload;
 
-      if (data && data.token) {
+      if (data && data.accessToken) {
         resetForm();
       } else {
         toast.error('Incorrect email or password provided');
