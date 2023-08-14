@@ -1,7 +1,4 @@
-// import axios from 'axios';
 import axiosInstance from 'redux/auth/auth-operation';
-
-// axios.defaults.baseURL = 'http://localhost:3001/api';
 
 const register = async newUser => {
   return await axiosInstance
@@ -15,12 +12,6 @@ const login = async ({ email, password }) => {
 
     .catch(e => console.log(e.request.response));
 };
-
-// const google = async user => {
-//   return await axios
-//     .post('/users/google', user)
-//     .catch(e => console.log(e.request.response));
-// };
 
 const logout = async () => {
   return await axiosInstance
@@ -72,7 +63,6 @@ export {
   editProfile,
   editTheme,
   help,
-  // google,
   forgetPass,
   resetPass,
 };

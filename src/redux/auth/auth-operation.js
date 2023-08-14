@@ -7,7 +7,6 @@ import {
   editProfile,
   editTheme,
   help,
-  // google,
   forgetPass,
   resetPass,
 } from 'api/auth';
@@ -31,7 +30,6 @@ axiosInstance.interceptors.response.use(
   async error => {
     if (error.response.status === 401) {
       const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
-      // user1@mail.com
       try {
         const { data } = await axiosInstance.post('/users/refresh', {
           refreshToken,
@@ -102,14 +100,9 @@ export const getCurrentUser = createAsyncThunk(
     // if (persistedToken === null) {
     //   return thunkAPI.rejectWithValue('Unable to fetch user');
     // }
-    // const accessToken = localStorage.getItem('accessToken');
-    // token.set(accessToken);
     try {
       // token.set(persistedToken);
       const { data } = await getCurrent();
-      // console.log('Current user: ');
-      // localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
-      // token.set(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -120,8 +113,6 @@ export const getCurrentUser = createAsyncThunk(
 export const editUserData = createAsyncThunk(
   'users/edit',
   async (editedUser, thunkAPI) => {
-    // const accessToken = JSON.parse(localStorage.getItem('accessToken'));
-    // token.set(accessToken);
     try {
       const { data } = await editProfile(editedUser);
       return data;
@@ -134,8 +125,6 @@ export const editUserData = createAsyncThunk(
 export const editUserTheme = createAsyncThunk(
   'users/theme',
   async (theme, thunkAPI) => {
-    // const accessToken = JSON.parse(localStorage.getItem('accessToken'));
-    // token.set(accessToken);
     try {
       const { data } = await editTheme(theme);
       return data;

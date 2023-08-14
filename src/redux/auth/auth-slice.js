@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import axios from 'axios';
 import {
   registerUser,
   loginUser,
@@ -7,7 +6,6 @@ import {
   editUserData,
   getCurrentUser,
   editUserTheme,
-  // Google,
 } from './auth-operation';
 
 const initialState = {
@@ -59,17 +57,6 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      // .addCase(Google.pending, state => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(Google.fulfilled, (state, action) => {
-      //   state.user = action.payload.user;
-      //   state.token = action.payload.token;
-      //   state.theme = action.payload.theme;
-      //   state.boards = action.payload.boards;
-      //   state.isLoggedIn = true;
-      //   state.isLoading = false;
-      // })
       .addCase(loginUser.rejected, state => {
         state.isLoading = false;
         state.isLoggedIn = false;
