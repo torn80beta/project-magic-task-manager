@@ -14,8 +14,9 @@ import {
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3001/api',
-  timeout: 1000,
+  baseURL: 'https://goit-final-project.onrender.com/api',
+  // baseURL: 'http://localhost:3001/api',
+  // timeout: 1000,
 });
 
 const setToken = token => {
@@ -55,8 +56,8 @@ export const registerUser = createAsyncThunk(
       const { status } = await register(credentials);
       if (status === 201) {
         const { data } = await login(credentials);
-        // localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
-        // setToken(data.accessToken);
+        localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+        setToken(data.accessToken);
         return data;
       }
     } catch (error) {
