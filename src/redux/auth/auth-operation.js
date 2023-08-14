@@ -15,21 +15,8 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:3001/api',
-  // headers: {
-  //   'Cache-Control': 'no-cache',
-  //   Pragma: 'no-cache',
-  //   Expires: '0',
-  // },
+  timeout: 1000,
 });
-
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-//   unset() {
-//     axios.defaults.headers.common.Authorization = '';
-//   },
-// };
 
 const setToken = token => {
   if (token) {
@@ -42,42 +29,21 @@ axiosInstance.interceptors.response.use(
   response => response,
   async error => {
     if (error.response.status === 401) {
-      console.log('INTERCEPTION');
       const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
-      // console.log(refreshToken);
-      console.log('refreshToken: ' + refreshToken);
-      // setToken();
-      // console.log(
-      //   'TOKEN UNSET: ' + axiosInstance.defaults.headers.common.Authorization
-      // );
+      // user1@mail.com
       try {
         const { data } = await axiosInstance.post('/users/refresh', {
           refreshToken,
         });
-        console.log('refreshed accessToken: ' + data.accessToken);
-        // localStorage.setItem('accessToken', JSON.stringify(data.accessToken));
         setToken(data.accessToken);
-        console.log(
-          'settled accessToken: ' +
-            axiosInstance.defaults.headers.common.Authorization
-        );
-        // console.log(typeof data.refreshToken);
         localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
-        console.log(error.config.headers.common.authorization);
-        // axiosInstance(
-        error.config.headers.common.authorization = `Bearer ${data.accessToken}`;
-        // );
-        return axiosInstance(error.config);
-        // return axiosInstance(
-        //   (error.config.headers.common.authorization = `Bearer ${data.accessToken}`)
-        // );
+        const { config } = error;
+        config.headers.Authorization = `Bearer ${data.accessToken}`;
+        return axiosInstance(config);
       } catch (error) {
-        // console.log(error);
         return Promise.reject(error);
       }
-      // }
     }
-    console.log('exit');
     return Promise.reject(error);
   }
 );
@@ -104,9 +70,7 @@ export const loginUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await login(credentials);
-      // console.log(typeof data.refreshToken);
       localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
-      // localStorage.setItem('accessToken', JSON.stringify(data.accessToken));
       setToken(data.accessToken);
       return data;
     } catch (error) {
@@ -122,11 +86,7 @@ export const logoutUser = createAsyncThunk(
     try {
       await logout();
       setToken();
-      console.log(
-        'TOKEN UNSET: ' + axiosInstance.defaults.headers.common.Authorization
-      );
       localStorage.removeItem('refreshToken');
-      // localStorage.removeItem('accessToken');
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -134,7 +94,6 @@ export const logoutUser = createAsyncThunk(
 );
 
 export const getCurrentUser = createAsyncThunk(
-  // 'users/refresh',
   'users/current',
   async (_, thunkAPI) => {
     // const state = thunkAPI.getState();

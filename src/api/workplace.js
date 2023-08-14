@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import axiosInstance from 'redux/auth/auth-operation';
 
 const addBoard = async newBoard => {
