@@ -143,4 +143,4 @@ export const selectToken = state => state.auth.accessToken;
 export const selectUserAvatar = state => state.auth.user.avatar;
 export const selectIsLoading = state => state.auth.isLoading;
 export const selectCurrentTheme = state => state.auth.theme;
-export const { setToken } = authSlice.actions;
+// export const { setToken } = authSlice.actions;
