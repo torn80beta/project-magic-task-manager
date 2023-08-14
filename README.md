@@ -38,36 +38,47 @@ You are welcome to **TaskPro**: [Frontend](https://github.com/torn80beta/project
 
 Back-end for **TaskPro**: [Backend](https://github.com/vaaleerkiin/goit-final-project-backend.git)
 
-## The technologies powering front-end:
+## The technologies used in the project:
+
+### Frontend:
+- HTML5
 - SASS
-
+- JavaScript
 - React
-
 - Redux Toolkit
-
 - React Hooks
-
 - Styled components
-
 - Formik
-
 - Axios
+- React-toastify
+- React-datepicker
+- Ant Design
+- React-beautiful-dnd
 
-- react-toastify
-
-- react-datepicker
-
+### Backend:
 - Node.js
+- Mongoose
+- Swagger-ui-express
+- Jsonwebtoken
+- Cors
+- Crypto-js
+- Express
+- Jimp
+- Joi
+- Multer
+- Passport
+- Passport-google-oauth
 
-- cloudinary
+### Utilites:
+- VSCode
+- Webpack
+- Figma
+- Git/Github
+- Postman
+- MongoDB
+- Sendgrid
+- Cloudinary
 
-- mongoose
-
-- swagger-ui-express
-
-- nanoid
-
-- jsonwebtoken
 
 ### Thank you for your attention to the project, I hope you enjoy it!
 
