@@ -4,7 +4,7 @@ import Columns from '../columns/Columns';
 import Icon from '../icon/Icon';
 import FilterPopup from 'components/filterPopup/FilterPopup';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { selectCurrentTheme } from 'redux/auth/auth-slice';
+import { selectCurrentTheme, selectIsLoggedIn } from 'redux/auth/auth-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import ColumnForm from 'components/columnForm/ColumnForm';
 import { useEffect } from 'react';
@@ -27,11 +27,13 @@ const ScreensPage = () => {
   const columnsArray = useSelector(selectColumns);
   const currentBoard = useSelector(selectCurrentBoard);
   const { boardName } = useParams();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    dispatch(getBoardById(boardName));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [boardName, dispatch]);
+    if (isLoggedIn) {
+      dispatch(getBoardById(boardName));
+    }
+  }, [boardName, dispatch, isLoggedIn]);
 
   const bcgImg = () => {
     if (currentBoard.background) {

@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import welcomeImage from '../../images/welcome.png';
 import Icon from '../../components/icon/Icon';
 import css from './welcome.module.scss';
-import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { useSearchParams } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
-import { setToken } from 'redux/auth/auth-slice';
-import { getCurrentUser } from 'redux/auth/auth-operation';
+// import { setToken } from 'redux/auth/auth-slice';
+// import { getCurrentUser } from 'redux/auth/auth-operation';
 
 const Welcome = () => {
-  const dispatch = useDispatch();
-  const [searchParams] = useSearchParams();
-  const accessToken = searchParams.get('accessToken');
-  useEffect(() => {
-    if (!accessToken || accessToken === '') {
-      return;
-    }
-    dispatch(setToken({ token: accessToken }));
-    dispatch(getCurrentUser());
-  }, [accessToken, dispatch, searchParams]);
+  // const dispatch = useDispatch();
+  // const [searchParams] = useSearchParams();
+  // const accessToken = searchParams.get('accessToken');
+  // useEffect(() => {
+  //   if (!accessToken || accessToken === '') {
+  //     return;
+  //   }
+  //   dispatch(setToken({ token: accessToken }));
+  //   dispatch(getCurrentUser());
+  // }, [accessToken, dispatch, searchParams]);
 
   return (
     <div className={css.welcomeBackground}>
