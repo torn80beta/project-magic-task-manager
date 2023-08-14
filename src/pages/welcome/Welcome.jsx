@@ -13,21 +13,25 @@ const Welcome = () => {
   const [searchParams] = useSearchParams();
   const accessToken = searchParams.get('accessToken');
   const refreshToken = searchParams.get('refreshToken');
+  const sessionId = searchParams.get('sessionId');
 
   useEffect(() => {
     if (
       !accessToken ||
       accessToken === '' ||
       !refreshToken ||
-      refreshToken === ''
+      refreshToken === '' ||
+      !sessionId ||
+      sessionId === ''
     ) {
       return;
     }
     setToken(accessToken);
     localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
+    localStorage.setItem('sessionId', JSON.stringify(sessionId));
 
     dispatch(getCurrentUser());
-  }, [accessToken, dispatch, refreshToken, searchParams]);
+  }, [accessToken, dispatch, refreshToken, searchParams, sessionId]);
 
   return (
     <div className={css.welcomeBackground}>

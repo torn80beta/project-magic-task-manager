@@ -30,12 +30,16 @@ axiosInstance.interceptors.response.use(
   async error => {
     if (error.response.status === 401) {
       const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+      const sessionId = JSON.parse(localStorage.getItem('sessionId'));
+
       try {
         const { data } = await axiosInstance.post('/users/refresh', {
           refreshToken,
+          sid: sessionId,
         });
         setToken(data.accessToken);
         localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+        localStorage.setItem('sessionId', JSON.stringify(data.sid));
         const { config } = error;
         config.headers.Authorization = `Bearer ${data.accessToken}`;
         return axiosInstance(config);
@@ -55,6 +59,7 @@ export const registerUser = createAsyncThunk(
       if (status === 201) {
         const { data } = await login(credentials);
         localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+        localStorage.setItem('sessionId', JSON.stringify(data.sid));
         setToken(data.accessToken);
         return data;
       }
@@ -70,6 +75,7 @@ export const loginUser = createAsyncThunk(
     try {
       const { data } = await login(credentials);
       localStorage.setItem('refreshToken', JSON.stringify(data.refreshToken));
+      localStorage.setItem('sessionId', JSON.stringify(data.sid));
       setToken(data.accessToken);
       return data;
     } catch (error) {
@@ -95,14 +101,9 @@ export const logoutUser = createAsyncThunk(
 export const getCurrentUser = createAsyncThunk(
   'users/current',
   async (_, thunkAPI) => {
-    // const state = thunkAPI.getState();
-    // const persistedToken = state.auth.accessToken;
-    // if (persistedToken === null) {
-    //   return thunkAPI.rejectWithValue('Unable to fetch user');
-    // }
     try {
-      // token.set(persistedToken);
       const { data } = await getCurrent();
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
