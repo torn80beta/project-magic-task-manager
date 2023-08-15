@@ -106,7 +106,7 @@ const Card = ({
                   />
                 </PopUp>
 
-                <div
+                <button
                   type="button"
                   onClick={() => dispatch(deleteTaskById(id))}
                   className={`cardIcon theme-${currentTheme}`}
@@ -118,7 +118,7 @@ const Card = ({
                     width={16}
                     height={16}
                   />
-                </div>
+                </button>
               </div>
             </div>
           </div>

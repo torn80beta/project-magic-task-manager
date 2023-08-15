@@ -73,9 +73,11 @@ const Columns = ({ _id: id, name }) => {
             ref={provided.innerRef}
           >
             {filteredCards.map((card, index) => (
-              <li key={card._id}>
-                <Card {...{ ...card, taskId: card._id }} index={index} />
-              </li>
+              <Card
+                {...{ ...card, taskId: card._id }}
+                index={index}
+                key={card._id}
+              />
             ))}
             {provided.placeholder}
           </ul>
