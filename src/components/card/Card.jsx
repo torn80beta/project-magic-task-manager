@@ -89,9 +89,9 @@ const Card = ({
 
                 <PopUp
                   data={
-                    <span className={`cardIcon theme-${currentTheme}`}>
+                    <div className={`cardIcon theme-${currentTheme}`}>
                       <Icon id={'pencil'} width={16} height={16} />
-                    </span>
+                    </div>
                   }
                   ariaLabel={'Edit task'}
                 >
@@ -106,7 +106,7 @@ const Card = ({
                   />
                 </PopUp>
 
-                <span
+                <div
                   type="button"
                   onClick={() => dispatch(deleteTaskById(id))}
                   className={`cardIcon theme-${currentTheme}`}
@@ -118,7 +118,7 @@ const Card = ({
                     width={16}
                     height={16}
                   />
-                </span>
+                </div>
               </div>
             </div>
           </div>
