@@ -17,7 +17,8 @@ const schema = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
-    .max(15, 'Name must be at most 15 characters'),
+    .max(15, 'Name must be at most 15 characters')
+    .matches(/^\S*$/, 'Spaces are not allowed'),
   email: Yup.string()
     .required('Email is required')
     .matches(
