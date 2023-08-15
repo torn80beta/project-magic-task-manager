@@ -9,7 +9,6 @@ const register = async newUser => {
 const login = async ({ email, password }) => {
   return await axiosInstance
     .post('/users/login', { email, password })
-
     .catch(e => e.request.response);
 };
 

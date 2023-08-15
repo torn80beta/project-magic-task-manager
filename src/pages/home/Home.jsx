@@ -24,35 +24,39 @@ const Home = () => {
   }, [dispatch, isLoggedIn]);
 
   return (
-    <div className="home">
-      <Sidebar />
-      <div className={`home-wrapper theme-${theme}`}>
-        <Header />
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
+    <>
+      {isLoggedIn && (
+        <div className="home">
+          <Sidebar />
+          <div className={`home-wrapper theme-${theme}`}>
+            <Header />
+            <Suspense fallback={<Loader />}>
+              <Outlet />
+            </Suspense>
 
-        {shouldRenderHomePage && (
-          <div className={`home-content-wrapper`}>
-            <p className={`home-text theme-${theme}`}>
-              Before starting your project, it is essential{' '}
-              <PopUp
-                data={
-                  <span className={`home-text-link theme-${theme}`}>
-                    to create a board
-                  </span>
-                }
-              >
-                <BoardForm />
-              </PopUp>{' '}
-              to visualize and track all the necessary tasks and milestones.
-              This board serves as a powerful tool to organize the workflow and
-              ensure effective collaboration among team members.
-            </p>
+            {shouldRenderHomePage && (
+              <div className={`home-content-wrapper`}>
+                <p className={`home-text theme-${theme}`}>
+                  Before starting your project, it is essential{' '}
+                  <PopUp
+                    data={
+                      <span className={`home-text-link theme-${theme}`}>
+                        to create a board
+                      </span>
+                    }
+                  >
+                    <BoardForm />
+                  </PopUp>{' '}
+                  to visualize and track all the necessary tasks and milestones.
+                  This board serves as a powerful tool to organize the workflow
+                  and ensure effective collaboration among team members.
+                </p>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -79,7 +79,6 @@ export const loginUser = createAsyncThunk(
       setToken(data.accessToken);
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -103,7 +102,10 @@ export const getCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await getCurrent();
-
+      // console.log(data.status);
+      if (data.status === 401) {
+        thunkAPI.rejectWithValue(data.message);
+      }
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
