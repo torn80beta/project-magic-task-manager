@@ -50,12 +50,14 @@ const Columns = ({ _id: id, name }) => {
                 <Icon id="pencil" width="16" height="16" />
               </span>
             }
+            ariaLabel={'Edit column'}
           >
             <ColumnForm title={name} id={id} />
           </PopUp>
           <button
             className={`column_buttonBox theme-${currentTheme}`}
             onClick={() => handleDeleteButton(id)}
+            aria-label="Delete column"
           >
             <span className={`column_buttonIcon theme-${currentTheme}`}>
               <Icon id="trash" width="16" height="16" />
@@ -71,11 +73,9 @@ const Columns = ({ _id: id, name }) => {
             ref={provided.innerRef}
           >
             {filteredCards.map((card, index) => (
-              <Card
-                {...{ ...card, taskId: card._id }}
-                index={index}
-                key={card._id}
-              />
+              <li key={card._id}>
+                <Card {...{ ...card, taskId: card._id }} index={index} />
+              </li>
             ))}
             {provided.placeholder}
           </ul>
@@ -90,6 +90,7 @@ const Columns = ({ _id: id, name }) => {
             Add another card
           </span>
         }
+        ariaLabel={'Add card'}
       >
         <AddCardForm columnId={id} />
       </PopUp>

@@ -175,6 +175,7 @@ const AddCardForm = ({
               className={`add-form-submit theme-${theme}`}
               type="submit"
               disabled={isSubmitting}
+              aria-label={!columnId && taskId ? 'Edit' : 'Add'}
             >
               <div className={`add-form-icon-wrap theme-${theme}`}>
                 <Icon id="plus" width={14} height={14} />

@@ -79,7 +79,10 @@ const Card = ({
               </div>
               <div className={`IconWrapper theme-${currentTheme}`}>
                 {isTodayDeadline && (
-                  <span className={`cardBellIcon theme-${currentTheme}`}>
+                  <span
+                    className={`cardBellIcon theme-${currentTheme}`}
+                    aria-label="High priority"
+                  >
                     <Icon id={'bell'} width={16} height={16} />
                   </span>
                 )}
@@ -90,6 +93,7 @@ const Card = ({
                       <Icon id={'pencil'} width={16} height={16} />
                     </span>
                   }
+                  ariaLabel={'Edit task'}
                 >
                   <AddCardForm
                     taskId={id}
@@ -106,6 +110,7 @@ const Card = ({
                   type="button"
                   onClick={() => dispatch(deleteTaskById(id))}
                   className={`cardIcon theme-${currentTheme}`}
+                  aria-label="Delete task"
                 >
                   <Icon
                     className={`cardIcon theme-${currentTheme}`}

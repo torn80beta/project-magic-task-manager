@@ -129,6 +129,7 @@ const ScreensPage = () => {
                     </span>
                   </span>
                 }
+                ariaLabel={'Filter cards'}
               >
                 <FilterPopup />
               </PopUp>
@@ -160,6 +161,7 @@ const ScreensPage = () => {
                     </span>
                   </span>
                 }
+                ariaLabel={'Add column'}
               >
                 <ColumnForm />
               </PopUp>

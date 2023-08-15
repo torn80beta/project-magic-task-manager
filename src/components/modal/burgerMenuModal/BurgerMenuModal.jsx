@@ -9,7 +9,7 @@ Modal.setAppElement('#root');
 
 const BurgerMenuModal = props => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const { children, data } = props;
+  const { children, data, ariaLabel } = props;
   const currentTheme = useSelector(selectCurrentTheme);
 
   function openModal() {
@@ -33,6 +33,7 @@ const BurgerMenuModal = props => {
       <button
         className={`open-menu-button theme-${currentTheme}`}
         onClick={openModal}
+        aria-label={`${ariaLabel}`}
       >
         {data}
       </button>

@@ -71,6 +71,7 @@ const NeedHelpForm = props => {
               className={`help-form-submit theme-${theme}`}
               type="submit"
               disabled={isSubmitting}
+              aria-label="Send"
             >
               Send
             </button>

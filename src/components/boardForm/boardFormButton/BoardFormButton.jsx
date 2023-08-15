@@ -8,6 +8,7 @@ const BoardFormButton = ({ currentTheme, submitForm, boardId, ...props }) => {
       role="button"
       className={`boardButtonSubmit theme-${currentTheme}`}
       onClick={submitForm}
+      aria-label={boardId ? 'Edit' : 'Create'}
     >
       <span className={`boardButtonIcon_wrapper theme-${currentTheme}`}>
         <svg

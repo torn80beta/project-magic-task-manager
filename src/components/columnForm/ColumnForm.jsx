@@ -63,7 +63,11 @@ const ColumnForm = props => {
         />
         {error && <p className={`errorMessage theme-${theme}`}>{error}</p>}
       </div>
-      <button className={`columnButton theme-${theme}`} type="submit">
+      <button
+        className={`columnButton theme-${theme}`}
+        type="submit"
+        aria-label={!title ? 'Add' : 'Edit'}
+      >
         <span className={`columnIcon theme-${theme}`}>
           <Icon id={'plus'} width={14} height={14} />
         </span>

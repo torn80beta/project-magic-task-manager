@@ -62,6 +62,7 @@ const Sidebar = ({ closeModal }) => {
               </span>
             </span>
           }
+          ariaLabel={'Create a new board'}
         >
           <BoardForm />
         </PopUp>
@@ -90,12 +91,16 @@ const Sidebar = ({ closeModal }) => {
                 </NavLink>
                 <div className={`tools-wrapper theme-${currentTheme}`}>
                   <div className={`toolsIcons theme-${currentTheme}`}>
-                    <PopUp data={<Icon id={'pencil'} width={16} height={16} />}>
+                    <PopUp
+                      data={<Icon id={'pencil'} width={16} height={16} />}
+                      ariaLabel={'Edit board'}
+                    >
                       <BoardForm boardId={item._id} boardTitle={item.name} />
                     </PopUp>
                     <button
                       className={`boardDeleteButton theme-${currentTheme} `}
                       onClick={() => onDeleteButton(item._id)}
+                      aria-label="Delete board"
                     >
                       <Icon id={'trash'} width={16} height={16} />
                     </button>
@@ -130,12 +135,12 @@ const Sidebar = ({ closeModal }) => {
           data={
             <span className={`helpCircleWrapper theme-${currentTheme}`}>
               <Icon id={'help-circle'} width={20} height={20} />
-
               <span className={`needHelpText theme-${currentTheme}`}>
                 Need help?
               </span>
             </span>
           }
+          ariaLabel={'Help'}
         >
           <NeedHelpForm />
         </PopUp>
@@ -145,6 +150,7 @@ const Sidebar = ({ closeModal }) => {
           type="button"
           onClick={() => dispatch(logoutUser())}
           className={`logOutButton theme-${currentTheme}`}
+          aria-label="Log out"
         >
           <span className={`logOutIcon theme-${currentTheme}`}>
             <Icon id={'log-out'} width={32} height={32} />

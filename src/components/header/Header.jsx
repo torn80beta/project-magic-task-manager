@@ -77,12 +77,13 @@ const Header = ({ children }) => {
             height={24}
           />
         }
+        ariaLabel={'Menu'}
       >
         <Sidebar />
       </BurgerMenuModal>
 
       <div className="header-wrapper">
-        <form>
+        <form aria-label="Select theme">
           <div
             className={`select ${isMenuActive}`}
             onClick={handleToggleMenu}

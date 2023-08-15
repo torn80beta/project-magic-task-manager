@@ -181,6 +181,7 @@ export const EditProfileForm = props => {
             [css.violet]: theme === 'violet',
           })}
           type="submit"
+          aria-label="Send"
         >
           Send
         </button>
