@@ -8,11 +8,12 @@ import { selectCurrentTheme, selectIsLoggedIn } from 'redux/auth/auth-slice';
 import { useSelector, useDispatch } from 'react-redux';
 import ColumnForm from 'components/columnForm/ColumnForm';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   selectColumns,
   setColumn,
   selectCurrentBoard,
+  selectAllBoards,
 } from 'redux/workplace/workplace-slice';
 import {
   dragTaskById,
@@ -20,6 +21,7 @@ import {
 } from 'redux/workplace/workplace-operation';
 import { bcgArray } from 'images/bcgArrey';
 import { BoardContainer } from './ScreensPage.styled';
+import { toast } from 'react-toastify';
 
 const ScreensPage = () => {
   const currentTheme = useSelector(selectCurrentTheme);
@@ -28,12 +30,26 @@ const ScreensPage = () => {
   const currentBoard = useSelector(selectCurrentBoard);
   const { boardName } = useParams();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const allBoards = useSelector(selectAllBoards);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getBoardById(boardName));
     }
   }, [boardName, dispatch, isLoggedIn]);
+
+  useEffect(() => {
+    if (allBoards.length > 0) {
+      const isBoard = allBoards.findIndex(item => {
+        return item._id === boardName;
+      });
+      if (isBoard === -1) {
+        toast.error('There is no such board.');
+        navigate('/');
+      }
+    }
+  }, [allBoards, boardName, navigate]);
 
   const bcgImg = () => {
     if (currentBoard.background) {

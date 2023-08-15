@@ -44,7 +44,7 @@ export const getBoardById = createAsyncThunk(
     try {
       const { data } = await getBoard(id);
       if (data.status === 500) {
-        console.log(data.message);
+        // console.log(data.message);
         thunkAPI.rejectWithValue(data.message);
       }
       return data;
