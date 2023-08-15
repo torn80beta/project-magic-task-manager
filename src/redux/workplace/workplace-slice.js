@@ -23,7 +23,7 @@ const initialState = {
     icon: null,
     id: null,
   },
-  isLoading:false,
+  isLoading: false,
 };
 
 const workplaceSlice = createSlice({
@@ -185,7 +185,7 @@ const workplaceSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(editTaskById.rejected, state => {
-        state.isLoading= false
+        state.isLoading = false;
       })
       .addCase(deleteTaskById.pending, state => {
         state.isLoading = true;
@@ -204,9 +204,9 @@ const workplaceSlice = createSlice({
         }
         state.isLoading = false;
       })
-    .addCase(deleteTaskById.rejected, state=>{
-      state.isLoading = false;
-    })
+      .addCase(deleteTaskById.rejected, state => {
+        state.isLoading = false;
+      })
 
       .addCase(dragTaskById.pending, state => {
         state.isLoading = true;
@@ -214,16 +214,12 @@ const workplaceSlice = createSlice({
       .addCase(dragTaskById.fulfilled, (state, action) => {
         state.isLoading = false;
       });
-
   },
 });
 
 export const workplaceReducer = workplaceSlice.reducer;
-
 export const selectAllBoards = state => state.workplace.boardsList;
 export const selectCurrentBoard = state => state.workplace.currentBoard;
-
 export const selectColumns = state => state.workplace.currentBoard.columns;
-
+export const isLoading = state => state.workplace.isLoading;
 export const { setColumn } = workplaceSlice.actions;
-// export const selectTasks = state => state.workplace.currentBoard.columns;

@@ -4,12 +4,15 @@ import * as yup from 'yup';
 import './boardForm.scss';
 import Icons from '../../images/svg/icons_sprite_Board.svg';
 import BoardFormButton from './boardFormButton/BoardFormButton';
-// import { themeState } from 'redux/theme/themeSlice';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addNewBoard } from 'redux/workplace/workplace-operation';
-import { editBoardById } from 'redux/workplace/workplace-operation';
+import {
+  editBoardById,
+  getBoardById,
+} from 'redux/workplace/workplace-operation';
+import { selectCurrentBoard } from 'redux/workplace/workplace-slice';
 
 const iconsSvgInitial = [
   { id: 1, value: 'icon-1' },
@@ -22,7 +25,6 @@ const iconsSvgInitial = [
   { id: 8, value: 'icon-8' },
 ];
 const imagesBackgroundInitial = [
-  // { id: 0, value: 0 },
   { id: 1, value: 'bg-2' },
   { id: 2, value: 'bg-3' },
   { id: 3, value: 'bg-4' },
@@ -55,32 +57,22 @@ const schema = yup.object().shape({
     .min(1, 'Board name needs to be at least 1 char')
     .required('This field is required to fill'),
 });
-
-const BoardForm = ({
-  boardId = null,
-  boardTitle = '',
-  boardIcon = 'icon-1',
-  boardBackground = 'bg-1',
-  closeModal,
-}) => {
+const BoardForm = ({ boardId = null, closeModal }) => {
+  const currentBoard = useSelector(selectCurrentBoard);
   const currentTheme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialValues = {
-    // boardTitle: '',
-    // svgIcon: 'circles',
-    // backgroundIcon: 0,
-    // boardTitle: boardTitle,
-    name: boardTitle,
-    icon: boardIcon,
-    background: boardBackground,
+    name: boardId ? currentBoard.name : '',
+    icon: boardId ? currentBoard.icon : 'icon-1',
+    background: boardId ? currentBoard.background : 'bg-1',
   };
 
   const handleSubmit = async (values, { resetForm }) => {
     if (boardId) {
       values.id = boardId;
-      // console.log('values', values);
-      dispatch(editBoardById(values));
+      await dispatch(editBoardById(values));
+      await dispatch(getBoardById(boardId));
     } else {
       const response = await dispatch(addNewBoard(values));
       navigate(response.payload._id);

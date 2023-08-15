@@ -31,23 +31,13 @@ const Card = ({
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
 
-  const convertToDateFormat = dateString => {
-    const parts = dateString.split('/');
-    const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1;
-    const year = parseInt(parts[2], 10);
-
-    return new Date(year, month, day);
-  };
-
   const today = new Date();
-  const formattedDeadline = convertToDateFormat(deadLine);
-  const isToday = today.toDateString() === formattedDeadline.toDateString();
+  const isTodayDeadline = date.toDateString() === today.toDateString();
 
   return (
     <Draggable key={id} draggableId={id} index={index}>
       {provided => (
-        <div
+        <li
           className={`cardWrapper theme-${currentTheme}  priorityClass-${currentPriority}`}
           priority={priority}
           ref={provided.innerRef}
@@ -83,29 +73,27 @@ const Card = ({
                     Deadline
                   </h3>
                   <p className={`cardSubtextDeadline theme-${currentTheme}`}>
-                    {`${day}\\${month}\\${year}`}
+                    {`${day}/${month}/${year}`}
                   </p>
                 </div>
               </div>
               <div className={`IconWrapper theme-${currentTheme}`}>
-                {isToday && (
-                  <span className={`cardIcon theme-${currentTheme}`}>
+                {isTodayDeadline && (
+                  <span
+                    className={`cardBellIcon theme-${currentTheme}`}
+                    aria-label="High priority"
+                  >
                     <Icon id={'bell'} width={16} height={16} />
                   </span>
                 )}
-                <span className={`cardIcon theme-${currentTheme}`}>
-                  <Icon
-                    id={'arrow-circle-broken-right'}
-                    width={16}
-                    height={16}
-                  />
-                </span>
+
                 <PopUp
                   data={
-                    <span className={`cardIcon theme-${currentTheme}`}>
+                    <div className={`cardIcon theme-${currentTheme}`}>
                       <Icon id={'pencil'} width={16} height={16} />
-                    </span>
+                    </div>
                   }
+                  ariaLabel={'Edit task'}
                 >
                   <AddCardForm
                     taskId={id}
@@ -118,10 +106,11 @@ const Card = ({
                   />
                 </PopUp>
 
-                <span
+                <button
                   type="button"
                   onClick={() => dispatch(deleteTaskById(id))}
                   className={`cardIcon theme-${currentTheme}`}
+                  aria-label="Delete task"
                 >
                   <Icon
                     className={`cardIcon theme-${currentTheme}`}
@@ -129,11 +118,11 @@ const Card = ({
                     width={16}
                     height={16}
                   />
-                </span>
+                </button>
               </div>
             </div>
           </div>
-        </div>
+        </li>
       )}
     </Draggable>
   );

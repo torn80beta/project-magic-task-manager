@@ -1,5 +1,4 @@
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
-
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Icon from 'components/icon/Icon';
@@ -10,7 +9,6 @@ import { editColumnById } from 'redux/workplace/workplace-operation';
 import { useDispatch } from 'react-redux';
 
 const ColumnForm = props => {
-  // const dispatch = useDispatch();
   const { title, id, closeModal } = props;
   const theme = useSelector(selectCurrentTheme);
   const [error, setError] = useState('');
@@ -58,11 +56,18 @@ const ColumnForm = props => {
           placeholder="Title"
           className={`titleInput theme-${theme}`}
           value={columnName}
+          required
+          minLength="1"
+          maxLength="25"
           onChange={e => setColumnName(e.target.value)}
         />
         {error && <p className={`errorMessage theme-${theme}`}>{error}</p>}
       </div>
-      <button className={`columnButton theme-${theme}`} type="submit">
+      <button
+        className={`columnButton theme-${theme}`}
+        type="submit"
+        aria-label={!title ? 'Add' : 'Edit'}
+      >
         <span className={`columnIcon theme-${theme}`}>
           <Icon id={'plus'} width={14} height={14} />
         </span>

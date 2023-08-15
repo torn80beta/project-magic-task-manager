@@ -11,7 +11,8 @@ import {
 const initialState = {
   user: { name: null, email: null, avatar: null },
   theme: 'violet',
-  token: null,
+  accessToken: null,
+  refreshToken: null,
   boards: null,
   isLoggedIn: false,
   isLoading: false,
@@ -21,6 +22,13 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    // setToken: (state, action) => {
+    //   console.log(action.payload);
+    //   state.accessToken = action.payload;
+    // axios.defaults.headers.common.Authorization = `Bearer ${action.payload.accessToken}`;
+    // },
+  },
   extraReducers: builder => {
     builder
       .addCase(registerUser.pending, state => {
@@ -28,12 +36,13 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        // state.accessToken = action.payload.token;
+        // state.refreshToken = action.payload.refreshToken;
         state.boards = action.payload.boards;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(registerUser.rejected, state => {
         state.isLoading = false;
       })
       .addCase(loginUser.pending, state => {
@@ -41,7 +50,8 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        // state.accessToken = action.payload.accessToken;
+        // state.refreshToken = action.payload.refreshToken;
         state.theme = action.payload.theme;
         state.boards = action.payload.boards;
         state.isLoggedIn = true;
@@ -54,10 +64,12 @@ const authSlice = createSlice({
       .addCase(getCurrentUser.pending, state => {
         state.isLoading = true;
         state.isRefreshing = true;
+        state.isLoggedIn = false;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        // state.accessToken = action.payload.accessToken;
+        // state.refreshToken = action.payload.refreshToken;
         state.theme = action.payload.theme;
         state.boards = action.payload.boards;
         state.isLoading = false;
@@ -67,6 +79,7 @@ const authSlice = createSlice({
       .addCase(getCurrentUser.rejected, state => {
         state.isRefreshing = false;
         state.isLoading = false;
+        state.isLoggedIn = false;
       })
       .addCase(logoutUser.pending, state => {
         state.isLoading = true;
@@ -75,7 +88,8 @@ const authSlice = createSlice({
         state.user = { name: null, email: null, avatar: null };
         state.theme = 'violet';
         state.boards = [];
-        state.token = null;
+        // state.accessToken = null;
+        // state.refreshToken = null;
         state.isLoggedIn = false;
         state.isLoading = false;
       })
@@ -112,7 +126,8 @@ export const selectUserName = state => state.auth.user.name;
 export const selectUserEmail = state => state.auth.user.email;
 export const selectCurrentUserBoards = state => state.auth.boards;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
-export const selectToken = state => state.auth.token;
+export const selectToken = state => state.auth.accessToken;
 export const selectUserAvatar = state => state.auth.user.avatar;
 export const selectIsLoading = state => state.auth.isLoading;
 export const selectCurrentTheme = state => state.auth.theme;
+// export const { setToken } = authSlice.actions;

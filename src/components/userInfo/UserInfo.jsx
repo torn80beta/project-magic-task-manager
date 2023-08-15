@@ -25,6 +25,7 @@ const UserInfo = ({ theme, user }) => {
           )}
         </div>
       }
+      ariaLabel={'User info'}
     >
       <EditProfileForm />
     </PopUp>

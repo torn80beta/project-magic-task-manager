@@ -7,7 +7,6 @@ import { PrivateRoute } from 'helpers/PrivateRoute';
 import { RestrictedRoute } from 'helpers/RestrictedRoute';
 import { getCurrentUser } from 'redux/auth/auth-operation';
 import Loader from './loader/Loader';
-
 import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('../pages/home/Home'));

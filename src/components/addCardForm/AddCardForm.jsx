@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
 import { Formik } from 'formik';
@@ -6,6 +5,7 @@ import { Field } from 'formik';
 import Icon from 'components/icon/Icon';
 import DateCalendar from 'components/calendar/DatePicker';
 import './addCardForm.scss';
+import * as yup from 'yup';
 import { addNewTask, editTaskById } from 'redux/workplace/workplace-operation';
 
 const AddCardForm = ({
@@ -14,14 +14,17 @@ const AddCardForm = ({
   closeModal,
   data: { title, description, labelColor, deadLine } = {},
 }) => {
-  // const [date, setDate] = useState('');
-  // const getDeadline = value => {
-  //   setDate(value);
-  //   console.log(date);
-  // };
-  const date = '2023-08-03T17:01:27.257+00:00';
-  const theme = useSelector(selectCurrentTheme);
   const dispatch = useDispatch();
+  const normalizedDeadLine = deadLine ? deadLine : new Date();
+  const theme = useSelector(selectCurrentTheme);
+  const schema = yup.object().shape({
+    title: yup
+      .string()
+      .max(25, 'Name can contain 25 symbols max')
+      .trim('No leading or trailing spaces')
+      .min(1, 'Name needs to be at least 1 char')
+      .required('This field is required'),
+  });
 
   return (
     <Formik
@@ -31,8 +34,9 @@ const AddCardForm = ({
         description: description,
         title: title || '',
         labelColor: labelColor || 'without',
-        deadLine: date,
+        deadLine: new Date(normalizedDeadLine),
       }}
+      validationSchema={schema}
       validate={values => {
         const errors = {};
         if (!values.title) {
@@ -46,13 +50,13 @@ const AddCardForm = ({
       onSubmit={(values, { setSubmitting }) => {
         if (!columnId && taskId) {
           //Робимо PATCH запит при сабміті
-          // console.log('Updating a card');
+          // console.log('Updating a card ' + values);
           dispatch(editTaskById(values));
           setSubmitting(false);
           closeModal();
         } else if (!taskId && columnId) {
           //Робимо POST запит при сабміті
-          // console.log('Creating a new card');
+          // console.log('Creating a new card ' + values);
           dispatch(addNewTask(values));
           setSubmitting(false);
           closeModal();
@@ -70,6 +74,7 @@ const AddCardForm = ({
         handleBlur,
         handleSubmit,
         isSubmitting,
+        setFieldValue,
       }) => (
         <form className={`add-form theme-${theme}`} onSubmit={handleSubmit}>
           <p className={`add-form-title theme-${theme}`}>
@@ -162,15 +167,15 @@ const AddCardForm = ({
                 Deadline
               </p>
               <DateCalendar
-              // getDeadline={() => {
-              //   getDeadline();
-              // }}
+                selected={values.deadLine}
+                onSelect={date => setFieldValue('deadLine', date)}
               />
             </div>
             <button
               className={`add-form-submit theme-${theme}`}
               type="submit"
               disabled={isSubmitting}
+              aria-label={!columnId && taskId ? 'Edit' : 'Add'}
             >
               <div className={`add-form-icon-wrap theme-${theme}`}>
                 <Icon id="plus" width={14} height={14} />

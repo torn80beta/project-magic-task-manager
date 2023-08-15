@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://torn80beta.github.io/project-magic-task-manager/",
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@react-oauth/google": "^0.11.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -20,7 +22,7 @@
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.1.0",
     "react-ellipsis-text": "^1.2.1",
-    "react-hot-toast": "^2.4.1",
+    "react-google-button": "^0.7.2",
     "react-icons": "^4.10.1",
     "react-modal": "^3.16.1",
     "react-redux": "^8.1.2",

@@ -3,12 +3,12 @@ import Icons from '../../../images/svg/icons_sprite_Board.svg';
 import './boardFormButton.scss';
 
 const BoardFormButton = ({ currentTheme, submitForm, boardId, ...props }) => {
-  // console.log(props);
   return (
     <div
       role="button"
       className={`boardButtonSubmit theme-${currentTheme}`}
       onClick={submitForm}
+      aria-label={boardId ? 'Edit' : 'Create'}
     >
       <span className={`boardButtonIcon_wrapper theme-${currentTheme}`}>
         <svg
@@ -19,7 +19,6 @@ const BoardFormButton = ({ currentTheme, submitForm, boardId, ...props }) => {
           <use href={`${Icons}#plus`} />
         </svg>
       </span>
-      {/* {props.isSubmitting ? 'submitting' : 'Create'} */}
       {boardId ? 'Edit' : 'Create'}
     </div>
   );

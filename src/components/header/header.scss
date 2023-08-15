@@ -4,8 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  width: 100%;
+  padding: 18px 20px;
+  width: 100vw;
   height: 60px;
   &.theme-violet {
     background-color: $violet-header-bg;
@@ -20,17 +20,14 @@
     color: $light-main-text;
   }
 
-  @include mobile {
-    width: 375px;
-  }
-
   @include tablet {
-    width: 768px;
     height: 68px;
+    padding: 18px 32px;
   }
 
   @include desktop {
-    width: 1180px;
+    width: calc(100vw - 260px);
+    padding: 18px 24px;
   }
   .header-wrapper {
     display: flex;
@@ -63,6 +60,20 @@
     .select-content {
       display: block;
       max-height: 300px;
+      animation: growDown 300ms ease-in-out forwards;
+      transform-origin: top center;
+
+      @keyframes growDown {
+        0% {
+          transform: scaleY(0);
+        }
+        80% {
+          transform: scaleY(1.1);
+        }
+        100% {
+          transform: scaleY(1);
+        }
+      }
     }
 
     .select-label + .select-input + .select-label {
@@ -113,6 +124,7 @@
     display: none;
     z-index: 8;
     border-radius: 8px;
+
     &.theme-violet {
       border: $violet-border;
       box-shadow: $violet-box-shadow;

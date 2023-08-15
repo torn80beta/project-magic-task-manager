@@ -117,14 +117,15 @@
 }
 .add-form-input-error {
   position: absolute;
+  top: -20px;
   color: rgba(247, 73, 73, 0.76);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
   padding-left: 10px;
 
   &.theme-dark {
-    color: rgba(212, 114, 114, 0.76);
+    color: rgb(255, 136, 136);
   }
 }
 .add-form-radio-group {

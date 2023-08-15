@@ -1,34 +1,33 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Droppable } from 'react-beautiful-dnd';
+import { toast } from 'react-toastify';
 import { selectCurrentTheme } from 'redux/auth/auth-slice';
+import { selectColumns } from 'redux/workplace/workplace-slice';
+import { deleteColumnById } from 'redux/workplace/workplace-operation';
 import { filterState } from 'redux/filter/filterSlice';
-import Icon from 'components/icon/Icon';
 import PopUp from 'components/modal/PopUp';
 import ColumnForm from 'components/columnForm/ColumnForm';
 import AddCardForm from 'components/addCardForm/AddCardForm';
 import Card from 'components/card/Card';
-import { Droppable } from 'react-beautiful-dnd';
+import Icon from 'components/icon/Icon';
+
 import './Columns.scss';
-import { selectColumns } from 'redux/workplace/workplace-slice';
-import { deleteColumnById } from 'redux/workplace/workplace-operation';
 
 const Columns = ({ _id: id, name }) => {
+  const dispatch = useDispatch();
   const currentTheme = useSelector(selectCurrentTheme);
-
   const columnsList = useSelector(selectColumns);
+  const filter = useSelector(filterState);
+
   const cards =
     columnsList[columnsList.findIndex(item => item._id === id)].tasks;
 
-  const filter = useSelector(filterState);
-
-  const dispatch = useDispatch();
-
-  const handleDeleteButton = id => {
+  const handleDeleteButton = columnId => {
     if (cards.length !== 0) {
-      console.log('The column must be empty');
+      toast.error('The column must be empty');
       return;
     }
-    // console.log(`Column deleted ${id}`);
-    dispatch(deleteColumnById(id));
+    dispatch(deleteColumnById(columnId));
   };
 
   const getFilteredCards = () => {
@@ -51,12 +50,14 @@ const Columns = ({ _id: id, name }) => {
                 <Icon id="pencil" width="16" height="16" />
               </span>
             }
+            ariaLabel={'Edit column'}
           >
             <ColumnForm title={name} id={id} />
           </PopUp>
           <button
             className={`column_buttonBox theme-${currentTheme}`}
             onClick={() => handleDeleteButton(id)}
+            aria-label="Delete column"
           >
             <span className={`column_buttonIcon theme-${currentTheme}`}>
               <Icon id="trash" width="16" height="16" />
@@ -91,6 +92,7 @@ const Columns = ({ _id: id, name }) => {
             Add another card
           </span>
         }
+        ariaLabel={'Add card'}
       >
         <AddCardForm columnId={id} />
       </PopUp>

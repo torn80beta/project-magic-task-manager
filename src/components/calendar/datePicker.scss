@@ -90,7 +90,6 @@
   font-family: 'Poppins';
   font-weight: 400;
   font-size: 14px;
-  // line-height: 18px;
   letter-spacing: 0.2;
   margin-top: 0px;
   &:hover {
@@ -115,9 +114,6 @@
 .react-datepicker__day--keyboard-selected {
   border-radius: 50%;
 }
-.react-datepicker__triangle {
-  display: none;
-}
 
 .react-datepicker {
   font-family: 'Poppins';
@@ -131,28 +127,33 @@
   color: $violet-calendar-weekday-text;
 }
 
-.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
-border-top-color: $violet-header-bg;
+.react-datepicker-popper[data-placement^='top']
+  .react-datepicker__triangle::after {
+  border-top-color: $light-sidebar-bg;
+  bottom: 1px;
 }
 
-.react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::before {
-border-top-color: $dark-border;
+.react-datepicker-popper[data-placement^='top']
+  .react-datepicker__triangle::before {
+  border-top-color: $dark-modal-input-border-active;
 }
 
-.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
-border-bottom-color: $violet-header-bg;
+.react-datepicker-popper[data-placement^='bottom']
+  .react-datepicker__triangle::after {
+  border-bottom-color: $light-sidebar-bg;
+  top: 1px;
 }
 
-.react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
-border-bottom-color:  $dark-border;
+.react-datepicker-popper[data-placement^='bottom']
+  .react-datepicker__triangle::before {
+  border-bottom-color: $dark-modal-input-border-active;
 }
-
 
 .theme-light {
   .react-datepicker {
     background-color: $violet-header-bg;
     color: $violet-calendar-day-text;
-    border: $dark-border;
+    border: 1px solid $dark-modal-input-border-active;
   }
   .react-datepicker__day-names {
     border-top: 1px solid $calendar-line;
@@ -173,6 +174,13 @@ border-bottom-color:  $dark-border;
     &--selected {
       background-color: $dark-modal-input-border-active;
       color: $calendar-selected-day;
+      &.react-datepicker__day--disabled {
+        color: $calendar-selected-day;
+        &:hover {
+          color: $calendar-selected-day;
+          background-color: $dark-button-bg-hover;
+        }
+      }
     }
     &--disabled {
       cursor: default;
@@ -191,6 +199,10 @@ border-bottom-color:  $dark-border;
     background-color: $dark-button-bg-hover;
   }
 
+  .react-datepicker__day--outside-month {
+    color: $violet-calendar-weekday-text;
+  }
+
   .react-datepicker__navigation {
     &:hover {
       *::before {
@@ -204,7 +216,7 @@ border-bottom-color:  $dark-border;
   .react-datepicker {
     background-color: $dark-modal-bg;
     color: $dark-main-text;
-    border: $dark-border;
+    border: 1px solid $dark-modal-input-border-active;
   }
   .react-datepicker__day-names {
     border-top: 1px solid $dark-calendar-line;
@@ -225,6 +237,13 @@ border-bottom-color:  $dark-border;
     &--selected {
       background-color: $dark-modal-input-border-active;
       color: rgba(31, 31, 31, 1);
+      &.react-datepicker__day--disabled {
+        color: rgba(31, 31, 31, 1);
+        &:hover {
+          color: rgba(31, 31, 31, 1);
+          background-color: $dark-button-bg-hover;
+        }
+      }
     }
     &--disabled {
       cursor: default;
@@ -254,39 +273,21 @@ border-bottom-color:  $dark-border;
     border-color: $calendar-navigation-icon-dark;
   }
   .react-datepicker__navigation-icon--next::before {
-
-          border-color: $calendar-navigation-icon-dark;
-        }
+    border-color: $calendar-navigation-icon-dark;
+  }
 
   .react-datepicker__day--outside-month {
-          color: $dark-secondary-text;
-        }
-
-  .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after {
-          border-top-color: $dark-modal-bg;
-          }
-          
-  .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after {
-          border-bottom-color: $dark-modal-bg;
-          }
-  
+    color: $dark-secondary-text;
   }
-  
-  
-  
-  .theme-violet {
-  
-    .react-datepicker {
-      background-color:  $violet-header-bg;
-      color: $violet-calendar-day-text;
-      border-color: $violet-sidebar-bg;
-    }
-    .react-datepicker__day-names {
-      border-top: 1px solid $calendar-line;
-    }
-    .react-datepicker__day-name {
-      color: $violet-calendar-weekday-text;
-    border-color: $calendar-navigation-icon-dark;
+
+  .react-datepicker-popper[data-placement^='top']
+    .react-datepicker__triangle::after {
+    border-top-color: $dark-modal-bg;
+  }
+
+  .react-datepicker-popper[data-placement^='bottom']
+    .react-datepicker__triangle::after {
+    border-bottom-color: $dark-modal-bg;
   }
 }
 
@@ -315,6 +316,13 @@ border-bottom-color:  $dark-border;
     &--selected {
       background-color: $violet-button-bg;
       color: $calendar-selected-day;
+      &.react-datepicker__day--disabled {
+        color: $calendar-selected-day;
+        &:hover {
+          color: $calendar-selected-day;
+          background-color: $violet-button-bg-hover;
+        }
+      }
     }
     &--disabled {
       cursor: default;
@@ -332,22 +340,9 @@ border-bottom-color:  $dark-border;
   .react-datepicker__day--keyboard-selected:hover {
     background-color: $violet-button-bg-hover;
   }
-  
-    .react-datepicker__navigation {
-            &:hover {
-              *::before {
-                border-color: $violet-icon-hover;
-              }
-            }
-          }
-    .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::before {
-            border-top-color: $violet-sidebar-bg;
-            }
-            
-    .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before {
-            border-bottom-color:  $violet-sidebar-bg;
-            }
-    
+  .react-datepicker__day--outside-month {
+    color: $violet-calendar-weekday-text;
+  }
 
   .react-datepicker__navigation {
     &:hover {
@@ -355,5 +350,14 @@ border-bottom-color:  $dark-border;
         border-color: $violet-icon-hover;
       }
     }
+  }
+  .react-datepicker-popper[data-placement^='top']
+    .react-datepicker__triangle::before {
+    border-top-color: $violet-sidebar-bg;
+  }
+
+  .react-datepicker-popper[data-placement^='bottom']
+    .react-datepicker__triangle::before {
+    border-bottom-color: $violet-sidebar-bg;
   }
 }

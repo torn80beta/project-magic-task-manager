@@ -9,7 +9,7 @@ Modal.setAppElement('#root');
 
 const PopUp = props => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const { children, data } = props;
+  const { children, data, ariaLabel } = props;
   const currentTheme = useSelector(selectCurrentTheme);
   function openModal() {
     setIsOpen(true);
@@ -34,6 +34,7 @@ const PopUp = props => {
       <button
         className={`open-modal-button theme-${currentTheme}`}
         onClick={openModal}
+        aria-label={`${ariaLabel}`}
       >
         {data}
       </button>
@@ -48,6 +49,7 @@ const PopUp = props => {
         <button
           className={`close-modal-button theme-${currentTheme}`}
           onClick={closeModal}
+          aria-label="Close modal"
         >
           <Icon id="x-close" width={18} height={18} />
         </button>

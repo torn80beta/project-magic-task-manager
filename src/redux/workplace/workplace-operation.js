@@ -43,8 +43,13 @@ export const getBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await getBoard(id);
+      if (data.status === 500) {
+        // console.log(data.message);
+        thunkAPI.rejectWithValue(data.message);
+      }
       return data;
     } catch (error) {
+      // console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -78,7 +83,6 @@ export const addNewColumn = createAsyncThunk(
   'columns/add',
   async (credentials, thunkAPI) => {
     try {
-      // console.log('cred', credentials);
       const { data } = await addColumn(credentials);
       return data;
     } catch (error) {
@@ -113,7 +117,6 @@ export const addNewTask = createAsyncThunk(
   'tasks/add',
   async (credentials, thunkAPI) => {
     try {
-      // console.log(credentials);
       const { data } = await addTask(credentials);
       return data;
     } catch (error) {

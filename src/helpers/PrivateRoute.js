@@ -3,9 +3,6 @@ import { useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/auth-slice';
 
 export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-  // const { isLoggedIn, isRefreshing } = useAuth();
-  // const isLoggedIn = true;
-  // const isRefreshing = false;
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
   const shouldRedirect = !isLoggedIn && !isRefreshing;

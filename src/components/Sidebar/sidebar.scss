@@ -8,8 +8,6 @@
   align-items: flex-start;
   min-width: 225px;
   max-width: 225px;
-  color: white;
-  background-color: $dark-sidebar-bg;
   overflow-y: auto;
 
   &.theme-violet {
@@ -53,6 +51,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     &.theme-light {
       background: $dark-screens-bg;
       color: $light-sidebar-bg;
@@ -68,10 +67,10 @@
   }
 
   .logoName {
-    color: #fff;
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.04em;
+
     &.theme-light {
       color: $dark-screens-bg;
     }
@@ -90,12 +89,12 @@
     width: 100%;
     gap: 8px;
     margin-top: 60px;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
 
     @include tablet {
       padding: 0px 24px;
       margin-top: 60px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
   }
 
@@ -105,6 +104,7 @@
     letter-spacing: -0.02em;
     width: 62px;
     height: 18px;
+
     &.theme-light {
       color: #16161680;
     }
@@ -120,6 +120,7 @@
     padding: 14px 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     &.theme-light {
       border-top: 1px solid #1616161a;
@@ -148,7 +149,6 @@
   }
 
   .createBoardText {
-    color: #fff;
     display: block;
     font-size: 14px;
     font-weight: 500;
@@ -181,7 +181,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     @include tablet {
       margin-right: 0px;
       border-radius: 6px;
@@ -208,10 +210,11 @@
     align-items: center;
     width: 100%;
     gap: 4px;
-    height: calc(100vh - 570px);
+    height: calc(100vh - 556px);
     min-height: 126px;
+
     @include tablet {
-      height: calc(100vh - 644px);
+      height: calc(100vh - 585px);
       min-height: 126px;
     }
   }
@@ -222,12 +225,30 @@
 
   .toolsIcons {
     display: flex;
-    align-items: flex-start;
-    // gap: 8px;
+    gap: 8px;
   }
+
   .toolsIcons button {
-    padding: 20px 8px 20px 0;
+    height: 16px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.theme-light {
+      &:hover {
+        color: $light-icon-hover;
+      }
+    }
+    &.theme-dark {
+      &:hover {
+        color: $dark-icon-hover;
+      }
+    }
+    &.theme-violet {
+      &:hover {
+        color: $violet-icon-hover;
+      }
+    }
   }
+
   .boardDeleteButton {
     background: none;
     border: none;
@@ -250,37 +271,44 @@
       display: none;
     }
   }
+
   .projectsListItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
   }
+
   .projectsLinks {
     display: flex;
     gap: 8px;
     align-items: center;
     width: 100%;
-    padding-top: 15px;
-    padding-bottom: 15px;
     padding-left: 24px;
     height: 62px;
-    @include tablet {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     &.theme-light {
       color: #16161680;
+      // &:hover {
+      //   background: $light-screens-bg;
+      // }
     }
     &.theme-dark {
       color: $dark-50-transparent;
+      // &:hover {
+      //   background: $dark-screens-bg;
+      // }
     }
     &.theme-violet {
       color: $dark-50-transparent;
+      // &:hover {
+      //   background: $violet-active-board-bg;
+      // }
     }
 
     &.active {
-      height: 100%;
+      height: 61px;
       &.theme-light {
         color: $light-main-text;
         background: $light-screens-bg;
@@ -291,7 +319,19 @@
       }
       &.theme-violet {
         color: $violet-sidebar-text;
-        background: $dark-50-transparent;
+        background: $violet-active-board-bg;
+      }
+    }
+
+    &:hover {
+      &.theme-light {
+        color: $light-main-text;
+      }
+      &.theme-dark {
+        color: $dark-main-text;
+      }
+      &.theme-violet {
+        color: $violet-button-text;
       }
     }
 
@@ -309,9 +349,13 @@
 
     &.active + .tools-wrapper {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      // padding: 20px 20px 20px 0;
+      align-items: center;
+      height: 61px;
+      padding-right: 18px;
+
+      @include tablet {
+        padding-right: 24px;
+      }
 
       &.theme-light {
         color: #16161680;
@@ -323,7 +367,7 @@
       }
       &.theme-violet {
         color: $dark-50-transparent;
-        background: $dark-50-transparent;
+        background: $violet-active-board-bg;
       }
     }
   }
@@ -357,15 +401,15 @@
 
   .helpInsideWrapper {
     align-self: flex-end;
-    background-color: #1f1f1f;
     padding: 14px;
     margin: 20px 14px 0;
     border-radius: 8px;
 
     @include tablet {
       padding: 20px;
-      margin: 0 24px;
+      margin: 20px 24px 0;
     }
+
     &.theme-light {
       background: $light-screens-bg;
     }
@@ -383,18 +427,19 @@
   }
 
   .helpTextSidebar {
-    color: #fff;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.33;
     letter-spacing: -0.02em;
     margin-top: 14px;
+    margin-bottom: 18px;
 
     @include tablet {
       font-size: 14px;
       line-height: 1.33;
     }
+
     &.theme-light {
       color: $light-button-text;
     }
@@ -410,35 +455,55 @@
     font-size: 14px;
     line-height: 1.42;
     letter-spacing: -0.02em;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     &.theme-light {
       color: $light-button-bg;
+      &:hover {
+        color: $light-button-bg-hover;
+      }
     }
     &.theme-dark {
       color: $dark-button-bg;
+      &:hover {
+        color: $dark-button-bg-hover;
+      }
     }
     &.theme-violet {
       color: $violet-sidebar-bg;
+      &:hover {
+        color: $violet-button-bg-hover;
+      }
     }
   }
 
   .helpCircleWrapper {
-    margin-top: 18px;
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     &.theme-light {
       color: $light-main-text;
+      &:hover {
+        color: $light-button-bg-hover;
+      }
     }
     &.theme-dark {
       color: $dark-main-text;
+      &:hover {
+        color: $dark-button-bg-hover;
+      }
     }
     &.theme-violet {
       color: $violet-header-bg;
+      &:hover {
+        color: $violet-sidebar-bg;
+      }
     }
   }
 
   .needHelpText {
-    // color: #fff;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: -0.24px;
@@ -489,6 +554,8 @@
   }
 
   .logOutIcon {
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
     &.theme-light {
       color: $light-button-bg;
     }

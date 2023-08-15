@@ -17,14 +17,11 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async (user, { resetForm }) => {
-    // dispatch(loginUser(user));
-    // resetForm();
-
     try {
       const response = await dispatch(loginUser(user));
       const data = response.payload;
 
-      if (data && data.token) {
+      if (data && data.accessToken) {
         resetForm();
       } else {
         toast.error('Incorrect email or password provided');
@@ -58,6 +55,7 @@ const LoginForm = () => {
               type={showPassword ? 'text' : 'password'}
               placeholder="Confirm a password"
             />
+
             <ErrorMessage
               className={css.errmes}
               name="password"
@@ -70,7 +68,10 @@ const LoginForm = () => {
                 <Icon id="eye" width="18" height="18"></Icon>
               )}
             </span>
-          </div>
+          </div>{' '}
+          <Link className={css.forgetPass} to="forgetPassword">
+            Forget password
+          </Link>
         </div>
         <button className={css.logInButton} type="submit">
           Log In Now
