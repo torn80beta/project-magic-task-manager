@@ -27,11 +27,11 @@ const RegisterForm = () => {
         resetForm();
       } else {
         toast.error(
-          'Oops! Something went wrong during registration. Please double-check your information and try again'
+          'Oops! Something went wrong during registration. Please wait and try again.'
         );
       }
     } catch (error) {
-      console.log(error.message);
+      toast.error('The user with this email is already registered');
     }
   };
 
