@@ -18,8 +18,8 @@ const schema = Yup.object().shape({
     .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
     .max(15, 'Name must be at most 15 characters')
-    .trim('No leading or trailing spaces'),
-  // .matches(/^\S*$/, 'Spaces are not allowed'),
+    // .trim('No leading or trailing spaces'),
+    .matches(/^\S+(?: +\S+)*$/, 'No leading or trailing spaces'),
   email: Yup.string()
     .required('Email is required')
     .trim('No leading or trailing spaces')

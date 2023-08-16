@@ -52,10 +52,10 @@ function TextError(currentTheme, errorText) {
 const schema = yup.object().shape({
   name: yup
     .string()
-    .trim('No leading or trailing spaces')
     .required('This field is required to fill')
     .max(20, 'Field can contain 20 symbols maximum')
-    .min(1, 'Board name needs to be at least 1 char'),
+    .min(1, 'Board name needs to be at least 1 char')
+    .matches(/^\S+(?: +\S+)*$/, 'No leading or trailing spaces'),
 });
 const BoardForm = ({ boardId = null, closeModal }) => {
   const currentBoard = useSelector(selectCurrentBoard);

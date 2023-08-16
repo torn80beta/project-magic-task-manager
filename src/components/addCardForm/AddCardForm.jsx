@@ -21,9 +21,9 @@ const AddCardForm = ({
     title: yup
       .string()
       .max(25, 'Name can contain 25 symbols max')
-      .trim('No leading or trailing spaces')
       .min(1, 'Name needs to be at least 1 char')
-      .required('This field is required'),
+      .required('This field is required')
+      .matches(/^\S+(?: +\S+)*$/, 'No leading or trailing spaces'),
     description: yup
       .string()
       .trim('No leading or trailing spaces')
