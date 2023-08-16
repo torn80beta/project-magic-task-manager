@@ -18,9 +18,11 @@ const schema = Yup.object().shape({
     .required('Name is required')
     .min(2, 'Name must be at least 2 characters')
     .max(15, 'Name must be at most 15 characters')
-    .matches(/^\S*$/, 'Spaces are not allowed'),
+    .trim('No leading or trailing spaces'),
+  // .matches(/^\S*$/, 'Spaces are not allowed'),
   email: Yup.string()
     .required('Email is required')
+    .trim('No leading or trailing spaces')
     .matches(
       /^[a-zA-Zа-яА-Я0-9._%+-]+@[a-zA-Zа-яА-Я0-9.-]+\.[a-zA-Zа-яА-Я]{2,}$/,
       'Invalid email format'
@@ -31,7 +33,8 @@ const schema = Yup.object().shape({
       'Invalid password format'
     )
     .min(8, 'Password must be at least 8 characters')
-    .max(64, 'Password must be at most 64 characters'),
+    .max(64, 'Password must be at most 64 characters')
+    .trim('No leading or trailing spaces'),
 });
 
 export const EditProfileForm = props => {
