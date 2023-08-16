@@ -22,6 +22,7 @@
     min-width: 302px;
   }
 }
+
 .add-form-title {
   font-family: Poppins;
   font-size: 18px;
@@ -40,14 +41,15 @@
     color: $light-main-text;
   }
 }
+
 .add-form-wrap {
   display: flex;
   flex-direction: column;
 }
-.add-form-email-wrap {
-  position: relative;
-  padding-bottom: 14px;
-}
+// .add-form-email-wrap {
+//   position: relative;
+//   padding-bottom: 14px;
+// }
 .add-form-input {
   font-family: Poppins;
   font-size: 14px;
@@ -112,22 +114,44 @@
     resize: none;
   }
 }
-.add-form-desc-wrap {
-  padding-bottom: 24px;
-}
-.add-form-input-error {
-  position: absolute;
-  top: -20px;
-  color: rgba(247, 73, 73, 0.76);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.4;
-  padding-left: 10px;
 
-  &.theme-dark {
-    color: rgb(255, 136, 136);
+.add-form-email-wrap {
+  position: relative;
+  padding-bottom: 14px;
+
+  .add-form-input-error {
+    position: absolute;
+    top: -20px;
+    color: rgba(247, 73, 73, 0.76);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    padding-left: 10px;
+
+    &.theme-dark {
+      color: rgb(255, 136, 136);
+    }
   }
 }
+
+.add-form-desc-wrap {
+  position: relative;
+  padding-bottom: 24px;
+  .add-form-input-error {
+    position: absolute;
+    top: -16px;
+    color: rgba(247, 73, 73, 0.76);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.4;
+    padding-left: 10px;
+
+    &.theme-dark {
+      color: rgb(255, 136, 136);
+    }
+  }
+}
+
 .add-form-radio-group {
   display: flex;
   gap: 8px;
@@ -270,6 +294,9 @@
   border-radius: 8px;
   border: none;
   transition: background-color ease 250ms;
+  &:hover {
+    cursor: pointer;
+  }
 
   font-family: Poppins;
   font-size: 14px;

@@ -24,6 +24,10 @@ const AddCardForm = ({
       .trim('No leading or trailing spaces')
       .min(1, 'Name needs to be at least 1 char')
       .required('This field is required'),
+    description: yup
+      .string()
+      .trim('No leading or trailing spaces')
+      .required('This field is required'),
   });
 
   return (
@@ -106,7 +110,9 @@ const AddCardForm = ({
                 value={values.description}
               />
               <p className={`add-form-input-error theme-${theme}`}>
-                {errors.desc && touched.desc && errors.desc}
+                {errors.description &&
+                  touched.description &&
+                  errors.description}
               </p>
             </div>
             <div>
