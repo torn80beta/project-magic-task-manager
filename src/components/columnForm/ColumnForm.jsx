@@ -17,7 +17,7 @@ const ColumnForm = props => {
   const dispatch = useDispatch();
 
   const onSubmit = e => {
-    const InputTitle = e.target.elements.title.value;
+    const InputTitle = e.target.elements.title.value.trim();
     e.preventDefault();
 
     if (InputTitle === '') {
