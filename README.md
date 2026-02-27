@@ -1,7 +1,6 @@
 # ![logo](./assets/logo.png) TaskPro
 
-**WARNING!** In this project, the backend is deployed on a free cloud service [render.com](https://render.com/), 
-so it takes some time for the application to launch for the first time.
+PLEASE NOTICE!! This is a demo project and it's hosted on a free services. Due to this after some inactive period it goes in to a suspend mode so it may take a few minutes for a backend to work again. So please, be patient. And thank you for your attention!
 
 ### Do you have anything planned?
 Use  ***TaskPro*** to increase productivity, prioritize tasks and achieve your goals with efficiency and simply eliminate unnecessary hassle. Do your daily tasks with ***TaskPro*** and enjoy life.
